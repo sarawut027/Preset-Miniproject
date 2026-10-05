@@ -1,0 +1,13 @@
+# Archives & Backups
+*.zip
+*.tar.gz
+*.rar
+
+# System / OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Scratch & Logs
+*.log
+scratch/

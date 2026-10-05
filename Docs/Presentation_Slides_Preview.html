@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>สไลด์นำเสนอโครงงาน เสหยอดบาร์เบอร์ (Presentation Preview)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Prompt:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0E0E11;
+      --card-bg: #181822;
+      --card-border: #2A2A38;
+      --gold-primary: #E2A85C;
+      --gold-hover: #F0B86E;
+      --orange-accent: #D9622B;
+      --red-void: #9E2A2B;
+      --green-success: #10B981;
+      --text-white: #FFFFFF;
+      --text-muted: #9CA3AF;
+      --text-sub: #D1D5DB;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #08080A;
+      color: var(--text-white);
+      font-family: 'Prompt', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Top Navigation Bar */
+    .top-header {
+      background: rgba(14, 14, 17, 0.95);
+      border-bottom: 1px solid var(--card-border);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(8px);
+    }
+
+    .brand-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-title img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--gold-primary);
+    }
+
+    .brand-title h1 {
+      font-family: 'Kanit', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--gold-primary);
+      letter-spacing: 0.5px;
+    }
+
+    .brand-title span {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text-white);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-family: 'Prompt', sans-serif;
+      font-size: 13px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .btn:hover {
+      border-color: var(--gold-primary);
+      color: var(--gold-primary);
+      transform: translateY(-1px);
+    }
+
+    .btn.active {
+      background: var(--gold-primary);
+      color: #0E0E11;
+      font-weight: 600;
+      border-color: var(--gold-primary);
+    }
+
+    .btn-orange {
+      background: var(--orange-accent);
+      border-color: var(--orange-accent);
+      color: white;
+      font-weight: 500;
+    }
+
+    .btn-orange:hover {
+      background: #E56E36;
+      border-color: #E56E36;
+      color: white;
+    }
+
+    /* Main Stage */
+    .deck-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 20px;
+      position: relative;
+    }
+
+    /* 16:9 Slide Canvas */
+    .slide-wrapper {
+      width: 100%;
+      max-width: 1280px;
+      aspect-ratio: 16 / 9;
+      background: var(--bg-dark);
+      border: 2px solid var(--gold-primary);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 20px rgba(226, 168, 92, 0.15);
+      border-radius: 16px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .slide {
+      width: 100%;
+      height: 100%;
+      padding: 40px 50px;
+      display: none;
+      flex-direction: column;
+      position: relative;
+      background: radial-gradient(circle at top right, rgba(226, 168, 92, 0.05) 0%, rgba(14, 14, 17, 1) 70%);
+    }
+
+    .slide.active {
+      display: flex;
+      animation: fadeInSlide 0.35s ease-out;
+    }
+
+    @keyframes fadeInSlide {
+      from { opacity: 0; transform: scale(0.985); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Slide Header */
+    .slide-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 24px;
+      border-bottom: 1px solid rgba(226, 168, 92, 0.2);
+      padding-bottom: 14px;
+    }
+
+    .slide-title-group h2 {
+      font-family: 'Kanit', sans-serif;
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--text-white);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .slide-title-group p {
+      font-size: 13px;
+      color: var(--gold-primary);
+      margin-top: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .slide-badge {
+      background: rgba(226, 168, 92, 0.12);
+      border: 1px solid var(--gold-primary);
+      color: var(--gold-primary);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* Slide Content Body */
+    .slide-body {
+      flex: 1;
+      display: grid;
+      gap: 24px;
+      height: calc(100% - 90px);
+    }
+
+    .grid-2col {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .grid-3col {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .grid-custom-40-60 {
+      grid-template-columns: 38% 62%;
+    }
+
+    .grid-custom-60-40 {
+      grid-template-columns: 62% 38%;
+    }
+
+    /* Cards */
+    .info-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .info-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--gold-primary);
+    }
+
+    .info-card.orange::before { background: var(--orange-accent); }
+    .info-card.green::before { background: var(--green-success); }
+    .info-card.red::before { background: var(--red-void); }
+
+    .card-title {
+      font-family: 'Kanit', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--gold-primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 13.5px;
+      color: var(--text-sub);
+      line-height: 1.5;
+    }
+
+    .card-list li {
+      position: relative;
+      padding-left: 18px;
+    }
+
+    .card-list li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--gold-primary);
+    }
+
+    /* Media Mockup Container */
+    .media-box {
+      background: #000;
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+      cursor: pointer;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .media-box:hover {
+      border-color: var(--gold-primary);
+      transform: translateY(-2px);
+    }
+
+    .media-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #0D0D11;
+    }
+
+    .media-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(14, 14, 17, 0.85);
+      border-top: 1px solid var(--card-border);
+      padding: 6px 10px;
+      font-size: 11px;
+      color: var(--gold-primary);
+      text-align: center;
+      font-family: 'Kanit', sans-serif;
+    }
+
+    /* Speaker Notes Bar */
+    .notes-drawer {
+      max-width: 1280px;
+      width: 100%;
+      margin-top: 14px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 14px 20px;
+      display: none;
+      animation: fadeIn 0.2s ease-in;
+    }
+
+    .notes-drawer.open {
+      display: block;
+    }
+
+    .notes-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--gold-primary);
+      font-weight: 600;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .notes-body {
+      font-size: 13.5px;
+      color: var(--text-sub);
+      line-height: 1.6;
+    }
+
+    /* Bottom Controller & Carousel */
+    .bottom-bar {
+      background: #0E0E11;
+      border-top: 1px solid var(--card-border);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .nav-buttons {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .thumbnails-strip {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 4px;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .thumb-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .thumb-btn:hover {
+      border-color: var(--gold-primary);
+      color: var(--gold-primary);
+    }
+
+    .thumb-btn.active {
+      background: var(--gold-primary);
+      color: #0E0E11;
+      border-color: var(--gold-primary);
+      font-weight: 700;
+    }
+
+    /* Modal Image Lightbox */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 30px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-content {
+      max-width: 92vw;
+      max-height: 90vh;
+      position: relative;
+    }
+
+    .modal-content img {
+      max-width: 100%;
+      max-height: 85vh;
+      border-radius: 8px;
+      border: 2px solid var(--gold-primary);
+      box-shadow: 0 0 30px rgba(226, 168, 92, 0.3);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: -36px;
+      right: 0;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    /* Specific Slide Styles */
+    .cover-slide {
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: radial-gradient(circle at center, rgba(226, 168, 92, 0.12) 0%, #0E0E11 80%);
+    }
+
+    .cover-logo {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 3px solid var(--gold-primary);
+      box-shadow: 0 0 30px rgba(226, 168, 92, 0.35);
+      margin-bottom: 20px;
+      object-fit: cover;
+    }
+
+    .cover-tagline {
+      color: var(--orange-accent);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+
+    .cover-title {
+      font-family: 'Kanit', sans-serif;
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--text-white);
+      max-width: 900px;
+      line-height: 1.35;
+      margin-bottom: 8px;
+    }
+
+    .cover-subtitle {
+      font-size: 15px;
+      color: var(--gold-primary);
+      font-style: italic;
+      margin-bottom: 28px;
+    }
+
+    .cover-meta {
+      display: flex;
+      gap: 30px;
+      background: rgba(24, 24, 34, 0.8);
+      border: 1px solid var(--card-border);
+      padding: 12px 30px;
+      border-radius: 40px;
+      font-size: 13px;
+      color: var(--text-sub);
+    }
+
+    .cover-meta strong {
+      color: var(--gold-primary);
+    }
+
+    .tech-pill {
+      background: rgba(226, 168, 92, 0.08);
+      border: 1px solid var(--card-border);
+      padding: 8px 14px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+    }
+
+    .tech-pill strong {
+      color: var(--gold-primary);
+      font-family: 'Kanit', sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header Navigation -->
+  <header class="top-header">
+    <div class="brand-title">
+      <img src="../images/logo.png" alt="เสหยอดบาร์เบอร์">
+      <div>
+        <h1>เสหยอดบาร์เบอร์ • สไลด์นำเสนอโครงงาน</h1>
+        <span>Real-time Barber Income Recording System (10 Slides Preview)</span>
+      </div>
+    </div>
+    <div class="header-controls">
+      <button class="btn" id="btnNotesToggle" onclick="toggleNotes()">
+        🎙️ บทพูดผู้นำเสนอ (Notes)
+      </button>
+      <button class="btn" onclick="toggleFullscreen()">
+        ⛶ เต็มจอ (F)
+      </button>
+      <a href="SLIDE_BLUEPRINT_CANVA.md" target="_blank" class="btn btn-orange">
+        📑 เปิดพิมพ์เขียว Canva
+      </a>
+    </div>
+  </header>
+
+  <!-- Deck Container -->
+  <main class="deck-container">
+    <div class="slide-wrapper" id="slideWrapper">
+
+      <!-- SLIDE 1: COVER -->
+      <section class="slide cover-slide active" data-slide="1">
+        <img src="../images/logo.png" alt="โลโก้เสหยอดบาร์เบอร์" class="cover-logo" onclick="openModal(this.src)">
+        <div class="cover-tagline">SENIOR PROJECT DEFENSE • COMPUTER SCIENCE NPRU</div>
+        <h1 class="cover-title">ระบบบันทึกรายได้และคำนวณค่าคอมมิชชันช่างตัดผมแบบเรียลไทม์<br>ผ่านแอปพลิเคชันไลน์</h1>
+        <div class="cover-subtitle">Real-time Barber Income Recording and Commission Calculation System via LINE Application</div>
+        <div class="cover-meta">
+          <div>ผู้จัดทำ: <strong>นาย สราวุฒิ อุยยาหาญ</strong> (รหัสประจำตัว 674230027, หมู่เรียน 67/44)</div>
+        </div>
+      </section>
+
+      <!-- SLIDE 2: PAIN POINTS -->
+      <section class="slide" data-slide="2">
+        <div class="slide-top">
+          <div class="slide-title-group">
+            <h2>⚠️ ที่มาและความสำคัญของปัญหา</h2>
+            <p>จุดติดขัดของระบบเดิม: ปัญหาเงินเข้า • ปัญหาเงินออก • ขาดการวิเคราะห์สถิติ</p>
+          </div>
+          <div class="slide-badge">SLIDE 02 / 10</div>
+        </div>
+        <div class="slide-body grid-3col">
+          <div class="info-card red">
+            <div class="card-title">1. ปัญหาเงินเข้า (Money In)</div>
+            <ul class="card-list">
+              <li><strong>สลิปปลอม & สลิปซ้ำ:</strong> เสี่ยงต่อการส่งสลิปตัดต่อหรือสลิปเก่ามาวนใช้ซ้ำ</li>
+              <li><strong>ยอดโอนไม่ตรง:</strong> ลูกค้าโอนเงินไม่ครบค่ายอดบริการหน้าร้าน</li>
+              <li><strong>เช็กล่าช้า:</strong> เจ้าของร้านต้องคอยสลับเปิดแอปธนาคารตรวจยอด ทำให้บริการสะดุด</li>
+            </ul>
+          </div>
+          <div class="info-card orange">
+            <div class="card-title">2. ปัญหาเงินออก (Money Out)</div>
+            <ul class="card-list">
+              <li><strong>จดบิลลงสมุด:</strong> บันทึกด้วยมือ เสี่ยงต่อการตกหล่น ลายมืออ่านยาก</li>
+              <li><strong>คำนวณคอมมิชชันผิด:</strong> สิ้นวันต้องกดเครื่องคิดเลขแยกส่วนแบ่งช่าง (50:50 หรือตามทักษะ)</li>
+              <li><strong>ขาดความโปร่งใส:</strong> ช่างตัดผมไม่ทราบยอดสะสมแบบเรียลไทม์ระหว่างวัน</li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <div class="card-title">3. การวิเคราะห์ธุรกิจ (Insights)</div>
+            <ul class="card-list">
+              <li><strong>ไม่มีข้อมูลสรุป:</strong> เจ้าของร้านไม่ทราบยอดขายรวมรายวัน/สัปดาห์</li>
+              <li><strong>ไม่รู้ทรงผมยอดนิยม:</strong> ขาดสถิติวางแผนโปรโมชันและการสต็อกอุปกรณ์</li>
+              <li><strong>ไม่สามารถวัดผลช่าง:</strong> ขาดแดชบอร์ดเปรียบเทียบประสิทธิภาพช่างแต่ละคน</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 3: SYSTEM ARCHITECTURE -->
+      <section class="slide" data-slide="3">
+        <div class="slide-top">
+          <div class="slide-title-group">
+            <h2>🏗️ สถาปัตยกรรมระบบและเทคโนโลยีหลัก</h2>
+            <p>End-to-End Workflow: LINE Integration ➡️ n8n Automation Engine ➡️ Cloud Database & BI</p>
+          </div>
+          <div class="slide-badge">SLIDE 03 / 10</div>
+        </div>
+        <div class="slide-body grid-custom-60-40">
+          <div class="media-box" onclick="openModal('Diagram/System Architecture.png')">
+            <img src="Diagram/System Architecture.png" alt="System Architecture Diagram">
+            <div class="media-label">ภาพผังภาพรวมสถาปัตยกรรมระบบ (System Architecture)</div>
+          </div>
+          <div class="info-card">
+            <div class="card-title">เทคโนโลยีหลักในระบบ (Tech Stack)</div>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <div class="tech-pill">
+                <strong>LINE OA & LIFF:</strong> ฟรอนต์เอนด์เชื่อมต่อลูกค้าและช่างผ่านแอป LINE
+              </div>
+              <div class="tech-pill">
+                <strong>n8n Automation:</strong> Self-Hosted บน Railway ประมวลผลตรรกะระบบ
+              </div>
+              <div class="tech-pill">
+                <strong>Slip2Go API:</strong> ตรวจสอบ QR และยอดเงินสลิปธนาคารแบบเรียลไทม์
+              </div>
+              <div class="tech-pill">
+                <strong>MySQL on Railway:</strong> ฐานข้อมูลธุรกรรมบนคลาวด์ เสถียรสูง
+              </div>
+              <div class="tech-pill">
+                <strong>Google Looker Studio:</strong> ระบบ Business Intelligence แสดงสถิติสด
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 4: CUSTOMER FLOW -->
+      <section class="slide" data-slide="4">
+        <div class="slide-top">
+          <div class="slide-title-group">
+            <h2>📱 ฝั่งลูกค้า: แจ้งชำระเงิน & ตรวจจับสลิปอัจฉริยะ</h2>
+            <p>LINE LIFF Checkout Flow 4 สเต็ป พร้อมระบบ AI Slip Verification ดักจับสลิปยอดไม่ตรง</p>
+          </div>
+          <div class="slide-badge">SLIDE 04 / 10</div>
+        </div>
+        <div class="slide-body grid-custom-40-60">
+          <div class="info-card green">
+            <div class="card-title">ขั้นตอนการทำรายการหน้าร้าน</div>
+            <ul class="card-list">
+              <li><strong>1. สแกนริชเมนู:</strong> ลูกค้าเปิด LINE LIFF เข้าสู่ฟอร์มแจ้งชำระเงิน</li>
+              <li><strong>2. เลือกช่าง & ทรงผม:</strong> เลือกช่าง (เต้/ยูโกะ/แบม) และรายการบริการ</li>
+              <li><strong>3. สแกน PromptPay QR:</strong> สแกนโอนเงินเข้าบัญชีร้าน นายสราวุฒิ อุยยาหาญ</li>
+              <li><strong>4. ตรวจสอบสลิปเรียลไทม์:</strong> แนบสลิป ➡️ ระบบตรวจ Slip2Go ทันที</li>
+              <li><strong style="color:var(--red-void);">🛡️ ดักจับสลิปผิดพลาด:</strong> หากสลิปยอดไม่ตรง (เช่น โอน 10 บาท แต่บริการ 150 บาท) ระบบปฏิเสธทันที!</li>
+            </ul>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; height: 100%;">
+            <div class="media-box" onclick="openModal('../Present/01_ขั้นตอนการชำระ/01_หน้าฟอร์มชำระเงิน_LIFF.jpg')">
+              <img src="../Present/01_ขั้นตอนการชำระ/01_หน้าฟอร์มชำระเงิน_LIFF.jpg" alt="หน้าฟอร์ม LIFF">
+              <div class="media-label">1. ฟอร์ม LINE LIFF 4 สเต็ป</div>
+            </div>
+            <div class="media-box" onclick="openModal('../Present/01_ขั้นตอนการชำระ/03_แจ้งเตือนสลิปยอดไม่ตรง_Error.jpg')">
+              <img src="../Present/01_ขั้นตอนการชำระ/03_แจ้งเตือนสลิปยอดไม่ตรง_Error.jpg" alt="แจ้งเตือนสลิปยอดไม่ตรง">
+              <div class="media-label">2. ตรวจจับยอดเงินไม่ตรง!</div>
+            </div>
+            <div class="media-box" onclick="openModal('../Present/01_ขั้นตอนการชำระ/04_ยืนยันชำระเงินสำเร็จ_Popup.jpg')">
+              <img src="../Present/01_ขั้นตอนการชำระ/04_ยืนยันชำระเงินสำเร็จ_Popup.jpg" alt="ชำระเงินสำเร็จ">
+              <div class="media-label">3. ยืนยันชำระเงินสำเร็จ</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 5: DIGITAL RECEIPTS -->
+      <section class="slide" data-slide="5">
+        <div class="slide-top">
+          <div class="slide-title-group">
+            <h2>🧾 ใบเสร็จรับเงินอิเล็กทรอนิกส์ (Paperless e-Receipt)</h2>
+            <p>ส่งตรงเข้า LINE ลูกค้าทันที รองรับทั้งบิลโอนเงินและบิลเงินสดหน้าร้าน</p>
+          </div>
+          <div class="slide-badge">SLIDE 05 / 10</div>
+        </div>
+        <div class="slide-body grid-custom-60-40">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; height: 100%;">
+            <div class="media-box" onclick="openModal('../Present/01_ขั้นตอนการชำระ/05_ใบเสร็จโอนเงิน_eReceipt_TXN55.jpg')">
+              <img src="../Present/01_ขั้นตอนการชำระ/05_ใบเสร็จโอนเงิน_eReceipt_TXN55.jpg" alt="ใบเสร็จโอนเงิน TXN-55">
+              <div class="media-label">บิลโอนเงิน (TXN-55) + ริชเมนู</div>
+            </div>
+            <div class="media-box" onclick="openModal('../Present/01_ขั้นตอนการชำระ/06_ใบเสร็จเงินสด_eReceipt_TXN56.jpg')">
+              <img src="../Present/01_ขั้นตอนการชำระ/06_ใบเสร็จเงินสด_eReceipt_TXN56.jpg" alt="ใบเสร็จเงินสด TXN-56">
+              <div class="media-label">บิลเงินสดหน้าร้าน (TXN-56)</div>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="card-title">คุณสมบัติของ LINE Flex e-Receipt</div>
+            <ul class="card-list">
+              <li><strong>ลดการใช้กระดาษ 100%:</strong> ไม่ต้องพิมพ์ใบเสร็จกระดาษ บันทึกบนคลาวด์</li>
+              <li><strong>ข้อมูลครบถ้วน:</strong> ระบุชื่อช่าง, ทรงผม, ยอดชำระ, เลขที่บิล, วันที่-เวลา</li>
+              <li><strong>แสดงเลขอ้างอิงธนาคาร:</strong> สำหรับบิลโอนเงิน แสดงเลขอ้างอิงสลิปจาก Slip2Go สามารถตรวจสอบย้อนหลังได้</li>
+              <li><strong>ฝังริชเมนู 1970s:</strong> แถบเมนูล่างอำนวยความสะดวกในการกดแจ้งชำระเงินรอบถัดไป</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 6: N8N AUTOMATION ENGINE -->
+      <section class="slide" data-slide="6">
+        <div class="slide-top">
+          <div class="slide-title-group">
+            <h2>⚙️ เครื่องยนต์เบื้องหลัง: n8n Workflow Automation</h2>
+            <p>Low-Code Engine รันบน Railway Cloud ประมวลผล Webhook, API Verification และ Database</p>
+          </div>
+          <div class="slide-badge">SLIDE 06 / 10</div>
+        </div>
+        <div class="slide-body grid-custom-60-40">
+          <div style="display: flex; flex-direction: column; gap: 12px; height: 100%;">
+            <div class="media-box" style="flex: 1.2;" onclick="openModal('../Present/07_สถาปัตยกรรมระบบงาน/01_ผัง_n8n_หน้าจ่ายเงินและตรวจสลิป.png')">
+              <img src="../Present/07_สถาปัตยกรรมระบบงาน/01_ผัง_n8n_หน้าจ่ายเงินและตรวจสลิป.png" alt="ผัง n8n ชำระเงิน">
+              <div class="media-label">Workflow ฝั่งชำระเงิน: Webhook ➡️ Slip2Go ➡️ IF ตรวจสอบ ➡️ MySQL ➡️ LINE Flex</div>
+            </div>
+            <div class="media-box" style="flex: 1;" onclick="openModal('../Present/07_สถาปัตยกรรมระบบงาน/02_ผัง_n8n_Admin_Gateway.png')">
+              <img src="../Present/07_สถาปัตยกรรมระบบงาน/02_ผัง_n8n_Admin_Gateway.png" alt="ผัง n8n admin">
+              <div class="media-label">Workflow ฝั่ง Admin: API Gateway Router แยก 9 คำสั่ง</div>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 12px; height: 100%;">
+            <div class="media-box" style="flex: 1.1;" onclick="openModal('../Present/07_สถาปัตยกรรมระบบงาน/03_ฐานข้อมูล_MySQL_Railway.png')">
+              <img src="../Present/07_สถาปัตยกรรมระบบงาน/03_ฐานข้อมูล_MySQL_Railway.png" alt="ตาราง MySQL บน Railway">
+              <div class="media-label">MySQL บน Railway (payouts, services, transactions, users)</div>
+            </div>
+            <div class="info-card" style="flex: 1;">
+              <div class="card-title">ความเร็วและความปลอดภัย</div>
+              <ul class="card-list">
+                <li>ทำงานแบบ Real-time เฉลี่ย <strong>< 1.5 วินาที</strong></li>
+                <li>แยกเงื่อนไข สลิปจริง / สลิปปลอม / สลิปยอดไม่ตรง</li>
+                <li>บันทึก Audit Logs ทุกธุรกรรม</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 7: ADMIN & VOID BILL -->
+      <section class="slide" data-slide="7">
+        <div class="slide-top">
+          <div class="slide-title-group">
+            <h2>💼 ระบบหลังบ้านและการทำโมฆะบิล (Void Bill)</h2>
+            <p>ตรวจสอบประวัติธุรกรรมแบบเรียลไทม์ และระบบยกเลิกบิลพร้อมแจ้งเตือนช่างทันที</p>
+          </div>
+          <div class="slide-badge">SLIDE 07 / 10</div>
+        </div>
+        <div class="slide-body grid-custom-60-40">
+          <div class="media-box" onclick="openModal('../Present/02_ประวัติธุรกรรมและโมฆะบิล/05_ตารางบิลโมฆะแถบสีแดง.png')">
+            <img src="../Present/02_ประวัติธุรกรรมและโมฆะบิล/05_ตารางบิลโมฆะแถบสีแดง.png" alt="ตารางบิลโมฆะ">
+            <div class="media-label">ตารางประวัติธุรกรรม อัปเดตสถานะบิลโมฆะเป็นแถบสีแดงอัตโนมัติ</div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; height: 100%;">
+            <div class="media-box" onclick="openModal('../Present/02_ประวัติธุรกรรมและโมฆะบิล/03_ป๊อปอัปยืนยันโมฆะบิล.png')">
+              <img src="../Present/02_ประวัติธุรกรรมและโมฆะบิล/03_ป๊อปอัปยืนยันโมฆะบิล.png" alt="ยืนยันโมฆะบิล">
+              <div class="media-label">ป๊อปอัปยืนยันโมฆะบิล</div>
+            </div>
+            <div class="media-box" onclick="openModal('../Present/02_ประวัติธุรกรรมและโมฆะบิล/04_LINEเตือนช่างบิลโมฆะ.png')">
+              <img src="../Present/02_ประวัติธุรกรรมและโมฆะบิล/04_LINEเตือนช่างบิลโมฆะ.png" alt="LINE Flex แจ้งช่าง">
+              <div class="media-label">LINE เตือนช่างว่าบิลโมฆะ</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 8: SETTLEMENT & PAYOUT -->
+      <section class="slide" data-slide="8">
+        <div class="slide-top">
+          <div class="slide-title-group">
+            <h2>💰 ระบบตัดรอบเคลียร์เงินช่าง (Barber Commission Settlement)</h2>
+            <p>คำนวณส่วนแบ่งอัตโนมัติ ตัดรอบเงินในคลิกเดียว พร้อมส่งสลิปหลักฐานเข้า LINE ช่างทันที</p>
+          </div>
+          <div class="slide-badge">SLIDE 08 / 10</div>
+        </div>
+        <div class="slide-body grid-3col">
+          <div class="media-box" onclick="openModal('../Present/05_การตัดรอบเคลียร์เงิน/01_ตารางยอดค้างเคลียร์เงิน.png')">
+            <img src="../Present/05_การตัดรอบเคลียร์เงิน/01_ตารางยอดค้างเคลียร์เงิน.png" alt="ตารางค้างเคลียร์">
+            <div class="media-label">1. ตารางสรุปยอดค้างจ่ายช่างสะสม</div>
+          </div>
+          <div class="media-box" onclick="openModal('../Present/05_การตัดรอบเคลียร์เงิน/02_หน้าต่างแนบสลิปจ่ายช่าง.png')">
+            <img src="../Present/05_การตัดรอบเคลียร์เงิน/02_หน้าต่างแนบสลิปจ่ายช่าง.png" alt="หน้าต่างตัดรอบแนบสลิป">
+            <div class="media-label">2. แอดมินแนบสลิปโอนเงินจ่ายช่าง</div>
+          </div>
+          <div class="media-box" onclick="openModal('../Present/05_การตัดรอบเคลียร์เงิน/03_LINEแจ้งเตือนเงินเข้าช่าง.png')">
+            <img src="../Present/05_การตัดรอบเคลียร์เงิน/03_LINEแจ้งเตือนเงินเข้าช่าง.png" alt="LINE Flex เงินเข้าช่าง">
+            <div class="media-label">3. LINE ช่างเด้งยอดตัดรอบ + สลิปโอน</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 9: ANALYTICS & LOOKER STUDIO -->
+      <section class="slide" data-slide="9">
+        <div class="slide-top">
+          <div class="slide-title-group">
+            <h2>📊 แดชบอร์ดวิเคราะห์ผลประกอบการ (Business Intelligence)</h2>
+            <p>Admin Live Dashboard (Chart.js) ควบคู่กับ Google Looker Studio สรุปสถิติเชิงลึก</p>
+          </div>
+          <div class="slide-badge">SLIDE 09 / 10</div>
+        </div>
+        <div class="slide-body grid-2col">
+          <div class="media-box" onclick="openModal('../Present/06_แดชบอร์ดและสถิติ/01_แดชบอร์ดแอดมิน_ChartJS.png')">
+            <img src="../Present/06_แดชบอร์ดและสถิติ/01_แดชบอร์ดแอดมิน_ChartJS.png" alt="Admin Dashboard">
+            <div class="media-label">Admin Live Dashboard: รายได้รวม ฿7,297 • คอมมิชชัน ฿2,841 • กำไรสุทธิ ฿4,455</div>
+          </div>
+          <div class="media-box" onclick="openModal('../Present/06_แดชบอร์ดและสถิติ/02_แดชบอร์ด_GoogleLookerStudio.png')">
+            <img src="../Present/06_แดชบอร์ดและสถิติ/02_แดชบอร์ด_GoogleLookerStudio.png" alt="Google Looker Studio">
+            <div class="media-label">Google Looker Studio: แนวโน้มรายได้รายวัน สัดส่วนช่าง และบริการยอดนิยม</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 10: CONCLUSION & IMPACT -->
+      <section class="slide" data-slide="10">
+        <div class="slide-top">
+          <div class="slide-title-group">
+            <h2>🏆 สรุปผลการดำเนินงานและประโยชน์ที่ได้รับ</h2>
+            <p>ความสำเร็จของโครงงาน • ผลกระทบต่อธุรกิจร้านตัดผม • การต่อยอดในอนาคต</p>
+          </div>
+          <div class="slide-badge">SLIDE 10 / 10</div>
+        </div>
+        <div class="slide-body grid-2col">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+            <div class="info-card green">
+              <div class="card-title">⚡ ประหยัดเวลา 90%</div>
+              <p style="font-size:13px; color:var(--text-sub);">ตัดรอบเงินช่างเสร็จใน 1 คลิก ไม่ต้องใช้สมุดจดและเครื่องคิดเลข</p>
+            </div>
+            <div class="info-card red">
+              <div class="card-title">🛡️ ป้องกันการโกง 100%</div>
+              <p style="font-size:13px; color:var(--text-sub);">AI Slip2Go ดักสลิปปลอม/สลิปวน และระบบ Void บิลตรวจสอบได้</p>
+            </div>
+            <div class="info-card orange">
+              <div class="card-title">🤝 โปร่งใสและเป็นธรรม</div>
+              <p style="font-size:13px; color:var(--text-sub);">ช่างตรวจสอบยอดสะสมและรับสลิปเงินโอนเข้า LINE ส่วนตัวได้ทันที</p>
+            </div>
+            <div class="info-card">
+              <div class="card-title">🌱 เป็นมิตรต่อสิ่งแวดล้อม</div>
+              <p style="font-size:13px; color:var(--text-sub);">ลดการใช้สลิปกระดาษด้วย Digital LINE Flex e-Receipt</p>
+            </div>
+          </div>
+          <div class="info-card" style="align-items: center; justify-content: center; text-align: center;">
+            <img src="../images/logo.png" alt="โลโก้" style="width: 80px; height: 80px; border-radius: 50%; border: 2px solid var(--gold-primary); margin-bottom: 10px;">
+            <div class="card-title" style="font-size: 20px; color: var(--gold-primary);">พร้อมต่อยอดสู่ระบบจองคิวออนไลน์</div>
+            <p style="font-size: 13.5px; color: var(--text-sub); max-width: 400px; margin-top: 6px;">
+              แผนพัฒนาเฟสถัดไป: เชื่อมต่อระบบ Barber Queue Booking และระบบสะสมแต้มสมาชิกผ่าน LINE OA
+            </p>
+            <div style="margin-top: 18px; font-family: 'Kanit', sans-serif; font-size: 22px; color: var(--text-white); font-weight: 700;">
+              ขอบพระคุณคณะกรรมการทุกท่านครับ
+            </div>
+            <div style="font-size: 13px; color: var(--gold-primary); letter-spacing: 1px; margin-top: 4px;">
+              QUESTION & ANSWER (ถาม-ตอบ)
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Speaker Notes Bar (Collapsible) -->
+    <div class="notes-drawer" id="notesDrawer">
+      <div class="notes-header">
+        <span>🎙️ บทพูดผู้นำเสนอ (Speaker Notes) — สไลด์ที่ <span id="notesSlideNum">1</span></span>
+        <span style="cursor: pointer;" onclick="toggleNotes()">✕ ปิด</span>
+      </div>
+      <div class="notes-body" id="notesContent">
+        กำลังโหลด...
+      </div>
+    </div>
+  </main>
+
+  <!-- Bottom Navigation Carousel -->
+  <footer class="bottom-bar">
+    <div class="nav-buttons">
+      <button class="btn" onclick="prevSlide()">◀ ก่อนหน้า</button>
+      <button class="btn" onclick="nextSlide()">ถัดไป ▶</button>
+      <span style="font-size: 13px; color: var(--gold-primary); font-family: 'Montserrat', sans-serif; font-weight: 600;" id="slideIndicator">1 / 10</span>
+    </div>
+
+    <div class="thumbnails-strip" id="thumbStrip">
+      <!-- Generated via JS -->
+    </div>
+
+    <div style="font-size: 12px; color: var(--text-muted);">
+      กด <strong>←</strong> / <strong>→</strong> หรือ <strong>Spacebar</strong> เพื่อเปลี่ยนสไลด์
+    </div>
+  </footer>
+
+  <!-- Lightbox Modal -->
+  <div class="modal-overlay" id="imageModal" onclick="closeModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <img id="modalImg" src="" alt="ภาพขยายขนาดใหญ่">
+    </div>
+  </div>
+
+  <script>
+    const speakerNotes = {
+      1: "กราบเรียนคณะกรรมการทุกท่าน กระผมนายสราวุฒิ อุยยาหาญ รหัสนักศึกษา 674230027 ขออนุญาตนำเสนอโครงงาน 'ระบบบันทึกรายได้และคำนวณค่าคอมมิชชันช่างตัดผมแบบเรียลไทม์ผ่านแอปพลิเคชันไลน์' สำหรับร้านเสหยอดบาร์เบอร์ โดยมี ผศ.ดร. สุพิชฌาย์ จันทร์เรือง เป็นอาจารย์ที่ปรึกษาครับ",
+      2: "ที่มาของโครงงานเกิดจากปัญหาของร้านตัดผม 2 ด้านหลักครับ ด้านแรกคือ 'เงินเข้า' ลูกค้าโอนเงินแต่เสี่ยงต่อสลิปปลอมหรือยอดเงินไม่ตรง ทำให้เจ้าของร้านต้องสลับแอปเช็กยอด ด้านที่สองคือ 'เงินออก' ต้องจดบิลลงสมุดกระดาษ สิ้นวันต้องมากดเครื่องคิดเลขคำนวณส่วนแบ่งคอมมิชชันช่าง ทำให้ช้า เกิดข้อผิดพลาด และช่างไม่ทราบยอดสะสมระหว่างวันครับ",
+      3: "เราจึงออกแบบระบบที่ไร้รอยต่อ โดยผู้ใช้ (ลูกค้าและช่าง) ใช้งานผ่านแอปพลิเคชัน LINE ที่คุ้นเคย ส่วนหลังบ้านขับเคลื่อนด้วย n8n Workflow Automation รันแบบ Self-Hosted บน Railway Cloud เชื่อมต่อกับ Slip2Go API ในการตรวจจับสลิปแบบเรียลไทม์ และเก็บข้อมูลลง MySQL พร้อมต่อยอดรายงานเข้า Google Looker Studio ครับ",
+      4: "ในฝั่งลูกค้าหน้าร้าน ไม่ต้องโหลดแอปใหม่ เพียงเปิด LINE LIFF เลือกช่าง เลือกบริการ และสแกน QR Code พร้อมเพย์ ระบบเชื่อมต่อ Slip2Go ตรวจสอบชื่อบัญชี ยอดเงิน และเวลาทันที โดยมีฟังก์ชันความปลอดภัย หากลูกค้าแนบสลิปที่ยอดเงินไม่ตรงกับค่าบริการจริง ระบบจะปฏิเสธบิลทันทีเพื่อป้องกันการทุจริตครับ",
+      5: "เมื่อการชำระเงินถูกต้อง ระบบจะส่งใบเสร็จรับเงินอิเล็กทรอนิกส์ e-Receipt เป็น LINE Flex Message เข้าห้องแชทลูกค้าทันที ช่วยลดการใช้กระดาษ 100% โดยรองรับทั้งบิลโอนเงิน (ระบุเลขอ้างอิงธนาคาร) และบิลเงินสดหน้าร้าน พร้อมฝังริชเมนูอำนวยความสะดวกครับ",
+      6: "เบื้องหลังความเร็วของระบบขับเคลื่อนด้วย n8n Automation Engine โดยเราแบ่งเป็น 2 เวิร์กโฟลว์หลัก คือ เวิร์กโฟลว์ฝั่งชำระเงิน ที่รับ Webhook จาก LIFF ไปตรวจ Slip2Go และลงฐานข้อมูล MySQL และเวิร์กโฟลว์ฝั่ง Admin Gateway ที่ใช้ Router Switch แยกคำสั่งจัดการข้อมูลและกระจายการแจ้งเตือนแบบเรียลไทม์ครับ",
+      7: "ฝั่งแอดมินหลังบ้าน สามารถดูตารางธุรกรรมสดได้ตลอดเวลา และมีฟังก์ชัน 'โมฆะบิล' (Void Bill) หากพบบิลผิดพลาด เมื่อกดโมฆะ สถานะในตารางจะเปลี่ยนเป็นสีแดงทันที และระบบจะส่ง LINE Push Notification ไปเตือนช่างเจ้าของบิล เพื่อความโปร่งใสและตรวจสอบได้ครับ",
+      8: "ฟังก์ชันไฮไลท์คือ 'การเคลียร์เงินช่าง' ระบบจะรวบรวมยอดสะสมค้างจ่ายของช่างแต่ละคนให้อัตโนมัติ เจ้าของร้านเพียงกดปุ่มเคลียร์เงิน โอนเงิน และแนบสลิปผ่านหน้าเว็บ ระบบจะบันทึกสถานะเป็น Settled และส่งสรุปยอดพร้อมสลิปเงินเข้า LINE ส่วนตัวของช่างทันทีครับ",
+      9: "ด้านการวิเคราะห์ข้อมูล เรามีทั้ง Admin Dashboard ภายในเว็บที่แสดงสรุปยอดขายรวม ค่าคอมมิชชัน และกำไรสุทธิแบบเรียลไทม์ และเชื่อมต่อเข้า Google Looker Studio เพื่อวิเคราะห์แนวโน้มยอดขายรายวัน ทรงผมยอดนิยม และผลงานของช่างแต่ละคน เพื่อวางแผนการตลาดของร้านครับ",
+      10: "สรุปผลการดำเนินงาน ระบบนี้ช่วยลดเวลาการสรุปบัญชีและตัดรอบเงินช่างลงได้ถึง 90% ป้องกันการทุจริตสลิปได้ 100% และสร้างความโปร่งใสให้แก่ช่างตัดผม โดยในอนาคตมีแผนจะพัฒนาต่อยอดระบบจองคิวออนไลน์ครับ กระผมขอจบการนำเสนอ และพร้อมรับฟังข้อเสนอแนะจากคณะกรรมการครับ"
+    };
+
+    let currentSlide = 1;
+    const totalSlides = 10;
+
+    function initThumbnails() {
+      const strip = document.getElementById('thumbStrip');
+      strip.innerHTML = '';
+      for (let i = 1; i <= totalSlides; i++) {
+        const btn = document.createElement('button');
+        btn.className = `thumb-btn ${i === currentSlide ? 'active' : ''}`;
+        btn.innerText = i;
+        btn.onclick = () => goToSlide(i);
+        strip.appendChild(btn);
+      }
+    }
+
+    function updateSlide() {
+      document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+      const activeSlide = document.querySelector(`.slide[data-slide="${currentSlide}"]`);
+      if (activeSlide) activeSlide.classList.add('active');
+
+      document.getElementById('slideIndicator').innerText = `${currentSlide} / ${totalSlides}`;
+      document.getElementById('notesSlideNum').innerText = currentSlide;
+      document.getElementById('notesContent').innerText = speakerNotes[currentSlide] || '';
+
+      document.querySelectorAll('.thumb-btn').forEach((btn, idx) => {
+        btn.classList.toggle('active', idx + 1 === currentSlide);
+      });
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides) {
+        currentSlide++;
+        updateSlide();
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) {
+        currentSlide--;
+        updateSlide();
+      }
+    }
+
+    function goToSlide(n) {
+      currentSlide = n;
+      updateSlide();
+    }
+
+    function toggleNotes() {
+      const drawer = document.getElementById('notesDrawer');
+      const btn = document.getElementById('btnNotesToggle');
+      drawer.classList.toggle('open');
+      btn.classList.toggle('active');
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    }
+
+    function openModal(src) {
+      document.getElementById('modalImg').src = src;
+      document.getElementById('imageModal').classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('imageModal').classList.remove('active');
+    }
+
+    // Keyboard controls
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key.toLowerCase() === 'f') {
+        toggleFullscreen();
+      } else if (e.key === 'Escape') {
+        closeModal();
+      }
+    });
+
+    initThumbnails();
+    updateSlide();
+  </script>
+</body>
+</html>
