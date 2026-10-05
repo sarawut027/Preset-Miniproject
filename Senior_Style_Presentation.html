@@ -1899,7 +1899,69 @@
       <div class="slide-bottom-bar"></div>
     </div>
 
-    <!-- SLIDE 51: BIBLIOGRAPHY -->
+    
+    <!-- SLIDE 51: LIVE SYSTEM DEMONSTRATION -->
+    <div class="slide" data-title="การสาธิตการทำงานของชิ้นงานจริง">
+      <div class="slide-tab-left"></div>
+      <div class="slide-tab-right"></div>
+      <h2 class="slide-title">การสาธิตการทำงานของชิ้นงานจริง (Live Demonstration)</h2>
+      <div class="slide-subtitle">การทดสอบการทำงานเชื่อมโยงระหว่าง LINE LIFF, n8n, Slip2Go API, MySQL และ Admin Backoffice</div>
+      <div class="slide-content">
+        <div style="width: 100%; max-width: 1180px; display: flex; flex-direction: column; align-items: center; gap: 20px;">
+          
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; width: 100%;">
+            <div style="background: #F8FAFC; border: 2px solid #CBD5E1; border-radius: 10px; padding: 14px 20px; text-align: left;">
+              <p style="font-weight: 700; color: #16A34A; font-size: 1.25rem; margin-bottom: 6px;">📱 1. ฝั่งลูกค้า (LINE LIFF)</p>
+              <p style="font-size: 1.12rem; color: #334155; line-height: 1.55;">
+                • เลือกช่างตัดผมและรายการบริการพร้อมดูรูปตัวอย่าง<br>
+                • เลือกชำระเงินสด หรือ สแกนโอนเงินผ่าน PromptPay QR<br>
+                • รับใบเสร็จรับเงิน e-Receipt ตอบกลับทาง LINE ทันที
+              </p>
+            </div>
+
+            <div style="background: #F8FAFC; border: 2px solid #CBD5E1; border-radius: 10px; padding: 14px 20px; text-align: left;">
+              <p style="font-weight: 700; color: #2563EB; font-size: 1.25rem; margin-bottom: 6px;">⚡ 2. ฝั่งประมวลผลอัตโนมัติ (n8n + Slip2Go)</p>
+              <p style="font-size: 1.12rem; color: #334155; line-height: 1.55;">
+                • Slip2Go API ตรวจสอบสลิป ป้องกันสลิปซ้ำ และตรวจยอดเงิน<br>
+                • n8n คำนวณส่วนแบ่งค่าคอมมิชชันช่างตามอัตราเปอร์เซ็นต์จริง<br>
+                • บันทึกธุรกรรมลงฐานข้อมูล MySQL บน Railway Cloud
+              </p>
+            </div>
+
+            <div style="background: #F8FAFC; border: 2px solid #CBD5E1; border-radius: 10px; padding: 14px 20px; text-align: left;">
+              <p style="font-weight: 700; color: #D97706; font-size: 1.25rem; margin-bottom: 6px;">🔔 3. ฝั่งช่างตัดผม (Barber Alert)</p>
+              <p style="font-size: 1.12rem; color: #334155; line-height: 1.55;">
+                • รับการแจ้งเตือนยอดเงินเข้าและค่าคอมมิชชันผ่านแชท LINE เรียลไทม์<br>
+                • รับสลิปแจ้งยอดเคลียร์เงินและแจ้งเตือนเมื่อมีบิลโมฆะ
+              </p>
+            </div>
+
+            <div style="background: #F8FAFC; border: 2px solid #CBD5E1; border-radius: 10px; padding: 14px 20px; text-align: left;">
+              <p style="font-weight: 700; color: #9333EA; font-size: 1.25rem; margin-bottom: 6px;">💻 4. ฝั่งเจ้าของร้าน (Admin & Looker)</p>
+              <p style="font-size: 1.12rem; color: #334155; line-height: 1.55;">
+                • จัดการ CRUD ข้อมูลช่างและบริการ<br>
+                • สั่งทำโมฆะบิล (Void Bill) พร้อม Audit Log<br>
+                • ตัดรอบเคลียร์เงินช่าง (Settlement) และดูสถิติ Looker Studio
+              </p>
+            </div>
+          </div>
+
+          <!-- Action Launch Button -->
+          <div style="margin-top: 10px; display: flex; gap: 16px; align-items: center;">
+            <a href="demo.html" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; background: #06C755; color: #FFF; text-decoration: none; padding: 12px 28px; border-radius: 10px; font-weight: 700; font-size: 1.35rem; box-shadow: 0 4px 15px rgba(6,199,85,0.4); transition: transform 0.2s;">
+              <span>🚀 เปิดหน้าจอสาธิตชิ้นงานจริง (Live Demo Showcase)</span> ↗
+            </a>
+            <a href="admin.html" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: #0284C7; color: #FFF; text-decoration: none; padding: 12px 20px; border-radius: 10px; font-weight: 600; font-size: 1.15rem; box-shadow: 0 4px 12px rgba(2,132,199,0.3);">
+              <span>💻 ระบบหลังบ้าน Admin</span> ↗
+            </a>
+          </div>
+
+        </div>
+      </div>
+      <div class="slide-bottom-bar"></div>
+    </div>
+
+    <!-- SLIDE 52: BIBLIOGRAPHY -->
     <div class="slide" data-title="บรรณานุกรม">
       <div class="slide-tab-left"></div>
       <div class="slide-tab-right"></div>
@@ -1931,7 +1993,7 @@
   <!-- Slide Drawer / Overview Modal -->
   <div class="drawer-modal" id="drawerModal">
     <div class="drawer-header">
-      <h2>สารบัญสไลด์ทั้งหมด (51 สไลด์)</h2>
+      <h2>สารบัญสไลด์ทั้งหมด (52 สไลด์)</h2>
       <button class="btn-ctrl" onclick="toggleDrawer()" style="font-size: 1.5rem;">✕ ปิด</button>
     </div>
     <div class="drawer-grid" id="drawerGrid"></div>
