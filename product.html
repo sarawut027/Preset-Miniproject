@@ -506,6 +506,286 @@
       border: 2px solid var(--gold-primary);
       box-shadow: 0 0 40px var(--gold-glow);
     }
+
+    /* ========================================================= */
+    /* 📱 RESPONSIVE DESIGN (TABLET & MOBILE)                   */
+    /* ========================================================= */
+    @media (max-width: 1024px), (max-height: 640px) {
+      html, body {
+        overflow-y: auto !important;
+        height: auto !important;
+        min-height: 100vh;
+      }
+
+      #viewport {
+        height: auto !important;
+        min-height: 100vh;
+        width: 100%;
+        overflow-x: hidden;
+        padding: 0;
+        justify-content: flex-start;
+      }
+
+      #stage-container {
+        padding: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 100vh;
+      }
+
+      #stage {
+        width: 100% !important;
+        height: auto !important;
+        min-height: 100vh;
+        aspect-ratio: unset !important;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        transform: none !important;
+        overflow: visible !important;
+      }
+
+      .slide {
+        position: relative !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 100vh;
+        padding: 24px 16px 100px 16px !important;
+        overflow-y: visible !important;
+      }
+
+      .slide.active {
+        display: flex !important;
+      }
+
+      /* Slide Header on Mobile */
+      .slide-header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 8px !important;
+        margin-bottom: 16px !important;
+        padding-bottom: 10px !important;
+      }
+
+      .slide-title-wrap h2 {
+        font-size: 1.25rem !important;
+        line-height: 1.35 !important;
+        gap: 8px !important;
+      }
+
+      .slide-title-wrap p {
+        font-size: 0.85rem !important;
+        margin-top: 4px !important;
+        line-height: 1.4 !important;
+      }
+
+      .badge-counter {
+        font-size: 11px !important;
+        padding: 3px 10px !important;
+        align-self: flex-start !important;
+      }
+
+      /* Grid to Vertical Stack on Mobile */
+      .slide-body {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 16px !important;
+        overflow: visible !important;
+      }
+
+      .grid-2col, 
+      .grid-3col, 
+      .grid-custom-35-65, 
+      .grid-custom-65-35, 
+      .grid-custom-60-40 {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 16px !important;
+      }
+
+      /* Media Cards on Mobile */
+      .media-card {
+        width: 100% !important;
+        min-height: 200px !important;
+        max-height: 320px !important;
+        flex-shrink: 0;
+      }
+
+      .media-card img {
+        width: 100% !important;
+        height: auto !important;
+        max-height: 260px !important;
+        object-fit: contain !important;
+      }
+
+      .media-label {
+        padding: 8px 10px !important;
+        font-size: 12px !important;
+      }
+
+      /* Info Cards on Mobile */
+      .info-card {
+        padding: 16px 18px !important;
+        gap: 10px !important;
+      }
+
+      .card-head {
+        font-size: 1rem !important;
+      }
+
+      .card-list {
+        font-size: 0.88rem !important;
+        line-height: 1.55 !important;
+        gap: 8px !important;
+      }
+
+      /* Cover Slide on Mobile */
+      .cover-slide {
+        padding: 40px 16px 110px 16px !important;
+        justify-content: center !important;
+        min-height: 100vh !important;
+      }
+
+      .cover-logo {
+        width: 110px !important;
+        height: 110px !important;
+        margin-bottom: 16px !important;
+      }
+
+      .cover-tagline {
+        font-size: 11px !important;
+        letter-spacing: 1.5px !important;
+        margin-bottom: 10px !important;
+      }
+
+      .cover-title {
+        font-size: 1.35rem !important;
+        line-height: 1.4 !important;
+        margin-bottom: 8px !important;
+      }
+
+      .cover-subtitle {
+        font-size: 0.85rem !important;
+        margin-bottom: 20px !important;
+      }
+
+      .cover-meta {
+        flex-direction: column !important;
+        gap: 8px !important;
+        padding: 12px 20px !important;
+        font-size: 0.85rem !important;
+        border-radius: 16px !important;
+        width: 100% !important;
+        max-width: 400px !important;
+      }
+
+      /* Floating Dock Bar on Mobile */
+      .dock-bar {
+        bottom: 8px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: calc(100% - 16px) !important;
+        max-width: 500px !important;
+        padding: 6px 8px !important;
+        gap: 5px !important;
+        border-radius: 24px !important;
+        background: rgba(14, 14, 18, 0.96) !important;
+        backdrop-filter: blur(16px) !important;
+        box-shadow: 0 4px 25px rgba(0, 0, 0, 0.8) !important;
+        justify-content: space-between !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+      }
+      .dock-bar::-webkit-scrollbar { display: none; }
+
+      .dock-btn {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 12px !important;
+        flex-shrink: 0;
+      }
+
+      .dock-indicator {
+        font-size: 11px !important;
+        min-width: 42px !important;
+      }
+
+      .dock-divider {
+        display: none !important;
+      }
+
+      .btn-shield {
+        padding: 5px 9px !important;
+        font-size: 11px !important;
+        gap: 4px !important;
+        border-radius: 16px !important;
+        white-space: nowrap;
+      }
+
+      .dock-bar a {
+        font-size: 11px !important;
+        padding: 5px 9px !important;
+        border-radius: 16px !important;
+        white-space: nowrap;
+      }
+
+      /* Shield Modal on Mobile */
+      .modal-overlay {
+        padding: 12px !important;
+      }
+
+      .shield-box {
+        width: 100% !important;
+        max-height: 92vh !important;
+        border-radius: 16px !important;
+      }
+
+      .shield-header {
+        padding: 14px 16px !important;
+      }
+
+      .shield-header h3 {
+        font-size: 15px !important;
+      }
+
+      .shield-content {
+        padding: 14px 16px !important;
+        gap: 12px !important;
+      }
+
+      .qa-card {
+        padding: 12px 14px !important;
+      }
+
+      .qa-q {
+        font-size: 13px !important;
+      }
+
+      .qa-a {
+        font-size: 12.5px !important;
+        line-height: 1.5 !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .dock-bar {
+        gap: 3px !important;
+        padding: 4px 6px !important;
+      }
+      .dock-btn {
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 11px !important;
+      }
+      .dock-indicator {
+        font-size: 10px !important;
+        min-width: 34px !important;
+      }
+      .btn-shield, .dock-bar a {
+        font-size: 10px !important;
+        padding: 4px 7px !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1001,17 +1281,28 @@
 
     function resizeStage() {
       const stage = document.getElementById('stage');
+      const isMobile = window.innerWidth <= 1024 || window.innerHeight <= 640;
+      
+      if (isMobile) {
+        stage.style.transform = 'none';
+        stage.style.width = '100%';
+        stage.style.height = 'auto';
+        return;
+      }
+
       const stageWidth = 1600;
       const stageHeight = 900;
       
       const windowWidth = window.innerWidth;
       const windowHeight = window.innerHeight;
       
-      const scaleX = (windowWidth - 32) / stageWidth;
-      const scaleY = (windowHeight - 32) / stageHeight;
+      const scaleX = (windowWidth - 40) / stageWidth;
+      const scaleY = (windowHeight - 90) / stageHeight;
       const scale = Math.min(scaleX, scaleY, 1.25);
       
       stage.style.transform = `scale(${scale})`;
+      stage.style.width = '1600px';
+      stage.style.height = '900px';
     }
 
     window.addEventListener('resize', resizeStage);
@@ -1023,7 +1314,11 @@
     function updateSlideDisplay() {
       document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
       const activeSlide = document.querySelector(`.slide[data-slide="${currentSlide}"]`);
-      if (activeSlide) activeSlide.classList.add('active');
+      if (activeSlide) {
+        activeSlide.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        activeSlide.scrollTop = 0;
+      }
 
       const padCurrent = String(currentSlide).padStart(2, '0');
       const padTotal = String(totalSlides).padStart(2, '0');
