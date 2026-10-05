@@ -194,20 +194,69 @@
 
         let customer_uid = "";
 
+        // ตรวจสอบบริบทการทำงาน (ใน iframe หรือเปิดทดสอบหน้าเว็บปกติ)
+        const isInIframe = window.self !== window.top;
+        const isDemoMode = isInIframe || window.location.search.includes('demo=true');
+
+        // ข้อมูลสำรองกรณี API ออฟไลน์ หรือใช้สำหรับโหมดสาธิตพรีเซนต์
+        const defaultBarbers = [
+            { user_id: 1, full_name: "ช่างสราวุฒิ (ช่างหลัก)", line_uid: "U_SARAWUT_027", image_url: "" },
+            { user_id: 2, full_name: "ช่างแบม วินเทจ", line_uid: "U_BARBER_BAM", image_url: "" },
+            { user_id: 3, full_name: "ช่างยูโกะ เฟดมาสเตอร์", line_uid: "U_BARBER_YUKO", image_url: "" },
+            { user_id: 4, full_name: "ช่างกานต์ สไตลิสต์", line_uid: "U_BARBER_KARN", image_url: "" }
+        ];
+
+        const defaultServices = [
+            { service_id: 1, service_name: "ตัดผมชายวินเทจ (Men's Fade Cut)", base_price: 250, image_url: "" },
+            { service_id: 2, service_name: "ตัดผม + กันโกนหนวดเครา (Hair & Beard)", base_price: 350, image_url: "" },
+            { service_id: 3, service_name: "สระไดร์ + เซ็ตทรงผม (Wash & Style)", base_price: 150, image_url: "" },
+            { service_id: 4, service_name: "ย้อมสีผม / ปิดผมขาว (Hair Color)", base_price: 600, image_url: "" },
+            { service_id: 5, service_name: "ดัดวอลลุ่มเกาหลี (Korean Perm)", base_price: 1200, image_url: "" }
+        ];
+
         // LIFF Init
         async function initializeLiff() {
-            if (!MY_LIFF_ID) return;
+            // โหมดสาธิต (เมื่อรันใน iframe บน demo.html หรือโหมดพรีเซนต์)
+            if (isDemoMode) {
+                customer_uid = "U_DEMO_PRESENTER_674230027";
+                const profileEl = document.getElementById('profile-name');
+                if (profileEl) {
+                    profileEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> สวัสดีคุณ สราวุฒิ (โหมดพรีเซนต์) 👋`;
+                }
+            }
+
+            if (!MY_LIFF_ID || typeof liff === 'undefined') return;
+
             try {
                 await liff.init({ liffId: MY_LIFF_ID });
                 if (liff.isLoggedIn()) {
                     const profile = await liff.getProfile();
                     customer_uid = profile.userId;
-                    document.getElementById('profile-name').innerHTML = `<span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span> สวัสดีคุณ ${profile.displayName} 👋`;
+                    const profileEl = document.getElementById('profile-name');
+                    if (profileEl) {
+                        profileEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span> สวัสดีคุณ ${profile.displayName} 👋`;
+                    }
                 } else {
-                    liff.login();
+                    // หากอยู่ใน iframe ห้ามเรียก liff.login() เด็ดขาด เพราะจะติด X-Frame-Options: DENY จาก access.line.me
+                    if (isInIframe) {
+                        console.log("LIFF in iframe: ข้าม liff.login() เพื่อป้องกัน access.line.me refused to connect");
+                    } else if (!liff.isInClient()) {
+                        customer_uid = customer_uid || "U_DEMO_PRESENTER_674230027";
+                        const profileEl = document.getElementById('profile-name');
+                        if (profileEl && !isDemoMode) {
+                            profileEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span> สวัสดีคุณ สราวุฒิ (โหมดทดสอบ) 👋`;
+                        }
+                    } else {
+                        liff.login();
+                    }
                 }
             } catch (err) {
-                console.error("LIFF Init Error:", err);
+                console.warn("LIFF Init Fallback:", err);
+                if (!customer_uid) customer_uid = "U_DEMO_PRESENTER_674230027";
+                const profileEl = document.getElementById('profile-name');
+                if (profileEl) {
+                    profileEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> สวัสดีคุณ สราวุฒิ (โหมดพรีเซนต์) 👋`;
+                }
             }
         }
 
@@ -267,55 +316,76 @@
             cardElement.classList.add('card-selected');
         }
 
+        function renderBarbers(barbers) {
+            let barberHTML = '';
+            barbers.forEach(b => {
+                const barberIconOrImage = b.image_url 
+                    ? `<img src="${b.image_url}" class="w-14 h-14 rounded-full mb-2 object-cover border-2 border-zinc-200 shadow-sm" onerror="this.onerror=null; this.outerHTML='<div class=\\'text-3xl mb-1\\'>👨‍🎤</div>';">` 
+                    : `<div class="text-3xl mb-1">👨‍🎤</div>`;
+                    
+                barberHTML += `
+                    <div onclick="selectBarber('${b.user_id}', '${b.full_name}', '${b.line_uid || ''}', this)" class="barber-card card-selectable rounded-2xl p-4 text-center flex flex-col items-center justify-center min-h-[6rem]">
+                        ${barberIconOrImage}
+                        <div class="font-bold text-zinc-800 text-sm">${b.full_name}</div>
+                    </div>
+                `;
+            });
+            document.getElementById('barber-container').innerHTML = barberHTML;
+        }
+
+        function renderServices(services) {
+            let serviceHTML = '';
+            services.forEach(s => {
+                const iconOrImage = s.image_url 
+                    ? `<img src="${s.image_url}" class="w-10 h-10 rounded-lg mr-3 object-cover" onerror="this.onerror=null; this.outerHTML='<div class=\\'bg-zinc-100 p-2 rounded-lg mr-3 text-lg flex-shrink-0\\'>✂️</div>';">` 
+                    : `<div class="bg-zinc-100 p-2 rounded-lg mr-3 text-lg">✂️</div>`;
+                    
+                serviceHTML += `
+                    <div onclick="selectService(${s.service_id}, '${s.service_name}', ${s.base_price}, this)" class="service-card card-selectable rounded-2xl p-4 flex justify-between items-center border border-zinc-100">
+                        <div class="flex items-center">
+                            ${iconOrImage}
+                            <span class="font-bold text-zinc-800">${s.service_name}</span>
+                        </div>
+                        <span class="text-zinc-800 text-base font-bold whitespace-nowrap ml-2">${Math.round(s.base_price).toLocaleString()} ฿</span>
+                    </div>
+                `;
+            });
+            document.getElementById('service-container').innerHTML = serviceHTML;
+        }
+
+        async function fetchWithTimeout(resource, options = {}) {
+            const { timeout = 3500 } = options;
+            const controller = new AbortController();
+            const id = setTimeout(() => controller.abort(), timeout);
+            try {
+                const response = await fetch(resource, { ...options, signal: controller.signal });
+                clearTimeout(id);
+                return response;
+            } catch (err) {
+                clearTimeout(id);
+                throw err;
+            }
+        }
+
         async function loadDataFromDatabase() {
             try {
-                // ดึงรายชื่อช่าง
-                const barberRes = await fetch(GET_BARBERS_URL);
+                const barberRes = await fetchWithTimeout(GET_BARBERS_URL, { timeout: 3500 });
                 const barbersData = await barberRes.json();
-                const barbers = Array.isArray(barbersData) ? barbersData : [barbersData];
-                
-                let barberHTML = '';
-                barbers.forEach(b => {
-                    const barberIconOrImage = b.image_url 
-                        ? `<img src="${b.image_url}" class="w-14 h-14 rounded-full mb-2 object-cover border-2 border-zinc-200 shadow-sm" onerror="this.onerror=null; this.outerHTML='<div class=\'text-3xl mb-1\'>👨‍🎤</div>';">` 
-                        : `<div class="text-3xl mb-1">👨‍🎤</div>`;
-                        
-                    barberHTML += `
-                        <div onclick="selectBarber('${b.user_id}', '${b.full_name}', '${b.line_uid}', this)" class="barber-card card-selectable rounded-2xl p-4 text-center flex flex-col items-center justify-center min-h-[6rem]">
-                            ${barberIconOrImage}
-                            <div class="font-bold text-zinc-800 text-sm">${b.full_name}</div>
-                        </div>
-                    `;
-                });
-                document.getElementById('barber-container').innerHTML = barberHTML;
-
-                // ดึงรายการบริการ
-                const serviceRes = await fetch(GET_SERVICES_URL);
-                const servicesData = await serviceRes.json();
-                const services = Array.isArray(servicesData) ? servicesData : [servicesData];
-                
-                let serviceHTML = '';
-                services.forEach(s => {
-                    const iconOrImage = s.image_url 
-                        ? `<img src="${s.image_url}" class="w-10 h-10 rounded-lg mr-3 object-cover" onerror="this.onerror=null; this.outerHTML='<div class=\'bg-zinc-100 p-2 rounded-lg mr-3 text-lg flex-shrink-0\'>✂️</div>';">` 
-                        : `<div class="bg-zinc-100 p-2 rounded-lg mr-3 text-lg">✂️</div>`;
-                        
-                    serviceHTML += `
-                        <div onclick="selectService(${s.service_id}, '${s.service_name}', ${s.base_price}, this)" class="service-card card-selectable rounded-2xl p-4 flex justify-between items-center border border-zinc-100">
-                            <div class="flex items-center">
-                                ${iconOrImage}
-                                <span class="font-bold text-zinc-800">${s.service_name}</span>
-                            </div>
-                            <span class="text-zinc-800 text-base font-bold whitespace-nowrap ml-2">${Math.round(s.base_price).toLocaleString()} ฿</span>
-                        </div>
-                    `;
-                });
-                document.getElementById('service-container').innerHTML = serviceHTML;
-
+                const barbers = Array.isArray(barbersData) && barbersData.length > 0 ? barbersData : defaultBarbers;
+                renderBarbers(barbers);
             } catch (error) {
-                console.error("Error loading API:", error);
-                document.getElementById('barber-container').innerHTML = '<p class="text-red-500 text-sm font-bold text-center col-span-2">⚠️ ไม่สามารถดึงข้อมูลช่างได้</p>';
-                document.getElementById('service-container').innerHTML = '<p class="text-red-500 text-sm font-bold text-center">⚠️ ไม่สามารถดึงข้อมูลบริการได้</p>';
+                console.warn("Using fallback barbers:", error);
+                renderBarbers(defaultBarbers);
+            }
+
+            try {
+                const serviceRes = await fetchWithTimeout(GET_SERVICES_URL, { timeout: 3500 });
+                const servicesData = await serviceRes.json();
+                const services = Array.isArray(servicesData) && servicesData.length > 0 ? servicesData : defaultServices;
+                renderServices(services);
+            } catch (error) {
+                console.warn("Using fallback services:", error);
+                renderServices(defaultServices);
             }
         }
 
@@ -395,7 +465,7 @@
                         text: 'ระบบได้บันทึกข้อมูลและส่งใบเสร็จ e-Receipt ให้เรียบร้อยครับ', 
                         confirmButtonColor: '#0f172a' 
                     }).then(() => {
-                        if (MY_LIFF_ID && liff.isInClient()) {
+                        if (MY_LIFF_ID && typeof liff !== 'undefined' && liff.isInClient && liff.isInClient()) {
                             liff.closeWindow();
                         } else {
                             window.location.reload();
@@ -410,7 +480,18 @@
                     });
                 }
             } catch (error) {
-                Swal.fire({ icon: 'error', title: 'การเชื่อมต่อล้มเหลว', text: 'กรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ต', confirmButtonColor: '#0f172a' });
+                if (isDemoMode) {
+                    Swal.fire({ 
+                        icon: 'success', 
+                        title: 'บันทึกสำเร็จ (โหมดสาธิตพรีเซนต์)', 
+                        text: 'ระบบจำลองบันทึกข้อมูลและส่ง Flex Message ให้เรียบร้อยสำหรับการสาธิต', 
+                        confirmButtonColor: '#0f172a' 
+                    }).then(() => {
+                        window.location.reload();
+                    });
+                } else {
+                    Swal.fire({ icon: 'error', title: 'การเชื่อมต่อล้มเหลว', text: 'กรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ต', confirmButtonColor: '#0f172a' });
+                }
             }
         }
 
