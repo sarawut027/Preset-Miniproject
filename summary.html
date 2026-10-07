@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>สไลด์สรุปโครงงาน • ระบบบันทึกรายได้และคำนวณค่าคอมมิชชันช่างตัดผม (Presentation Summary)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&family=Prompt:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #090A0F;
+      --slide-bg: #10121A;
+      --card-bg: #171A26;
+      --card-border: #262B3D;
+      --gold-primary: #F59E0B;
+      --gold-glow: rgba(245, 158, 11, 0.25);
+      --emerald: #10B981;
+      --sky: #0284C7;
+      --rose: #F43F5E;
+      --text-white: #FFFFFF;
+      --text-sub: #CBD5E1;
+      --text-muted: #94A3B8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: var(--bg-dark);
+      color: var(--text-white);
+      font-family: 'Prompt', sans-serif;
+      user-select: none;
+    }
+
+    /* Presentation Screen Viewport */
+    #viewport {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background: radial-gradient(circle at center, #151926 0%, #090A0F 100%);
+    }
+
+    /* 16:9 Auto-scaled Stage */
+    #stage-container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    #stage {
+      width: 1600px;
+      height: 900px;
+      aspect-ratio: 16 / 9;
+      background: var(--slide-bg);
+      border: 2px solid rgba(245, 158, 11, 0.4);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 40px var(--gold-glow);
+      border-radius: 24px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transform-origin: center center;
+    }
+
+    /* Individual Slide */
+    .slide {
+      width: 100%;
+      height: 100%;
+      padding: 44px 56px;
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: radial-gradient(circle at top right, rgba(245, 158, 11, 0.05) 0%, rgba(16, 18, 26, 1) 75%);
+    }
+
+    .slide.active {
+      display: flex;
+      animation: slideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: scale(0.985); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Slide Header */
+    .slide-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(245, 158, 11, 0.25);
+    }
+
+    .slide-title-wrap h2 {
+      font-family: 'Kanit', sans-serif;
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--text-white);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .slide-title-wrap p {
+      font-size: 14px;
+      color: var(--gold-primary);
+      margin-top: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-counter {
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid var(--gold-primary);
+      color: var(--gold-primary);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 20px;
+      letter-spacing: 1px;
+    }
+
+    /* Slide Body Grid Layouts */
+    .slide-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      overflow: hidden;
+    }
+
+    /* Cards */
+    .card-grid {
+      display: grid;
+      gap: 20px;
+      flex: 1;
+    }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-split-60-40 { grid-template-columns: 1fr 440px; }
+
+    .content-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.25s ease;
+    }
+
+    .content-card:hover {
+      border-color: rgba(245, 158, 11, 0.5);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .content-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--gold-primary);
+    }
+    .content-card.emerald::before { background: var(--emerald); }
+    .content-card.sky::before { background: var(--sky); }
+    .content-card.rose::before { background: var(--rose); }
+
+    .card-title {
+      font-family: 'Kanit', sans-serif;
+      font-size: 19px;
+      font-weight: 600;
+      color: var(--text-white);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 14.5px;
+      color: var(--text-sub);
+      line-height: 1.6;
+    }
+
+    .card-list li {
+      position: relative;
+      padding-left: 22px;
+    }
+
+    .card-list li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--gold-primary);
+      font-weight: bold;
+    }
+    .content-card.emerald .card-list li::before { color: var(--emerald); }
+    .content-card.sky .card-list li::before { color: var(--sky); }
+    .content-card.rose .card-list li::before { color: var(--rose); }
+
+    .highlight-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--gold-primary);
+      margin-left: 6px;
+    }
+
+    /* Cover Slide */
+    .cover-slide {
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: radial-gradient(circle at center, rgba(245, 158, 11, 0.12) 0%, #10121A 75%);
+    }
+
+    .cover-logo {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 3px solid var(--gold-primary);
+      box-shadow: 0 0 35px var(--gold-glow);
+      margin-bottom: 24px;
+      object-fit: cover;
+    }
+
+    .cover-tagline {
+      color: var(--gold-primary);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 2.5px;
+      margin-bottom: 14px;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .cover-title {
+      font-family: 'Kanit', sans-serif;
+      font-size: 34px;
+      font-weight: 700;
+      color: var(--text-white);
+      max-width: 1100px;
+      line-height: 1.35;
+      margin-bottom: 12px;
+    }
+
+    .cover-subtitle {
+      font-size: 16px;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 30px;
+    }
+
+    .cover-meta {
+      display: flex;
+      gap: 36px;
+      background: rgba(23, 26, 38, 0.9);
+      border: 1px solid var(--card-border);
+      padding: 14px 36px;
+      border-radius: 40px;
+      font-size: 14.5px;
+      color: var(--text-sub);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    }
+    .cover-meta strong { color: var(--gold-primary); }
+
+    /* Media Mockup Card */
+    .media-card {
+      background: #000;
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      cursor: zoom-in;
+    }
+
+    .media-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #0B0D14;
+    }
+
+    .media-label {
+      background: #141722;
+      border-top: 1px solid var(--card-border);
+      padding: 10px 14px;
+      font-size: 13px;
+      color: var(--gold-primary);
+      text-align: center;
+      font-family: 'Kanit', sans-serif;
+      font-weight: 500;
+    }
+
+    /* Floating Navigation Controls */
+    .dock-bar {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(16, 18, 26, 0.95);
+      border: 1px solid var(--card-border);
+      border-radius: 30px;
+      padding: 8px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    }
+
+    .dock-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text-white);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+
+    .dock-btn:hover {
+      border-color: var(--gold-primary);
+      color: var(--gold-primary);
+      transform: translateY(-2px);
+    }
+
+    .dock-indicator {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--gold-primary);
+      min-width: 60px;
+      text-align: center;
+    }
+
+    .dock-divider {
+      width: 1px;
+      height: 20px;
+      background: var(--card-border);
+    }
+
+    .dock-nav-link {
+      color: var(--text-sub);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .dock-nav-link:hover {
+      background: rgba(245, 158, 11, 0.15);
+      border-color: var(--gold-primary);
+      color: var(--gold-primary);
+    }
+
+    /* Lightbox Modal */
+    .lightbox-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.92);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+    }
+    .lightbox-overlay.active { display: flex; }
+    .lightbox-overlay img {
+      max-width: 92vw;
+      max-height: 90vh;
+      border-radius: 12px;
+      border: 2px solid var(--gold-primary);
+      box-shadow: 0 0 40px var(--gold-glow);
+    }
+
+    /* ========================================================= */
+    /* 📱 RESPONSIVE DESIGN (TABLET & MOBILE)                   */
+    /* ========================================================= */
+    @media (max-width: 1024px), (max-height: 640px) {
+      html, body {
+        overflow-y: auto !important;
+        height: auto !important;
+        min-height: 100vh;
+      }
+
+      #viewport {
+        height: auto !important;
+        min-height: 100vh;
+        width: 100%;
+        overflow-x: hidden;
+        padding: 0;
+        justify-content: flex-start;
+      }
+
+      #stage-container {
+        padding: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 100vh;
+      }
+
+      #stage {
+        width: 100% !important;
+        height: auto !important;
+        min-height: 100vh;
+        aspect-ratio: unset !important;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        transform: none !important;
+        overflow: visible !important;
+      }
+
+      .slide {
+        position: relative !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 100vh;
+        padding: 24px 16px 100px 16px !important;
+        overflow-y: visible !important;
+      }
+
+      .slide.active {
+        display: flex !important;
+      }
+
+      .slide-header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 8px !important;
+        margin-bottom: 16px !important;
+        padding-bottom: 10px !important;
+      }
+
+      .slide-title-wrap h2 {
+        font-size: 1.25rem !important;
+        line-height: 1.35;
+      }
+
+      .slide-title-wrap p {
+        font-size: 0.85rem !important;
+      }
+
+      .badge-counter {
+        font-size: 11px !important;
+        padding: 3px 10px !important;
+        align-self: flex-start !important;
+      }
+
+      .card-grid, 
+      .grid-3, 
+      .grid-2, 
+      .grid-split-60-40 {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 16px !important;
+      }
+
+      .content-card {
+        padding: 16px 18px !important;
+      }
+
+      .card-title {
+        font-size: 1.05rem !important;
+      }
+
+      .card-list {
+        font-size: 0.88rem !important;
+      }
+
+      .cover-slide {
+        padding: 40px 16px 110px 16px !important;
+        justify-content: center !important;
+        min-height: 100vh !important;
+      }
+
+      .cover-logo {
+        width: 100px !important;
+        height: 100px !important;
+        margin-bottom: 16px !important;
+      }
+
+      .cover-title {
+        font-size: 1.35rem !important;
+        line-height: 1.4 !important;
+      }
+
+      .cover-meta {
+        flex-direction: column !important;
+        gap: 8px !important;
+        padding: 12px 20px !important;
+        font-size: 0.85rem !important;
+        border-radius: 16px !important;
+      }
+
+      .media-card {
+        max-height: 280px !important;
+      }
+
+      .dock-bar {
+        bottom: 8px !important;
+        width: calc(100% - 16px) !important;
+        max-width: 500px !important;
+        padding: 6px 8px !important;
+        gap: 5px !important;
+        border-radius: 24px !important;
+        justify-content: space-between !important;
+        overflow-x: auto !important;
+      }
+      .dock-bar::-webkit-scrollbar { display: none; }
+
+      .dock-btn {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 12px !important;
+      }
+
+      .dock-indicator {
+        font-size: 11px !important;
+        min-width: 42px !important;
+      }
+
+      .dock-divider { display: none !important; }
+
+      .dock-nav-link {
+        font-size: 11px !important;
+        padding: 5px 10px !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="viewport">
+    <div id="stage-container">
+      <div id="stage">
+
+        <!-- ==================== SLIDE 1: COVER ==================== -->
+        <section class="slide cover-slide active" data-slide="1">
+          <img src="images/logo.png" alt="โลโก้ร้าน" class="cover-logo" onerror="this.outerHTML='<div style=\'font-size:64px;margin-bottom:20px;\'>💈</div>'">
+          <div class="cover-tagline">PROJECT DEFENSE • COMPUTER SCIENCE NPRU</div>
+          <h1 class="cover-title">การนำเสนอสรุปโครงงาน: ระบบบันทึกรายได้และคำนวณค่าคอมมิชชันช่างตัดผม<br>แบบเรียลไทม์ผ่านแอปพลิเคชันไลน์</h1>
+          <div class="cover-subtitle">Real-time Barber Income Recording and Commission Calculation System via LINE Application</div>
+          <div class="cover-meta">
+            <div>ผู้จัดทำ: <strong>นาย สราวุฒิ อุยยาหาญ</strong> (รหัสประจำตัว 674230027, หมู่เรียน 67/44)</div>
+            <div>สาขาวิชาวิทยาการคอมพิวเตอร์ มหาวิทยาลัยราชภัฏนครปฐม</div>
+          </div>
+        </section>
+
+        <!-- ==================== SLIDE 2: PROBLEMS ==================== -->
+        <section class="slide" data-slide="2">
+          <div class="slide-header">
+            <div class="slide-title-wrap">
+              <h2>⚠️ ที่มาและความสำคัญของปัญหา (Problem Statement)</h2>
+              <p>ปัญหาข้อจำกัดของระบบงานเดิมในร้านตัดผม แบ่งเป็น 3 มิติหลัก (เงินเข้า, เงินออก, และการจัดการ)</p>
+            </div>
+            <div class="badge-counter">SLIDE 02 / 07</div>
+          </div>
+          <div class="slide-body">
+            <div class="card-grid grid-3">
+              
+              <div class="content-card rose">
+                <div class="card-title">💸 1. ปัญหาด้านรายรับ (เงินเข้า)</div>
+                <ul class="card-list">
+                  <li><strong>ตรวจสอบสลิปด้วยตนเอง:</strong> เกิดความล่าช้า ข้อมูลตกหล่นช่วงลูกค้าหน้าร้านหนาแน่น</li>
+                  <li><strong>ความเสี่ยงการทุจริต:</strong> เสี่ยงต่อการถูกหลอกลวงด้วย <em>"สลิปโอนเงินปลอม"</em> และการนำ <em>"สลิปเก่ามาวนใช้ซ้ำ"</em></li>
+                  <li><strong>ยอดเงินไม่ตรง:</strong> ลูกค้าโอนยอดไม่ตรงกับราคาค่าบริการจริงโดยตรวจจับไม่ทันที</li>
+                </ul>
+              </div>
+
+              <div class="content-card">
+                <div class="card-title">🤝 2. ปัญหาการเคลียร์เงินช่าง (เงินออก)</div>
+                <ul class="card-list">
+                  <li><strong>คำนวณค่าคอมมิชชันล่าช้า:</strong> คิดส่วนแบ่งช่าง (Commission Rate เช่น 50:50) ด้วยมือตอนสิ้นวัน มักเกิดข้อผิดพลาด</li>
+                  <li><strong>ขาดระบบตัดรอบเงิน (Settlement):</strong> ไม่มีระบบสรุปยอดค้างจ่ายและแนบหลักฐานการโอนจ่ายช่าง</li>
+                  <li><strong>ขาดความโปร่งใส:</strong> ช่างตัดผมไม่สามารถตรวจสอบยอดเงินสะสมได้แบบเรียลไทม์</li>
+                </ul>
+              </div>
+
+              <div class="content-card sky">
+                <div class="card-title">🗄️ 3. ขาดระบบจัดการส่วนกลาง (CRUD)</div>
+                <ul class="card-list">
+                  <li><strong>บันทึกแยกส่วน:</strong> การจดสมุดหรือ Excel ขาดระบบฐานข้อมูลกลางในการ เพิ่ม/ลบ/แก้ไข/ค้นหา</li>
+                  <li><strong>แก้ไขบิลผิดพลาดยาก:</strong> ขาดระบบ <em>โมฆะบิล (Void Bill)</em> พร้อมระบบ Audit Log ที่ป้องกันการแอบยกเลิก</li>
+                  <li><strong>ไม่มีรายงานสรุปผู้บริหาร:</strong> เจ้าของร้านขาดแดชบอร์ดสรุปผลประกอบการและกำไรสุทธิแบบสด</li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== SLIDE 3: OBJECTIVES ==================== -->
+        <section class="slide" data-slide="3">
+          <div class="slide-header">
+            <div class="slide-title-wrap">
+              <h2>🎯 วัตถุประสงค์ของโครงงาน (Project Objectives)</h2>
+              <p>5 เป้าหมายหลักในการพัฒนาระบบเพื่อแก้ปัญหาอย่างตรงจุดและวัดผลได้จริง</p>
+            </div>
+            <div class="badge-counter">SLIDE 03 / 07</div>
+          </div>
+          <div class="slide-body">
+            <div class="card-grid grid-2">
+              
+              <div class="content-card emerald">
+                <div class="card-title">1. ระบบรับชำระเงิน & ตรวจสลิป (LINE LIFF)</div>
+                <p style="font-size:14px; color:var(--text-sub); line-height:1.6;">
+                  เพื่อพัฒนาเว็บแอปพลิเคชันผ่านระบบลิฟต์ (LINE LIFF) สำหรับรับแจ้งชำระเงิน ตรวจสอบสลิปโอนเงินอัตโนมัติ (Slip2Go API) และออกใบเสร็จรับเงินอิเล็กทรอนิกส์ (e-Receipt Flex Message) ผ่านแอปพลิเคชันไลน์
+                </p>
+              </div>
+
+              <div class="content-card">
+                <div class="card-title">2. ระบบตัดรอบเคลียร์เงินช่าง (Settlement & Payout)</div>
+                <p style="font-size:14px; color:var(--text-sub); line-height:1.6;">
+                  เพื่อพัฒนาระบบคำนวณและตัดรอบเคลียร์เงินส่วนแบ่งค่าคอมมิชชันให้แก่ช่างตัดผม (Barber Commission Settlement) พร้อมบันทึกหลักฐานการจ่ายเงินและส่งสลิปแจ้งเตือนช่างอย่างโปร่งใส
+                </p>
+              </div>
+
+              <div class="content-card sky">
+                <div class="card-title">3. ระบบบริหารจัดการหลังบ้าน (Admin Full CRUD)</div>
+                <p style="font-size:14px; color:var(--text-sub); line-height:1.6;">
+                  เพื่อพัฒนาระบบบริหารจัดการข้อมูล (Admin Backoffice) ที่รองรับการจัดการแบบครบวงจร (CRUD) ทั้งข้อมูลช่างตัดผม, รายการบริการ, ประวัติธุรกรรม, และระบบโมฆะบิล (Void Bill)
+                </p>
+              </div>
+
+              <div class="content-card emerald">
+                <div class="card-title">4. แดชบอร์ดสรุปผลการเงิน (Looker Studio) & ประเมินผล</div>
+                <p style="font-size:14px; color:var(--text-sub); line-height:1.6;">
+                  เพื่อพัฒนาระบบรายงานและแดชบอร์ดสรุปผลทางการเงิน (Google Looker Studio) สำหรับวิเคราะห์ยอดขายรวม ยอดจ่ายช่าง และรายได้สุทธิแบบเรียลไทม์ พร้อมประเมินความพึงพอใจของผู้ใช้งาน
+                </p>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== SLIDE 4: SCOPE ==================== -->
+        <section class="slide" data-slide="4">
+          <div class="slide-header">
+            <div class="slide-title-wrap">
+              <h2>📐 ขอบเขตของระบบ (System Scope)</h2>
+              <p>ขอบเขตฟังก์ชันการทำงานครอบคลุม 3 กลุ่มผู้ใช้งานหลัก (ลูกค้า, ช่างตัดผม, เจ้าของร้าน)</p>
+            </div>
+            <div class="badge-counter">SLIDE 04 / 07</div>
+          </div>
+          <div class="slide-body">
+            <div class="card-grid grid-3">
+              
+              <div class="content-card emerald">
+                <div class="card-title">👤 1. ฝั่งลูกค้า (Customer)</div>
+                <ul class="card-list">
+                  <li><strong>LINE Official Account:</strong> ใช้งานผ่าน Rich Menu โดยไม่ต้องโหลดแอปใหม่</li>
+                  <li><strong>LINE LIFF Form:</strong> เลือกช่างตัดผมและรายการบริการพร้อมดูราคา/รูปตัวอย่าง</li>
+                  <li><strong>2 ช่องทางชำระเงิน:</strong> เงินสดหน้าร้าน (Cash) หรือ สแกนโอนเงิน (PromptPay QR)</li>
+                  <li><strong>Slip Verification:</strong> สแกนตรวจยอดเงิน, บัญชีผู้รับตรง, และกันสลิปซ้ำ 100%</li>
+                  <li><strong>e-Receipt:</strong> รับใบเสร็จ Flex Message ยืนยันในแชททันที</li>
+                </ul>
+              </div>
+
+              <div class="content-card">
+                <div class="card-title">✂️ 2. ฝั่งช่างตัดผม (Barber)</div>
+                <ul class="card-list">
+                  <li><strong>Real-time Income Alert:</strong> รับการแจ้งเตือนยอดเงินและค่าคอมมิชชันเข้า LINE ส่วนตัวทันทีเมื่อมีบิลเข้า</li>
+                  <li><strong>Payout Slip Alert:</strong> ได้รับสลิปหลักฐานเมื่อเจ้าของร้านตัดรอบเคลียร์เงิน</li>
+                  <li><strong>Void Bill Alert:</strong> ได้รับแจ้งเตือนทันทีเมื่อมีบิลถูกสั่งโมฆะหรือยกเลิก</li>
+                  <li><strong>Profile & Services:</strong> ดูรหัสประจำตัวช่างและรายการบริการผ่านหน้าร้าน</li>
+                </ul>
+              </div>
+
+              <div class="content-card sky">
+                <div class="card-title">💻 3. ฝั่งเจ้าของร้าน (Admin)</div>
+                <ul class="card-list">
+                  <li><strong>CRUD ช่าง & บริการ:</strong> จัดการข้อมูลช่าง, กำหนด % ค่าคอมมิชชัน, ปรับราคาบริการ</li>
+                  <li><strong>จัดการบิล & โมฆะบิล:</strong> ดูประวัติธุรกรรม และสั่งโมฆะบิลพร้อมระบบ Audit Log</li>
+                  <li><strong>ตัดรอบเคลียร์เงิน:</strong> สรุปยอดค้างจ่ายช่าง แนบสลิป และอัปเดตสถานะ Settled</li>
+                  <li><strong>BI Dashboard:</strong> ดูรายงานยอดขายและรายได้สุทธิผ่าน Looker Studio</li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== SLIDE 5: SOFTWARE ARCHITECTURE ==================== -->
+        <section class="slide" data-slide="5">
+          <div class="slide-header">
+            <div class="slide-title-wrap">
+              <h2>💻 สถาปัตยกรรมซอฟต์แวร์และคลาวด์ (Software Architecture)</h2>
+              <p>การเชื่อมโยงระบบแบบไร้รอยต่อ (End-to-End Workflow) ระหว่าง LINE, n8n, APIs และ Cloud Database</p>
+            </div>
+            <div class="badge-counter">SLIDE 05 / 07</div>
+          </div>
+          <div class="slide-body">
+            <div class="card-grid grid-split-60-40">
+              
+              <div class="media-card" onclick="openLightbox('images/System_Architecture.png')">
+                <img src="images/System_Architecture.png" alt="System Architecture Diagram" onerror="this.outerHTML='<div style=\'color:#F59E0B;padding:40px;text-align:center;\'>🏗️ ผัง System Architecture</div>'">
+                <div class="media-label">🔍 แตะเพื่อดูภาพขยาย: ผังการทำงานภาพรวมของระบบ (System Architecture)</div>
+              </div>
+
+              <div class="content-card sky" style="justify-content: center;">
+                <div class="card-title">5 เสาหลักเทคโนโลยีของระบบ</div>
+                <ul class="card-list">
+                  <li><strong>Core Backend:</strong> <em>n8n Workflow Automation</em> รันแบบ Self-Hosted บน Railway Cloud จัดการ Webhook และตรรกะระบบ</li>
+                  <li><strong>Frontend:</strong> <em>LINE LIFF SDK</em> (HTML5, Tailwind CSS, JavaScript) และ <em>Admin Backoffice</em></li>
+                  <li><strong>Communication:</strong> <em>LINE Messaging API</em> ส่ง e-Receipt และการแจ้งเตือนแบบ Flex Message</li>
+                  <li><strong>Payment Security:</strong> <em>Slip2Go API</em> ตรวจสอบ QR Code ธนาคาร ยอดเงิน และเลขอ้างอิงสลิป</li>
+                  <li><strong>Database & BI:</strong> <em>MySQL Database</em> บน Railway Cloud และ <em>Google Looker Studio</em></li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== SLIDE 6: HARDWARE & CLOUD ==================== -->
+        <section class="slide" data-slide="6">
+          <div class="slide-header">
+            <div class="slide-title-wrap">
+              <h2>⚙️ ฮาร์ดแวร์และโครงสร้างพื้นฐาน (Hardware & Infrastructure)</h2>
+              <p>การจัดเตรียมสภาพแวดล้อมทั้งฝั่งอุปกรณ์เครื่องผู้ใช้ (Client) และโครงสร้างคลาวด์ (Cloud 24/7)</p>
+            </div>
+            <div class="badge-counter">SLIDE 06 / 07</div>
+          </div>
+          <div class="slide-body">
+            <div class="card-grid grid-2">
+              
+              <div class="content-card">
+                <div class="card-title">🖥️ 1. ฮาร์ดแวร์ฝั่งพัฒนาและเครื่องผู้ใช้ (Client Hardware)</div>
+                <ul class="card-list">
+                  <li><strong>คอมพิวเตอร์พัฒนาหลัก:</strong> โน้ตบุ๊ก HP VICTUS 16 (12th Gen Intel Core i5-12500H, RAM 16GB, Windows 11) สำหรับเขียนโปรแกรมและออกแบบระบบ</li>
+                  <li><strong>อุปกรณ์ทดสอบฝั่งลูกค้า/ช่าง:</strong> สมาร์ตโฟน VIVO V27 5G (Android) และอุปกรณ์ iOS/Android สำหรับทดสอบการทำงานบน LINE</li>
+                  <li><strong>อุปกรณ์ฝั่งเจ้าของร้าน:</strong> คอมพิวเตอร์/แท็บเล็ต/สมาร์ตโฟนที่เชื่อมต่ออินเทอร์เน็ต สามารถเปิดใช้งานระบบผ่านเว็บบราวเซอร์ได้ทุกที่</li>
+                </ul>
+              </div>
+
+              <div class="content-card emerald">
+                <div class="card-title">☁️ 2. โครงสร้างพื้นฐานระบบคลาวด์ (Cloud Infrastructure 24/7)</div>
+                <ul class="card-list">
+                  <li><strong>Railway Cloud Platform:</strong> เซิร์ฟเวอร์คอนเทนเนอร์บนระบบคลาวด์มาตรฐานสากล สำหรับรัน n8n Workflow Engine และ MySQL Database ให้บริการตลอด 24 ชั่วโมง</li>
+                  <li><strong>LINE Developer Platform:</strong> เซิร์ฟเวอร์คลาวด์ของ LINE สำหรับบริหารจัดการ Channel Webhook และ LINE Messaging Gateway</li>
+                  <li><strong>High Reliability & Zero Setup:</strong> ไม่ต้องเปิดเครื่องคอมพิวเตอร์ทิ้งไว้ที่ร้านตัดผม ลดต้นทุนฮาร์ดแวร์และค่าบำรุงรักษา</li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== SLIDE 7: BENEFITS & NEXT ==================== -->
+        <section class="slide" data-slide="7">
+          <div class="slide-header">
+            <div class="slide-title-wrap">
+              <h2>🌟 ประโยชน์ที่ได้รับ & ลิงก์เชื่อมโยง (Key Benefits & Links)</h2>
+              <p>ผลลัพธ์เชิงรูปธรรมต่อธุรกิจร้านตัดผม และช่องทางเปิดชมการทำงานของชิ้นงานจริง</p>
+            </div>
+            <div class="badge-counter">SLIDE 07 / 07</div>
+          </div>
+          <div class="slide-body">
+            <div class="card-grid grid-split-60-40">
+              
+              <div class="content-card emerald">
+                <div class="card-title">ผลลัพธ์และความคุ้มค่าของระบบ</div>
+                <ul class="card-list">
+                  <li><strong>ด้านความปลอดภัยทางการเงิน:</strong> ป้องกันการใช้สลิปปลอมและสลิปวนใช้ซ้ำได้ 100% ด้วย Slip2Go API</li>
+                  <li><strong>ด้านความโปร่งใสและประสิทธิภาพ:</strong> ช่างได้รับแจ้งยอดรายได้ทันที และมีระบบตัดรอบเคลียร์เงิน (Settlement) ตรวจสอบได้ชัดเจน</li>
+                  <li><strong>ด้านประสบการณ์ลูกค้า (UX):</strong> ลูกค้าชำระเงินสะดวกผ่าน LINE ได้ใบเสร็จ e-Receipt สวยงาม ไม่ต้องลงแอปใหม่</li>
+                  <li><strong>ด้านการบริหารจัดการ:</strong> เจ้าของร้านมีแดชบอร์ดสรุปรายได้ ยอดขายช่าง และสถิติต่าง ๆ ในหน้าจอเดียว</li>
+                </ul>
+              </div>
+
+              <div class="content-card" style="justify-content: center; align-items: center; text-align: center; gap: 16px;">
+                <div style="font-size: 32px;">🏆</div>
+                <h3 style="font-family:'Kanit'; font-size: 20px; color:#FFF;">การนำเสนอชิ้นงานจริง</h3>
+                <p style="font-size: 13.5px; color: var(--text-sub); line-height: 1.5;">
+                  สามารถแตะลิงก์ด้านล่างเพื่อเปิดชมสไลด์โชว์ชิ้นงาน 13 สไลด์ หรือดูรายงานสดบน Looker Studio
+                </p>
+                <div style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
+                  <a href="product.html" class="dock-nav-link" style="justify-content: center; background: #F59E0B; color: #000; font-weight: 700; font-size: 14px; padding: 10px 18px;">
+                    <span>🏆 เปิดสไลด์นำเสนอชิ้นงาน (product.html) ↗</span>
+                  </a>
+                  <a href="index.html" class="dock-nav-link" style="justify-content: center; background: rgba(255,255,255,0.08); font-size: 13px;">
+                    <span>📑 เปิดสไลด์เล่มรายงาน 52 สไลด์ (index.html) ↗</span>
+                  </a>
+                  <a href="https://lookerstudio.google.com/reporting/41175654-e407-4286-9dc7-8549e377e8be" target="_blank" class="dock-nav-link" style="justify-content: center; background: rgba(2,132,199,0.2); border-color: #0284C7; color: #38BDF8;">
+                    <span>📊 ดูแดชบอร์ดจริง Looker Studio ↗</span>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+    <!-- Floating Navigation Controls -->
+    <div class="dock-bar">
+      <a href="product.html" class="dock-nav-link" title="สลับไปสไลด์ชิ้นงาน">
+        <span>🏆 สไลด์ชิ้นงาน</span>
+      </a>
+      <div class="dock-divider"></div>
+      <button class="dock-btn" onclick="prevSlide()" title="สไลด์ก่อนหน้า (←)">◀</button>
+      <div class="dock-indicator" id="slideIndicator">01 / 07</div>
+      <button class="dock-btn" onclick="nextSlide()" title="สไลด์ถัดไป (→)">▶</button>
+      <div class="dock-divider"></div>
+      <a href="index.html" class="dock-nav-link" title="ดูสไลด์เล่มเต็ม">
+        <span>📑 สไลด์เล่มเต็ม</span>
+      </a>
+      <div class="dock-divider"></div>
+      <button class="dock-btn" onclick="toggleFullscreen()" title="โหมดเต็มจอ (F)">⛶</button>
+    </div>
+  </div>
+
+  <!-- Image Lightbox Modal -->
+  <div class="lightbox-overlay" id="lightboxModal" onclick="closeLightbox()">
+    <img id="lightboxImg" src="" alt="ภาพขยาย" onclick="event.stopPropagation()">
+  </div>
+
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 7;
+
+    function resizeStage() {
+      const stage = document.getElementById('stage');
+      const isMobile = window.innerWidth <= 1024 || window.innerHeight <= 640;
+      
+      if (isMobile) {
+        stage.style.transform = 'none';
+        stage.style.width = '100%';
+        stage.style.height = 'auto';
+        return;
+      }
+
+      const stageWidth = 1600;
+      const stageHeight = 900;
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+      
+      const scaleX = (windowWidth - 40) / stageWidth;
+      const scaleY = (windowHeight - 90) / stageHeight;
+      const scale = Math.min(scaleX, scaleY, 1.25);
+      
+      stage.style.transform = `scale(${scale})`;
+      stage.style.width = '1600px';
+      stage.style.height = '900px';
+    }
+
+    window.addEventListener('resize', resizeStage);
+    window.addEventListener('DOMContentLoaded', () => {
+      resizeStage();
+      updateSlideDisplay();
+    });
+
+    function updateSlideDisplay() {
+      document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+      const activeSlide = document.querySelector(`.slide[data-slide="${currentSlide}"]`);
+      if (activeSlide) {
+        activeSlide.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        activeSlide.scrollTop = 0;
+      }
+
+      const padCurrent = String(currentSlide).padStart(2, '0');
+      const padTotal = String(totalSlides).padStart(2, '0');
+      document.getElementById('slideIndicator').innerText = `${padCurrent} / ${padTotal}`;
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides) {
+        currentSlide++;
+        updateSlideDisplay();
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) {
+        currentSlide--;
+        updateSlideDisplay();
+      }
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    }
+
+    function openLightbox(src) {
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightboxModal').classList.add('active');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightboxModal').classList.remove('active');
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key.toLowerCase() === 'f') {
+        toggleFullscreen();
+      } else if (e.key === 'Escape') {
+        closeLightbox();
+      }
+    });
+
+    // Touch swipe support for mobile presentation
+    let touchStartX = 0;
+    let touchEndX = 0;
+    document.addEventListener('touchstart', e => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    document.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].screenX;
+      if (touchEndX < touchStartX - 50) nextSlide();
+      if (touchEndX > touchStartX + 50) prevSlide();
+    }, { passive: true });
+  </script>
+</body>
+</html>
