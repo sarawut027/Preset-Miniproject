@@ -9,18 +9,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&family=Prompt:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-dark: #090A0F;
-      --slide-bg: #10121A;
-      --card-bg: #171A26;
-      --card-border: #262B3D;
-      --gold-primary: #F59E0B;
-      --gold-glow: rgba(245, 158, 11, 0.25);
-      --emerald: #10B981;
+      --bg-dark: #F1F5F9;
+      --slide-bg: #FFFFFF;
+      --card-bg: #F8FAFC;
+      --card-border: #E2E8F0;
+      --gold-primary: #D97706;
+      --gold-glow: rgba(217, 119, 6, 0.12);
+      --emerald: #059669;
       --sky: #0284C7;
-      --rose: #F43F5E;
-      --text-white: #FFFFFF;
-      --text-sub: #CBD5E1;
-      --text-muted: #94A3B8;
+      --rose: #DC2626;
+      --text-white: #0F172A;
+      --text-sub: #334155;
+      --text-muted: #64748B;
     }
 
     * {
@@ -48,7 +48,7 @@
       align-items: center;
       justify-content: center;
       position: relative;
-      background: radial-gradient(circle at center, #151926 0%, #090A0F 100%);
+      background: radial-gradient(circle at center, #FFFFFF 0%, #F1F5F9 100%);
     }
 
     /* 16:9 Auto-scaled Stage */
@@ -66,8 +66,8 @@
       height: 900px;
       aspect-ratio: 16 / 9;
       background: var(--slide-bg);
-      border: 2px solid rgba(245, 158, 11, 0.4);
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 40px var(--gold-glow);
+      border: 2px solid #E2E8F0;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08), 0 0 30px rgba(217, 119, 6, 0.06);
       border-radius: 24px;
       position: relative;
       overflow: hidden;
@@ -86,7 +86,7 @@
       position: absolute;
       top: 0;
       left: 0;
-      background: radial-gradient(circle at top right, rgba(245, 158, 11, 0.05) 0%, rgba(16, 18, 26, 1) 75%);
+      background: #FFFFFF;
     }
 
     .slide.active {
@@ -106,14 +106,14 @@
       justify-content: space-between;
       margin-bottom: 24px;
       padding-bottom: 14px;
-      border-bottom: 1px solid rgba(245, 158, 11, 0.25);
+      border-bottom: 1px solid #E2E8F0;
     }
 
     .slide-title-wrap h2 {
       font-family: 'Kanit', sans-serif;
       font-size: 28px;
       font-weight: 600;
-      color: var(--text-white);
+      color: #0F172A;
       display: flex;
       align-items: center;
       gap: 12px;
@@ -121,15 +121,16 @@
 
     .slide-title-wrap p {
       font-size: 14px;
-      color: var(--gold-primary);
+      color: #D97706;
       margin-top: 4px;
       letter-spacing: 0.5px;
+      font-weight: 500;
     }
 
     .badge-counter {
-      background: rgba(245, 158, 11, 0.12);
-      border: 1px solid var(--gold-primary);
-      color: var(--gold-primary);
+      background: #FEF3C7;
+      border: 1px solid #FCD34D;
+      color: #B45309;
       font-family: 'Montserrat', sans-serif;
       font-size: 13px;
       font-weight: 700;
@@ -158,8 +159,8 @@
     .grid-split-60-40 { grid-template-columns: 1fr 440px; }
 
     .content-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
       border-radius: 16px;
       padding: 24px;
       display: flex;
@@ -168,12 +169,13 @@
       position: relative;
       overflow: hidden;
       transition: all 0.25s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
     }
 
     .content-card:hover {
-      border-color: rgba(245, 158, 11, 0.5);
+      border-color: #CBD5E1;
       transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
     }
 
     .content-card::before {
@@ -193,11 +195,14 @@
       font-family: 'Kanit', sans-serif;
       font-size: 19px;
       font-weight: 600;
-      color: var(--text-white);
+      color: #0F172A;
       display: flex;
       align-items: center;
       gap: 10px;
     }
+    .content-card.emerald .card-title { color: #065F46; }
+    .content-card.sky .card-title { color: #0369A1; }
+    .content-card.rose .card-title { color: #991B1B; }
 
     .card-list {
       list-style: none;
@@ -205,8 +210,12 @@
       flex-direction: column;
       gap: 12px;
       font-size: 14.5px;
-      color: var(--text-sub);
+      color: #334155;
       line-height: 1.6;
+    }
+
+    .card-list strong {
+      color: #0F172A;
     }
 
     .card-list li {
@@ -231,8 +240,8 @@
       border-radius: 6px;
       font-size: 12px;
       font-weight: 600;
-      background: rgba(245, 158, 11, 0.15);
-      color: var(--gold-primary);
+      background: #FEF3C7;
+      color: #B45309;
       margin-left: 6px;
     }
 
@@ -241,7 +250,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      background: radial-gradient(circle at center, rgba(245, 158, 11, 0.12) 0%, #10121A 75%);
+      background: radial-gradient(circle at center, rgba(217, 119, 6, 0.06) 0%, #FFFFFF 70%);
     }
 
     .cover-logo {
@@ -249,13 +258,13 @@
       height: 140px;
       border-radius: 50%;
       border: 3px solid var(--gold-primary);
-      box-shadow: 0 0 35px var(--gold-glow);
+      box-shadow: 0 4px 20px rgba(217, 119, 6, 0.2);
       margin-bottom: 24px;
       object-fit: cover;
     }
 
     .cover-tagline {
-      color: var(--gold-primary);
+      color: #B45309;
       font-weight: 700;
       font-size: 14px;
       letter-spacing: 2.5px;
@@ -267,7 +276,7 @@
       font-family: 'Kanit', sans-serif;
       font-size: 34px;
       font-weight: 700;
-      color: var(--text-white);
+      color: #0F172A;
       max-width: 1100px;
       line-height: 1.35;
       margin-bottom: 12px;
@@ -275,7 +284,7 @@
 
     .cover-subtitle {
       font-size: 16px;
-      color: var(--text-muted);
+      color: #64748B;
       font-style: italic;
       margin-bottom: 30px;
     }
@@ -283,42 +292,47 @@
     .cover-meta {
       display: flex;
       gap: 36px;
-      background: rgba(23, 26, 38, 0.9);
-      border: 1px solid var(--card-border);
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
       padding: 14px 36px;
       border-radius: 40px;
       font-size: 14.5px;
-      color: var(--text-sub);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      color: #334155;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
     }
-    .cover-meta strong { color: var(--gold-primary); }
+    .cover-meta strong { color: #B45309; }
 
     /* Media Mockup Card */
     .media-card {
-      background: #000;
-      border: 1px solid var(--card-border);
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
       border-radius: 16px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       position: relative;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
       cursor: zoom-in;
+    }
+
+    .media-card:hover {
+      border-color: var(--gold-primary);
+      box-shadow: 0 8px 30px rgba(217, 119, 6, 0.15);
     }
 
     .media-card img {
       width: 100%;
       height: 100%;
       object-fit: contain;
-      background: #0B0D14;
+      background: #FFFFFF;
     }
 
     .media-label {
-      background: #141722;
-      border-top: 1px solid var(--card-border);
+      background: #F8FAFC;
+      border-top: 1px solid #E2E8F0;
       padding: 10px 14px;
       font-size: 13px;
-      color: var(--gold-primary);
+      color: #0F172A;
       text-align: center;
       font-family: 'Kanit', sans-serif;
       font-weight: 500;
@@ -330,8 +344,8 @@
       bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(16, 18, 26, 0.95);
-      border: 1px solid var(--card-border);
+      background: rgba(255, 255, 255, 0.94);
+      border: 1px solid #CBD5E1;
       border-radius: 30px;
       padding: 8px 18px;
       display: flex;
@@ -339,13 +353,13 @@
       gap: 12px;
       z-index: 50;
       backdrop-filter: blur(12px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
     }
 
     .dock-btn {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      color: var(--text-white);
+      background: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      color: #1E293B;
       width: 36px;
       height: 36px;
       border-radius: 50%;
@@ -360,6 +374,7 @@
     .dock-btn:hover {
       border-color: var(--gold-primary);
       color: var(--gold-primary);
+      background: #FEF3C7;
       transform: translateY(-2px);
     }
 
@@ -367,7 +382,7 @@
       font-family: 'Montserrat', sans-serif;
       font-weight: 700;
       font-size: 13px;
-      color: var(--gold-primary);
+      color: #B45309;
       min-width: 60px;
       text-align: center;
     }
@@ -375,18 +390,18 @@
     .dock-divider {
       width: 1px;
       height: 20px;
-      background: var(--card-border);
+      background: #E2E8F0;
     }
 
     .dock-nav-link {
-      color: var(--text-sub);
+      color: #334155;
       text-decoration: none;
       font-size: 13px;
       font-weight: 600;
       padding: 6px 14px;
       border-radius: 20px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: #F1F5F9;
+      border: 1px solid #CBD5E1;
       display: flex;
       align-items: center;
       gap: 6px;
@@ -394,9 +409,9 @@
       white-space: nowrap;
     }
     .dock-nav-link:hover {
-      background: rgba(245, 158, 11, 0.15);
-      border-color: var(--gold-primary);
-      color: var(--gold-primary);
+      background: #FEF3C7;
+      border-color: #FCD34D;
+      color: #B45309;
     }
 
     /* Lightbox Modal */
@@ -406,20 +421,22 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(0, 0, 0, 0.92);
+      background: rgba(15, 23, 42, 0.8);
       z-index: 100;
       display: none;
       align-items: center;
       justify-content: center;
       padding: 30px;
+      backdrop-filter: blur(4px);
     }
     .lightbox-overlay.active { display: flex; }
     .lightbox-overlay img {
       max-width: 92vw;
       max-height: 90vh;
       border-radius: 12px;
-      border: 2px solid var(--gold-primary);
-      box-shadow: 0 0 40px var(--gold-glow);
+      border: 2px solid #CBD5E1;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      background: #FFFFFF;
     }
 
     /* ========================================================= */
@@ -430,6 +447,7 @@
         overflow-y: auto !important;
         height: auto !important;
         min-height: 100vh;
+        background-color: #FFFFFF !important;
       }
 
       #viewport {
@@ -439,6 +457,7 @@
         overflow-x: hidden;
         padding: 0;
         justify-content: flex-start;
+        background: #FFFFFF !important;
       }
 
       #stage-container {
@@ -467,6 +486,7 @@
         min-height: 100vh;
         padding: 24px 16px 100px 16px !important;
         overflow-y: visible !important;
+        background: #FFFFFF !important;
       }
 
       .slide.active {
@@ -820,18 +840,18 @@
 
               <div class="content-card" style="justify-content: center; align-items: center; text-align: center; gap: 16px;">
                 <div style="font-size: 32px;">🏆</div>
-                <h3 style="font-family:'Kanit'; font-size: 20px; color:#FFF;">การนำเสนอชิ้นงานจริง</h3>
+                <h3 style="font-family:'Kanit'; font-size: 20px; color:#0F172A;">การนำเสนอชิ้นงานจริง</h3>
                 <p style="font-size: 13.5px; color: var(--text-sub); line-height: 1.5;">
                   สามารถแตะลิงก์ด้านล่างเพื่อเปิดชมสไลด์โชว์ชิ้นงาน 13 สไลด์ หรือดูรายงานสดบน Looker Studio
                 </p>
                 <div style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
-                  <a href="product.html" class="dock-nav-link" style="justify-content: center; background: #F59E0B; color: #000; font-weight: 700; font-size: 14px; padding: 10px 18px;">
+                  <a href="product.html" class="dock-nav-link" style="justify-content: center; background: #D97706; color: #FFFFFF; font-weight: 700; font-size: 14px; padding: 10px 18px; border-color: #B45309; box-shadow: 0 2px 8px rgba(217,119,6,0.25);">
                     <span>🏆 เปิดสไลด์นำเสนอชิ้นงาน (product.html) ↗</span>
                   </a>
-                  <a href="index.html" class="dock-nav-link" style="justify-content: center; background: rgba(255,255,255,0.08); font-size: 13px;">
+                  <a href="index.html" class="dock-nav-link" style="justify-content: center; background: #F1F5F9; color: #1E293B; font-size: 13px; border: 1px solid #CBD5E1;">
                     <span>📑 เปิดสไลด์เล่มรายงาน 52 สไลด์ (index.html) ↗</span>
                   </a>
-                  <a href="https://lookerstudio.google.com/reporting/41175654-e407-4286-9dc7-8549e377e8be" target="_blank" class="dock-nav-link" style="justify-content: center; background: rgba(2,132,199,0.2); border-color: #0284C7; color: #38BDF8;">
+                  <a href="https://lookerstudio.google.com/reporting/41175654-e407-4286-9dc7-8549e377e8be" target="_blank" class="dock-nav-link" style="justify-content: center; background: #E0F2FE; border-color: #0284C7; color: #0369A1; font-weight: 600;">
                     <span>📊 ดูแดชบอร์ดจริง Looker Studio ↗</span>
                   </a>
                 </div>
