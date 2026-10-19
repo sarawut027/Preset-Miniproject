@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>การนำเสนอโครงงาน • ระบบบริหารรายได้และค่าคอมมิชชันช่างตัดผมผ่านไลน์ (IT01 Defense)</title>
+  <title>ระบบบริหารรายได้และค่าคอมมิชชันช่างตัดผมผ่านไลน์ (IT01 Defense)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&family=Prompt:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
@@ -407,29 +407,151 @@
       color: #059669;
     }
 
-    /* Lightbox Modal */
+    /* Enhanced Lightbox Modal with Zoom & Scroll */
     .lightbox-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(15, 23, 42, 0.85);
-      z-index: 100;
+      background: rgba(15, 23, 42, 0.92);
+      z-index: 200;
       display: none;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      padding: 30px;
-      backdrop-filter: blur(5px);
+      justify-content: flex-start;
+      backdrop-filter: blur(8px);
+      padding: 16px;
+      overflow: hidden;
+      user-select: text;
     }
     .lightbox-overlay.active { display: flex; }
+
+    .lightbox-toolbar {
+      width: 100%;
+      max-width: 1200px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 18px;
+      background: rgba(30, 41, 59, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 14px;
+      margin-bottom: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      z-index: 210;
+      flex-shrink: 0;
+    }
+
+    .lightbox-title {
+      font-family: 'Kanit', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      color: #F8FAFC;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .lightbox-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .lightbox-btn {
+      background: #334155;
+      border: 1px solid #475569;
+      color: #F8FAFC;
+      font-family: 'Prompt', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .lightbox-btn:hover {
+      background: #475569;
+      border-color: #64748B;
+      color: #FFFFFF;
+      transform: translateY(-1px);
+    }
+    .lightbox-btn.close {
+      background: #DC2626;
+      border-color: #EF4444;
+      font-weight: 600;
+    }
+    .lightbox-btn.close:hover {
+      background: #B91C1C;
+    }
+
+    .lightbox-scroll-container {
+      width: 100%;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: auto;
+      padding: 10px 0;
+      scroll-behavior: smooth;
+    }
+
+    /* Normal fit-screen mode */
     .lightbox-overlay img {
-      max-width: 92vw;
-      max-height: 90vh;
-      border-radius: 12px;
+      max-width: 90vw;
+      max-height: calc(100vh - 120px);
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 10px;
       border: 2px solid #CBD5E1;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
       background: #FFFFFF;
+      transition: transform 0.2s ease, max-width 0.2s ease, max-height 0.2s ease;
+      cursor: zoom-in;
+    }
+
+    /* Zoomed / Scrollable Mode */
+    .lightbox-overlay.zoomed .lightbox-scroll-container {
+      align-items: flex-start;
+      justify-content: center;
+    }
+    .lightbox-overlay.zoomed img {
+      max-width: 95vw;
+      max-height: none !important;
+      height: auto !important;
+      border-radius: 12px;
+      cursor: zoom-out;
+      margin: auto 0;
+    }
+    /* For tall smartphone screenshots specifically in zoomed mode */
+    .lightbox-overlay.zoomed img.tall-capture {
+      width: min(650px, 95vw) !important;
+      max-width: min(650px, 95vw) !important;
+    }
+
+    .lightbox-hint {
+      position: fixed;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(15, 23, 42, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #94A3B8;
+      font-size: 12px;
+      padding: 5px 16px;
+      border-radius: 20px;
+      pointer-events: none;
+      backdrop-filter: blur(4px);
+      z-index: 220;
     }
 
     /* Defense Shield Modal */
@@ -1177,29 +1299,60 @@
           <div class="slide-header">
             <div class="slide-title-wrap">
               <h2>📱 ชิ้นงานจริง (1/5): หน้าริชเมนู & ฟอร์มชำระเงิน LINE LIFF</h2>
-              <p>ผลการพัฒนาระบบฝั่งลูกค้า เปิดใช้งานผ่าน LINE ได้ทันทีในเวลาไม่เกิน 15 วินาที</p>
+              <p>ผลการพัฒนาระบบฝั่งลูกค้า เริ่มต้นจากแตะริชเมนูบน LINE OA ➡️ เข้าสู่หน้าเว็บฟอร์มแจ้งชำระเงิน LIFF</p>
             </div>
             <div class="badge-counter">SLIDE 14 / 20</div>
           </div>
           <div class="slide-body">
-            <div class="card-grid grid-split-50-50">
-              <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px; height: 100%;">
-                <div class="media-card" onclick="openLightbox('images/Richmenus.png')">
-                  <img src="images/Richmenus.png" alt="ริชเมนูบน LINE">
-                  <div class="media-label">1. เมนูลัด 6 ช่องบน LINE OA</div>
+            <div class="card-grid grid-split-55-45">
+              <div style="display: flex; flex-direction: column; gap: 12px; height: 100%;">
+                <!-- 1. Top: Full Customer Rich Menu Banner -->
+                <div class="media-card" style="height: 190px; flex-shrink: 0;" onclick="openLightbox('Docs/Diagram/richmenu_customer_banner.png', 'ภาพที่ 3.8 แบนเนอร์ริชเมนูฝั่งลูกค้าบน LINE OA (เสหยอดบาร์เบอร์)')">
+                  <img src="Docs/Diagram/richmenu_customer_banner.png" alt="แบนเนอร์ริชเมนูลูกค้า" style="object-fit: cover; object-position: center; width: 100%; height: 100%;">
+                  <div class="media-label">🔍 ภาพที่ 3.8 แบนเนอร์ริชเมนูฝั่งลูกค้า (แตะปุ่มสีส้มเพื่อเปิดฟอร์ม LIFF • คลิกเพื่อขยาย 2500×843)</div>
                 </div>
-                <div class="media-card" onclick="openLightbox('Present/01_ขั้นตอนการชำระ/01_หน้าฟอร์มชำระเงิน_LIFF.jpg')">
-                  <img src="Present/01_ขั้นตอนการชำระ/01_หน้าฟอร์มชำระเงิน_LIFF.jpg" alt="หน้าฟอร์ม LIFF">
-                  <div class="media-label">2. หน้าฟอร์มชำระเงิน LIFF</div>
+
+                <!-- 2. Bottom: LINE Chat Mockup & LIFF Checkout Form -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; flex: 1; min-height: 0;">
+                  <div class="media-card" onclick="openLightbox('Docs/Diagram/diag_3_8_richmenu.png', 'ภาพจำลองริชเมนูในห้องแชท LINE OA (เสหยอดบาร์เบอร์)')">
+                    <img src="Docs/Diagram/diag_3_8_richmenu.png" alt="ริชเมนูในห้องแชท LINE">
+                    <div class="media-label">📱 1. หน้าแชท LINE OA เสหยอดบาร์เบอร์</div>
+                  </div>
+                  <div class="media-card" onclick="openLightbox('Present/01_ขั้นตอนการชำระ/01_หน้าฟอร์มชำระเงิน_LIFF.jpg', 'หน้าฟอร์มแจ้งชำระเงิน LINE LIFF 4 ขั้นตอน (ความละเอียดเต็ม 592×2764 px)')" style="position: relative;">
+                    <img src="Present/01_ขั้นตอนการชำระ/01_หน้าฟอร์มชำระเงิน_LIFF.jpg" alt="หน้าฟอร์ม LIFF" style="object-position: top center;">
+                    <div style="position: absolute; top: 10px; right: 10px; background: rgba(5, 150, 105, 0.92); color: white; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; box-shadow: 0 2px 8px rgba(0,0,0,0.3); pointer-events: none;">
+                      🔍 แตะซูมเลื่อนอ่านครบ 4 ขั้นตอน
+                    </div>
+                    <div class="media-label">📱 2. ฟอร์ม LINE LIFF (เลือกช่าง • บริการ • สลิป QR)</div>
+                  </div>
                 </div>
               </div>
-              <div class="content-card emerald" style="justify-content: center;">
-                <div class="card-title">จุดเด่นของ LINE LIFF Form</div>
+
+              <!-- Content Explanation -->
+              <div class="content-card emerald" style="justify-content: flex-start; gap: 14px; overflow-y: auto;">
+                <div class="card-title">📱 สถาปัตยกรรมส่วนหน้า & ประสบการณ์ใช้งาน (Frontend UX)</div>
                 <ul class="card-list">
-                  <li><strong>Zero Installation:</strong> ลูกค้าไม่ต้องดาวน์โหลดแอปใหม่ ทำรายการผ่านห้องแชท LINE ที่คุ้นเคย</li>
-                  <li><strong>เลือกช่างและบริการง่าย:</strong> มีรูปภาพทรงผม ราคา และระยะเวลาบริการแสดงชัดเจน</li>
-                  <li><strong>2 ช่องทางชำระเงิน:</strong> รองรับทั้งเงินสดหน้าร้าน (Cash) และการสแกนโอนเงินผ่าน QR Code</li>
-                  <li><strong>QR Code พร้อมเพย์ร้าน:</strong> แสดงภาพ QR Code และเลขบัญชีให้ลูกค้าแตะคัดลอกหรือแคปภาพไปสแกนได้สะดวก</li>
+                  <li>
+                    <strong>1. ริชเมนูลูกค้า (Customer Rich Menu):</strong><br>
+                    ติดตั้งแบนเนอร์ถาวรด้านล่างห้องแชท LINE OA เสหยอดบาร์เบอร์ พร้อมปุ่มสีส้มเด่น <em>"แตะเพื่อแจ้งชำระเงิน"</em> ลูกค้าแตะใช้งานได้ทันทีโดยไม่ต้องพิมพ์ข้อความค้นหา
+                  </li>
+                  <li>
+                    <strong>2. การเปิดฟอร์มด้วย LINE LIFF (Zero Install):</strong><br>
+                    เมื่อแตะปุ่ม ระบบเรียกเปิดเว็บแอป LIFF แบบ In-App Browser ซ้อนบน LINE ทันทีในเวลา 1-2 วินาที โดยไม่ต้องติดตั้งแอปพลิเคชันภายนอก
+                  </li>
+                  <li>
+                    <strong>3. ฟอร์มทำรายการ 4 ขั้นตอน (Structured Checkout):</strong>
+                    <div style="font-size: 13px; color: #475569; padding-left: 8px; margin-top: 5px; display: flex; flex-direction: column; gap: 4px;">
+                      <span>▸ <strong>ขั้น 1:</strong> เลือกช่างผู้ให้บริการ (ยูโกะ, แบม, เต้) พร้อมรูปและเรทคอมมิชชัน</span>
+                      <span>▸ <strong>ขั้น 2:</strong> เลือกบริการ 5 รายการมาตรฐาน พร้อมราคาชัดเจน (150 - 1,500 บาท)</span>
+                      <span>▸ <strong>ขั้น 3:</strong> เลือกช่องทางชำระเงิน (โอนเงินผ่านสลิป QR / เงินสดหน้าร้าน Cash)</span>
+                      <span>▸ <strong>ขั้น 4:</strong> แสดง QR Code พร้อมเพย์ร้าน (กสิกรไทย 098-870-1572) และแนบรูปสลิป</span>
+                    </div>
+                  </li>
+                  <li>
+                    <strong>4. ส่งข้อมูลประมวลผลอัตโนมัติ:</strong><br>
+                    เมื่อกดยืนยันชำระเงิน LIFF จะแพ็กข้อมูล JSON พร้อม Base64 Image ยิงตรงเข้า n8n Webhook เพื่อตรวจสลิปผ่าน Slip2Go API ทันที
+                  </li>
                 </ul>
               </div>
             </div>
@@ -1455,9 +1608,21 @@
     </ul>
   </div>
 
-  <!-- Image Lightbox Modal -->
-  <div class="lightbox-overlay" id="lightboxModal" onclick="closeLightbox()">
-    <img id="lightboxImg" src="" alt="ภาพขยาย" onclick="event.stopPropagation()">
+  <!-- Enhanced Image Lightbox Modal with Zoom & Scroll -->
+  <div class="lightbox-overlay" id="lightboxModal" onclick="closeLightbox(event)">
+    <div class="lightbox-toolbar" onclick="event.stopPropagation()">
+      <div class="lightbox-title" id="lightboxTitle">🔍 ภาพขยายความละเอียดสูง</div>
+      <div class="lightbox-actions">
+        <button class="lightbox-btn" id="lightboxZoomBtn" onclick="toggleLightboxZoom()" title="สลับโหมดซูมขนาดจริง / พอดีหน้าจอ">
+          <span id="lightboxZoomIcon">🔍+</span> <span id="lightboxZoomText">ซูมขนาดจริง</span>
+        </button>
+        <button class="lightbox-btn close" onclick="closeLightbox()" title="ปิดหน้าต่างนี้ (Esc)">✕ ปิด</button>
+      </div>
+    </div>
+    <div class="lightbox-scroll-container" id="lightboxContainer" onclick="closeLightbox(event)">
+      <img id="lightboxImg" src="" alt="ภาพขยาย" onclick="handleLightboxImgClick(event)">
+    </div>
+    <div class="lightbox-hint" id="lightboxHint">💡 เลื่อนเมาส์หรือใช้นิ้วเลื่อนเพื่ออ่านเนื้อหาทั้งหมด • แตะ/คลิกที่ภาพเพื่อสลับโหมดซูม</div>
   </div>
 
   <!-- Defense Shield Modal -->
@@ -1614,18 +1779,74 @@
       }
     }
 
-    function openLightbox(src) {
+    let isLightboxZoomed = false;
+
+    function openLightbox(src, title = '') {
       const modal = document.getElementById('lightboxModal');
       const img = document.getElementById('lightboxImg');
-      if (modal && img) {
-        img.src = src;
-        modal.classList.add('active');
+      const titleEl = document.getElementById('lightboxTitle');
+      const container = document.getElementById('lightboxContainer');
+      
+      if (!modal || !img) return;
+
+      img.src = src;
+      img.className = '';
+      
+      // Auto-detect tall images (e.g. LIFF screenshot where height > 1.4 * width)
+      const testImg = new Image();
+      testImg.src = src;
+      testImg.onload = () => {
+        if (testImg.naturalHeight > testImg.naturalWidth * 1.4) {
+          img.classList.add('tall-capture');
+          // For tall captures, start in zoomed readable mode automatically!
+          setLightboxZoom(true);
+        } else {
+          setLightboxZoom(false);
+        }
+      };
+
+      if (titleEl) {
+        titleEl.textContent = title || '🔍 ดูภาพขยายความละเอียดสูง';
+      }
+
+      modal.classList.add('active');
+      if (container) container.scrollTop = 0;
+    }
+
+    function setLightboxZoom(zoomIn) {
+      const modal = document.getElementById('lightboxModal');
+      const icon = document.getElementById('lightboxZoomIcon');
+      const text = document.getElementById('lightboxZoomText');
+      isLightboxZoomed = zoomIn;
+
+      if (modal) {
+        modal.classList.toggle('zoomed', isLightboxZoomed);
+      }
+      if (icon && text) {
+        icon.textContent = isLightboxZoomed ? '🔍-' : '🔍+';
+        text.textContent = isLightboxZoomed ? 'พอดีหน้าจอ' : 'ซูมขนาดจริง';
       }
     }
 
-    function closeLightbox() {
+    function toggleLightboxZoom() {
+      setLightboxZoom(!isLightboxZoomed);
+    }
+
+    function handleLightboxImgClick(e) {
+      if (e) e.stopPropagation();
+      toggleLightboxZoom();
+    }
+
+    function closeLightbox(e) {
+      if (e && e.target && (e.target.id === 'lightboxImg' || e.target.closest('.lightbox-toolbar'))) {
+        return;
+      }
       const modal = document.getElementById('lightboxModal');
-      if (modal) modal.classList.remove('active');
+      if (modal) {
+        modal.classList.remove('active');
+        modal.classList.remove('zoomed');
+        isLightboxZoomed = false;
+      }
     }
 
     function openShieldModal() {
@@ -1666,18 +1887,36 @@
 
     // Keyboard Event Listener
     window.addEventListener('keydown', (e) => {
-      // Don't intercept when a modal/drawer is active and user is scrolling
+      // Don't intercept slide navigation when a modal or drawer is active
       const shieldActive = document.getElementById('shieldModal')?.classList.contains('active');
+      const lightboxActive = document.getElementById('lightboxModal')?.classList.contains('active');
+      const drawerActive = document.getElementById('drawerMenu')?.classList.contains('active');
+      const isAnyOverlayActive = shieldActive || lightboxActive || drawerActive;
+
+      if (e.key === 'Escape') {
+        closeLightbox();
+        closeShieldModal();
+        const drawer = document.getElementById('drawerMenu');
+        const overlay = document.getElementById('drawerOverlay');
+        if (drawer) drawer.classList.remove('active');
+        if (overlay) overlay.classList.remove('active');
+        return;
+      }
+
+      // If viewing expanded image or modal, allow scrolling and don't change slide
+      if (isAnyOverlayActive) {
+        if (e.key === 'q' || e.key === 'Q') {
+          if (shieldActive) closeShieldModal();
+        }
+        return;
+      }
       
       if (e.key === 'ArrowRight' || e.key === 'PageDown') {
         e.preventDefault();
         nextSlide();
       } else if (e.key === ' ') {
-        // Space advances slides only when no modal is open
-        if (!shieldActive) {
-          e.preventDefault();
-          nextSlide();
-        }
+        e.preventDefault();
+        nextSlide();
       } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
         e.preventDefault();
         prevSlide();
@@ -1686,22 +1925,11 @@
       } else if (e.key === 'End') {
         showSlide(totalSlides);
       } else if (e.key === 'f' || e.key === 'F') {
-        if (!shieldActive) toggleFullscreen();
+        toggleFullscreen();
       } else if (e.key === 'q' || e.key === 'Q') {
-        if (shieldActive) {
-          closeShieldModal();
-        } else {
-          openShieldModal();
-        }
+        openShieldModal();
       } else if (e.key === 'm' || e.key === 'M' || e.key === 'o' || e.key === 'O') {
-        if (!shieldActive) toggleDrawer();
-      } else if (e.key === 'Escape') {
-        closeLightbox();
-        closeShieldModal();
-        const drawer = document.getElementById('drawerMenu');
-        const overlay = document.getElementById('drawerOverlay');
-        if (drawer) drawer.classList.remove('active');
-        if (overlay) overlay.classList.remove('active');
+        toggleDrawer();
       }
     });
 
