@@ -3,2180 +3,1466 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ระบบบริหารรายได้และค่าคอมมิชชันช่างตัดผมผ่านไลน์</title>
+  <title>การนำเสนอโครงงาน • ระบบบริหารรายได้และค่าคอมมิชชันช่างตัดผมผ่านไลน์ (IT01 Defense)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Prompt:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Sarabun:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&family=Prompt:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --line-green: #06C755;
-      --line-green-dark: #059640;
-      --text-main: #111827;
-      --text-muted: #4B5563;
-      --bg-slide: #FFFFFF;
-      --border-dark: #000000;
+      --bg-dark: #F1F5F9;
+      --slide-bg: #FFFFFF;
+      --card-bg: #F8FAFC;
+      --card-border: #E2E8F0;
+      --gold-primary: #D97706;
+      --gold-glow: rgba(217, 119, 6, 0.12);
+      --emerald: #059669;
+      --sky: #0284C7;
+      --rose: #DC2626;
+      --text-white: #0F172A;
+      --text-sub: #334155;
+      --text-muted: #64748B;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      -webkit-font-smoothing: antialiased;
     }
 
-    body {
-      font-family: 'Prompt', 'Kanit', sans-serif;
-      background-color: #F1F5F9;
-      color: var(--text-main);
+    html, body {
+      width: 100%;
+      height: 100%;
       overflow: hidden;
-      width: 100vw;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      background-color: var(--bg-dark);
+      color: var(--text-white);
+      font-family: 'Prompt', sans-serif;
       user-select: none;
     }
 
-    /* Presentation Wrapper - 16:9 Aspect Ratio */
-    .deck-container {
-      position: relative;
+    /* Presentation Screen Viewport */
+    #viewport {
       width: 100vw;
-      height: 56.25vw; /* 16:9 */
-      max-height: 100vh;
-      max-width: 177.78vh; /* 16:9 */
-      aspect-ratio: 16 / 9;
-      background-color: #FFFFFF;
-      box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.15), 0 0 20px rgba(0, 0, 0, 0.05);
-      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background: radial-gradient(circle at center, #FFFFFF 0%, #F1F5F9 100%);
     }
 
-    /* Slide Elements */
+    /* 16:9 Auto-scaled Stage */
+    #stage-container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+    }
+
+    #stage {
+      width: 1600px;
+      height: 900px;
+      aspect-ratio: 16 / 9;
+      background: var(--slide-bg);
+      border: 2px solid #CBD5E1;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08), 0 0 30px rgba(217, 119, 6, 0.06);
+      border-radius: 24px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transform-origin: center center;
+    }
+
+    /* Individual Slide */
     .slide {
+      width: 100%;
+      height: 100%;
+      padding: 40px 52px;
+      display: none;
+      flex-direction: column;
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
       background: #FFFFFF;
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 55px 90px 65px 90px;
-      opacity: 0;
-      transition: opacity 0.25s ease-in-out;
-      overflow: hidden;
     }
 
     .slide.active {
       display: flex;
-      opacity: 1;
-      z-index: 2;
+      animation: slideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* Senior Template Decorative Green Accents */
-    .slide-tab-left, .slide-tab-right {
-      position: absolute;
-      top: 0;
-      width: 60px;
-      height: 115px;
-      background-color: var(--line-green);
-      border-radius: 0 0 30px 30px;
-      z-index: 10;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    }
-    .slide-tab-left { left: 50px; }
-    .slide-tab-right { right: 50px; }
-
-    .slide-bottom-bar {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 32px;
-      background-color: var(--line-green);
-      z-index: 10;
+    @keyframes slideIn {
+      from { opacity: 0; transform: scale(0.985); }
+      to { opacity: 1; transform: scale(1); }
     }
 
-    /* Slide Headers */
-    .slide-title {
-      font-size: 2.35rem;
-      font-weight: 700;
-      color: #000000;
-      text-align: center;
-      margin-bottom: 24px;
-      line-height: 1.35;
-      letter-spacing: -0.01em;
-      position: relative;
-      z-index: 3;
-    }
-
-    .slide-subtitle {
-      font-size: 1.35rem;
-      font-weight: 500;
-      color: #374151;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    /* Content Area */
-    .slide-content {
-      width: 100%;
-      max-width: 1280px;
+    /* Slide Header */
+    .slide-header {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.32rem;
-      line-height: 1.75;
-      color: #1F2937;
-      z-index: 3;
-    }
-
-    .text-block {
-      text-align: left;
-      width: 100%;
-      background: transparent;
-    }
-
-    .bullet-list {
-      list-style-type: none;
-      width: 100%;
-      text-align: left;
-    }
-    .bullet-list li {
-      position: relative;
-      padding-left: 32px;
-      margin-bottom: 14px;
-      line-height: 1.65;
-    }
-    .bullet-list li::before {
-      content: "•";
-      position: absolute;
-      left: 8px;
-      color: var(--line-green-dark);
-      font-size: 1.8rem;
-      line-height: 1;
-      top: -2px;
-    }
-
-    /* Chapter Title Slide Layout */
-    .chapter-cover {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      height: 100%;
-    }
-    .chapter-cover .chap-num {
-      font-size: 4.8rem;
-      font-weight: 800;
-      color: #000000;
-      line-height: 1.1;
-      margin-bottom: 12px;
-      text-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    }
-    .chapter-cover .chap-name {
-      font-size: 3.5rem;
-      font-weight: 700;
-      color: #000000;
-      line-height: 1.2;
-    }
-
-    /* Cover Slide Layout */
-    .cover-slide {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
-      height: 100%;
-      padding-top: 40px;
-      padding-bottom: 30px;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #E2E8F0;
     }
-    .cover-main-badge {
-      display: inline-flex;
+
+    .slide-title-wrap h2 {
+      font-family: 'Kanit', sans-serif;
+      font-size: 26px;
+      font-weight: 600;
+      color: #0F172A;
+      display: flex;
       align-items: center;
       gap: 12px;
-      margin-bottom: 16px;
-    }
-    .cover-title {
-      font-size: 2.85rem;
-      font-weight: 800;
-      color: #000000;
-      text-align: center;
-      line-height: 1.35;
-      max-width: 1200px;
-      margin-bottom: 14px;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.06);
-    }
-    .cover-en {
-      font-size: 1.4rem;
-      font-weight: 500;
-      color: #4B5563;
-      text-align: center;
-      max-width: 1000px;
-      margin-bottom: 30px;
-    }
-    .cover-presenter {
-      font-size: 1.55rem;
-      font-weight: 600;
-      color: #000000;
-      text-align: center;
-      line-height: 1.6;
     }
 
-    /* Technology Knowledge Box (Senior's Slide 15 exact replica) */
-    .tech-card-container {
+    .slide-title-wrap p {
+      font-size: 14.5px;
+      color: #64748B;
+      margin-top: 4px;
+    }
+
+    .badge-counter {
+      background: #FEF3C7;
+      color: #B45309;
+      border: 1px solid #FCD34D;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    /* Slide Body Container */
+    .slide-body {
+      flex: 1;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      width: 100%;
-      max-width: 1100px;
-    }
-    .tech-desc {
-      font-size: 1.35rem;
-      line-height: 1.75;
-      text-align: center;
-      color: #111827;
-      margin-bottom: 28px;
-      max-width: 1050px;
-    }
-    .tech-logo-box {
-      width: 380px;
-      height: 220px;
-      border: 2px solid #000000;
-      border-radius: 8px;
-      background: #FFFFFF;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
-    }
-    .tech-logo-box .tech-label {
-      font-size: 1.65rem;
-      font-weight: 700;
-      color: #000000;
-    }
-
-    /* Diagram Slide Container (Senior's Slide 35 exact replica) */
-    .diagram-frame {
-      width: 95%;
-      max-width: 1250px;
-      height: 480px;
-      border: 2px solid #000000;
-      border-radius: 8px;
-      background: #FFFFFF;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       overflow: hidden;
-      padding: 10px;
-      cursor: zoom-in;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .diagram-frame:hover {
-      transform: scale(1.01);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    }
-    .diagram-frame img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-      border-radius: 4px;
+      position: relative;
     }
 
-    /* Academic Data Dictionary Table (Senior's Slide 44 exact replica) */
-    .academic-table {
-      width: 96%;
-      max-width: 1250px;
-      border-collapse: collapse;
-      border: 2px solid #000000;
-      font-size: 1.05rem;
-      margin: 10px auto;
-      background: #FFFFFF;
+    /* Grid Layouts */
+    .card-grid {
+      display: grid;
+      gap: 18px;
+      flex: 1;
     }
-    .academic-table th, .academic-table td {
-      border: 1.5px solid #000000;
-      padding: 7px 12px;
-      text-align: left;
-      vertical-align: middle;
-    }
-    .academic-table th {
-      background-color: #F8FAFC;
-      font-weight: 700;
-      text-align: center;
-      color: #000000;
-      font-size: 1.1rem;
-    }
-    .academic-table td.center {
-      text-align: center;
-    }
-    .table-caption {
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: #111827;
-      margin-top: 10px;
-      text-align: center;
-    }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-split-60-40 { grid-template-columns: 1fr 440px; }
+    .grid-split-55-45 { grid-template-columns: 1fr 500px; }
+    .grid-split-45-55 { grid-template-columns: 480px 1fr; }
+    .grid-split-50-50 { grid-template-columns: 1fr 1fr; }
 
-    /* UI Showcase Layout */
-    .ui-showcase-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 36px;
-      width: 95%;
-      max-width: 1250px;
-      height: 490px;
-    }
-    .ui-showcase-img {
-      flex: 1.1;
-      height: 100%;
-      border: 2px solid #000000;
-      border-radius: 8px;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    /* Content Cards */
+    .content-card {
       background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 16px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    }
+
+    .content-card:hover {
+      border-color: #CBD5E1;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    .content-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--gold-primary);
+    }
+    .content-card.emerald::before { background: var(--emerald); }
+    .content-card.sky::before { background: var(--sky); }
+    .content-card.rose::before { background: var(--rose); }
+
+    .card-title {
+      font-family: 'Kanit', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: #0F172A;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .content-card.emerald .card-title { color: #065F46; }
+    .content-card.sky .card-title { color: #0369A1; }
+    .content-card.rose .card-title { color: #991B1B; }
+
+    .card-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 14px;
+      color: #334155;
+      line-height: 1.55;
+    }
+
+    .card-list strong { color: #0F172A; }
+    .card-list li {
+      position: relative;
+      padding-left: 20px;
+    }
+    .card-list li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--gold-primary);
+      font-weight: bold;
+    }
+    .content-card.emerald .card-list li::before { color: var(--emerald); }
+    .content-card.sky .card-list li::before { color: var(--sky); }
+    .content-card.rose .card-list li::before { color: var(--rose); }
+
+    /* Media Mockup Card */
+    .media-card {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
       cursor: zoom-in;
     }
-    .ui-showcase-img img {
-      max-width: 100%;
-      max-height: 100%;
+
+    .media-card:hover {
+      border-color: var(--gold-primary);
+      box-shadow: 0 8px 25px rgba(217, 119, 6, 0.15);
+    }
+
+    .media-card img {
+      width: 100%;
+      height: 100%;
       object-fit: contain;
+      background: #FFFFFF;
     }
-    .ui-showcase-desc {
-      flex: 0.9;
-      display: flex;
-      flex-direction: column;
+
+    .media-label {
+      background: #F8FAFC;
+      border-top: 1px solid #E2E8F0;
+      padding: 9px 12px;
+      font-size: 12.5px;
+      color: #0F172A;
+      text-align: center;
+      font-family: 'Kanit', sans-serif;
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Cover Slide Specifics */
+    .cover-slide {
+      align-items: center;
       justify-content: center;
-      text-align: left;
-      font-size: 1.2rem;
-      line-height: 1.7;
+      text-align: center;
+      background: radial-gradient(circle at center, rgba(6, 199, 85, 0.06) 0%, #FFFFFF 70%);
     }
 
-    /* Bibliography Slide */
-    .bib-container {
-      width: 96%;
-      max-width: 1200px;
-      text-align: left;
-      font-size: 1.18rem;
-      line-height: 1.8;
+    .cover-logo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid #059669;
+      box-shadow: 0 4px 20px rgba(5, 150, 105, 0.2);
+      margin-bottom: 20px;
+      object-fit: cover;
+    }
+
+    .cover-tagline {
+      color: #059669;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .cover-title {
+      font-family: 'Kanit', sans-serif;
+      font-size: 34px;
+      font-weight: 700;
+      color: #0F172A;
+      max-width: 1100px;
+      line-height: 1.35;
+      margin-bottom: 10px;
+    }
+
+    .cover-subtitle {
+      font-size: 16px;
+      color: #64748B;
+      font-style: italic;
+      margin-bottom: 26px;
+    }
+
+    .cover-meta {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 6px;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      padding: 16px 36px;
+      border-radius: 30px;
+      font-size: 14.5px;
+      color: #334155;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+      max-width: 800px;
     }
-    .bib-item {
-      padding-left: 45px;
-      text-indent: -45px;
-    }
+    .cover-meta strong { color: #0F172A; font-weight: 600; }
 
-    /* Controls & Navigation Bar */
-    .controls-overlay {
-      position: absolute;
-      bottom: 6px;
+    /* Floating Navigation Controls */
+    .dock-bar {
+      position: fixed;
+      bottom: 18px;
       left: 50%;
       transform: translateX(-50%);
-      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid #CBD5E1;
+      border-radius: 30px;
+      padding: 7px 16px;
       display: flex;
       align-items: center;
-      gap: 12px;
-      background: rgba(17, 24, 39, 0.85);
-      backdrop-filter: blur(8px);
-      padding: 6px 18px;
-      border-radius: 9999px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-      color: #FFFFFF;
-      font-size: 0.95rem;
-      font-weight: 500;
-      transition: opacity 0.3s;
-      opacity: 0.25;
+      gap: 10px;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
     }
-    .controls-overlay:hover {
-      opacity: 1;
-    }
-    .btn-ctrl {
-      background: transparent;
-      border: none;
-      color: #FFFFFF;
-      font-size: 1.15rem;
-      cursor: pointer;
-      padding: 4px 8px;
-      border-radius: 6px;
+
+    .dock-btn {
+      background: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      color: #1E293B;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: background 0.15s;
+      cursor: pointer;
+      font-size: 13px;
+      transition: all 0.2s;
     }
-    .btn-ctrl:hover {
-      background: rgba(255, 255, 255, 0.2);
-      color: #4ADE80;
+
+    .dock-btn:hover {
+      border-color: #059669;
+      color: #059669;
+      background: #ECFDF5;
+      transform: translateY(-2px);
     }
-    .slide-badge {
-      font-family: 'Prompt', monospace;
-      padding: 0 8px;
-      font-weight: 600;
-      min-width: 75px;
+
+    .dock-indicator {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      color: #059669;
+      min-width: 65px;
       text-align: center;
-      font-size: 0.95rem;
     }
 
-    /* Top Progress Bar */
-    .progress-bar-container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: rgba(0, 0, 0, 0.08);
-      z-index: 50;
-    }
-    .progress-bar-fill {
-      height: 100%;
-      background: var(--line-green);
-      width: 2%;
-      transition: width 0.2s ease;
+    .dock-divider {
+      width: 1px;
+      height: 18px;
+      background: #E2E8F0;
     }
 
-    /* Slide Thumbnails Drawer Modal */
-    .drawer-modal {
+    .dock-nav-link {
+      color: #334155;
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 18px;
+      background: #F1F5F9;
+      border: 1px solid #CBD5E1;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .dock-nav-link:hover {
+      background: #ECFDF5;
+      border-color: #A7F3D0;
+      color: #059669;
+    }
+
+    /* Lightbox Modal */
+    .lightbox-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
       background: rgba(15, 23, 42, 0.85);
-      backdrop-filter: blur(12px);
-      z-index: 200;
+      z-index: 100;
       display: none;
-      flex-direction: column;
-      padding: 30px 40px;
-      box-sizing: border-box;
-      color: #FFF;
-    }
-    .drawer-modal.open {
-      display: flex;
-    }
-    .drawer-header {
-      display: flex;
-      justify-content: space-between;
       align-items: center;
-      margin-bottom: 20px;
+      justify-content: center;
+      padding: 30px;
+      backdrop-filter: blur(5px);
     }
-    .drawer-header h2 {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #4ADE80;
-    }
-    .drawer-grid {
-      flex: 1;
-      overflow-y: auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 16px;
-      padding-right: 10px;
-    }
-    .drawer-item {
-      background: #1E293B;
-      border: 2px solid #334155;
-      border-radius: 8px;
-      padding: 12px;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      transition: all 0.2s;
-    }
-    .drawer-item:hover, .drawer-item.active {
-      border-color: #22C55E;
-      background: #0F172A;
-      transform: translateY(-2px);
-    }
-    .drawer-item .item-num {
-      font-weight: 700;
-      color: #4ADE80;
-      font-size: 0.9rem;
-    }
-    .drawer-item .item-name {
-      font-size: 0.85rem;
-      color: #E2E8F0;
-      line-height: 1.35;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
+    .lightbox-overlay.active { display: flex; }
+    .lightbox-overlay img {
+      max-width: 92vw;
+      max-height: 90vh;
+      border-radius: 12px;
+      border: 2px solid #CBD5E1;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      background: #FFFFFF;
     }
 
-    /* Lightbox Modal */
-    .lightbox-modal {
+    /* Defense Shield Modal */
+    .modal-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(0, 0, 0, 0.92);
-      backdrop-filter: blur(10px);
-      z-index: 300;
+      background: rgba(15, 23, 42, 0.7);
+      z-index: 100;
       display: none;
       align-items: center;
       justify-content: center;
-      cursor: zoom-out;
+      padding: 30px;
+      backdrop-filter: blur(8px);
     }
-    .lightbox-modal.open {
+    .modal-overlay.active { display: flex; }
+    .shield-box {
+      width: 100%;
+      max-width: 1100px;
+      max-height: 85vh;
+      background: #FFFFFF;
+      border: 2px solid var(--emerald);
+      border-radius: 20px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
       display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      animation: modalPop 0.25s ease-out;
     }
-    .lightbox-modal img {
-      max-width: 95vw;
-      max-height: 92vh;
-      object-fit: contain;
-      border-radius: 8px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
-      border: 3px solid #FFF;
+    @keyframes modalPop {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .shield-header {
+      background: #F8FAFC;
+      border-bottom: 1px solid var(--card-border);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .shield-header h3 {
+      font-family: 'Kanit', sans-serif;
+      font-size: 19px;
+      color: #0F172A;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .shield-header button {
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: #64748B;
+    }
+    .shield-content {
+      padding: 20px 24px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .qa-card {
+      background: #F8FAFC;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 14px 18px;
+    }
+    .qa-q {
+      font-family: 'Kanit', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      color: #065F46;
+      margin-bottom: 6px;
+    }
+    .qa-a {
+      font-size: 13.5px;
+      color: #334155;
+      line-height: 1.6;
     }
 
-    /* Mobile & Tablet Responsive */
-    @media (max-width: 900px), (max-height: 560px) {
-      body {
+    /* Drawer Table of Contents */
+    .drawer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 90;
+      display: none;
+    }
+    .drawer-overlay.active { display: block; }
+    .drawer-menu {
+      position: fixed;
+      top: 0;
+      left: -380px;
+      width: 360px;
+      height: 100vh;
+      background: #FFFFFF;
+      box-shadow: 10px 0 30px rgba(0, 0, 0, 0.15);
+      z-index: 95;
+      transition: left 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .drawer-menu.active { left: 0; }
+    .drawer-header {
+      padding: 20px;
+      border-bottom: 1px solid #E2E8F0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #F8FAFC;
+    }
+    .drawer-header h3 {
+      font-family: 'Kanit', sans-serif;
+      font-size: 18px;
+      color: #0F172A;
+    }
+    .drawer-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .drawer-item {
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 13.5px;
+      color: #334155;
+      cursor: pointer;
+      transition: all 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .drawer-item:hover, .drawer-item.active {
+      background: #ECFDF5;
+      color: #059669;
+      font-weight: 600;
+    }
+    .drawer-item .num {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      color: #059669;
+      min-width: 24px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px), (max-height: 640px) {
+      html, body {
         overflow-y: auto !important;
         height: auto !important;
         min-height: 100vh;
+        background-color: #FFFFFF !important;
       }
-      .deck-container {
-        width: 100vw !important;
+      #stage-container {
+        padding: 0 !important;
         height: auto !important;
-        min-height: 100vh !important;
-        max-height: unset !important;
-        max-width: 100vw !important;
-        aspect-ratio: unset !important;
+        min-height: 100vh;
+      }
+      #stage {
+        width: 100% !important;
+        height: auto !important;
+        min-height: 100vh;
+        border: none !important;
+        border-radius: 0 !important;
         box-shadow: none !important;
+        transform: none !important;
         overflow: visible !important;
       }
       .slide {
         position: relative !important;
         width: 100% !important;
         height: auto !important;
-        min-height: 100vh !important;
-        padding: 55px 16px 85px 16px !important;
+        min-height: 100vh;
+        padding: 24px 16px 100px 16px !important;
         overflow-y: visible !important;
-        display: none !important;
+        display: none;
       }
-      .slide.active {
+      .slide.active { display: flex !important; }
+      .card-grid, .grid-3, .grid-2, .grid-split-60-40, .grid-split-55-45, .grid-split-45-55, .grid-split-50-50 {
         display: flex !important;
-        opacity: 1 !important;
+        flex-direction: column !important;
+        gap: 14px !important;
       }
-      .slide-tab-left, .slide-tab-right {
-        width: 32px !important;
-        height: 50px !important;
-      }
-      .slide-tab-left { left: 16px !important; }
-      .slide-tab-right { right: 16px !important; }
-      .slide-title {
-        font-size: 1.35rem !important;
-        margin-bottom: 12px !important;
-        line-height: 1.35 !important;
-      }
-      .slide-subtitle {
-        font-size: 0.9rem !important;
-        margin-bottom: 14px !important;
-      }
-      .slide-content {
-        width: 100% !important;
-        max-width: 100% !important;
-      }
-      .controls-overlay {
+      .media-card { max-height: 280px !important; }
+      .dock-bar {
         bottom: 8px !important;
         width: calc(100% - 16px) !important;
-        max-width: 480px !important;
+        max-width: 520px !important;
         padding: 6px 10px !important;
-        gap: 6px !important;
+        justify-content: space-between !important;
       }
-      .ctrl-btn {
-        width: 34px !important;
-        height: 34px !important;
-        font-size: 0.9rem !important;
-      }
-      .slide-number-display {
-        font-size: 0.85rem !important;
-        min-width: 50px !important;
-      }
-    }
-
-    /* Print Styles */
-    @media print {
-      body {
-        background: #FFF;
-        overflow: visible;
-      }
-      .deck-container {
-        width: 100% !important;
-        height: auto !important;
-        box-shadow: none !important;
-      }
-      .slide {
-        display: flex !important;
-        opacity: 1 !important;
-        page-break-after: always;
-        position: relative !important;
-        height: 100vh !important;
-      }
-      .controls-overlay, .progress-bar-container, .drawer-modal, .lightbox-modal {
-        display: none !important;
-      }
+      .dock-divider { display: none !important; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Presentation Main Container -->
-  <div class="deck-container" id="presentationContainer">
+  <div id="viewport">
+    <div id="stage-container">
+      <div id="stage">
 
-    <!-- Top Progress Indicator -->
-    <div class="progress-bar-container">
-      <div class="progress-bar-fill" id="progressBar"></div>
+        <!-- ==================== SLIDE 01: COVER ==================== -->
+        <section class="slide cover-slide active" data-slide="1" data-title="หน้าปกโครงงาน">
+          <img src="images/logo.png" alt="โลโก้ร้าน" class="cover-logo" onerror="this.outerHTML='<div style=\'font-size:60px;margin-bottom:16px;\'>💈</div>'">
+          <div class="cover-tagline">วิชาโครงงานด้านเทคโนโลยีสารสนเทศ 1 (IT01) • IT NPRU</div>
+          <h1 class="cover-title">การนำเสนอโครงงาน: ระบบบริหารรายได้และค่าคอมมิชชันช่างตัดผมผ่านไลน์</h1>
+          <div class="cover-subtitle">LINE-Based Barbershop Income and Commission Management System</div>
+          <div class="cover-meta">
+            <div>ผู้จัดทำ: <strong>นาย สราวุฒิ อุยยาหาญ</strong> (รหัสประจำตัว 674230027, หมู่เรียน 67/44)</div>
+            <div>อาจารย์ที่ปรึกษา: <strong>ผศ.ดร. สุพิชฌาย์ จันทร์เรือง</strong></div>
+            <div>สาขาวิชาเทคโนโลยีสารสนเทศ คณะวิทยาศาสตร์และเทคโนโลยี มหาวิทยาลัยราชภัฏนครปฐม</div>
+          </div>
+        </section>
+
+        <!-- ==================== SLIDE 02: PROBLEM STATEMENT ==================== -->
+        <section class="slide" data-slide="2" data-title="ที่มาและความสำคัญของปัญหา">
+          <div class="slide-header">
+            <div class="slide-title-wrap">
+              <h2>⚠️ ที่มาและความสำคัญของปัญหา (Problem Statement)</h2>
+              <p>ข้อจำกัดของระบบงานแบบดั้งเดิมในร้านตัดผม แบ่งเป็น 3 มิติหลักที่ส่งผลต่อประสิทธิภาพทางธุรกิจ</p>
+            </div>
+            <div class="badge-counter">SLIDE 02 / 20</div>
+          </div>
+          <div class="slide-body">
+            <div class="card-grid grid-3">
+              <div class="content-card rose">
+                <div class="card-title">💸 1. ปัญหาด้านรายรับ (เงินเข้า)</div>
+                <ul class="card-list">
+                  <li><strong>ตรวจสลิปขณะติดลูกค้า:</strong> ช่างกำลังให้บริการลูกค้า จึงไม่สามารถเปิดแอปธนาคารตรวจยอดเงินจริงได้ทันท่วงที</li>
+                  <li><strong>ความเสี่ยงสลิปปลอม/วนใช้ซ้ำ:</strong> เสี่ยงต่อการถูกฉ้อโกงด้วยภาพสลิปตัดต่อ และการนำสลิปเก่ามาวนใช้ซ้ำ</li>
+                  <li><strong>โอนยอดไม่ตรงจริง:</strong> ลูกค้าโอนเงินไม่ตรงตามราคาค่าบริการโดยตรวจจับไม่ทันที</li>
+                </ul>
+              </div>
+              <div class="content-card">
+                <div class="card-title">🤝 2. ปัญหาการเคลียร์เงินช่าง (เงินออก)</div>
+                <ul class="card-list">
+                  <li><strong>คำนวณส่วนแบ่งด้วยมือ:</strong> คิดค่าคอมมิชชันตอนสิ้นวันด้วยตนเอง มักเกิดข้อผิดพลาดจากการคำนวณของมนุษย์</li>
+                  <li><strong>ขาดการแจ้งเตือนเรียลไทม์:</strong> ช่างไม่ทราบยอดสะสมระหว่างวัน ทำให้เกิดความเคลือบแคลงสงสัยและข้อพิพาท</li>
+                  <li><strong>ตัดรอบเคลียร์เงินล่าช้า:</strong> ขาดระบบสรุปยอดค้างจ่าย (Settlement) และแนบสลิปหลักฐานการโอนจ่ายช่าง</li>
+                </ul>
+              </div>
+              <div class="content-card sky">
+                <div class="card-title">🗄️ 3. ขาดระบบจัดการและรายงานธุรกิจ</div>
+                <ul class="card-list">
+                  <li><strong>บันทึกในสมุด/ตารางคำนวณ:</strong> ข้อมูลสูญหาย รายการตกหล่น และขาดฐานข้อมูลกลาง (CRUD) ในการจัดการ</li>
+                  <li><strong>ขาดใบเสร็จรับเงินที่น่าเชื่อถือ:</strong> ไม่มีระบบออกใบเสร็จรับเงินอิเล็กทรอนิกส์ (e-Receipt) ให้แก่ลูกค้า</li>
+                  <li><strong>ขาดเครื่องมือวิเคราะห์ผู้บริหาร:</strong> เจ้าของร้านขาดแดชบอร์ดสรุปยอดขาย รายได้สุทธิ และผลงานช่างในภาพรวม</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== SLIDE 03: FISHBONE & CONCEPT ==================== -->
+        <section class="slide" data-slide="3" data-title="แนวคิดแก้ไขปัญหา (Fishbone)">
+          <div class="slide-header">
+            <div class="slide-title-wrap">
+              <h2>🧠 แนวคิดในการแก้ไขปัญหา (Fishbone Diagram & Solution)</h2>
+              <p>การวิเคราะห์ต้นตอของปัญหาตามนายสราวุฒิ อุยยาหาญ (2570) และแนวทางแก้ปัญหาแบบบูรณาการ</p>
+            </div>
+            <div class="badge-counter">SLIDE 03 / 20</div>
+          </div>
+          <div class="slide-body">
+            <div class="card-grid grid-split-55-45">
+              <div class="media-card" onclick="openLightbox('Docs/Diagram/แผนภูมิก้างปลา_วิเคราะห์ปัญหา.png')">
+                <img src="Docs/Diagram/แผนภูมิก้างปลา_วิเคราะห์ปัญหา.png" alt="Fishbone Diagram" onerror="this.outerHTML='<div style=\'padding:40px;color:#D97706;text-align:center;\'>🐟 ภาพที่ 1.1 ผังก้างปลา (Fishbone Diagram)</div>'">
+                <div class="media-label">🔍 ภาพที่ 1.1 แนวคิดการแก้ไขปัญหา (Fishbone Diagram) ที่มา: นายสราวุฒิ อุยยาหาญ (2570)</div>
+              </div>
+              <div class="content-card emerald" style="justify-content: center;">
+                <div class="card-title">แนวทางแก้ไขปัญหาแบบบูรณาการ</div>
+                <ul class="card-list">
+                  <li><strong>LINE LIFF:</strong> ให้ลูกค้าเลือกช่าง บริการ และแจ้งชำระเงินใน LINE ทันทีโดยไม่ต้องลงแอปใหม่</li>
+                  <li><strong>Slip2Go API:</strong> ตรวจสอบสลิปโอนเงินอัตโนมัติ ยืนยันยอดเงิน บัญชีผู้รับ และป้องกันสลิปซ้ำ</li>
+                  <li><strong>n8n Workflow Automation:</strong> ประมวลผลตรรกะระบบ คำนวณส่วนแบ่งช่าง และจัดส่งข้อความอัตโนมัติ</li>
+                  <li><strong>Cloud MySQL:</strong> จัดเก็บข้อมูลช่าง บริการ ธุรกรรม และประวัติการตัดรอบเคลียร์เงินอย่างเป็นระบบ</li>
+                  <li><strong>Data Studio:</strong> แสดงผลแดชบอร์ดสรุปยอดขายและผลประกอบการแบบเรียลไทม์เพื่อสนับสนุนการตัดสินใจ</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== SLIDE 04: OBJECTIVES ==================== -->
+        <section class="slide" data-slide="4" data-title="วัตถุประสงค์ของโครงงาน">
+          <div class="slide-header">
+            <div class="slide-title-wrap">
+              <h2>🎯 วัตถุประสงค์ของโครงงาน (Project Objectives)</h2>
+              <p>5 เป้าหมายหลักในการพัฒนาระบบตามเอกสารวิชาการโครงงาน (ข้อ 1.3.1 - 1.3.5)</p>
+            </div>
+            <div class="badge-counter">SLIDE 04 / 20</div>
+          </div>
+          <div class="slide-body">
+            <div class="card-grid grid-2">
+              <div class="content-card emerald">
+                <div class="card-title">1. ระบบรับชำระเงินผ่าน LINE LIFF (1.3.1)</div>
+                <p style="font-size:13.5px; color:var(--text-sub); line-height:1.6;">
+                  ระบบรองรับการทำรายการของผู้ใช้งาน โดยสามารถเลือกบริการ เลือกช่างตัดผม และอัปโหลดหลักฐานการโอนเงินผ่านทางหน้าเว็บแอปพลิเคชัน <strong>LIFF (LINE Front-end Framework)</strong> บนแอปพลิเคชัน LINE
+                </p>
+              </div>
+              <div class="content-card">
+                <div class="card-title">2. ตรวจสอบสลิปอัตโนมัติ Slip2Go API (1.3.2)</div>
+                <p style="font-size:13.5px; color:var(--text-sub); line-height:1.6;">
+                  ระบบมีฟังก์ชันตรวจสอบความถูกต้องของสลิปโอนเงินโดยอัตโนมัติ ผ่านการเชื่อมต่อกับระบบ <strong>Slip2Go API</strong> ตรวจสอบยอดเงิน บัญชีผู้รับ และป้องกันการนำสลิปเก่ามาวนใช้ซ้ำ
+                </p>
+              </div>
+              <div class="content-card sky">
+                <div class="card-title">3. คำนวณส่วนแบ่งช่าง & ฐานข้อมูล MySQL (1.3.3)</div>
+                <p style="font-size:13.5px; color:var(--text-sub); line-height:1.6;">
+                  ระบบสามารถคำนวณส่วนแบ่งรายได้ของช่างตัดผม และบันทึกข้อมูลประวัติการทำธุรกรรมทั้งหมดลงในระบบฐานข้อมูล <strong>MySQL</strong> โดยอัตโนมัติ
+                </p>
+              </div>
+              <div class="content-card emerald">
+                <div class="card-title">4. ส่ง Flex Message & แจ้งเตือนเรียลไทม์ (1.3.4)</div>
+                <p style="font-size:13.5px; color:var(--text-sub); line-height:1.6;">
+                  ระบบสามารถส่ง <strong>เฟล็กซ์เมสเสจ (e-Receipt)</strong> ให้แก่ลูกค้า พร้อมทั้งแจ้งเตือนสรุปยอดเงินให้ช่างตัดผมและเจ้าของร้านทราบ ผ่านทางแอปพลิเคชัน LINE
+                </p>
+              </div>
+              <div class="content-card sky" style="grid-column: 1 / -1;">
+                <div class="card-title">5. กระดานข้อมูลสรุปยอดขาย Data Studio (1.3.5)</div>
+                <p style="font-size:13.5px; color:var(--text-sub); line-height:1.6;">
+                  ระบบมีหน้ากระดานข้อมูล <strong>(Dashboard)</strong> สำหรับแสดงผลสรุปยอดขาย สถิติการใช้บริการ และรายได้ของช่างตัดผมแต่ละรายแบบเรียลไทม์ ผ่านเครื่องมือ <strong>Data Studio (Google Looker Studio)</strong>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== SLIDE 05: SCOPE ==================== -->
+        <section class="slide" data-slide="5" data-title="ขอบเขตของระบบ">
+          <div class="slide-header">
+            <div class="slide-title-wrap">
+              <h2>📐 ขอบเขตของระบบ (System Scope)</h2>
+              <p>ขอบเขตฟังก์ชันการทำงานครอบคลุม 3 กลุ่มผู้ใช้งานหลักตามเอกสารข้อ 1.4.1</p>
+            </div>
+            <div class="badge-counter">SLIDE 05 / 20</div>
+          </div>
+          <div class="slide-body">
+            <div class="card-grid grid-3">
+              <div class="content-card emerald">
+                <div class="card-title">👤 1. ลูกค้าผู้ใช้บริการ (1.4.1.3)</div>
+                <ul class="card-list">
+                  <li><strong>ก) ริชเมนูบนไลน์:</strong> เข้าใช้งานระบบผ่านริชเมนูบน LINE Official Account ได้ทันที</li>
+                  <li><strong>ข) เลือกช่าง & บริการ:</strong> เลือกช่างตัดผมและรายการบริการพร้อมดูราคา/รูปตัวอย่าง</li>
+                  <li><strong>ค) อัปโหลดสลิป:</strong> อัปโหลดสลิปหลักฐานการโอนเงินเพื่อแจ้งชำระเงิน</li>
+                  <li><strong>ง) รับใบเสร็จ:</strong> รับเฟล็กซ์เมสเสจรับเงินอิเล็กทรอนิกส์ (e-Receipt) ผ่านไลน์</li>
+                </ul>
+              </div>
+              <div class="content-card">
+                <div class="card-title">✂️ 2. ช่างตัดผม (1.4.1.2)</div>
+                <ul class="card-list">
+                  <li><strong>ก) รับแจ้งเตือนชำระเงิน:</strong> รับการแจ้งเตือนทันทีเมื่อลูกค้าชำระเงินค่าบริการสำเร็จ</li>
+                  <li><strong>ข) ตรวจสอบยอดรายได้:</strong> ตรวจสอบยอดค่าบริการและค่าคอมมิชชันที่ได้รับแบบสด</li>
+                  <li><strong>รับสลิปเคลียร์เงิน:</strong> ได้รับสลิปหลักฐานเมื่อเจ้าของร้านตัดรอบเคลียร์เงิน (Settlement)</li>
+                  <li><strong>แจ้งเตือนโมฆะบิล:</strong> รับแจ้งเตือนทันทีเมื่อมีรายการบิลถูกทำโมฆะ (Void Bill)</li>
+                </ul>
+              </div>
+              <div class="content-card sky">
+                <div class="card-title">💻 3. ผู้ดูแลระบบ/เจ้าของร้าน (1.4.1.1)</div>
+                <ul class="card-list">
+                  <li><strong>ก) จัดการช่าง & ค่าคอม:</strong> จัดการข้อมูลช่างตัดผมและอัตราส่วนแบ่งค่าคอมมิชชัน</li>
+                  <li><strong>ข) จัดการบริการ & ราคา:</strong> จัดการข้อมูลประเภทบริการและราคาค่าบริการ (CRUD)</li>
+                  <li><strong>ค) ดูแดชบอร์ดสรุปยอดขาย:</strong> สรุปยอดขายประจำวันและประจำเดือนผ่านดาต้าสตูดิโอ</li>
+                  <li><strong>ง) รับแจ้งเตือนยอดเงิน:</strong> รับการแจ้งเตือนยอดเงินและการชำระเงินสำเร็จผ่านไลน์</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== SLIDE 06: RELATED WORKS ==================== -->
+        <section class="slide" data-slide="6" data-title="งานวิจัยที่เกี่ยวข้อง">
+          <div class="slide-header">
+            <div class="slide-title-wrap">
+              <h2>📚 ระบบงานอื่นที่เกี่ยวข้อง (Related Research Works)</h2>
+              <p>การวิเคราะห์และสังเคราะห์งานวิจัย 5 เรื่องที่ได้รับอนุมัติในข้อ 2.2 เพื่อนำมาต่อยอดเป็นระบบนี้</p>
+            </div>
+            <div class="badge-counter">SLIDE 06 / 20</div>
+          </div>
+          <div class="slide-body">
+            <div class="card-grid grid-split-50-50">
+              <div class="content-card">
+                <div class="card-title">5 งานวิจัยอ้างอิงหลักที่นำมาศึกษา</div>
+                <ul class="card-list">
+                  <li><strong>1. พิชยา สุขปลั่ง และคณะ (2568):</strong> ระบบแจ้งซ่อมอัจฉริยะผ่านแชทบอท (LINE + Node-RED + MySQL)</li>
+                  <li><strong>2. ถนอม กองใจ และ อริษา ทาทอง (2565):</strong> ระบบแจ้งเตือนกิจกรรมและนัดหมายอัตโนมัติผ่านไลน์ มช.</li>
+                  <li><strong>3. พิษณุ ใจกล้า และ แก้ววราภรณ์ กรแก้ว (2569):</strong> Workflow Automation (n8n) จัดการแจ้งเตือน มธ.</li>
+                  <li><strong>4. พริษฐ์กวินท์ นาควะรี และคณะ (2569):</strong> AI Agent น้องไลฟ์ลอง (n8n Self-Hosted + LINE OA) สจล.</li>
+                  <li><strong>5. อภิสิทธิ์ โยลัย และคณะ (2565):</strong> แอปพลิเคชันการจองคิวร้านเสริมสวย มรภ.มหาสารคาม</li>
+                </ul>
+              </div>
+              <div class="content-card emerald">
+                <div class="card-title">จุดเด่นที่โครงการนี้นำมาพัฒนาต่อยอด</div>
+                <ul class="card-list">
+                  <li><strong>การบูรณาการระบบอัตโนมัติ (Workflow):</strong> นำ n8n มาเป็นตัวกลางเชื่อมต่อ LINE LIFF, Slip2Go API, และ MySQL แทนการเขียนระบบแบบดั้งเดิม</li>
+                  <li><strong>แก้ปัญหาเงินเข้า-เงินออกครบวงจร:</strong> แตกต่างจากระบบจองคิวทั่วไป เพราะเน้นการตรวจสลิปอัตโนมัติ ป้องกันสลิปซ้ำ และคำนวณส่วนแบ่งช่างแบบเรียลไทม์</li>
+                  <li><strong>ระบบตัดรอบเคลียร์เงิน (Settlement):</strong> มีระบบสรุปยอดค้างจ่ายช่าง แนบหลักฐาน และแจ้งเตือนผ่าน LINE เพิ่มความโปร่งใสและตรวจสอบได้</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== SLIDE 07: SYSTEM ARCHITECTURE ==================== -->
+        <section class="slide" data-slide="7" data-title="สถาปัตยกรรมระบบภาพรวม">
+          <div class="slide-header">
+            <div class="slide-title-wrap">
+              <h2>🏗️ ภาพรวมสถาปัตยกรรมระบบ (System Architecture)</h2>
+              <p>ผังการเชื่อมโยงระบบแบบไร้รอยต่อ (End-to-End Workflow) ระหว่าง LINE, n8n, APIs และ Cloud Database</p>
+            </div>
+            <div class="badge-counter">SLIDE 07 / 20</div>
+          </div>
+          <div class="slide-body">
+            <div class="card-grid grid-split-55-45">
+              <div class="media-card" onclick="openLightbox('Docs/Diagram/System Architecture.png')">
+                <img src="Docs/Diagram/System Architecture.png" alt="System Architecture Diagram" onerror="this.outerHTML='<div style=\'padding:40px;color:#D97706;text-align:center;\'>🏗️ ผัง System Architecture</div>'">
+                <div class="media-label">🔍 ภาพที่ 3.1 ผังการทำงานภาพรวมของระบบ (System Architecture)</div>
+              </div>
+              <div class="content-card sky" style="justify-content: center;">
+                <div class="card-title">5 เสาหลักเทคโนโลยีของระบบ</div>
+                <ul class="card-list">
+                  <li><strong>Client Interface:</strong> <em>LINE Official Account</em> และ <em>LINE LIFF SDK</em> (HTML5, Tailwind CSS, JS) เข้าถึงสะดวกไม่ต้องลงแอป</li>
+                  <li><strong>Core Orchestrator:</strong> <em>n8n Workflow Automation</em> รันแบบ Self-Hosted บน Railway รับส่ง Webhook และตรรกะระบบ</li>
+                  <li><strong>Slip Verification:</strong> <em>Slip2Go API</em> ตรวจสอบ QR Code ธนาคาร ยอดเงิน บัญชีผู้รับ และป้องกันสลิปซ้ำ</li>
+                  <li><strong>Database Layer:</strong> <em>Cloud MySQL</em> บน Railway เก็บข้อมูลช่าง บริการ ธุรกรรม และการจ่ายเงิน</li>
+                  <li><strong>Analytics Layer:</strong> <em>Data Studio (Google Looker Studio)</em> สร้างแดชบอร์ดสรุปยอดขายสด</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== SLIDE 08: INFRASTRUCTURE ==================== -->
+        <section class="slide" data-slide="8" data-title="ฮาร์ดแวร์และโครงสร้างคลาวด์">
+          <div class="slide-header">
+            <div class="slide-title-wrap">
+              <h2>⚙️ ฮาร์ดแวร์และโครงสร้างพื้นฐานคลาวด์ (Infrastructure & Cloud)</h2>
+              <p>อุปกรณ์เครื่องพัฒนา อุปกรณ์ทดสอบจริง และเซิร์ฟเวอร์คลาวด์ตามเอกสารข้อ 1.4.2 และ 1.4.4</p>
+            </div>
+            <div class="badge-counter">SLIDE 08 / 20</div>
+          </div>
+          <div class="slide-body">
+            <div class="card-grid grid-2">
+              <div class="content-card">
+                <div class="card-title">🖥️ 1. ฮาร์ดแวร์และซอฟต์แวร์พัฒนา (1.4.2 & 1.4.3)</div>
+                <ul class="card-list">
+                  <li><strong>โน้ตบุ๊กหลักสำหรับพัฒนา (1.4.2.1):</strong> โน้ตบุ๊ก HP VICTUS 16 (12th Gen Intel Core i5-12500H, 2.50 GHz, RAM 16GB, Windows 11) สำหรับพัฒนาและทดสอบระบบ</li>
+                  <li><strong>สมาร์ตโฟนทดสอบจริง (1.4.2.2):</strong> สมาร์ตโฟน <strong>Nothing Phone (4a)</strong> ใช้สำหรับทดสอบการใช้งานจริงบนแอปพลิเคชัน LINE ทั้งฝั่งลูกค้าและช่าง</li>
+                  <li><strong>เครื่องมือพัฒนา (1.4.3.2):</strong> <strong>แอนติกราวิตี้ ไอดีอี (Antigravity IDE)</strong> โปรแกรมแก้ไขโค้ดสำหรับเขียนเว็บแอปพลิเคชัน</li>
+                </ul>
+              </div>
+              <div class="content-card emerald">
+                <div class="card-title">☁️ 2. ฮาร์ดแวร์และเซิร์ฟเวอร์คลาวด์ 24/7 (1.4.4 & 1.4.5)</div>
+                <ul class="card-list">
+                  <li><strong>เรลเวย์เซิฟเวอร์ (Railway Server 1.4.4.1):</strong> ใช้รันบริการ n8n และ MySQL บนคลาวด์ รวมถึงเป็นเว็บเซิร์ฟเวอร์โฮสต์หน้าเว็บลิฟต์ ตลอด 24 ชั่วโมง</li>
+                  <li><strong>ไลน์เซิฟเวอร์ (LINE Server 1.4.5.8):</strong> ให้บริการ LINE Messaging API, LIFF สำหรับสื่อสาร รับ-ส่งข้อมูล และยิงการแจ้งเตือนตอบกลับผู้ใช้งาน</li>
+                  <li><strong>ความพร้อมใช้งานสูง (High Availability):</strong> ทำงานอัตโนมัติบนคลาวด์ ไม่ต้องเปิดคอมพิวเตอร์ทิ้งไว้ที่ร้านตัดผม ลดต้นทุนฮาร์ดแวร์และค่าบำรุงรักษา</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== SLIDE 09: SYSTEM OVERVIEW FLOW ==================== -->
+        <section class="slide" data-slide="9" data-title="ผังงานการทำงานภาพรวม">
+          <div class="slide-header">
+            <div class="slide-title-wrap">
+              <h2>🔄 ผังงานการทำงานภาพรวมของระบบ (System Overview Flowchart)</h2>
+              <p>ขั้นตอนการทำงานทั้งระบบ ตั้งแต่ลูกค้าสแกนเข้าร้าน ➡️ ตรวจสลิป ➡️ บันทึกเงิน ➡️ ตัดรอบจ่ายช่าง</p>
+            </div>
+            <div class="badge-counter">SLIDE 09 / 20</div>
+          </div>
+          <div class="slide-body">
+            <div class="card-grid grid-split-55-45">
+              <div class="media-card" onclick="openLightbox('Docs/Diagram/ภาพที่ 3.1 ภาพรวมการทำงานของระบบ.png')">
+                <img src="Docs/Diagram/ภาพที่ 3.1 ภาพรวมการทำงานของระบบ.png" alt="ผังภาพรวมการทำงานของระบบ" onerror="this.outerHTML='<div style=\'padding:40px;color:#D97706;text-align:center;\'>🔄 ภาพที่ 3.1 ภาพรวมการทำงาน</div>'">
+                <div class="media-label">🔍 ภาพที่ 3.1 ผังแสดงภาพรวมกระบวนการทำงานของระบบ (System Flowchart)</div>
+              </div>
+              <div class="content-card" style="justify-content: center;">
+                <div class="card-title">4 ขั้นตอนการทำงานหลักของระบบ</div>
+                <ul class="card-list">
+                  <li><strong>1. รับชำระเงิน (Customer Step):</strong> ลูกค้าเปิด LINE LIFF เลือกช่าง/บริการ และเลือกชำระเงินสดหรือโอนเงินผ่าน QR Code</li>
+                  <li><strong>2. ประมวลผลและตรวจสลิป (Engine Step):</strong> n8n รับ Webhook ➡️ ส่งรูปสลิปให้ Slip2Go API ตรวจสอบความถูกต้องและสลิปซ้ำ</li>
+                  <li><strong>3. คำนวณเงินและแจ้งเตือน (Record Step):</strong> คำนวณส่วนแบ่งค่าคอมมิชชัน บันทึกลง MySQL ยิง e-Receipt ให้ลูกค้า และแจ้งเตือนช่างทันที</li>
+                  <li><strong>4. ตัดรอบเคลียร์เงิน (Settlement Step):</strong> เจ้าของร้านสรุปยอดค้างจ่ายช่างผ่านหลังบ้าน แนบสลิป และอัปเดตสถานะเป็น Settled</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== SLIDE 10: SLIP VERIFY FLOWCHART ==================== -->
+        <section class="slide" data-slide="10" data-title="ผังงานตรวจสอบสลิป">
+          <div class="slide-header">
+            <div class="slide-title-wrap">
+              <h2>🔍 ผังงานการตรวจสอบสลิปอัตโนมัติ (Slip Verification Flowchart)</h2>
+              <p>ตรรกะเงื่อนไขการตรวจสอบความถูกต้องของสลิปโอนเงินและการป้องกันสลิปวนใช้ซ้ำ (Anti-Fraud Logic)</p>
+            </div>
+            <div class="badge-counter">SLIDE 10 / 20</div>
+          </div>
+          <div class="slide-body">
+            <div class="card-grid grid-split-50-50">
+              <div class="media-card" onclick="openLightbox('Docs/Diagram/ภาพที่ 3.6 ผังงานการตรวจสอบสลิป.png')">
+                <img src="Docs/Diagram/ภาพที่ 3.6 ผังงานการตรวจสอบสลิป.png" alt="ผังงานการตรวจสอบสลิป" onerror="this.outerHTML='<div style=\'padding:40px;color:#D97706;text-align:center;\'>🔍 ภาพที่ 3.6 ผังงานการตรวจสอบสลิป</div>'">
+                <div class="media-label">🔍 ภาพที่ 3.6 ผังงานการตรวจสอบสลิปโอนเงิน (Slip Verification Logic)</div>
+              </div>
+              <div class="content-card emerald" style="justify-content: center;">
+                <div class="card-title">ตรรกะการตรวจสอบ 4 ขั้นตอน (Slip2Go)</div>
+                <ul class="card-list">
+                  <li><strong>ขั้นที่ 1 สแกน QR Payload:</strong> Slip2Go API อ่านข้อมูล QR Code บนสลิปและดึงเลขอ้างอิงธุรกรรมธนาคาร (trans_ref)</li>
+                  <li><strong>ขั้นที่ 2 ตรวจสอบสลิปซ้ำ:</strong> ตรวจสอบเลขอ้างอิงในตาราง transactions ของ MySQL หากพบว่าเคยใช้แล้วจะปฏิเสธทันที</li>
+                  <li><strong>ขั้นที่ 3 ตรวจสอบบัญชีผู้รับ:</strong> ตรวจสอบชื่อบัญชีผู้รับเงินว่าตรงกับ <em>'นายสราวุฒิ อุยยาหาญ'</em> หรือไม่</li>
+                  <li><strong>ขั้นที่ 4 ตรวจสอบยอดเงิน:</strong> ตรวจสอบยอดเงินโอนจริงว่าเท่ากับหรือมากกว่าราคาค่าบริการที่เลือกหรือไม่</li>
+                  <li><strong>ผลลัพธ์:</strong> หากผ่านครบทุกเงื่อนไข ให้ออกบิลและยิง Flex e-Receipt สีเขียวทันที / หากไม่ผ่าน จะแจ้งเตือนข้อผิดพลาด</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== SLIDE 11: PAYMENT SEQUENCE ==================== -->
+        <section class="slide" data-slide="11" data-title="Sequence: การชำระเงิน">
+          <div class="slide-header">
+            <div class="slide-title-wrap">
+              <h2>⚡ Sequence Diagram: การตรวจสอบสลิปและชำระเงิน</h2>
+              <p>ลำดับขั้นตอนการส่งข้อมูลระหว่างผู้ใช้งาน, Webhook, Slip2Go API, MySQL และ LINE Messaging API</p>
+            </div>
+            <div class="badge-counter">SLIDE 11 / 20</div>
+          </div>
+          <div class="slide-body">
+            <div class="card-grid grid-split-55-45">
+              <div class="media-card" onclick="openLightbox('Docs/Diagram/ภาพที่ 3.3 Sequence Diagram การตรวจสอบสลิปและชำระเงิน.png')">
+                <img src="Docs/Diagram/ภาพที่ 3.3 Sequence Diagram การตรวจสอบสลิปและชำระเงิน.png" alt="Sequence Diagram ชำระเงิน" onerror="this.outerHTML='<div style=\'padding:40px;color:#D97706;text-align:center;\'>⚡ ภาพที่ 3.3 Sequence Diagram</div>'">
+                <div class="media-label">🔍 ภาพที่ 3.3 Sequence Diagram การตรวจสอบสลิปและชำระเงิน</div>
+              </div>
+              <div class="content-card sky" style="justify-content: center;">
+                <div class="card-title">กระบวนการรับส่งข้อมูลแบบเรียลไทม์</div>
+                <ul class="card-list">
+                  <li><strong>1. Form Submission:</strong> ลูกค้ากดยืนยันชำระเงินผ่านหน้า LINE LIFF พร้อมแนบ Base64 Image</li>
+                  <li><strong>2. Webhook Ingestion:</strong> n8n รับ Webhook ภายในเสี้ยววินาที และยิงคำขอไปยัง Slip2Go API</li>
+                  <li><strong>3. Bank Verification:</strong> Slip2Go ส่งผลการตรวจสถานะสลิป เลข Ref และยอดเงินจริงกลับมายัง n8n</li>
+                  <li><strong>4. Database Insertion:</strong> n8n คำนวณส่วนแบ่งช่าง (Barber Earn) และบันทึกลงตาราง transactions</li>
+                  <li><strong>5. Dual Notifications:</strong> n8n สั่ง LINE API ส่ง e-Receipt ให้ลูกค้า และส่ง Push Alert ยอดเงินเข้า LINE ช่างทันที</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== SLIDE 12: SETTLEMENT SEQUENCE ==================== -->
+        <section class="slide" data-slide="12" data-title="Sequence: การตัดรอบเคลียร์เงิน">
+          <div class="slide-header">
+            <div class="slide-title-wrap">
+              <h2>🤝 Sequence Diagram: การตัดรอบเคลียร์เงินช่าง (Settlement)</h2>
+              <p>ขั้นตอนการสรุปยอดค้างจ่ายค่าคอมมิชชันสะสมของช่าง และการแนบหลักฐานการโอนเงินเพื่อปิดรอบ</p>
+            </div>
+            <div class="badge-counter">SLIDE 12 / 20</div>
+          </div>
+          <div class="slide-body">
+            <div class="card-grid grid-split-55-45">
+              <div class="media-card" onclick="openLightbox('Docs/Diagram/ภาพที่ 3.4 Sequence Diagram การตัดรอบเคลียร์เงินช่าง.png')">
+                <img src="Docs/Diagram/ภาพที่ 3.4 Sequence Diagram การตัดรอบเคลียร์เงินช่าง.png" alt="Sequence Diagram ตัดรอบเงินช่าง" onerror="this.outerHTML='<div style=\'padding:40px;color:#D97706;text-align:center;\'>🤝 ภาพที่ 3.4 Sequence Diagram ตัดรอบเงิน</div>'">
+                <div class="media-label">🔍 ภาพที่ 3.4 Sequence Diagram การตัดรอบเคลียร์เงินช่าง (Settlement)</div>
+              </div>
+              <div class="content-card emerald" style="justify-content: center;">
+                <div class="card-title">ความโปร่งใสในกระบวนการเคลียร์เงิน</div>
+                <ul class="card-list">
+                  <li><strong>1. ตรวจสอบยอดค้างจ่าย:</strong> แอดมินเปิดระบบหลังบ้านดูยอดเงินสะสมที่ยังไม่ได้เคลียร์ (Pending) ของช่างแต่ละคน</li>
+                  <li><strong>2. โอนเงินและแนบสลิป:</strong> เจ้าของร้านโอนเงินเข้าบัญชีช่าง พร้อมแนบภาพสลิปหลักฐานการโอนลงในระบบ</li>
+                  <li><strong>3. บันทึกประวัติ Payout:</strong> ระบบสร้างบันทึกในตาราง payouts และปรับสถานะบิลที่เกี่ยวข้องเป็น 'Settled'</li>
+                  <li><strong>4. แจ้งเตือนสลิปเข้าช่าง:</strong> ระบบยิง LINE Push Notification ส่งภาพสลิปและรายละเอียดยอดเงินให้ช่างตัดผมทราบทันที</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== SLIDE 13: ER-DIAGRAM ==================== -->
+        <section class="slide" data-slide="13" data-title="แบบจำลองข้อมูล (ER-Diagram)">
+          <div class="slide-header">
+            <div class="slide-title-wrap">
+              <h2>🗄️ แบบจำลองข้อมูลเชิงสัมพันธ์ (ER-Diagram & Database Schema)</h2>
+              <p>โครงสร้างความสัมพันธ์ของฐานข้อมูล MySQL สำหรับจัดเก็บข้อมูลช่าง บริการ ธุรกรรม และการจ่ายเงิน</p>
+            </div>
+            <div class="badge-counter">SLIDE 13 / 20</div>
+          </div>
+          <div class="slide-body">
+            <div class="card-grid grid-split-55-45">
+              <div class="media-card" onclick="openLightbox('Docs/Diagram/ER-Diagram.png')">
+                <img src="Docs/Diagram/ER-Diagram.png" alt="ER-Diagram" onerror="this.outerHTML='<div style=\'padding:40px;color:#D97706;text-align:center;\'>🗄️ แผนภาพ ER-Diagram</div>'">
+                <div class="media-label">🔍 ภาพที่ 3.7 แผนภาพแสดงความสัมพันธ์ของข้อมูล (ER-Diagram)</div>
+              </div>
+              <div class="content-card" style="justify-content: center;">
+                <div class="card-title">4 ตารางหลักในฐานข้อมูล MySQL</div>
+                <ul class="card-list">
+                  <li><strong>1. users (ช่างตัดผม & แอดมิน):</strong> เก็บ user_id, username, password_hash, role, barber_name, commission_rate, line_user_id</li>
+                  <li><strong>2. services (รายการบริการ):</strong> เก็บ service_id, service_name, price, duration, is_active</li>
+                  <li><strong>3. transactions (ธุรกรรมรายรับ):</strong> เก็บ transaction_id, user_id, service_id, amount, barber_earn, shop_earn, payment_method, slip_ref, status ('approved', 'voided', 'settled')</li>
+                  <li><strong>4. payouts (ประวัติการตัดรอบเงิน):</strong> เก็บ payout_id, barber_id, total_amount, slip_url, paid_at, note</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== SLIDE 14: PROTOTYPE 1 - LIFF ==================== -->
+        <section class="slide" data-slide="14" data-title="ชิ้นงานจริง: ริชเมนู & LINE LIFF">
+          <div class="slide-header">
+            <div class="slide-title-wrap">
+              <h2>📱 ชิ้นงานจริง (1/5): หน้าริชเมนู & ฟอร์มชำระเงิน LINE LIFF</h2>
+              <p>ผลการพัฒนาระบบฝั่งลูกค้า เปิดใช้งานผ่าน LINE ได้ทันทีในเวลาไม่เกิน 15 วินาที</p>
+            </div>
+            <div class="badge-counter">SLIDE 14 / 20</div>
+          </div>
+          <div class="slide-body">
+            <div class="card-grid grid-split-50-50">
+              <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px; height: 100%;">
+                <div class="media-card" onclick="openLightbox('images/Richmenus.png')">
+                  <img src="images/Richmenus.png" alt="ริชเมนูบน LINE">
+                  <div class="media-label">1. เมนูลัด 6 ช่องบน LINE OA</div>
+                </div>
+                <div class="media-card" onclick="openLightbox('Present/01_ขั้นตอนการชำระ/01_หน้าฟอร์มชำระเงิน_LIFF.jpg')">
+                  <img src="Present/01_ขั้นตอนการชำระ/01_หน้าฟอร์มชำระเงิน_LIFF.jpg" alt="หน้าฟอร์ม LIFF">
+                  <div class="media-label">2. หน้าฟอร์มชำระเงิน LIFF</div>
+                </div>
+              </div>
+              <div class="content-card emerald" style="justify-content: center;">
+                <div class="card-title">จุดเด่นของ LINE LIFF Form</div>
+                <ul class="card-list">
+                  <li><strong>Zero Installation:</strong> ลูกค้าไม่ต้องดาวน์โหลดแอปใหม่ ทำรายการผ่านห้องแชท LINE ที่คุ้นเคย</li>
+                  <li><strong>เลือกช่างและบริการง่าย:</strong> มีรูปภาพทรงผม ราคา และระยะเวลาบริการแสดงชัดเจน</li>
+                  <li><strong>2 ช่องทางชำระเงิน:</strong> รองรับทั้งเงินสดหน้าร้าน (Cash) และการสแกนโอนเงินผ่าน QR Code</li>
+                  <li><strong>QR Code พร้อมเพย์ร้าน:</strong> แสดงภาพ QR Code และเลขบัญชีให้ลูกค้าแตะคัดลอกหรือแคปภาพไปสแกนได้สะดวก</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== SLIDE 15: PROTOTYPE 2 - SLIP & RECEIPT ==================== -->
+        <section class="slide" data-slide="15" data-title="ชิ้นงานจริง: ตรวจสลิป & e-Receipt">
+          <div class="slide-header">
+            <div class="slide-title-wrap">
+              <h2>🧾 ชิ้นงานจริง (2/5): ตรวจสลิปอัตโนมัติ & ใบเสร็จอิเล็กทรอนิกส์</h2>
+              <p>ผลการตรวจสอบสลิปโอนเงินจริงผ่าน Slip2Go API และการส่งใบเสร็จ e-Receipt สีเขียวผ่าน Flex Message</p>
+            </div>
+            <div class="badge-counter">SLIDE 15 / 20</div>
+          </div>
+          <div class="slide-body">
+            <div class="card-grid grid-split-50-50">
+              <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px; height: 100%;">
+                <div class="media-card" onclick="openLightbox('Present/01_ขั้นตอนการชำระ/02_สลิปโอนเงินจริง_KBank.jpg')">
+                  <img src="Present/01_ขั้นตอนการชำระ/02_สลิปโอนเงินจริง_KBank.jpg" alt="สลิปโอนเงินจริง">
+                  <div class="media-label">1. สลิปโอนเงินจริงที่นำมาทดสอบ</div>
+                </div>
+                <div class="media-card" onclick="openLightbox('Present/01_ขั้นตอนการชำระ/05_ใบเสร็จโอนเงิน_eReceipt_TXN55.jpg')">
+                  <img src="Present/01_ขั้นตอนการชำระ/05_ใบเสร็จโอนเงิน_eReceipt_TXN55.jpg" alt="ใบเสร็จ e-Receipt">
+                  <div class="media-label">2. ใบเสร็จ Flex Message สีเขียว</div>
+                </div>
+              </div>
+              <div class="content-card sky" style="justify-content: center;">
+                <div class="card-title">ความแม่นยำและความปลอดภัย</div>
+                <ul class="card-list">
+                  <li><strong>ประมวลผลรวดเร็ว:</strong> ตรวจสอบสลิปผ่าน Open Banking API สำเร็จภายในเวลาเฉลี่ย 2-3 วินาที</li>
+                  <li><strong>ป้องกันสลิปซ้ำ 100%:</strong> เมื่อสลิปผ่านการอนุมัติแล้ว เลข Ref จะถูกจำไว้ในระบบ ไม่สามารถนำมาใช้ซ้ำได้อีก</li>
+                  <li><strong>e-Receipt เป็นหลักฐาน:</strong> ส่งใบเสร็จ Flex Message สรุปเลขบิล ชื่อช่าง บริการ ยอดเงิน และเวลาโอนเข้า LINE ลูกค้าทันที</li>
+                  <li><strong>ตรวจจับยอดไม่ตรง:</strong> หากยอดเงินในสลิปไม่ตรงกับราคา ระบบจะแจ้งเตือนปฏิเสธทันที</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== SLIDE 16: PROTOTYPE 3 - BARBER & VOID ==================== -->
+        <section class="slide" data-slide="16" data-title="ชิ้นงานจริง: แจ้งเตือนช่าง & โมฆะบิล">
+          <div class="slide-header">
+            <div class="slide-title-wrap">
+              <h2>🔔 ชิ้นงานจริง (3/5): การแจ้งเตือนช่างตัดผม & การทำโมฆะบิล</h2>
+              <p>ระบบแจ้งเตือนส่วนแบ่งรายได้ช่างทันทีแบบเรียลไทม์ และฟังก์ชันโมฆะบิลพร้อม Audit Log ป้องกันการทุจริต</p>
+            </div>
+            <div class="badge-counter">SLIDE 16 / 20</div>
+          </div>
+          <div class="slide-body">
+            <div class="card-grid grid-split-50-50">
+              <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px; height: 100%;">
+                <div class="media-card" onclick="openLightbox('Present/02_ประวัติธุรกรรมและโมฆะบิล/04_LINEเตือนช่างบิลโมฆะ.png')">
+                  <img src="Present/02_ประวัติธุรกรรมและโมฆะบิล/04_LINEเตือนช่างบิลโมฆะ.png" alt="LINE เตือนช่าง">
+                  <div class="media-label">1. LINE เตือนช่าง (เงินเข้า / บิลโมฆะ)</div>
+                </div>
+                <div class="media-card" onclick="openLightbox('Present/02_ประวัติธุรกรรมและโมฆะบิล/01_ตารางประวัติธุรกรรม.png')">
+                  <img src="Present/02_ประวัติธุรกรรมและโมฆะบิล/01_ตารางประวัติธุรกรรม.png" alt="ตารางประวัติธุรกรรม">
+                  <div class="media-label">2. ตารางธุรกรรมและการสั่งโมฆะบิล</div>
+                </div>
+              </div>
+              <div class="content-card" style="justify-content: center;">
+                <div class="card-title">ความโปร่งใสและตรวจสอบย้อนหลังได้</div>
+                <ul class="card-list">
+                  <li><strong>Real-time Barber Alert:</strong> เมื่อลูกค้าจ่ายเงินสำเร็จ ช่างจะได้รับข้อความแจ้งเตือนระบุยอดเงินและค่าคอมมิชชันเข้า LINE ส่วนตัวทันที</li>
+                  <li><strong>ระบบโมฆะบิล (Void Bill):</strong> กรณีคีย์บิลผิดพลาด แอดมินสามารถกดยกเลิกบิลผ่านระบบหลังบ้านได้</li>
+                  <li><strong>Audit Log คุมเข้ม:</strong> ข้อมูลบิลเดิมจะไม่ถูกลบออกจากฐานข้อมูล แต่จะปรับยอดเป็น 0 พร้อมขึ้นแถบสีแดงและบันทึกผู้ยกเลิก</li>
+                  <li><strong>แจ้งเตือนช่างทันที:</strong> เมื่อมีการสั่งโมฆะบิล ระบบจะยิงข้อความเตือนช่างทันที ป้องกันแอดมินแอบยกเลิกบิลโดยพลการ</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== SLIDE 17: PROTOTYPE 4 - ADMIN & SETTLE ==================== -->
+        <section class="slide" data-slide="17" data-title="ชิ้นงานจริง: หลังบ้าน & เคลียร์เงิน">
+          <div class="slide-header">
+            <div class="slide-title-wrap">
+              <h2>💻 ชิ้นงานจริง (4/5): ระบบเว็บแอดมินหลังบ้าน & การตัดรอบเคลียร์เงิน</h2>
+              <p>ระบบจัดการข้อมูลช่างและบริการ (Full CRUD) พร้อมโมดูลสรุปยอดค้างจ่ายและแนบสลิปตัดรอบเคลียร์เงิน</p>
+            </div>
+            <div class="badge-counter">SLIDE 17 / 20</div>
+          </div>
+          <div class="slide-body">
+            <div class="card-grid grid-split-50-50">
+              <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px; height: 100%;">
+                <div class="media-card" onclick="openLightbox('Present/03_จัดการช่างตัดผม/02_ตารางรายชื่อช่างตัดผม.png')">
+                  <img src="Present/03_จัดการช่างตัดผม/02_ตารางรายชื่อช่างตัดผม.png" alt="จัดการข้อมูลช่าง">
+                  <div class="media-label">1. ตารางจัดการช่างและ % คอมมิชชัน</div>
+                </div>
+                <div class="media-card" onclick="openLightbox('Present/05_การตัดรอบเคลียร์เงิน/01_ตารางยอดค้างเคลียร์เงิน.png')">
+                  <img src="Present/05_การตัดรอบเคลียร์เงิน/01_ตารางยอดค้างเคลียร์เงิน.png" alt="ตัดรอบเคลียร์เงินช่าง">
+                  <div class="media-label">2. ตารางสรุปยอดค้างเคลียร์เงินช่าง</div>
+                </div>
+              </div>
+              <div class="content-card emerald" style="justify-content: center;">
+                <div class="card-title">การบริหารจัดการร้านอย่างเป็นระบบ</div>
+                <ul class="card-list">
+                  <li><strong>Full CRUD Operations:</strong> เพิ่ม ลบ แก้ไข ข้อมูลช่าง กำหนดสัดส่วนค่าคอมมิชชัน และปรับราคาบริการได้ตลอดเวลา</li>
+                  <li><strong>ผูก LINE UID ช่าง:</strong> เชื่อมต่อบัญชีช่างกับ LINE UID เพื่อให้ระบบแจ้งเตือนไปยังช่างได้ถูกต้องตรงคน</li>
+                  <li><strong>โมดูลตัดรอบเคลียร์เงิน (Settlement):</strong> รวมยอดเงินที่ร้านต้องจ่ายช่างแต่ละคนตามรอบเวลา (วัน/สัปดาห์/เดือน)</li>
+                  <li><strong>แนบหลักฐานสลิป:</strong> แอดมินแนบภาพสลิปโอนเงินจ่ายช่างเข้าระบบ และส่งสลิปเข้า LINE ช่างทันทีเป็นหลักฐาน</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== SLIDE 18: PROTOTYPE 5 - LOOKER STUDIO ==================== -->
+        <section class="slide" data-slide="18" data-title="ชิ้นงานจริง: แดชบอร์ด Data Studio">
+          <div class="slide-header">
+            <div class="slide-title-wrap">
+              <h2>📊 ชิ้นงานจริง (5/5): แดชบอร์ดสรุปผลทางการเงิน (Data Studio)</h2>
+              <p>ระบบ Business Intelligence เชื่อมต่อ Cloud MySQL แสดงผลสถิติยอดขายรวมและรายได้ช่างแบบเรียลไทม์</p>
+            </div>
+            <div class="badge-counter">SLIDE 18 / 20</div>
+          </div>
+          <div class="slide-body">
+            <div class="card-grid grid-split-55-45">
+              <div class="media-card" onclick="openLightbox('Present/06_แดชบอร์ดและสถิติ/02_แดชบอร์ด_GoogleLookerStudio.png')">
+                <img src="Present/06_แดชบอร์ดและสถิติ/02_แดชบอร์ด_GoogleLookerStudio.png" alt="Looker Studio Dashboard" onerror="this.outerHTML='<div style=\'padding:40px;color:#D97706;text-align:center;\'>📊 แดชบอร์ด Looker Studio</div>'">
+                <div class="media-label">🔍 ภาพหน้าจอจริง: แดชบอร์ดสรุปผลทางการเงิน Google Looker Studio</div>
+              </div>
+              <div class="content-card sky" style="justify-content: center;">
+                <div class="card-title">มิติการวิเคราะห์ข้อมูลเพื่อสนับสนุนการตัดสินใจ</div>
+                <ul class="card-list">
+                  <li><strong>สรุปยอดขายรวม:</strong> แสดงยอดขายรวม (Total Revenue), ยอดจ่ายช่าง (Barber Payout) และกำไรสุทธิของร้าน (Shop Net)</li>
+                  <li><strong>ผลงานช่างแต่ละคน:</strong> กราฟเปรียบเทียบยอดตัดผมและรายได้ของช่างแต่ละคนเพื่อประเมินผลงาน</li>
+                  <li><strong>บริการยอดนิยม:</strong> แผนภูมิแสดงสัดส่วนบริการที่ลูกค้าเลือกใช้บริการมากที่สุด</li>
+                  <li><strong>ตัวกรองช่วงเวลา:</strong> สามารถเลือกดูข้อมูลย้อนหลังแบบรายวัน รายสัปดาห์ หรือรายเดือนได้ทันที</li>
+                  <li><strong>ลิงก์ดูรายงานจริง:</strong> เชื่อมต่อฐานข้อมูลสดบน Railway ตลอด 24 ชม.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== SLIDE 19: ROADMAP & FEEDBACK ==================== -->
+        <section class="slide" data-slide="19" data-title="แผนงานและประเด็นขอรับคำแนะนำ">
+          <div class="slide-header">
+            <div class="slide-title-wrap">
+              <h2>🚀 แผนการดำเนินงาน 16 สัปดาห์ & ประเด็นขอรับคำแนะนำเพื่อปรับปรุง</h2>
+              <p>ไทม์ไลน์การพัฒนาตามวิธีวิทยา SDLC และประเด็นที่ผู้จัดทำเปิดรับคำชี้แนะจากคณะกรรมการเพื่อต่อยอดในโครงงาน 2</p>
+            </div>
+            <div class="badge-counter">SLIDE 19 / 20</div>
+          </div>
+          <div class="slide-body">
+            <div class="card-grid grid-split-50-50">
+              <div class="content-card">
+                <div class="card-title">📅 แผนดำเนินงาน 16 สัปดาห์ (SDLC Model)</div>
+                <ul class="card-list">
+                  <li><strong>สัปดาห์ที่ 1-3 (Planning & Analysis):</strong> ศึกษาปัญหา ออกแบบ Fishbone, เก็บรวบรวม Requirement และเสนอหัวข้อ (IT01)</li>
+                  <li><strong>สัปดาห์ที่ 4-7 (System Design):</strong> ออกแบบ System Architecture, Sequence Diagram, Flowchart, ERD และ Prototype</li>
+                  <li><strong>สัปดาห์ที่ 8-12 (Development & Integration):</strong> พัฒนา LINE LIFF, ตั้งค่า n8n, เชื่อม Slip2Go API, พัฒนา Backoffice และ MySQL</li>
+                  <li><strong>สัปดาห์ที่ 13-14 (Testing & Deployment):</strong> ทดสอบระบบป้องกันสลิปซ้ำ, Concurrency Test และติดตั้งบน Railway Cloud</li>
+                  <li><strong>สัปดาห์ที่ 15-16 (Evaluation & Documentation):</strong> ประเมินผลความพึงพอใจ จัดทำรายงานฉบับสมบูรณ์ และสอบป้องกันโครงงาน</li>
+                </ul>
+              </div>
+              <div class="content-card emerald">
+                <div class="card-title">💡 ประเด็นที่ขอรับคำแนะนำเพื่อต่อยอดในโครงงาน 2</div>
+                <ul class="card-list">
+                  <li><strong>1. การรองรับหลายสาขา (Multi-branch / Multi-tenant):</strong> ขอคำแนะนำในการขยายโครงสร้างฐานข้อมูลเพื่อรองรับร้านตัดผมที่มีมากกว่า 1 สาขา</li>
+                  <li><strong>2. ระบบจองคิวช่างล่วงหน้า (Appointment Booking):</strong> แนวทางการเพิ่มระบบจองคิวและเวลาผ่าน LINE LIFF ก่อนลูกค้าเดินทางมาหน้าร้าน</li>
+                  <li><strong>3. ระบบสมาชิกลูกค้าและสะสมแต้ม (Loyalty System):</strong> การเก็บประวัติทรงผมประจำของลูกค้า และระบบสะสมแต้มตัดผมฟรี</li>
+                  <li><strong>4. การปรับปรุงระบบความปลอดภัย:</strong> แนวทางการเข้ารหัสข้อมูลและการจัดการบทบาทสิทธิ์ (Role-based Access Control) เพิ่มเติม</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== SLIDE 20: BENEFITS & Q&A ==================== -->
+        <section class="slide" data-slide="20" data-title="ประโยชน์ที่คาดว่าจะได้รับ & ถาม-ตอบ">
+          <div class="slide-header">
+            <div class="slide-title-wrap">
+              <h2>🌟 ประโยชน์ที่คาดว่าจะได้รับ & ถาม-ตอบ (Benefits & Q&A)</h2>
+              <p>สรุปผลลัพธ์และความคุ้มค่าของโครงงานตามข้อ 1.6 พร้อมรับฟังข้อเสนอแนะจากคณะกรรมการ</p>
+            </div>
+            <div class="badge-counter">SLIDE 20 / 20</div>
+          </div>
+          <div class="slide-body">
+            <div class="card-grid grid-split-60-40">
+              <div class="content-card emerald">
+                <div class="card-title">ประโยชน์ 5 ประการตามเอกสารวิชาการข้อ 1.6</div>
+                <ul class="card-list">
+                  <li><strong>1.6.1 ระบบเว็บแอปพลิเคชัน (LINE LIFF):</strong> ลูกค้าเลือกช่างและแจ้งชำระเงินได้สะดวก รวดเร็วด้วยตนเองโดยไม่ต้องโหลดแอปเพิ่ม</li>
+                  <li><strong>1.6.2 ลดปัญหาสลิปปลอมและยอดไม่ตรง:</strong> ระบบตรวจสลิปอัตโนมัติผ่าน Slip2Go API ช่วยลดความเสี่ยงจากสลิปปลอมและสลิปซ้ำได้</li>
+                  <li><strong>1.6.3 ลดข้อผิดพลาดคำนวณคอมมิชชัน:</strong> มีฐานข้อมูล MySQL เก็บธุรกรรมอย่างเป็นระเบียบ และสามารถตรวจสอบย้อนหลังได้ทุกบิล</li>
+                  <li><strong>1.6.4 แจ้งเตือนรวดเร็วผ่าน LINE:</strong> ลูกค้าได้รับ Flex e-Receipt ส่วนช่างและเจ้าของร้านทราบยอดทันที เพิ่มประสิทธิภาพการสื่อสาร</li>
+                  <li><strong>1.6.5 ติดตามผลผ่านแดชบอร์ด Data Studio:</strong> เจ้าของร้านติดตามยอดขายและผลประกอบการเพื่อนำไปวิเคราะห์และตัดสินใจทางธุรกิจได้</li>
+                </ul>
+              </div>
+              <div class="content-card" style="justify-content: center; align-items: center; text-align: center; gap: 14px;">
+                <div style="font-size: 36px;">🎓</div>
+                <h3 style="font-family:'Kanit'; font-size: 20px; color:#0F172A;">ขอขอบพระคุณคณะกรรมการ</h3>
+                <p style="font-size: 13.5px; color: var(--text-sub); line-height: 1.5;">
+                  พร้อมรับฟังข้อซักถามและคำแนะนำเพื่อนำไปปรับปรุงพัฒนาต่อยอดโครงงานครับ
+                </p>
+                <div style="display: flex; flex-direction: column; gap: 8px; width: 100%;">
+                  <button onclick="openShieldModal()" class="dock-nav-link" style="justify-content: center; background: #ECFDF5; border-color: #059669; color: #065F46; font-weight: 700; padding: 10px 14px;">
+                    <span>🛡️ เปิดแนวทางตอบคำถามกรรมการ (Defense Shield)</span>
+                  </button>
+                  <a href="product.html" class="dock-nav-link" style="justify-content: center; background: #FEF3C7; color: #B45309; border-color: #FCD34D;">
+                    <span>🏆 สไลด์ชิ้นงานละเอียด 13 สไลด์ (product.html) ↗</span>
+                  </a>
+                  <a href="index_full.html" class="dock-nav-link" style="justify-content: center; background: #F1F5F9; color: #334155;">
+                    <span>📑 สไลด์เล่มรายงานฉบับเต็ม 52 สไลด์ (index_full.html) ↗</span>
+                  </a>
+                  <a href="https://lookerstudio.google.com/reporting/41175654-e407-4286-9dc7-8549e377e8be" target="_blank" class="dock-nav-link" style="justify-content: center; background: #E0F2FE; border-color: #0284C7; color: #0369A1;">
+                    <span>📊 ดูแดชบอร์ดจริง Looker Studio ↗</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
     </div>
 
     <!-- Floating Navigation Controls -->
-    <div class="controls-overlay" id="controlsOverlay">
-      <button class="btn-ctrl" onclick="prevSlide()" title="สไลด์ก่อนหน้า (Left Arrow / Backspace)">◀</button>
-      <span class="slide-badge" id="slideIndicator">1 / 51</span>
-      <button class="btn-ctrl" onclick="nextSlide()" title="สไลด์ถัดไป (Right Arrow / Space)">▶</button>
-      <span style="color:#64748B;">|</span>
-      <button class="btn-ctrl" onclick="toggleDrawer()" title="ผังภาพรวมสไลด์ (กด M หรือ O)">▦ สารบัญ</button>
-      <button class="btn-ctrl" onclick="toggleFullScreen()" title="เต็มจอ (กด F)">⛶</button>
-      <span style="color:#64748B;">|</span>
-      <button class="btn-ctrl" onclick="window.location.href='summary.html'" title="เปิดสไลด์สรุปประเด็นหลัก (summary.html)" style="color:#F59E0B; font-weight:600;">⚡ สไลด์สรุป</button>
-      <button class="btn-ctrl" onclick="window.location.href='product.html'" title="เปิดสไลด์ชิ้นงาน (product.html)" style="color:#38BDF8; font-weight:600;">🏆 สไลด์ชิ้นงาน</button>
+    <div class="dock-bar">
+      <button class="dock-btn" onclick="toggleDrawer()" title="สารบัญสไลด์ (M / O)">▦</button>
+      <div class="dock-divider"></div>
+      <button class="dock-btn" onclick="prevSlide()" title="สไลด์ก่อนหน้า (←)">◀</button>
+      <div class="dock-indicator" id="slideIndicator">01 / 20</div>
+      <button class="dock-btn" onclick="nextSlide()" title="สไลด์ถัดไป (→)">▶</button>
+      <div class="dock-divider"></div>
+      <a href="summary.html" class="dock-nav-link" title="สไลด์สรุป 7 หน้า">
+        <span>⚡ สรุป 7 น.</span>
+      </a>
+      <a href="product.html" class="dock-nav-link" title="สไลด์ชิ้นงาน 13 หน้า">
+        <span>🏆 ชิ้นงาน</span>
+      </a>
+      <a href="index_full.html" class="dock-nav-link" title="สไลด์เต็ม 52 หน้า">
+        <span>📑 เล่มเต็ม 52 น.</span>
+      </a>
+      <div class="dock-divider"></div>
+      <button class="dock-btn" onclick="openShieldModal()" title="เกราะตอบคำถาม (Q)">🛡️</button>
+      <button class="dock-btn" onclick="toggleFullscreen()" title="โหมดเต็มจอ (F)">⛶</button>
     </div>
+  </div>
 
-    <!-- ==================== SLIDES (1 - 51) ==================== -->
-
-    <!-- SLIDE 1: COVER -->
-    <div class="slide active" data-title="หน้าปกโครงงาน">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <div class="cover-slide">
-        <div></div>
-        <div style="display:flex; flex-direction:column; align-items:center;">
-          <div class="cover-main-badge">
-            <svg viewBox="0 0 100 100" style="width: 64px; height: 64px;">
-              <rect width="100" height="100" rx="24" fill="#06C755"/>
-              <path d="M50 20 C32 20 18 32 18 47 C18 57 24 66 34 71 C35 73 34 77 31 82 C30 83 31 84 32 84 C38 83 45 78 48 74 C49 74 50 74 50 74 C68 74 82 62 82 47 C82 32 68 20 50 20 Z" fill="#FFF"/>
-            </svg>
-          </div>
-          <h1 class="cover-title">ระบบบริหารรายได้และค่าคอมมิชชันช่างตัดผมผ่านไลน์</h1>
-          <p class="cover-en">LINE-Based Barbershop Income and Commission Management System</p>
-        </div>
-        <div class="cover-presenter">
-          <p style="font-size: 1.6rem; font-weight: 700; color: #111827; margin-bottom: 4px;">นาย สราวุฒิ อุยยาหาญ</p>
-          <p style="font-size: 1.3rem; color: #374151; margin-bottom: 4px;">รหัสประจำตัว 674230027 หมู่เรียน 67/44</p>
-          <p style="font-size: 1.2rem; color: #059640; font-weight: 600; margin-bottom: 2px;">วิชาโครงงานด้านเทคโนโลยีสารสนเทศ 1</p>
-          <p style="font-size: 1.15rem; color: #4B5563;">สาขาวิชาเทคโนโลยีสารสนเทศ คณะวิทยาศาสตร์และเทคโนโลยี มหาวิทยาลัยราชภัฏนครปฐม</p>
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 2: CHAPTER 1 TITLE -->
-    <div class="slide" data-title="บทที่ 1 บทนำ">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <div class="chapter-cover">
-        <div class="chap-num">บทที่ 1</div>
-        <div class="chap-name">บทนำ</div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 3: 1.1 BACKGROUND -->
-    <div class="slide" data-title="1.1 ความเป็นมาและความสำคัญของปัญหา">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">1.1 ความเป็นมาและความสำคัญของปัญหา</h2>
-      <div class="slide-content">
-        <div class="text-block" style="text-align: center; max-width: 1100px;">
-          <p style="margin-bottom: 24px; text-indent: 40px; text-align: justify; font-size: 1.45rem; line-height: 1.85;">
-            ในปัจจุบัน ธุรกิจร้านตัดผมมีการรับชำระเงินทั้งรูปแบบเงินสดและการโอนเงินผ่านระบบธนาคาร เมื่อลูกค้าชำระเงินด้วยการโอน ช่างหรือเจ้าของร้านต้องคอยสลับหน้าจอเพื่อเปิดแอปพลิเคชันธนาคารตรวจสอบยอดเงิน ซึ่งก่อให้เกิดความล่าช้า การบริการสะดุด และมีความเสี่ยงต่อการถูกหลอกลวงด้วยสลิปปลอมแปลงหรือการนำสลิปเก่ามาวนใช้ซ้ำ
-          </p>
-          <p style="text-indent: 40px; text-align: justify; font-size: 1.45rem; line-height: 1.85;">
-            นอกจากนี้ ด้านการคำนวณส่วนแบ่งค่าคอมมิชชันของช่างตัดผมยังอาศัยการจดบันทึกลงสมุดบัญชีด้วยมือ ทำให้เกิดความผิดพลาดในการคำนวณ ช่างตัดผมไม่สามารถตรวจสอบยอดรายได้สะสมของตนเองได้แบบเรียลไทม์ และเจ้าของร้านต้องเสียเวลาอย่างมากในการตัดรอบเคลียร์เงินสิ้นงวด
-          </p>
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 4: 1.2 CONCEPT -->
-    <div class="slide" data-title="1.2 แนวคิดในการแก้ไขปัญหา">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">1.2 แนวคิดในการแก้ไขปัญหา</h2>
-      <div class="slide-content">
-        <div class="text-block" style="max-width: 1140px; text-align: justify; font-size: 1.35rem; line-height: 1.8;">
-          <p style="margin-bottom: 16px; font-weight: 600; color: #059640;">
-            ภาพที่ 1.1 แนวคิดการแก้ไขปัญหา (Fishbone Diagram) • ที่มา: นายสราวุฒิ อุยยาหาญ (2570)
-          </p>
-          <p style="margin-bottom: 18px; text-indent: 40px;">
-            เพื่อแก้ไขปัญหาการจัดเก็บข้อมูลรายได้ที่ไม่เป็นระบบ ความผิดพลาดในการคำนวณค่าคอมมิชชัน และความเสี่ยงจากสลิปโอนเงินปลอม โครงงานนี้จึงมุ่งพัฒนาระบบบริหารจัดการร้านตัดผมและแจ้งชำระเงินผ่านแอปพลิเคชันไลน์ (LINE Application) โดยใช้ <strong>LINE Messaging API</strong> ร่วมกับ <strong>LINE LIFF (LINE Front-end Framework)</strong> เป็นช่องทางหลักในการรับ-ส่งข้อมูลกับผู้ใช้งาน
-          </p>
-          <p style="text-indent: 40px;">
-            ทำงานร่วมกับ <strong>n8n Workflow Automation</strong> ซึ่งทำหน้าที่เป็นกลไกหลักในการเชื่อมต่อกับ <strong>Slip2Go API</strong> สำหรับตรวจสอบสลิปโอนเงิน และฐานข้อมูล <strong>MySQL</strong> สำหรับเก็บข้อมูลช่าง บริการ และธุรกรรม พร้อมคำนวณค่าคอมมิชชัน และส่ง <strong>e-Receipt Flex Message</strong> ตอบกลับลูกค้า ช่าง และเจ้าของร้านในทันที
-          </p>
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 5: 1.3 OBJECTIVES -->
-    <div class="slide" data-title="1.3 วัตถุประสงค์ของระบบ">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">1.3 วัตถุประสงค์ของระบบ</h2>
-      <div class="slide-content">
-        <div style="width: 100%; max-width: 1120px;">
-          <p style="font-size: 1.4rem; font-weight: 600; margin-bottom: 16px; color: #000;">5 วัตถุประสงค์หลักของระบบ (ข้อ 1.3.1 - 1.3.5):</p>
-          <ul class="bullet-list" style="font-size: 1.28rem; line-height: 1.75;">
-            <li><strong>1.3.1</strong> ระบบรองรับการทำรายการของผู้ใช้งาน โดยสามารถเลือกบริการ เลือกช่างตัดผม และอัปโหลดหลักฐานการโอนเงินผ่านทางหน้าเว็บแอปพลิเคชัน <strong>LIFF (LINE Front-end Framework)</strong> บนแอปพลิเคชัน LINE</li>
-            <li><strong>1.3.2</strong> ระบบมีฟังก์ชันตรวจสอบความถูกต้องของสลิปโอนเงินโดยอัตโนมัติ ผ่านการเชื่อมต่อกับระบบ <strong>Slip2Go API</strong></li>
-            <li><strong>1.3.3</strong> ระบบสามารถคำนวณส่วนแบ่งรายได้ของช่างตัดผม และบันทึกข้อมูลประวัติการทำธุรกรรมทั้งหมดลงในระบบฐานข้อมูล <strong>MySQL</strong> โดยอัตโนมัติ</li>
-            <li><strong>1.3.4</strong> ระบบสามารถส่ง <strong>เฟล็กซ์เมสเสจ</strong> ให้แก่ลูกค้า พร้อมทั้งแจ้งเตือนสรุปยอดเงินให้ช่างตัดผมและเจ้าของร้านทราบ ผ่านทางแอปพลิเคชัน LINE</li>
-            <li><strong>1.3.5</strong> ระบบมีหน้ากระดานข้อมูล <strong>(Dashboard)</strong> สำหรับแสดงผลสรุปยอดขาย สถิติการใช้บริการ และรายได้ของช่างตัดผมแต่ละรายแบบเรียลไทม์ ผ่านเครื่องมือ <strong>Data Studio (Google Looker Studio)</strong></li>
-          </ul>
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 6: 1.4 SCOPE - USERS -->
-    <div class="slide" data-title="1.4 ขอบเขตการศึกษา (ด้านผู้ใช้งาน)">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">1.4 ขอบเขตการศึกษา</h2>
-      <div class="slide-content">
-        <div style="width: 100%; max-width: 1150px; text-align: left;">
-          <div style="margin-bottom: 14px;">
-            <p style="font-weight: 700; font-size: 1.35rem; color: #000; margin-bottom: 4px;">1.4.1.1 ผู้ดูแลระบบ/เจ้าของร้าน:</p>
-            <p style="font-size: 1.22rem; line-height: 1.6; color: #374151; padding-left: 20px;">
-              <strong>ก)</strong> จัดการข้อมูลช่างตัดผมและอัตราค่าคอมมิชชัน &nbsp;|&nbsp; 
-              <strong>ข)</strong> จัดการข้อมูลประเภทบริการและราคาค่าบริการ &nbsp;|&nbsp; 
-              <strong>ค)</strong> ดูแดชบอร์ดสรุปยอดขายประจำวันและประจำเดือนผ่านดาต้าสตูดิโอ &nbsp;|&nbsp; 
-              <strong>ง)</strong> รับการแจ้งเตือนยอดเงินและการชำระเงินสำเร็จผ่านไลน์
-            </p>
-          </div>
-          <div style="margin-bottom: 14px;">
-            <p style="font-weight: 700; font-size: 1.35rem; color: #000; margin-bottom: 4px;">1.4.1.2 ช่างตัดผม:</p>
-            <p style="font-size: 1.22rem; line-height: 1.6; color: #374151; padding-left: 20px;">
-              <strong>ก)</strong> รับการแจ้งเตือนเมื่อลูกค้าชำระเงินค่าบริการของตนเองสำเร็จ &nbsp;|&nbsp; 
-              <strong>ข)</strong> ตรวจสอบยอดค่าบริการและค่าคอมมิชชันที่ได้รับแบบเรียลไทม์
-            </p>
-          </div>
-          <div>
-            <p style="font-weight: 700; font-size: 1.35rem; color: #000; margin-bottom: 4px;">1.4.1.3 ลูกค้าผู้ใช้บริการ:</p>
-            <p style="font-size: 1.22rem; line-height: 1.6; color: #374151; padding-left: 20px;">
-              <strong>ก)</strong> เข้าใช้งานระบบผ่านริชเมนูบนไลน์ &nbsp;|&nbsp; 
-              <strong>ข)</strong> เลือกช่างตัดผมและประเภทบริการที่ต้องการ &nbsp;|&nbsp; 
-              <strong>ค)</strong> อัปโหลดสลิปหลักฐานการโอนเงินเพื่อแจ้งชำระเงิน &nbsp;|&nbsp; 
-              <strong>ง)</strong> รับเฟล็กซ์เมสเสจรับเงินอิเล็กทรอนิกส์ (e-Receipt) ผ่านไลน์
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 7: 1.4 SCOPE - DEV HARDWARE/SOFTWARE -->
-    <div class="slide" data-title="1.4 ขอบเขตการศึกษา (ต่อ)">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">1.4 ขอบเขตการศึกษา (ต่อ)</h2>
-      <div class="slide-content">
-        <div style="width: 100%; max-width: 1120px; text-align: left;">
-          <div style="margin-bottom: 24px;">
-            <p style="font-weight: 700; font-size: 1.4rem; color: #000; margin-bottom: 10px;">1.4.2 ฮาร์ดแวร์ที่ใช้ในการพัฒนา</p>
-            <ul class="bullet-list" style="font-size: 1.28rem; line-height: 1.75;">
-              <li><strong>1.4.2.1 โน้ตบุ๊ก เอชพีวิคตัส 16 (HP VICTUS 16):</strong> 12th Gen Intel(R) Core(TM) i5-12500H (2.50 GHz) ใช้เป็นเครื่องหลักสำหรับพัฒนาและทดสอบระบบ</li>
-              <li><strong>1.4.2.2 สมาร์ทโฟน Nothing Phone (4a):</strong> ใช้สำหรับทดสอบการใช้งานจริงบนแอปพลิเคชัน LINE ทั้งฝั่งลูกค้าและช่าง</li>
-            </ul>
-          </div>
-          <div>
-            <p style="font-weight: 700; font-size: 1.4rem; color: #000; margin-bottom: 10px;">1.4.3 ซอฟต์แวร์ที่ใช้ในการพัฒนา</p>
-            <ul class="bullet-list" style="font-size: 1.28rem; line-height: 1.75;">
-              <li><strong>1.4.3.1 ระบบปฏิบัติการ ไมโครซอฟท์วินโดวส์สิบเอ็ด (Microsoft Windows 11):</strong> สำหรับพัฒนาและติดตั้งเครื่องมือที่เกี่ยวข้อง</li>
-              <li><strong>1.4.3.2 แอนติกราวิตี้ ไอดีอี (Antigravity IDE):</strong> โปรแกรมแก้ไขโค้ดสำหรับเขียนเว็บแอปพลิเคชัน</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 8: 1.4 SCOPE - CLOUD HARDWARE/SOFTWARE 1 -->
-    <div class="slide" data-title="1.4 ขอบเขตการศึกษา (ต่อ)">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">1.4 ขอบเขตการศึกษา (ต่อ)</h2>
-      <div class="slide-content">
-        <div style="width: 100%; max-width: 1120px; text-align: left;">
-          <div style="margin-bottom: 24px;">
-            <p style="font-weight: 700; font-size: 1.4rem; color: #000; margin-bottom: 10px;">1.4.4 ฮาร์ดแวร์ที่ใช้ระบบคลาวด์</p>
-            <ul class="bullet-list" style="font-size: 1.28rem; line-height: 1.75;">
-              <li><strong>1.4.4.1 เรลเวย์เซิฟเวอร์ (Railway Server):</strong> ใช้รับบริการเอ็นเอทเอ็น (n8n) และฐานข้อมูลมายเอสคิวแอล (MySQL) บนคลาวด์ รวมถึงเป็นเว็บเซิร์ฟเวอร์โฮสต์หน้าเว็บลิฟต์ ตลอด 24 ชั่วโมง</li>
-            </ul>
-          </div>
-          <div>
-            <p style="font-weight: 700; font-size: 1.4rem; color: #000; margin-bottom: 10px;">1.4.5 ซอฟต์แวร์ที่ใช้ระบบคลาวด์ (1 - 3)</p>
-            <ul class="bullet-list" style="font-size: 1.28rem; line-height: 1.75;">
-              <li><strong>1.4.5.1 เอ็นเอทเอ็น (n8n):</strong> ทำหน้าที่เป็น เวิร์กโฟลว์ออโตเมชัน (Workflow Automation) สำหรับประมวลผล รับและส่งข้อมูล</li>
-              <li><strong>1.4.5.2 เรลเวย์ (Railway):</strong> บริการจัดการและรันเซิร์ฟเวอร์ รวมถึงการจัดการทรัพยากรเว็บไซต์และฐานข้อมูล</li>
-              <li><strong>1.4.5.3 สลิปทูโกเอพีไอ (Slip2Go API):</strong> บริการเอพีไอสำหรับตรวจสอบความถูกต้องของสลิปโอนเงินธนาคาร</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 9: 1.4 SCOPE - CLOUD SOFTWARE 2 -->
-    <div class="slide" data-title="1.4 ขอบเขตการศึกษา (ต่อ)">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">1.4 ขอบเขตการศึกษา (ต่อ)</h2>
-      <div class="slide-content">
-        <div style="width: 100%; max-width: 1120px; text-align: left;">
-          <p style="font-weight: 700; font-size: 1.4rem; color: #000; margin-bottom: 14px;">1.4.5 ซอฟต์แวร์ที่ใช้ระบบคลาวด์ (4 - 9)</p>
-          <ul class="bullet-list" style="font-size: 1.26rem; line-height: 1.75;">
-            <li><strong>1.4.5.4 ดาต้าสตูดิโอ (Data Studio):</strong> เว็บแอปพลิเคชันสำหรับสร้างแดชบอร์ดและรายงานสรุปยอดขาย</li>
-            <li><strong>1.4.5.5 ไลน์เมสเสจจิ้งเอพีไอ (LINE Messaging API):</strong> ใช้สำหรับส่งข้อความแจ้งเตือนและใบเสร็จตอบกลับอัตโนมัติ</li>
-            <li><strong>1.4.5.6 ไลน์ออฟฟิเชียลแอคเคาท์ (LINE Official Account):</strong> ใช้สำหรับสร้างบัญชีไลน์ทางการเพื่อใช้เป็นช่องทางสื่อสารหลัก</li>
-            <li><strong>1.4.5.7 ไลน์ลิฟต์ (LINE LIFF):</strong> ใช้สำหรับสร้างหน้าเว็บแจ้งชำระเงินที่ฝังอยู่ภายในแอปพลิเคชันไลน์</li>
-            <li><strong>1.4.5.8 ไลน์เซิฟเวอร์ (LINE Server):</strong> ให้บริการไลน์ เมสเสจจิ้ง เอพีไอ, ลิฟต์ (LIFF) สำหรับสื่อสารกับผู้ใช้งาน</li>
-            <li><strong>1.4.5.9 คลาวด์มายเอสคิวแอล (Cloud MySQL):</strong> ระบบจัดการฐานข้อมูลสำหรับเก็บข้อมูลช่าง บริการ และธุรกรรม</li>
-          </ul>
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 10: 1.6 EXPECTED BENEFITS -->
-    <div class="slide" data-title="1.6 ประโยชน์ที่คาดว่าจะได้รับ">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">1.6 ประโยชน์ที่คาดว่าจะได้รับ</h2>
-      <div class="slide-content">
-        <div style="width: 100%; max-width: 1140px;">
-          <ul class="bullet-list" style="font-size: 1.28rem; line-height: 1.75;">
-            <li><strong>1.6.1</strong> ได้ระบบเว็บแอปพลิเคชัน (LINE LIFF) ที่ช่วยอำนวยความสะดวกให้ลูกค้าสามารถ เลือกช่างตัดผม และแจ้งชำระเงินผ่านแอปพลิเคชันไลน์ได้สะดวกรวดเร็วด้วยตนเองโดยไม่ต้องติดตั้งแอปพลิเคชันเพิ่มเติม</li>
-            <li><strong>1.6.2</strong> ช่วยลดปัญหาสลิปปลอมและยอดเงินไม่ตรง ด้วยระบบตรวจสอบสลิปโอนเงินอัตโนมัติผ่านสลิปทูโกเอพีไอ (Slip2Go API) ช่วยลดความเสี่ยงจากสลิปปลอมและสลิปซ้ำได้</li>
-            <li><strong>1.6.3</strong> ช่วยลดความผิดพลาดในการคำนวณส่วนแบ่งค่าคอมมิชชัน ของช่างตัดผม พร้อมทั้งมีระบบฐานข้อมูลมายเอสคิวแอล (MySQL) ที่จัดเก็บข้อมูลธุรกรรมอย่างเป็นระเบียบ และสามารถตรวจสอบย้อนหลังได้</li>
-            <li><strong>1.6.4</strong> ลูกค้าได้รับเฟล็กซ์เมสเสจ ส่วนช่างตัดผมและเจ้าของร้านทราบยอดรายได้อย่างรวดเร็วผ่านการแจ้งเตือนทางแอปพลิเคชันไลน์ เพิ่มประสิทธิภาพและความรวดเร็วในการสื่อสารภายในร้าน</li>
-            <li><strong>1.6.5</strong> เจ้าของร้านสามารถติดตามยอดขายและผลการดำเนินงานได้อย่างรวดเร็ว ผ่านแดชบอร์ดสรุปผลทางการเงิน เพื่อนำข้อมูลสถิติไปใช้วิเคราะห์และสนับสนุนการตัดสินใจทางธุรกิจได้</li>
-          </ul>
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 11: CHAPTER 2 TITLE -->
-    <div class="slide" data-title="บทที่ 2 หลักการและทฤษฎีที่เกี่ยวข้อง">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <div class="chapter-cover">
-        <div class="chap-num">บทที่ 2</div>
-        <div class="chap-name">หลักการและทฤษฎีที่เกี่ยวข้อง</div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 12: 2.1 EXISTING SYSTEM -->
-    <div class="slide" data-title="2.1 ระบบงานเดิม">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">2.1 ระบบงานเดิม</h2>
-      <div class="slide-content">
-        <div class="text-block" style="max-width: 1120px; font-size: 1.35rem; line-height: 1.8;">
-          <p style="margin-bottom: 18px; text-indent: 40px; text-align: justify;">
-            การดำเนินงานของร้านตัดผมในปัจจุบัน มีปัญหาสำคัญใน 2 ด้านหลัก ได้แก่ <strong>ปัญหาเงินเข้า (Incomes)</strong> ที่ต้องสลับแอปธนาคารตรวจสลิปด้วยสายตา มีโอกาสตกหล่นและเสี่ยงต่อสลิปปลอมแปลง และ <strong>ปัญหาเงินออก (Payouts / Settlements)</strong> ที่ต้องจดบันทึกลงสมุดด้วยมือ ทำให้ช่างไม่ทราบยอดสะสม และการตัดรอบจ่ายเงินใช้เวลานาน
-          </p>
-          <div style="background: #F8FAFC; border: 2px solid #E2E8F0; border-radius: 8px; padding: 18px 24px; margin-top: 10px;">
-            <p style="font-weight: 700; color: #000; margin-bottom: 8px; font-size: 1.35rem;">การวิเคราะห์ปัญหาด้วยแผนภูมิก้างปลา (Fishbone Diagram 4 ด้าน):</p>
-            <p><strong>1. ด้านบุคลากร (People):</strong> เจ้าของร้านเสียเวลาตรวจสอบด้วยตา ช่างไม่ทราบยอดเงินเข้าแบบเรียลไทม์</p>
-            <p><strong>2. ด้านกระบวนการทำงาน (Process):</strong> คิดส่วนแบ่งด้วยมือ ล่าช้า ไม่มีขั้นตอนโมฆะบิลที่เป็นมาตรฐาน</p>
-            <p><strong>3. ด้านเทคโนโลยี (Technology):</strong> ขาดระบบตรวจสอบสลิปอัตโนมัติ และไม่มีการออกใบเสร็จอิเล็กทรอนิกส์</p>
-            <p><strong>4. ด้านข้อมูลความปลอดภัย (Data & Security):</strong> ข้อมูลในสมุดเสี่ยงสูญหาย และไม่มีระบบป้องกันสลิปวนใช้ซ้ำ</p>
-          </div>
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 13: 2.2 RELATED RESEARCH 1 & 2 -->
-    <div class="slide" data-title="2.2 ระบบงานอื่นที่เกี่ยวข้อง (1-2)">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">2.2 ระบบงานอื่นที่เกี่ยวข้อง</h2>
-      <div class="slide-content">
-        <div style="width: 100%; max-width: 1140px; text-align: justify; font-size: 1.28rem; line-height: 1.75;">
-          <div style="margin-bottom: 24px;">
-            <p style="font-weight: 700; color: #000; font-size: 1.35rem; margin-bottom: 6px;">
-              1. พิชยา สุขปลั่ง และคณะ (2568)
-            </p>
-            <p style="color: #374151; padding-left: 24px;">
-              ทำการวิจัยเรื่อง <em>"การพัฒนาระบบแจ้งซ่อมอัจฉริยะผ่านแชทบอท กรณีศึกษาเทศบาลตำบลหวายเหนียว"</em> โดยประยุกต์ใช้ <strong>LINE API, Node-RED และ MySQL</strong> ช่วยให้ประชาชนแจ้งเหตุได้สะดวกรวดเร็ว และเจ้าหน้าที่ติดตามสถานะได้แบบเรียลไทม์ ผลการประเมินความพึงพอใจอยู่ในระดับมาก (ค่าเฉลี่ย 4.50)
-            </p>
-          </div>
-          <div>
-            <p style="font-weight: 700; color: #000; font-size: 1.35rem; margin-bottom: 6px;">
-              2. ถนอม กองใจ และ อริษา ทาทอง (2565)
-            </p>
-            <p style="color: #374151; padding-left: 24px;">
-              ทำการวิจัยเรื่อง <em>"การพัฒนาระบบแจ้งเตือนกิจกรรมและการนัดหมายอัตโนมัติผ่านแอปพลิเคชันไลน์ มหาวิทยาลัยเชียงใหม่"</em> โดยประยุกต์ใช้ <strong>Google Apps Script และ LINE Notification</strong> ช่วยลดปัญหาการลืมนัดหมายและเพิ่มประสิทธิภาพการบริหารจัดการเวลาอย่างมีนัยสำคัญ
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 14: 2.2 RELATED RESEARCH 3, 4 & 5 -->
-    <div class="slide" data-title="2.2 ระบบงานอื่นที่เกี่ยวข้อง (3-5)">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">2.2 ระบบงานอื่นที่เกี่ยวข้อง (ต่อ)</h2>
-      <div class="slide-content">
-        <div style="width: 100%; max-width: 1140px; text-align: justify; font-size: 1.22rem; line-height: 1.7;">
-          <div style="margin-bottom: 16px;">
-            <p style="font-weight: 700; color: #000; font-size: 1.3rem; margin-bottom: 4px;">
-              3. พิษณุ ใจกล้า และ แก้ววราภรณ์ กรแก้ว (2569)
-            </p>
-            <p style="color: #374151; padding-left: 24px;">
-              วิจัยเรื่อง <em>"การประยุกต์ใช้แพลตฟอร์มการทำงานอัตโนมัติแบบโอเพนซอร์ส (n8n) ในการจัดการและแจ้งเตือนข้อมูลทางอีเมล มธ."</em> ใช้ n8n เชื่อมโยง SQL และ API ช่วยลดความซ้ำซ้อนและเพิ่มความแม่นยำในการประมวลผล
-            </p>
-          </div>
-          <div style="margin-bottom: 16px;">
-            <p style="font-weight: 700; color: #000; font-size: 1.3rem; margin-bottom: 4px;">
-              4. พริษฐ์กวินท์ นาควะรี และคณะ (2569)
-            </p>
-            <p style="color: #374151; padding-left: 24px;">
-              วิจัยเรื่อง <em>"การพัฒนาตัวแทนปัญญาประดิษฐ์เพื่อการบริการตอบคำถาม: น้องไลฟ์ลอง KLLC สจล."</em> ใช้ <strong>n8n Self-Hosted ร่วมกับ LINE OA</strong> รองรับการตอบกลับอัตโนมัติ 24 ชั่วโมงอย่างมีประสิทธิภาพ
-            </p>
-          </div>
-          <div>
-            <p style="font-weight: 700; color: #000; font-size: 1.3rem; margin-bottom: 4px;">
-              5. อภิสิทธิ์ โยลัย และคณะ (2565)
-            </p>
-            <p style="color: #374151; padding-left: 24px;">
-              วิจัยเรื่อง <em>"แอปพลิเคชันการจองคิวร้านเสริมสวย มรภ.มหาสารคาม"</em> พัฒนาด้วย <strong>PHP, JavaScript และ MySQL</strong> ช่วยแก้ปัญหาการรอคิวและการจัดการของร้านเสริมสวย ความพึงพอใจอยู่ในระดับมากที่สุด (4.55)
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 15: 2.3 TECH 1 - n8n -->
-    <div class="slide" data-title="องค์ความรู้: 1. n8n">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">องค์ความรู้ที่เกี่ยวข้อง</h2>
-      <div class="slide-content">
-        <div class="tech-card-container">
-          <p class="tech-desc">
-            <strong>1. เอ็นเอทเอ็น (n8n)</strong> คือ เวิร์กโฟลว์ออโตเมชันทูล (Workflow Automation Tool) แบบโอเพนซอร์ส ทำหน้าที่เป็นแกนหลักในการรับ Webhook จาก LINE LIFF, ส่งภาพสลิปไปตรวจสอบ, คำนวณส่วนแบ่งค่าคอมมิชชันช่าง, บันทึกฐานข้อมูล MySQL และสั่งส่งข้อความแจ้งเตือนอัตโนมัติ
-          </p>
-          <div class="tech-logo-box">
-            <svg viewBox="0 0 100 100" class="tech-icon" style="height: 75px; width: auto;">
-            <circle cx="28" cy="50" r="14" fill="#EA4B71"/>
-            <circle cx="72" cy="32" r="14" fill="#EA4B71"/>
-            <circle cx="72" cy="68" r="14" fill="#EA4B71"/>
-            <path d="M 28 50 C 45 50, 52 32, 72 32 M 28 50 C 45 50, 52 68, 72 68" stroke="#EA4B71" stroke-width="7" fill="none" stroke-linecap="round"/>
-        </svg>
-            <span class="tech-label">n8n</span>
-          </div>
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 16: 2.3 TECH 2 - LINE Messaging API -->
-    <div class="slide" data-title="องค์ความรู้: 2. LINE Messaging API">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">องค์ความรู้ที่เกี่ยวข้อง</h2>
-      <div class="slide-content">
-        <div class="tech-card-container">
-          <p class="tech-desc">
-            <strong>2. ไลน์เมสเสจจิ้ง เอพีไอ (LINE Messaging API)</strong> คือ เอพีไอหลักที่ทำหน้าที่เป็นช่องทางการสื่อสารระหว่างระบบกับผู้ใช้งานบนแอปพลิเคชันไลน์ ใช้สำหรับส่งใบเสร็จรับเงินอิเล็กทรอนิกส์ (e-Receipt), ข้อความแจ้งเตือนช่างเมื่อมีเงินเข้า, และข้อความแจ้งเตือนโมฆะบิล
-          </p>
-          <div class="tech-logo-box">
-            <svg viewBox="0 0 100 100" class="tech-icon" style="height: 75px; width: auto;">
-            <rect width="100" height="100" rx="22" fill="#06C755"/>
-            <path d="M50 20 C32 20 18 32 18 47 C18 57 24 66 34 71 C35 73 34 77 31 82 C30 83 31 84 32 84 C38 83 45 78 48 74 C49 74 50 74 50 74 C68 74 82 62 82 47 C82 32 68 20 50 20 Z" fill="#FFF"/>
-            <path d="M30 40 L30 54 M30 54 L36 54 M41 40 L41 54 M48 40 L48 54 M48 40 L56 54 M56 40 L56 54 M62 40 L70 40 M62 47 L68 47 M62 54 L70 54" stroke="#06C755" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        </svg>
-            <span class="tech-label">LINE Messaging API</span>
-          </div>
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 17: 2.3 TECH 3 - LINE OA -->
-    <div class="slide" data-title="องค์ความรู้: 3. LINE Official Account">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">องค์ความรู้ที่เกี่ยวข้อง</h2>
-      <div class="slide-content">
-        <div class="tech-card-container">
-          <p class="tech-desc">
-            <strong>3. ไลน์ออฟฟิเชียลแอคเคาท์ (LINE Official Account)</strong> คือ บัญชีทางการของร้านตัดผมที่เชื่อมต่อกับระบบ ทำหน้าที่เป็นจุดศูนย์กลางในการสื่อสาร พร้อมติดตั้งริชเมนู (Rich Menu) ให้ลูกค้าสามารถกดเปิดหน้าเว็บแจ้งชำระเงินและดูบริการได้อย่างสะดวก
-          </p>
-          <div class="tech-logo-box">
-            <svg viewBox="0 0 100 100" class="tech-icon" style="height: 75px; width: auto;">
-            <rect width="100" height="100" rx="22" fill="#06C755"/>
-            <path d="M50 22 C34 22 22 33 22 47 C22 57 28 65 37 70 C38 72 37 76 34 80 C39 79 45 75 48 72 C49 72 49 72 50 72 C66 72 78 61 78 47 C78 33 66 22 50 22 Z" fill="#FFF"/>
-            <path d="M50 34 L54 44 L64 45 L56 52 L58 62 L50 56 L42 62 L44 52 L36 45 L46 44 Z" fill="#06C755"/>
-        </svg>
-            <span class="tech-label">LINE Official Account</span>
-          </div>
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 18: 2.3 TECH 4 - LINE LIFF -->
-    <div class="slide" data-title="องค์ความรู้: 4. LINE LIFF">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">องค์ความรู้ที่เกี่ยวข้อง</h2>
-      <div class="slide-content">
-        <div class="tech-card-container">
-          <p class="tech-desc">
-            <strong>4. ไลน์ ฟรอนต์เอนด์ เฟรมเวิร์ก หรือลิฟต์ (LINE LIFF)</strong> คือ แพลตฟอร์มสำหรับสร้างหน้าเว็บแอปพลิเคชันที่ทำงานฝังอยู่ภายในไลน์ ทำหน้าที่ดึงข้อมูล User ID และเป็นหน้าจอให้ลูกค้าเลือกช่างตัดผม เลือกบริการ และอัปโหลดสลิปชำระเงินได้อย่างไร้รอยต่อ
-          </p>
-          <div class="tech-logo-box">
-            <svg viewBox="0 0 100 100" class="tech-icon" style="height: 75px; width: auto;">
-            <rect width="100" height="100" rx="22" fill="#06C755"/>
-            <rect x="25" y="22" width="50" height="56" rx="8" fill="#FFF"/>
-            <rect x="29" y="32" width="42" height="38" rx="4" fill="#06C755"/>
-            <circle cx="50" cy="27" r="2" fill="#06C755"/>
-            <circle cx="50" cy="74" r="2.5" fill="#06C755"/>
-            <path d="M42 44 L50 52 L58 44" stroke="#FFF" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-            <span class="tech-label">LINE LIFF</span>
-          </div>
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 19: 2.3 TECH 5 - Slip2Go API -->
-    <div class="slide" data-title="องค์ความรู้: 5. Slip2Go API">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">องค์ความรู้ที่เกี่ยวข้อง</h2>
-      <div class="slide-content">
-        <div class="tech-card-container">
-          <p class="tech-desc">
-            <strong>5. สลิปทูโก เอพีไอ (Slip2Go API)</strong> คือ บริการเอพีไอสำหรับตรวจสอบความถูกต้องของสลิปโอนเงินธนาคารแบบอัตโนมัติ โดยอ่าน QR Code และข้อมูลสลิปเพื่อยืนยันยอดเงินจริง ตรวจสอบบัญชีผู้รับเงิน และป้องกันการนำสลิปเก่ามาวนใช้ซ้ำ
-          </p>
-          <div class="tech-logo-box">
-            <svg viewBox="0 0 100 100" class="tech-icon" style="height: 75px; width: auto;">
-            <rect width="100" height="100" rx="22" fill="#1E293B"/>
-            <path d="M26 38 L26 26 L38 26 M74 38 L74 26 L62 26 M26 62 L26 74 L38 74 M74 62 L74 74 L62 74" stroke="#38BDF8" stroke-width="4.5" fill="none" stroke-linecap="round"/>
-            <circle cx="50" cy="50" r="14" fill="#10B981"/>
-            <path d="M44 50 L48 54 L57 45" stroke="#FFF" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-            <span class="tech-label">Slip2Go API</span>
-          </div>
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 20: 2.3 TECH 6 - Looker Studio -->
-    <div class="slide" data-title="องค์ความรู้: 6. Google Looker Studio">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">องค์ความรู้ที่เกี่ยวข้อง</h2>
-      <div class="slide-content">
-        <div class="tech-card-container">
-          <p class="tech-desc">
-            <strong>6. กูเกิลลุกเกอร์สตูดิโอ (Google Looker Studio)</strong> คือ เครื่องมือสร้างรายงานและแดชบอร์ดสรุปผลทางการเงินเชิงวิเคราะห์ เชื่อมต่อกับฐานข้อมูล MySQL เพื่อแสดงสถิติยอดขายรวม, ค่าคอมมิชชันช่างสะสม, และรายได้สุทธิของร้านในรูปแบบแผนภูมิที่เข้าใจง่าย
-          </p>
-          <div class="tech-logo-box">
-            <svg viewBox="0 0 100 100" class="tech-icon" style="height: 75px; width: auto;">
-            <rect width="100" height="100" rx="22" fill="#F8FAFC"/>
-            <rect x="24" y="52" width="10" height="26" rx="3" fill="#4285F4"/>
-            <rect x="39" y="36" width="10" height="42" rx="3" fill="#EA4335"/>
-            <rect x="54" y="24" width="10" height="54" rx="3" fill="#FBBC05"/>
-            <rect x="69" y="44" width="10" height="34" rx="3" fill="#34A853"/>
-        </svg>
-            <span class="tech-label">Google Looker Studio</span>
-          </div>
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 21: 2.3 TECH 7 - MySQL -->
-    <div class="slide" data-title="องค์ความรู้: 7. MySQL">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">องค์ความรู้ที่เกี่ยวข้อง</h2>
-      <div class="slide-content">
-        <div class="tech-card-container">
-          <p class="tech-desc">
-            <strong>7. มายเอสคิวแอล (MySQL)</strong> คือ ระบบจัดการฐานข้อมูลเชิงสัมพันธ์ (Relational Database) ประสิทธิภาพสูง ใช้จัดเก็บข้อมูลสำคัญทั้งหมดของระบบ ได้แก่ ข้อมูลช่างตัดผม, รายการบริการ, ประวัติธุรกรรมเงินเข้า (transactions) และประวัติการตัดรอบเคลียร์เงิน (payouts)
-          </p>
-          <div class="tech-logo-box">
-            <svg viewBox="0 0 100 100" class="tech-icon" style="height: 75px; width: auto;">
-            <rect width="100" height="100" rx="22" fill="#E0F2FE"/>
-            <path d="M30 65 C25 55 25 35 48 30 C68 25 78 40 76 52 C74 62 62 68 45 68 C38 68 32 66 30 65 Z" fill="#00758F"/>
-            <path d="M68 34 C72 26 80 28 82 32 C78 35 74 36 68 34 Z" fill="#F29111"/>
-            <text x="50" y="86" font-family="Arial, sans-serif" font-weight="900" font-size="14" fill="#00758F" text-anchor="middle">MySQL</text>
-        </svg>
-            <span class="tech-label">MySQL</span>
-          </div>
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 22: 2.3 TECH 8 - Railway -->
-    <div class="slide" data-title="องค์ความรู้: 8. Railway Cloud">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">องค์ความรู้ที่เกี่ยวข้อง</h2>
-      <div class="slide-content">
-        <div class="tech-card-container">
-          <p class="tech-desc">
-            <strong>8. เรลเวย์ (Railway)</strong> คือ คลาวด์แพลตฟอร์ม (Cloud Infrastructure) สำหรับติดตั้งและรันระบบเซิร์ฟเวอร์ n8n และฐานข้อมูล MySQL ตลอด 24 ชั่วโมง มีความเสถียรสูง พร้อมระบบรักษาความปลอดภัยและการสำรองข้อมูลอัตโนมัติ
-          </p>
-          <div class="tech-logo-box">
-            <svg viewBox="0 0 100 100" class="tech-icon" style="height: 75px; width: auto;">
-            <rect width="100" height="100" rx="22" fill="#0B0D0E"/>
-            <path d="M26 30 L74 30 L74 38 L26 38 Z M26 46 L74 46 L74 54 L26 54 Z M26 62 L74 62 L74 70 L26 70 Z" fill="#A855F7"/>
-            <path d="M38 24 L38 76 M62 24 L62 76" stroke="#FFF" stroke-width="4" stroke-linecap="round"/>
-        </svg>
-            <span class="tech-label">Railway</span>
-          </div>
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 23: 2.3 TECH 9 - HTML5 -->
-    <div class="slide" data-title="องค์ความรู้: 9. HTML">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">องค์ความรู้ที่เกี่ยวข้อง</h2>
-      <div class="slide-content">
-        <div class="tech-card-container">
-          <p class="tech-desc">
-            <strong>9. เอชทีเอ็มแอล (HTML)</strong> คือ ภาษาโครงสร้างมาตรฐานที่ใช้ในการสร้างหน้าเว็บฟอร์มแจ้งชำระเงินบน LINE LIFF และระบบเว็บแอดมินจัดการหลังบ้าน (Admin Backoffice) เพื่อจัดวางองค์ประกอบให้ใช้งานได้ง่ายและตอบสนองทุกอุปกรณ์
-          </p>
-          <div class="tech-logo-box">
-            <svg viewBox="0 0 100 100" class="tech-icon" style="height: 75px; width: auto;">
-            <path d="M20 18 L26 78 L50 85 L74 78 L80 18 Z" fill="#E44D26"/>
-            <path d="M50 24 L50 79 L69 73 L74 24 Z" fill="#F16529"/>
-            <path d="M34 32 L66 32 M35 44 L65 44 M37 56 L50 56 L64 56 L62 68 L50 72 L38 68 L37 60" stroke="#FFF" stroke-width="5" fill="none" stroke-linecap="round"/>
-        </svg>
-            <span class="tech-label">HTML5</span>
-          </div>
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 24: 2.3 TECH 10 - JavaScript -->
-    <div class="slide" data-title="องค์ความรู้: 10. JavaScript">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">องค์ความรู้ที่เกี่ยวข้อง</h2>
-      <div class="slide-content">
-        <div class="tech-card-container">
-          <p class="tech-desc">
-            <strong>10. จาวาสคริปต์ (JavaScript)</strong> คือ ภาษาสคริปต์สำหรับเขียนตรรกะการทำงานฝั่งผู้ใช้ (Client-Side Logic) จัดการการเชื่อมต่อกับ LIFF SDK, ตรวจสอบความถูกต้องของข้อมูลในแบบฟอร์ม, การแปลงไฟล์ภาพเป็น Base64 และส่งข้อมูล Webhook
-          </p>
-          <div class="tech-logo-box">
-            <svg viewBox="0 0 100 100" class="tech-icon" style="height: 75px; width: auto;">
-            <rect width="100" height="100" rx="18" fill="#F7DF1E"/>
-            <path d="M38 72 C35 72 32 70 30 66 L35 63 C36 65 37 66 39 66 C41 66 42 65 42 61 L42 42 L48 42 L48 61 C48 68 44 72 38 72 Z M62 72 C56 72 52 68 52 62 L58 62 C58 65 60 67 63 67 C66 67 68 65 68 63 C68 60 66 59 62 57 C56 55 52 53 52 47 C52 43 56 39 62 39 C67 39 70 41 72 45 L67 48 C66 45 64 44 62 44 C59 44 58 45 58 47 C58 49 60 50 64 51 C70 54 74 56 74 62 C74 68 69 72 62 72 Z" fill="#000"/>
-        </svg>
-            <span class="tech-label">JavaScript</span>
-          </div>
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 25: 2.3 TECH 11 - JSON -->
-    <div class="slide" data-title="องค์ความรู้: 11. JSON">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">องค์ความรู้ที่เกี่ยวข้อง</h2>
-      <div class="slide-content">
-        <div class="tech-card-container">
-          <p class="tech-desc">
-            <strong>11. เจซัน (JSON)</strong> คือ รูปแบบมาตรฐานในการจัดเก็บและแลกเปลี่ยนข้อมูลระหว่างระบบในโครงการ ใช้ในการส่งข้อมูลระหว่างหน้าเว็บ LIFF, n8n, Slip2Go API, MySQL Database และโครงสร้างข้อความ LINE Flex Message
-          </p>
-          <div class="tech-logo-box">
-            <svg viewBox="0 0 100 100" class="tech-icon" style="height: 75px; width: auto;">
-            <rect width="100" height="100" rx="22" fill="#24292F"/>
-            <text x="50" y="58" font-family="'Courier New', monospace" font-weight="900" font-size="36" fill="#10B981" text-anchor="middle">{ ; }</text>
-            <text x="50" y="78" font-family="Arial, sans-serif" font-weight="700" font-size="14" fill="#94A3B8" text-anchor="middle">JSON</text>
-        </svg>
-            <span class="tech-label">JSON</span>
-          </div>
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 26: 2.3 TECH 12 - CRUD Operations -->
-    <div class="slide" data-title="องค์ความรู้: 12. CRUD Operations">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">องค์ความรู้ที่เกี่ยวข้อง</h2>
-      <div class="slide-content">
-        <div class="tech-card-container">
-          <p class="tech-desc">
-            <strong>12. การปฏิบัติการซีอาร์ยูดี (CRUD Operations)</strong> คือ ฟังก์ชันพื้นฐานในการจัดการฐานข้อมูล 4 ประการ ได้แก่ สร้าง (Create), เรียกดู (Read), ปรับปรุง (Update) และ ลบ (Delete) สำหรับบริหารข้อมูลช่าง, บริการ, ประวัติธุรกรรม และการตัดรอบเคลียร์เงิน
-          </p>
-          <div class="tech-logo-box">
-            <svg viewBox="0 0 100 100" class="tech-icon" style="height: 75px; width: auto;">
-            <rect width="100" height="100" rx="22" fill="#F1F5F9"/>
-            <circle cx="36" cy="36" r="14" fill="#10B981"/>
-            <text x="36" y="42" font-family="Arial, sans-serif" font-weight="900" font-size="16" fill="#FFF" text-anchor="middle">C</text>
-            <circle cx="64" cy="36" r="14" fill="#3B82F6"/>
-            <text x="64" y="42" font-family="Arial, sans-serif" font-weight="900" font-size="16" fill="#FFF" text-anchor="middle">R</text>
-            <circle cx="36" cy="64" r="14" fill="#F59E0B"/>
-            <text x="36" y="70" font-family="Arial, sans-serif" font-weight="900" font-size="16" fill="#FFF" text-anchor="middle">U</text>
-            <circle cx="64" cy="64" r="14" fill="#EF4444"/>
-            <text x="64" y="70" font-family="Arial, sans-serif" font-weight="900" font-size="16" fill="#FFF" text-anchor="middle">D</text>
-        </svg>
-            <span class="tech-label">CRUD Operations</span>
-          </div>
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 27: 2.3 TECH 13 - LINE Flex Message -->
-    <div class="slide" data-title="องค์ความรู้: 13. LINE Flex Message">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">องค์ความรู้ที่เกี่ยวข้อง</h2>
-      <div class="slide-content">
-        <div class="tech-card-container">
-          <p class="tech-desc">
-            <strong>13. ไลน์เฟล็กซ์แมสเสจ (LINE Flex Message)</strong> คือ รูปแบบข้อความอินเตอร์แอคทีฟบนไลน์ที่สามารถจัดเลย์เอาต์ได้อย่างสวยงาม ใช้สร้างใบเสร็จรับเงินอิเล็กทรอนิกส์ (e-Receipt), สลิปแจ้งยอดเคลียร์เงินช่าง (Payout Voucher) และข้อความแจ้งเตือนโมฆะบิล
-          </p>
-          <div class="tech-logo-box">
-            <svg viewBox="0 0 100 100" class="tech-icon" style="height: 75px; width: auto;">
-            <rect width="100" height="100" rx="22" fill="#06C755"/>
-            <rect x="22" y="22" width="56" height="56" rx="8" fill="#FFF"/>
-            <rect x="28" y="28" width="44" height="12" rx="3" fill="#06C755"/>
-            <rect x="28" y="45" width="28" height="5" rx="2.5" fill="#94A3B8"/>
-            <rect x="28" y="54" width="44" height="5" rx="2.5" fill="#CBD5E1"/>
-            <rect x="28" y="63" width="20" height="8" rx="4" fill="#10B981"/>
-        </svg>
-            <span class="tech-label">LINE Flex Message</span>
-          </div>
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 28: CHAPTER 3 TITLE -->
-    <div class="slide" data-title="บทที่ 3 วิธีการดำเนินงาน">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <div class="chapter-cover">
-        <div class="chap-num">บทที่ 3</div>
-        <div class="chap-name">วิธีการดำเนินงาน</div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 29: 3.1 INITIAL STUDY -->
-    <div class="slide" data-title="3.1 การศึกษาเบื้องต้น">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">3.1 การศึกษาเบื้องต้น</h2>
-      <div class="slide-content">
-        <div style="width: 100%; max-width: 1150px; text-align: left;">
-          <div style="margin-bottom: 22px;">
-            <p style="font-weight: 700; font-size: 1.45rem; color: #DC2626; margin-bottom: 8px;">ระบบงานเดิม (Existing System):</p>
-            <p style="font-size: 1.3rem; line-height: 1.7; color: #374151; padding-left: 24px;">
-              เมื่อลูกค้าชำระเงินโอน ช่างต้องสลับหน้าจอไปเปิดแอปธนาคารตรวจสลิป การคิดส่วนแบ่งค่าคอมมิชชันใช้การจดบันทึกลงสมุดด้วยมือ มีโอกาสตกหล่นและคำนวณผิดพลาดสูง การตัดรอบเคลียร์เงินสิ้นงวดล่าช้า และช่างไม่สามารถตรวจสอบรายได้ของตนเองแบบเรียลไทม์
-            </p>
-          </div>
-          <div>
-            <p style="font-weight: 700; font-size: 1.45rem; color: var(--line-green-dark); margin-bottom: 8px;">ระบบงานใหม่ (Proposed System):</p>
-            <p style="font-size: 1.3rem; line-height: 1.7; color: #374151; padding-left: 24px;">
-              ลูกค้าเลือกช่างและบริการผ่าน LINE LIFF ตรวจสอบสลิปอัตโนมัติด้วย Slip2Go API คำนวณส่วนแบ่งคอมมิชชันตามผลงานจริง บันทึกลง MySQL และแจ้งเตือนช่างทันทีแบบเรียลไทม์ พร้อมออกใบเสร็จ e-Receipt และมีระบบเว็บแอดมินสำหรับโมฆะบิลและตัดรอบเคลียร์เงินอย่างเป็นระบบ
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 30: 3.2 SYSTEM REQUIREMENTS - SCOPE -->
-    <div class="slide" data-title="3.2 การกำหนดความต้องการของระบบ">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">3.2 การกำหนดความต้องการของระบบ</h2>
-      <div class="slide-content">
-        <div style="width: 100%; max-width: 1120px;">
-          <p style="font-weight: 700; font-size: 1.45rem; margin-bottom: 14px; text-align: left; color: #000;">ขอบเขตของระบบ (System Scope & Functions):</p>
-          <ul class="bullet-list" style="font-size: 1.28rem; line-height: 1.75;">
-            <li>1. รองรับการแจ้งชำระเงินผ่าน LINE LIFF ทั้งแบบเงินสดและโอนเงิน พร้อมอัปโหลดภาพสลิป</li>
-            <li>2. ตรวจสอบความถูกต้องของสลิปโอนเงินผ่าน Slip2Go API ตรวจจับยอดเงินจริง บัญชีร้าน และป้องกันสลิปซ้ำ</li>
-            <li>3. คำนวณส่วนแบ่งค่าคอมมิชชันช่างตัดผมแบบอัตโนมัติเรียลไทม์ และแจ้งเตือนช่างทางไลน์</li>
-            <li>4. ออกใบเสร็จรับเงินอิเล็กทรอนิกส์ (e-Receipt) ในรูปแบบ LINE Flex Message ส่งให้ลูกค้าทันที</li>
-            <li>5. ระบบเว็บแอดมินหลังบ้านรองรับ CRUD ช่าง, CRUD บริการ, ประวัติธุรกรรม และการทำโมฆะบิล (Void Bill)</li>
-            <li>6. ระบบตัดรอบเคลียร์เงินช่าง (Barber Settlement) คำนวณยอดค้างจ่าย แนบสลิป และอัปเดตสถานะบิล</li>
-            <li>7. เชื่อมต่อและแสดงผลสถิติทางการเงินผ่าน Google Looker Studio Dashboard</li>
-          </ul>
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 31: 3.2 HARDWARE/SOFTWARE REQUIREMENTS -->
-    <div class="slide" data-title="3.2 การกำหนดความต้องการของระบบ (ต่อ)">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">3.2 การกำหนดความต้องการของระบบ (ต่อ)</h2>
-      <div class="slide-content">
-        <div style="width: 100%; max-width: 1100px; text-align: left;">
-          <div style="margin-bottom: 24px;">
-            <p style="font-weight: 700; font-size: 1.45rem; color: #000; margin-bottom: 12px;">ฮาร์ดแวร์ที่ใช้กับระบบงาน</p>
-            <ul class="bullet-list" style="font-size: 1.32rem;">
-              <li>เครื่องคอมพิวเตอร์และสมาร์ตโฟนสำหรับผู้ใช้งานและผู้ดูแลระบบ</li>
-              <li>เรลเวย์เซิร์ฟเวอร์ (Railway Cloud Server) สำหรับรัน n8n และ MySQL แบบคลาวด์ 24 ชม.</li>
-            </ul>
-          </div>
-          <div>
-            <p style="font-weight: 700; font-size: 1.45rem; color: #000; margin-bottom: 12px;">ซอฟต์แวร์ที่ใช้กับระบบงาน</p>
-            <ul class="bullet-list" style="font-size: 1.32rem;">
-              <li>แอปพลิเคชันไลน์ (LINE Application) สำหรับลูกค้าและช่างตัดผม</li>
-              <li>ระบบเวิร์กโฟลว์ออโตเมชัน n8n และระบบฐานข้อมูล MySQL บน Railway Cloud</li>
-              <li>สลิปทูโกเอพีไอ (Slip2Go API) สำหรับการตรวจสอบสลิปอัตโนมัติ</li>
-              <li>กูเกิลลุกเกอร์สตูดิโอ (Google Looker Studio) สำหรับวิเคราะห์และสรุปยอดขาย</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 32: 3.3 SYSTEM DESIGN TRANSITION -->
-    <div class="slide" data-title="3.3 การออกแบบระบบ">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <div class="chapter-cover">
-        <div class="chap-num" style="font-size: 4rem;">3.3</div>
-        <div class="chap-name" style="font-size: 3.2rem;">การออกแบบระบบ</div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 33: SYSTEM ARCHITECTURE DIAGRAM -->
-    <div class="slide" data-title="ภาพที่ 3.1 ภาพรวมการทำงานของระบบ">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">ภาพที่ 3.1 ภาพรวมการทำงานของระบบ (System Architecture)</h2>
-      <div class="slide-content">
-        <div class="diagram-frame" onclick="openLightbox('Docs/Diagram/diag_3_1_system_arch.png')">
-          <img src="Docs/Diagram/diag_3_1_system_arch.png" alt="System Architecture">
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 34: SYSTEM ARCHITECTURE WORKFLOW STEPS -->
-    <div class="slide" data-title="ภาพที่ 3.1 คำอธิบายขั้นตอนการทำงาน">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">ภาพที่ 3.1 ภาพรวมการทำงานของระบบ (ต่อ)</h2>
-      <div class="slide-content">
-        <div style="width: 100%; max-width: 1150px; text-align: left;">
-          <ul class="bullet-list" style="font-size: 1.25rem; line-height: 1.7;">
-            <li><strong>1)</strong> ลูกค้าเปิดหน้าเว็บลิฟต์ (LIFF) ผ่านริชเมนูบน LINE OA เพื่อเลือกช่างตัดผมและประเภทบริการ</li>
-            <li><strong>2)</strong> ลูกค้าเลือกวิธีชำระเงิน (เงินสดหน้าร้าน หรือสแกนจ่ายเงินโอน) และอัปโหลดภาพสลิป</li>
-            <li><strong>3)</strong> หน้าเว็บลิฟต์ส่งข้อมูลผ่าน Webhook ไปยังเซิร์ฟเวอร์ n8n เพื่อเริ่มต้นการประมวลผล</li>
-            <li><strong>4)</strong> กรณีเงินโอน: n8n ส่งภาพสลิปไปยัง Slip2Go API เพื่อตรวจสอบยอดเงิน บัญชีผู้รับ และป้องกันสลิปซ้ำ</li>
-            <li><strong>5)</strong> Slip2Go API ส่งผลการตรวจสอบกลับมายัง n8n เพื่อตัดสินใจดำเนินงาน</li>
-            <li><strong>6)</strong> n8n คำนวณส่วนแบ่งค่าคอมมิชชัน และบันทึกธุรกรรมลงในฐานข้อมูล MySQL</li>
-            <li><strong>7)</strong> n8n สั่งส่งใบเสร็จ e-Receipt ให้ลูกค้า และส่งการแจ้งเตือนยอดเงินเข้าช่างผ่าน LINE Messaging API</li>
-            <li><strong>8)</strong> เจ้าของร้านจัดการหลังบ้านผ่าน Admin Web และตรวจสอบรายงานสถิติผ่าน Looker Studio</li>
-          </ul>
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 35: SEQUENCE DIAGRAM - LIFF -->
-    <div class="slide" data-title="ภาพที่ 3.2 Sequence Diagram เปิดหน้าเว็บลิฟต์">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">ภาพที่ 3.2 แผนภาพลำดับ (Sequence Diagram) การเปิดหน้าเว็บลิฟต์</h2>
-      <div class="slide-content">
-        <div class="diagram-frame" onclick="openLightbox('Docs/Diagram/diag_3_2_seq_liff.png')">
-          <img src="Docs/Diagram/diag_3_2_seq_liff.png" alt="Sequence Diagram Open LIFF">
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 36: SEQUENCE DIAGRAM - PAYMENT & SLIP -->
-    <div class="slide" data-title="ภาพที่ 3.3 Sequence Diagram ตรวจสลิปและชำระเงิน">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">ภาพที่ 3.3 แผนภาพลำดับ (Sequence Diagram) การตรวจสอบสลิปและชำระเงิน</h2>
-      <div class="slide-content">
-        <div class="diagram-frame" onclick="openLightbox('Docs/Diagram/diag_3_3_seq_slip.png')">
-          <img src="Docs/Diagram/diag_3_3_seq_slip.png" alt="Sequence Diagram Slip Verification">
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 37: SEQUENCE DIAGRAM - SETTLEMENT -->
-    <div class="slide" data-title="ภาพที่ 3.4 Sequence Diagram การตัดรอบเคลียร์เงินช่าง">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">ภาพที่ 3.4 แผนภาพลำดับ (Sequence Diagram) การตัดรอบเคลียร์เงินช่าง</h2>
-      <div class="slide-content">
-        <div class="diagram-frame" onclick="openLightbox('Docs/Diagram/diag_3_4_seq_settle.png')">
-          <img src="Docs/Diagram/diag_3_4_seq_settle.png" alt="Sequence Diagram Barber Settlement">
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 38: SEQUENCE DIAGRAM - VOID BILL -->
-    <div class="slide" data-title="ภาพที่ 3.5 Sequence Diagram การทำโมฆะบิล">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">ภาพที่ 3.5 แผนภาพลำดับ (Sequence Diagram) การทำโมฆะบิล (Void Bill)</h2>
-      <div class="slide-content">
-        <div class="diagram-frame" onclick="openLightbox('Docs/Diagram/diag_3_5_seq_void.png')">
-          <img src="Docs/Diagram/diag_3_5_seq_void.png" alt="Sequence Diagram Void Bill">
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 39: FLOWCHART SLIP VERIFICATION -->
-    <div class="slide" data-title="ภาพที่ 3.6 ผังงานการตรวจสอบสลิป">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">ภาพที่ 3.6 ผังงานการตรวจสอบสลิปและตรรกะการประมวลผลธุรกรรม</h2>
-      <div class="slide-content">
-        <div class="diagram-frame" onclick="openLightbox('Docs/Diagram/diag_3_6_flowchart.png')">
-          <img src="Docs/Diagram/diag_3_6_flowchart.png" alt="Flowchart Slip Verification">
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 40: DFD LEVEL 0 & USE CASE -->
-    <div class="slide" data-title="ภาพที่ 3.13 & 3.14 DFD และ Use Case Diagram">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">แผนภาพกระแสข้อมูล (DFD Level 0) และ แผนภาพยูสเคส (Use Case)</h2>
-      <div class="slide-content">
-        <div style="display: flex; gap: 24px; width: 95%; max-width: 1250px; height: 470px;">
-          <div class="diagram-frame" style="flex: 1; height: 100%;" onclick="openLightbox('Docs/Diagram/diag_3_13_dfd.png')">
-            <img src="Docs/Diagram/diag_3_13_dfd.png" alt="DFD Level 0">
-          </div>
-          <div class="diagram-frame" style="flex: 1; height: 100%;" onclick="openLightbox('Docs/Diagram/diag_3_14_usecase.png')">
-            <img src="Docs/Diagram/diag_3_14_usecase.png" alt="Use Case Diagram">
-          </div>
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 41: ER-DIAGRAM -->
-    <div class="slide" data-title="3.3.2 แผนภาพความสัมพันธ์ของข้อมูล (ER-Diagram)">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">3.3.2 การออกแบบฐานข้อมูล: แผนภาพแสดงความสัมพันธ์ของข้อมูล (ER-Diagram)</h2>
-      <div class="slide-content">
-        <div class="diagram-frame" onclick="openLightbox('Docs/Diagram/diag_3_7_er_diagram.png')">
-          <img src="Docs/Diagram/diag_3_7_er_diagram.png" alt="ER-Diagram">
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 42: DATA DICTIONARY - USERS -->
-    <div class="slide" data-title="ตารางจัดการข้อมูลช่างตัดผม (users)">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">ตารางจัดการข้อมูลผู้ใช้งานและช่างตัดผม (users)</h2>
-      <div class="slide-content">
-        <table class="academic-table">
-          <thead>
-            <tr>
-              <th>ลำดับ (No)</th>
-              <th>คุณสมบัติ (Attribute)</th>
-              <th>คำอธิบาย (Description)</th>
-              <th>ขนาด (Width)</th>
-              <th>ประเภท (Type)</th>
-              <th>ประเภทคีย์ (Key Type)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="center">1</td>
-              <td><strong>user_id</strong></td>
-              <td>รหัสประจำตัวผู้ใช้งาน/ช่างตัดผม</td>
-              <td class="center">-</td>
-              <td class="center">INT</td>
-              <td class="center"><strong>PK</strong></td>
-            </tr>
-            <tr>
-              <td class="center">2</td>
-              <td>line_uid</td>
-              <td>รหัสประจำตัวผู้ใช้บนไลน์ (LINE User ID)</td>
-              <td class="center">100</td>
-              <td class="center">VARCHAR</td>
-              <td class="center">-</td>
-            </tr>
-            <tr>
-              <td class="center">3</td>
-              <td>full_name</td>
-              <td>ชื่อ-นามสกุลจริงของช่าง</td>
-              <td class="center">255</td>
-              <td class="center">VARCHAR</td>
-              <td class="center">-</td>
-            </tr>
-            <tr>
-              <td class="center">4</td>
-              <td>nickname</td>
-              <td>ชื่อเล่นของช่างสำหรับแสดงหน้าร้าน</td>
-              <td class="center">100</td>
-              <td class="center">VARCHAR</td>
-              <td class="center">-</td>
-            </tr>
-            <tr>
-              <td class="center">5</td>
-              <td>role</td>
-              <td>สิทธิ์การใช้งานระบบ ('admin', 'barber')</td>
-              <td class="center">20</td>
-              <td class="center">VARCHAR</td>
-              <td class="center">-</td>
-            </tr>
-            <tr>
-              <td class="center">6</td>
-              <td>commission_rate</td>
-              <td>อัตราส่วนแบ่งคอมมิชชันของช่าง (เช่น 0.50)</td>
-              <td class="center">5,2</td>
-              <td class="center">DECIMAL</td>
-              <td class="center">-</td>
-            </tr>
-            <tr>
-              <td class="center">7</td>
-              <td>is_active</td>
-              <td>สถานะการทำงาน (1 = พร้อมทำงาน, 0 = พักงาน)</td>
-              <td class="center">1</td>
-              <td class="center">TINYINT</td>
-              <td class="center">-</td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="table-caption">ตารางที่ 3.1 ตารางจัดการข้อมูลผู้ใช้งานและช่างตัดผม (users)</div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 43: DATA DICTIONARY - SERVICES -->
-    <div class="slide" data-title="ตารางจัดการข้อมูลรายการบริการ (services)">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">ตารางจัดการข้อมูลรายการบริการ (services)</h2>
-      <div class="slide-content">
-        <table class="academic-table">
-          <thead>
-            <tr>
-              <th>ลำดับ (No)</th>
-              <th>คุณสมบัติ (Attribute)</th>
-              <th>คำอธิบาย (Description)</th>
-              <th>ขนาด (Width)</th>
-              <th>ประเภท (Type)</th>
-              <th>ประเภทคีย์ (Key Type)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="center">1</td>
-              <td><strong>service_id</strong></td>
-              <td>รหัสประจำตัวบริการ</td>
-              <td class="center">-</td>
-              <td class="center">INT</td>
-              <td class="center"><strong>PK</strong></td>
-            </tr>
-            <tr>
-              <td class="center">2</td>
-              <td>service_name</td>
-              <td>ชื่อรายการบริการตัดผม</td>
-              <td class="center">255</td>
-              <td class="center">VARCHAR</td>
-              <td class="center">-</td>
-            </tr>
-            <tr>
-              <td class="center">3</td>
-              <td>base_price</td>
-              <td>ราคาค่าบริการมาตรฐาน (บาท)</td>
-              <td class="center">10,2</td>
-              <td class="center">DECIMAL</td>
-              <td class="center">-</td>
-            </tr>
-            <tr>
-              <td class="center">4</td>
-              <td>duration_mins</td>
-              <td>ระยะเวลาให้บริการโดยประมาณ (นาที)</td>
-              <td class="center">-</td>
-              <td class="center">INT</td>
-              <td class="center">-</td>
-            </tr>
-            <tr>
-              <td class="center">5</td>
-              <td>image_url</td>
-              <td>ที่อยู่ไฟล์ภาพตัวอย่างทรงผม</td>
-              <td class="center">500</td>
-              <td class="center">VARCHAR</td>
-              <td class="center">-</td>
-            </tr>
-            <tr>
-              <td class="center">6</td>
-              <td>is_active</td>
-              <td>สถานะเปิดให้บริการ (1 = เปิด, 0 = ปิด)</td>
-              <td class="center">1</td>
-              <td class="center">TINYINT</td>
-              <td class="center">-</td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="table-caption">ตารางที่ 3.2 ตารางจัดการข้อมูลบริการ (services)</div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 44: DATA DICTIONARY - TRANSACTIONS -->
-    <div class="slide" data-title="ตารางจัดการข้อมูลธุรกรรมรายรับ (transactions)">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">ตารางจัดการข้อมูลธุรกรรมรายรับ (transactions)</h2>
-      <div class="slide-content">
-        <table class="academic-table">
-          <thead>
-            <tr>
-              <th>ลำดับ (No)</th>
-              <th>คุณสมบัติ (Attribute)</th>
-              <th>คำอธิบาย (Description)</th>
-              <th>ขนาด (Width)</th>
-              <th>ประเภท (Type)</th>
-              <th>ประเภทคีย์ (Key Type)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="center">1</td>
-              <td><strong>transaction_id</strong></td>
-              <td>รหัสประจำตัวธุรกรรม/บิล</td>
-              <td class="center">-</td>
-              <td class="center">INT</td>
-              <td class="center"><strong>PK</strong></td>
-            </tr>
-            <tr>
-              <td class="center">2</td>
-              <td>bill_no</td>
-              <td>เลขที่ใบเสร็จรับเงิน (เช่น TXN-39)</td>
-              <td class="center">50</td>
-              <td class="center">VARCHAR</td>
-              <td class="center">-</td>
-            </tr>
-            <tr>
-              <td class="center">3</td>
-              <td>user_id</td>
-              <td>รหัสช่างผู้ให้บริการตัดผม</td>
-              <td class="center">-</td>
-              <td class="center">INT</td>
-              <td class="center"><strong>FK</strong></td>
-            </tr>
-            <tr>
-              <td class="center">4</td>
-              <td>payment_method</td>
-              <td>ช่องทางชำระ ('cash', 'transfer')</td>
-              <td class="center">20</td>
-              <td class="center">VARCHAR</td>
-              <td class="center">-</td>
-            </tr>
-            <tr>
-              <td class="center">5</td>
-              <td>amount</td>
-              <td>ยอดเงินค่าบริการจริงที่ชำระ</td>
-              <td class="center">10,2</td>
-              <td class="center">DECIMAL</td>
-              <td class="center">-</td>
-            </tr>
-            <tr>
-              <td class="center">6</td>
-              <td>commission_amount</td>
-              <td>ส่วนแบ่งค่าคอมมิชชันช่าง</td>
-              <td class="center">10,2</td>
-              <td class="center">DECIMAL</td>
-              <td class="center">-</td>
-            </tr>
-            <tr>
-              <td class="center">7</td>
-              <td>trans_ref</td>
-              <td>เลขอ้างอิงสลิปธนาคาร (ป้องกันสลิปซ้ำ)</td>
-              <td class="center">100</td>
-              <td class="center">VARCHAR</td>
-              <td class="center">-</td>
-            </tr>
-            <tr>
-              <td class="center">8</td>
-              <td>status</td>
-              <td>สถานะบิล ('paid', 'void')</td>
-              <td class="center">20</td>
-              <td class="center">VARCHAR</td>
-              <td class="center">-</td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="table-caption">ตารางที่ 3.3 ตารางจัดการข้อมูลธุรกรรมและรายรับ (transactions)</div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 45: DATA DICTIONARY - PAYOUTS -->
-    <div class="slide" data-title="ตารางจัดการข้อมูลการตัดรอบเคลียร์เงินช่าง (payouts)">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">ตารางจัดการข้อมูลการตัดรอบเคลียร์เงินช่าง (payouts)</h2>
-      <div class="slide-content">
-        <table class="academic-table">
-          <thead>
-            <tr>
-              <th>ลำดับ (No)</th>
-              <th>คุณสมบัติ (Attribute)</th>
-              <th>คำอธิบาย (Description)</th>
-              <th>ขนาด (Width)</th>
-              <th>ประเภท (Type)</th>
-              <th>ประเภทคีย์ (Key Type)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="center">1</td>
-              <td><strong>payout_id</strong></td>
-              <td>รหัสประจำตัวรอบการเคลียร์เงิน</td>
-              <td class="center">-</td>
-              <td class="center">INT</td>
-              <td class="center"><strong>PK</strong></td>
-            </tr>
-            <tr>
-              <td class="center">2</td>
-              <td>payout_no</td>
-              <td>เลขที่รอบเคลียร์เงิน (เช่น PAY-202610-01)</td>
-              <td class="center">50</td>
-              <td class="center">VARCHAR</td>
-              <td class="center">-</td>
-            </tr>
-            <tr>
-              <td class="center">3</td>
-              <td>user_id</td>
-              <td>รหัสช่างตัดผมที่รับเงินส่วนแบ่ง</td>
-              <td class="center">-</td>
-              <td class="center">INT</td>
-              <td class="center"><strong>FK</strong></td>
-            </tr>
-            <tr>
-              <td class="center">4</td>
-              <td>total_jobs</td>
-              <td>จำนวนงาน/หัวที่ให้บริการในรอบนี้</td>
-              <td class="center">-</td>
-              <td class="center">INT</td>
-              <td class="center">-</td>
-            </tr>
-            <tr>
-              <td class="center">5</td>
-              <td>total_commission</td>
-              <td>ยอดเงินคอมมิชชันสุทธิที่โอนจ่ายช่าง</td>
-              <td class="center">10,2</td>
-              <td class="center">DECIMAL</td>
-              <td class="center">-</td>
-            </tr>
-            <tr>
-              <td class="center">6</td>
-              <td>slip_url</td>
-              <td>ที่อยู่ไฟล์ภาพสลิปหลักฐานการจ่ายเงิน</td>
-              <td class="center">500</td>
-              <td class="center">VARCHAR</td>
-              <td class="center">-</td>
-            </tr>
-            <tr>
-              <td class="center">7</td>
-              <td>settled_at</td>
-              <td>วันและเวลาที่ทำรายการเคลียร์เงินสำเร็จ</td>
-              <td class="center">-</td>
-              <td class="center">DATETIME</td>
-              <td class="center">-</td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="table-caption">ตารางที่ 3.4 ตารางจัดการข้อมูลการตัดรอบเคลียร์เงินช่าง (payouts)</div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 46: UI DESIGN - RICH MENU -->
-    <div class="slide" data-title="3.3.3.1 ผลการออกแบบหน้าริชเมนู">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">3.3.3 การออกแบบส่วนติดต่อกับผู้ใช้</h2>
-      <div class="slide-subtitle">3.3.3.1 ผลการทำงานที่ได้จากการออกแบบหน้าริชเมนูบนไลน์ (LINE Rich Menu)</div>
-      <div class="slide-content">
-        <div class="ui-showcase-container">
-          <div class="ui-showcase-img" onclick="openLightbox('Docs/Diagram/diag_3_8_richmenu.png')">
-            <img src="Docs/Diagram/diag_3_8_richmenu.png" alt="Rich Menu Design">
-          </div>
-          <div class="ui-showcase-desc">
-            <p style="margin-bottom: 16px;">
-              <strong>หน้าริชเมนู (Rich Menu Page):</strong> ออกแบบให้แสดงอยู่ด้านล่างของหน้าต่างแชท LINE Official Account ของร้าน แบ่งออกเป็น 2 บทบาท:
-            </p>
-            <ul class="bullet-list">
-              <li><strong>ริชเมนูลูกค้า (Customer Rich Menu):</strong> ประกอบด้วย ปุ่มแจ้งชำระเงิน (เปิดหน้า LIFF), ปุ่มรายการบริการและราคา, และปุ่มโปรโมชั่นประจำเดือน</li>
-              <li><strong>ริชเมนูแอดมิน (Admin Rich Menu):</strong> ช่องทางลัดสำหรับเจ้าของร้านเข้าสู่ระบบเว็บแอดมินหลังบ้าน และการตัดรอบเคลียร์เงิน</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 47: UI DESIGN - LIFF PAYMENT -->
-    <div class="slide" data-title="3.3.3.2 ผลการออกแบบหน้าจอแจ้งชำระเงิน (LIFF)">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">3.3.3 การออกแบบส่วนติดต่อกับผู้ใช้</h2>
-      <div class="slide-subtitle">3.3.3.2 ผลการทำงานที่ได้จากการออกแบบหน้าจอแจ้งชำระเงิน (LIFF Form)</div>
-      <div class="slide-content">
-        <div class="ui-showcase-container">
-          <div class="ui-showcase-img" onclick="openLightbox('Docs/Diagram/diag_3_9_ui_liff.png')">
-            <img src="Docs/Diagram/diag_3_9_ui_liff.png" alt="LIFF Payment Form">
-          </div>
-          <div class="ui-showcase-desc">
-            <div style="margin-bottom: 12px;">
-              <a href="product.html" target="_blank" style="display:inline-flex; align-items:center; gap:6px; background:#06C755; color:#FFF; text-decoration:none; padding:8px 16px; border-radius:6px; font-weight:600; font-size:1.05rem; box-shadow:0 2px 8px rgba(6,199,85,0.3);">
-                <span>📱 เปิดหน้าจอชิ้นงานจริง (product.html)</span> ↗
-              </a>
-            </div>
-            
-            <p style="margin-bottom: 16px;">
-              <strong>หน้าจอแจ้งชำระเงิน (LIFF Form Page):</strong> เป็นหน้าเว็บแอปพลิเคชันที่ฝังในไลน์ ลูกค้าสามารถเลือกช่างตัดผมพร้อมรูปถ่าย, เลือกบริการตัดผม และเลือกช่องทางชำระเงิน:
-            </p>
-            <ul class="bullet-list">
-              <li><strong>ชำระเงินสด (Cash):</strong> กดยืนยันชำระเงินสดหน้าร้าน ระบบบันทึกและส่งใบเสร็จทันที</li>
-              <li><strong>โอนเงิน (Transfer):</strong> แสดง QR Code พร้อมยอดเงิน และช่องอัปโหลดสลิปเพื่อตรวจสอบอัตโนมัติด้วย Slip2Go</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 48: UI DESIGN - E-RECEIPT & ALERT -->
-    <div class="slide" data-title="3.3.3.3 ผลการออกแบบใบเสร็จอิเล็กทรอนิกส์ (e-Receipt)">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">3.3.3 การออกแบบส่วนติดต่อกับผู้ใช้</h2>
-      <div class="slide-subtitle">3.3.3.3 ผลการออกแบบใบเสร็จอิเล็กทรอนิกส์ (e-Receipt) และข้อความแจ้งเตือนช่าง</div>
-      <div class="slide-content">
-        <div class="ui-showcase-container">
-          <div class="ui-showcase-img" onclick="openLightbox('Docs/Diagram/diag_3_10_receipt.png')">
-            <img src="Docs/Diagram/diag_3_10_receipt.png" alt="e-Receipt & Barber Alert">
-          </div>
-          <div class="ui-showcase-desc">
-            <p style="margin-bottom: 16px;">
-              <strong>ใบเสร็จรับเงินอิเล็กทรอนิกส์ (e-Receipt):</strong> สร้างด้วย LINE Flex Message ส่งตรงเข้าแชทไลน์ของลูกค้า ระบุเลขที่บิลจริง (TXN-xx), ชื่อช่าง, บริการ, ยอดเงิน และเวลาชำระเงินอย่างเป็นทางการ
-            </p>
-            <p>
-              <strong>ข้อความแจ้งเตือนช่างตัดผม:</strong> ระบบส่งข้อความแจ้งเตือนเงินเข้าและค่าคอมมิชชันที่ได้รับแบบเรียลไทม์เข้าไลน์ช่างทันที ทำให้ช่างรับทราบยอดได้ทันที
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 49: UI DESIGN - ADMIN BACKOFFICE -->
-    <div class="slide" data-title="3.3.3.4 ผลการออกแบบระบบเว็บแอดมินจัดการหลังบ้าน">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">3.3.3 การออกแบบส่วนติดต่อกับผู้ใช้</h2>
-      <div class="slide-subtitle">3.3.3.4 ผลการออกแบบระบบเว็บแอดมินจัดการหลังบ้าน (Admin Backoffice)</div>
-      <div class="slide-content">
-        <div class="ui-showcase-container">
-          <div class="ui-showcase-img" onclick="openLightbox('Docs/Diagram/diag_3_11_admin.png')">
-            <img src="Docs/Diagram/diag_3_11_admin.png" alt="Admin Backoffice">
-          </div>
-          <div class="ui-showcase-desc">
-            <div style="margin-bottom: 12px;">
-              <a href="product.html" target="_blank" style="display:inline-flex; align-items:center; gap:6px; background:#0284C7; color:#FFF; text-decoration:none; padding:8px 16px; border-radius:6px; font-weight:600; font-size:1.05rem; box-shadow:0 2px 8px rgba(2,132,199,0.3);">
-                <span>💻 เปิดระบบหลังบ้านจริง (product.html)</span> ↗
-              </a>
-            </div>
-            
-            <p style="margin-bottom: 16px;">
-              <strong>ระบบเว็บแอดมินหลังบ้าน (Admin Backoffice Page):</strong> พัฒนาเพื่อให้เจ้าของร้านควบคุมดูแลกิจการได้แบบรวมศูนย์:
-            </p>
-            <ul class="bullet-list">
-              <li><strong>จัดการช่าง (CRUD Barbers):</strong> เพิ่ม แก้ไข ผูก LINE UID และกำหนดอัตราคอมมิชชัน</li>
-              <li><strong>จัดการบริการ (CRUD Services):</strong> ปรับเปลี่ยนราคาและระยะเวลาบริการ</li>
-              <li><strong>ประวัติธุรกรรม & โมฆะบิล:</strong> ค้นหาบิลตามวันที่/ช่าง และปุ่มทำโมฆะบิลพร้อมบันทึก Audit Log</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 50: UI DESIGN - SETTLEMENT & LOOKER STUDIO -->
-    <div class="slide" data-title="3.3.3.5 ผลการออกแบบระบบตัดรอบเคลียร์เงินและแดชบอร์ด">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">3.3.3 การออกแบบส่วนติดต่อกับผู้ใช้</h2>
-      <div class="slide-subtitle">3.3.3.5 ผลการออกแบบระบบตัดรอบเคลียร์เงินช่าง และแดชบอร์ด Looker Studio</div>
-      <div class="slide-content">
-        <div class="ui-showcase-container">
-          <div class="ui-showcase-img" onclick="openLightbox('Docs/Diagram/diag_3_12_looker.png')">
-            <img src="Docs/Diagram/diag_3_12_looker.png" alt="Settlement & Looker Studio">
-          </div>
-          <div class="ui-showcase-desc">
-            <p style="margin-bottom: 16px;">
-              <strong>ระบบตัดรอบเคลียร์เงินช่าง (Barber Settlement):</strong> สรุปยอดค่าคอมมิชชันสะสมของบิลที่ค้างเคลียร์ (unsettled) อัตโนมัติ พร้อมหน้าต่างแนบสลิปจ่ายช่าง และส่ง Payout Flex แจ้งช่างทันที
-            </p>
-            <p>
-              <strong>แดชบอร์ด Google Looker Studio:</strong> รายงานสถิติยอดขายรวม, ค่าคอมมิชชันช่างแต่ละคน, ช่องทางการชำระเงิน และตัวกรองช่วงเวลา เพื่อวิเคราะห์ผลประกอบการร้าน
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    
-    <!-- SLIDE 51: LIVE SYSTEM DEMONSTRATION -->
-    <div class="slide" data-title="การสาธิตการทำงานของชิ้นงานจริง">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">การสาธิตการทำงานของชิ้นงานจริง (Live Demonstration)</h2>
-      <div class="slide-subtitle">การทดสอบการทำงานเชื่อมโยงระหว่าง LINE LIFF, n8n, Slip2Go API, MySQL และ Admin Backoffice</div>
-      <div class="slide-content">
-        <div style="width: 100%; max-width: 1180px; display: flex; flex-direction: column; align-items: center; gap: 20px;">
-          
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; width: 100%;">
-            <div style="background: #F8FAFC; border: 2px solid #CBD5E1; border-radius: 10px; padding: 14px 20px; text-align: left;">
-              <p style="font-weight: 700; color: #16A34A; font-size: 1.25rem; margin-bottom: 6px;">📱 1. ฝั่งลูกค้า (LINE LIFF)</p>
-              <p style="font-size: 1.12rem; color: #334155; line-height: 1.55;">
-                • เลือกช่างตัดผมและรายการบริการพร้อมดูรูปตัวอย่าง<br>
-                • เลือกชำระเงินสด หรือ สแกนโอนเงินผ่าน PromptPay QR<br>
-                • รับใบเสร็จรับเงิน e-Receipt ตอบกลับทาง LINE ทันที
-              </p>
-            </div>
-
-            <div style="background: #F8FAFC; border: 2px solid #CBD5E1; border-radius: 10px; padding: 14px 20px; text-align: left;">
-              <p style="font-weight: 700; color: #2563EB; font-size: 1.25rem; margin-bottom: 6px;">⚡ 2. ฝั่งประมวลผลอัตโนมัติ (n8n + Slip2Go)</p>
-              <p style="font-size: 1.12rem; color: #334155; line-height: 1.55;">
-                • Slip2Go API ตรวจสอบสลิป ป้องกันสลิปซ้ำ และตรวจยอดเงิน<br>
-                • n8n คำนวณส่วนแบ่งค่าคอมมิชชันช่างตามอัตราเปอร์เซ็นต์จริง<br>
-                • บันทึกธุรกรรมลงฐานข้อมูล MySQL บน Railway Cloud
-              </p>
-            </div>
-
-            <div style="background: #F8FAFC; border: 2px solid #CBD5E1; border-radius: 10px; padding: 14px 20px; text-align: left;">
-              <p style="font-weight: 700; color: #D97706; font-size: 1.25rem; margin-bottom: 6px;">🔔 3. ฝั่งช่างตัดผม (Barber Alert)</p>
-              <p style="font-size: 1.12rem; color: #334155; line-height: 1.55;">
-                • รับการแจ้งเตือนยอดเงินเข้าและค่าคอมมิชชันผ่านแชท LINE เรียลไทม์<br>
-                • รับสลิปแจ้งยอดเคลียร์เงินและแจ้งเตือนเมื่อมีบิลโมฆะ
-              </p>
-            </div>
-
-            <div style="background: #F8FAFC; border: 2px solid #CBD5E1; border-radius: 10px; padding: 14px 20px; text-align: left;">
-              <p style="font-weight: 700; color: #9333EA; font-size: 1.25rem; margin-bottom: 6px;">💻 4. ฝั่งเจ้าของร้าน (Admin & Looker)</p>
-              <p style="font-size: 1.12rem; color: #334155; line-height: 1.55;">
-                • จัดการ CRUD ข้อมูลช่างและบริการ<br>
-                • สั่งทำโมฆะบิล (Void Bill) พร้อม Audit Log<br>
-                • ตัดรอบเคลียร์เงินช่าง (Settlement) และดูสถิติ Looker Studio
-              </p>
-            </div>
-          </div>
-
-          <!-- Action Launch Button -->
-          <div style="margin-top: 10px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center;">
-            <a href="summary.html" style="display: inline-flex; align-items: center; gap: 10px; background: #D97706; color: #FFF; text-decoration: none; padding: 12px 26px; border-radius: 10px; font-weight: 700; font-size: 1.25rem; box-shadow: 0 4px 15px rgba(217,119,6,0.4); transition: transform 0.2s;">
-              <span>⚡ สไลด์สรุปประเด็นหลัก (summary.html)</span> ↗
-            </a>
-            <a href="product.html" style="display: inline-flex; align-items: center; gap: 10px; background: #059669; color: #FFF; text-decoration: none; padding: 12px 26px; border-radius: 10px; font-weight: 700; font-size: 1.25rem; box-shadow: 0 4px 15px rgba(5,150,105,0.4); transition: transform 0.2s;">
-              <span>🏆 หน้าโชว์พรีเซนต์ชิ้นงาน (product.html)</span> ↗
-            </a>
-            <a href="https://lookerstudio.google.com/reporting/41175654-e407-4286-9dc7-8549e377e8be" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: #0284C7; color: #FFF; text-decoration: none; padding: 12px 24px; border-radius: 10px; font-weight: 600; font-size: 1.25rem; box-shadow: 0 4px 12px rgba(2,132,199,0.3);">
-              <span>📊 แดชบอร์ดสรุปผล Looker Studio</span> ↗
-            </a>
-          </div>
-
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-    <!-- SLIDE 52: BIBLIOGRAPHY -->
-    <div class="slide" data-title="บรรณานุกรม">
-      <div class="slide-tab-left"></div>
-      <div class="slide-tab-right"></div>
-      <h2 class="slide-title">บรรณานุกรม</h2>
-      <div class="slide-content">
-        <div class="bib-container">
-          <div class="bib-item">
-            พิชยา สุขปลั่ง, ประกฤต จันทร์ขำ, วรัญญู คุณพินิจ, ศุภกฤษ นาคป้อมฉิน และ สุพิชฌาย์ จันทร์เรือง. (2568). <em>การพัฒนาระบบแจ้งซ่อมอัจฉริยะผ่านแชทบอท กรณีศึกษาองค์กรปกครองส่วนท้องถิ่น เทศบาลตำบลหวายเหนียว</em>.
-          </div>
-          <div class="bib-item">
-            ถนอม กองใจ และ อริษา ทาทอง. (2565). <em>การพัฒนาระบบแจ้งเตือนกิจกรรมและการนัดหมายอัตโนมัติผ่านแอปพลิเคชันไลน์ ของนักศึกษามหาวิทยาลัยเชียงใหม่</em>. วารสาร Mahidol R2R e-Journal, 9(2), 7–12.
-          </div>
-          <div class="bib-item">
-            พิษณุ ใจกล้า และ แก้ววราภรณ์ กรแก้ว. (2569). <em>การประยุกต์ใช้แพลตฟอร์มการทำงานอัตโนมัติแบบโอเพนซอร์ส (n8n) ในการจัดการและแจ้งเตือนข้อมูลทางอีเมล</em>. มหาวิทยาลัยธรรมศาสตร์.
-          </div>
-          <div class="bib-item">
-            พริษฐ์กวินท์ นาควะรี, ธีรดนย์ ชัยวัฒน์ และ กฤษณ์ ปานเจริญ. (2569). <em>การพัฒนาตัวแทนปัญญาประดิษฐ์ (AI Agent) เพื่อการบริการตอบคำถามและแนะนำข้อมูลการเรียนรู้ตลอดชีวิต: น้องไลฟ์ลอง</em>. สำนักการเรียนรู้ตลอดชีวิตพระจอมเกล้าเจ้าคุณทหารลาดกระบัง (KLLC), สจล.
-          </div>
-          <div class="bib-item">
-            อภิสิทธิ์ โยลัย, กาญจนา คำสมบัติ, ทินกร คุณาสิทธิ์ และ อนุวัต ชัยเกียรติธรรม. (2565). <em>แอปพลิเคชันการจองคิวร้านเสริมสวย</em>. มหาวิทยาลัยราชภัฏมหาสารคาม.
-          </div>
-        </div>
-      </div>
-      <div class="slide-bottom-bar"></div>
-    </div>
-
-  </div> <!-- End Deck Container -->
-
-  <!-- Slide Drawer / Overview Modal -->
-  <div class="drawer-modal" id="drawerModal">
+  <!-- Table of Contents Drawer -->
+  <div class="drawer-overlay" id="drawerOverlay" onclick="toggleDrawer()"></div>
+  <div class="drawer-menu" id="drawerMenu">
     <div class="drawer-header">
-      <h2>สารบัญสไลด์ทั้งหมด (52 สไลด์)</h2>
-      <button class="btn-ctrl" onclick="toggleDrawer()" style="font-size: 1.5rem;">✕ ปิด</button>
+      <h3>📑 สารบัญสไลด์ (20 สไลด์)</h3>
+      <button onclick="toggleDrawer()" style="background:none;border:none;font-size:20px;cursor:pointer;color:#64748B;">✕</button>
     </div>
-    <div class="drawer-grid" id="drawerGrid"></div>
+    <ul class="drawer-list" id="drawerList">
+      <!-- Generated dynamically -->
+    </ul>
   </div>
 
   <!-- Image Lightbox Modal -->
-  <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox()">
-    <img id="lightboxImg" src="" alt="Enlarged Diagram">
+  <div class="lightbox-overlay" id="lightboxModal" onclick="closeLightbox()">
+    <img id="lightboxImg" src="" alt="ภาพขยาย" onclick="event.stopPropagation()">
+  </div>
+
+  <!-- Defense Shield Modal -->
+  <div class="modal-overlay" id="shieldModal" onclick="closeShieldModal()">
+    <div class="shield-box" onclick="event.stopPropagation()">
+      <div class="shield-header">
+        <h3>🛡️ เกราะป้องกันตัว: รวมแนวทางตอบคำถามกรรมการเชิงลึก (Defense Shield)</h3>
+        <button onclick="closeShieldModal()">✕</button>
+      </div>
+      <div class="shield-content">
+        <div class="qa-card">
+          <div class="qa-q">❓ 1. ทำไมใช้ n8n Automation แทนการเขียนโค้ด Backend เพียวๆ ด้วย Node.js หรือ Python?</div>
+          <div class="qa-a">
+            <strong>ตอบ:</strong> n8n เป็น Workflow Orchestration ระดับ Enterprise ที่รันแบบ Self-Hosted บน Railway ช่วยลด Development Time ได้กว่า 60%, มี Visual Debugger และ Execution History ให้เห็น Error และ State ของธุรกรรมการเงินแบบ Real-time อีกทั้งยังจัดการ Webhook Retry, Error Handling และ Queue ได้ในตัว ทำให้การบำรุงรักษาในระยะยาวทำได้ง่ายและเสถียรครับ
+          </div>
+        </div>
+        <div class="qa-card">
+          <div class="qa-q">❓ 2. ป้องกันสลิปปลอมและการนำสลิปเก่ามาวนใช้ซ้ำ (Slip Reuse) อย่างไร?</div>
+          <div class="qa-a">
+            <strong>ตอบ:</strong> ระบบเชื่อมต่อ Slip2Go API ซึ่งสแกน QR Code เพื่อดึงเลขอ้างอิงธนาคาร (Bank Transaction Ref) เมื่อได้เลข Ref ระบบจะเช็กในตาราง transactions ของ MySQL ทันที หากพบว่าเคยใช้แล้วจะปฏิเสธทันที นอกจากนี้มี IF Node ตรวจสอบชื่อบัญชีผู้รับเงิน 'นายสราวุฒิ อุยยาหาญ' และยอดเงินตรงตามราคาบริการเป๊ะครับ
+          </div>
+        </div>
+        <div class="qa-card">
+          <div class="qa-q">❓ 3. ถ้าลูกค้า 2 คนสแกนจ่ายพร้อมกัน (Concurrency / Race Condition) ฐานข้อมูลรับไหวไหม?</div>
+          <div class="qa-a">
+            <strong>ตอบ:</strong> ฐานข้อมูล MySQL รันบน Railway Cloud พร้อม InnoDB Engine ที่รองรับ Row-level Locking และ Webhook ของ n8n เป็น Asynchronous Queue รับประกันว่าข้อมูลจะไม่สูญหายและไม่เกิด Race Condition บันทึกซ้ำซ้อนแน่นอนครับ
+          </div>
+        </div>
+        <div class="qa-card">
+          <div class="qa-q">❓ 4. สูตรคำนวณส่วนแบ่งค่าคอมมิชชันช่างมีความยืดหยุ่นอย่างไร?</div>
+          <div class="qa-a">
+            <strong>ตอบ:</strong> ตาราง users กำหนดอัตราส่วนแบ่ง (Commission Rate) แยกตามทักษะช่างแต่ละคนได้ (เช่น 50%, 60%) เมื่อมีบิลเข้า ระบบจะคำนวณและบันทึกลงฟิลด์ barber_earn และ shop_earn ในตาราง transactions ทันทีแบบคงที่ ป้องกันความคลาดเคลื่อนย้อนหลังแม้มีการปรับอัตราเปอร์เซ็นต์ในอนาคตครับ
+          </div>
+        </div>
+        <div class="qa-card">
+          <div class="qa-q">❓ 5. กรณีเงินสดหน้าร้าน (Cash) ป้องกันช่างไม่คีย์บิลได้อย่างไร?</div>
+          <div class="qa-a">
+            <strong>ตอบ:</strong> หน้าร้านมีป้ายแจ้งเตือน "โปรดขอใบเสร็จรับเงิน e-Receipt ทุกครั้ง" และลูกค้าที่ทำรายการผ่าน LIFF จะได้รับใบเสร็จสีเขียวใน LINE ทันที นอกจากนี้เจ้าของร้านสามารถตรวจเช็กสต็อกบริการและจำนวนลูกค้าหน้าร้านเปรียบเทียบกับยอดบิลในระบบได้ตลอดเวลาครับ
+          </div>
+        </div>
+        <div class="qa-card">
+          <div class="qa-q">❓ 6. ระบบโมฆะบิล (Void Bill) มีความเสี่ยงถูกแอบยกเลิกบิลโดยพลการไหม?</div>
+          <div class="qa-a">
+            <strong>ตอบ:</strong> การทำโมฆะบิลต้องทำผ่าน Admin Backoffice เท่านั้น และระบบจะบันทึก Audit Log ไม่ลบแถวทิ้ง แต่ปรับยอดเป็น 0 พร้อมขึ้นแถบแดง และยิง LINE Push Notification เตือนช่างทันทีแบบ Real-time ทำให้ช่างทราบทันทีว่าบิลไหนถูกยกเลิก ไม่สามารถแอบทำโดยพลการได้ครับ
+          </div>
+        </div>
+        <div class="qa-card">
+          <div class="qa-q">❓ 7. ถ้า Slip2Go API หรือเครือข่ายธนาคารขัดข้อง ลูกค้าจะจ่ายเงินอย่างไร?</div>
+          <div class="qa-a">
+            <strong>ตอบ:</strong> ระบบมี Fallback Mechanism โดยลูกค้าสามารถเลือกชำระเป็น "เงินสดหน้าร้าน (Cash)" หรือแนบสลิปเพื่อให้แอดมินตรวจสอบแบบ Manual ที่หน้าเว็บหลังบ้านได้ทันที การทำงานของร้านจึงไม่หยุดชะงักครับ
+          </div>
+        </div>
+        <div class="qa-card">
+          <div class="qa-q">❓ 8. Looker Studio เชื่อมต่อ MySQL อย่างไร และข้อมูลอัปเดตเมื่อไหร่?</div>
+          <div class="qa-a">
+            <strong>ตอบ:</strong> เชื่อมต่อผ่าน MySQL Native Connector บน Railway Cloud ผ่านพอร์ต SSL เข้ารหัส ปลอดภัย ดึงข้อมูล Query อัตโนมัติและแสดงผลแบบ Real-time เมื่อเปิดดูแดชบอร์ดครับ
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script>
-    // Slide Navigation Controller
-    const slides = Array.from(document.querySelectorAll('.slide'));
-    const totalSlides = slides.length;
-    let currentSlide = 0;
+    let currentSlide = 1;
+    const totalSlides = 20;
 
-    const progressBar = document.getElementById('progressBar');
-    const slideIndicator = document.getElementById('slideIndicator');
-    const drawerModal = document.getElementById('drawerModal');
-    const drawerGrid = document.getElementById('drawerGrid');
-    const lightboxModal = document.getElementById('lightboxModal');
-    const lightboxImg = document.getElementById('lightboxImg');
+    function resizeStage() {
+      const stage = document.getElementById('stage');
+      const isMobile = window.innerWidth <= 1024 || window.innerHeight <= 640;
+      
+      if (isMobile) {
+        stage.style.transform = 'none';
+        stage.style.width = '100%';
+        stage.style.height = 'auto';
+        return;
+      }
 
-    // Build Thumbnail Drawer
-    function buildDrawer() {
-      drawerGrid.innerHTML = '';
-      slides.forEach((slide, idx) => {
-        const title = slide.getAttribute('data-title') || `สไลด์ ${idx + 1}`;
-        const item = document.createElement('div');
-        item.className = `drawer-item ${idx === currentSlide ? 'active' : ''}`;
-        item.innerHTML = `
-          <div class="item-num">สไลด์ ${idx + 1}</div>
-          <div class="item-name">${title}</div>
-        `;
-        item.onclick = () => {
-          goToSlide(idx);
-          toggleDrawer();
-        };
-        drawerGrid.appendChild(item);
-      });
+      const stageWidth = 1600;
+      const stageHeight = 900;
+      
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+      
+      const scaleX = (windowWidth - 36) / stageWidth;
+      const scaleY = (windowHeight - 80) / stageHeight;
+      const scale = Math.min(scaleX, scaleY, 1.25);
+      
+      stage.style.transform = `scale(${scale})`;
+      stage.style.width = `${stageWidth}px`;
+      stage.style.height = `${stageHeight}px`;
     }
 
-    function updateSlide() {
-      slides.forEach((slide, idx) => {
-        if (idx === currentSlide) {
-          slide.classList.add('active');
-        } else {
-          slide.classList.remove('active');
-        }
+    function showSlide(index) {
+      if (index < 1) index = 1;
+      if (index > totalSlides) index = totalSlides;
+      
+      currentSlide = index;
+      
+      document.querySelectorAll('.slide').forEach((slide, i) => {
+        slide.classList.toggle('active', i + 1 === currentSlide);
       });
+      
+      const indicator = document.getElementById('slideIndicator');
+      if (indicator) {
+        indicator.textContent = `${String(currentSlide).padStart(2, '0')} / ${String(totalSlides).padStart(2, '0')}`;
+      }
 
-      // Update counter and progress bar
-      slideIndicator.textContent = `${currentSlide + 1} / ${totalSlides}`;
-      const progressPercent = ((currentSlide + 1) / totalSlides) * 100;
-      progressBar.style.width = `${progressPercent}%`;
-
-      // Update URL hash
-      window.location.hash = `#${currentSlide + 1}`;
-      try {
-        localStorage.setItem('barber_current_slide', currentSlide);
-      } catch (e) {}
-
-      // Update active in drawer
-      const drawerItems = drawerGrid.querySelectorAll('.drawer-item');
-      drawerItems.forEach((item, idx) => {
-        if (idx === currentSlide) {
-          item.classList.add('active');
-        } else {
-          item.classList.remove('active');
-        }
+      // Update drawer active item
+      document.querySelectorAll('.drawer-item').forEach((item, i) => {
+        item.classList.toggle('active', i + 1 === currentSlide);
       });
+      
+      window.location.hash = `#${currentSlide}`;
     }
 
     function nextSlide() {
-      if (currentSlide < totalSlides - 1) {
-        currentSlide++;
-        updateSlide();
+      if (currentSlide < totalSlides) {
+        showSlide(currentSlide + 1);
       }
     }
 
     function prevSlide() {
-      if (currentSlide > 0) {
-        currentSlide--;
-        updateSlide();
+      if (currentSlide > 1) {
+        showSlide(currentSlide - 1);
       }
     }
 
-    function goToSlide(index) {
-      if (index >= 0 && index < totalSlides) {
-        currentSlide = index;
-        updateSlide();
-      }
-    }
-
-    function toggleDrawer() {
-      drawerModal.classList.toggle('open');
-    }
-
-    function toggleFullScreen() {
+    function toggleFullscreen() {
       if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen().catch(err => {});
+        document.documentElement.requestFullscreen().catch(err => {
+          console.warn(`Fullscreen error: ${err.message}`);
+        });
       } else {
         if (document.exitFullscreen) {
           document.exitFullscreen();
@@ -2184,93 +1470,101 @@
       }
     }
 
-    // Lightbox for diagrams
     function openLightbox(src) {
-      lightboxImg.src = src;
-      lightboxModal.classList.add('open');
+      const modal = document.getElementById('lightboxModal');
+      const img = document.getElementById('lightboxImg');
+      if (modal && img) {
+        img.src = src;
+        modal.classList.add('active');
+      }
     }
+
     function closeLightbox() {
-      lightboxModal.classList.remove('open');
+      const modal = document.getElementById('lightboxModal');
+      if (modal) modal.classList.remove('active');
     }
 
-    // Keyboard Navigation
-    document.addEventListener('keydown', (e) => {
-      if (lightboxModal.classList.contains('open')) {
-        if (e.key === 'Escape') closeLightbox();
-        return;
-      }
-      if (drawerModal.classList.contains('open')) {
-        if (e.key === 'Escape' || e.key === 'm' || e.key === 'M' || e.key === 'o' || e.key === 'O') toggleDrawer();
-        return;
-      }
+    function openShieldModal() {
+      const modal = document.getElementById('shieldModal');
+      if (modal) modal.classList.add('active');
+    }
 
-      switch (e.key) {
-        case 'ArrowRight':
-        case 'PageDown':
-        case ' ':
-          e.preventDefault();
-          nextSlide();
-          break;
-        case 'ArrowLeft':
-        case 'PageUp':
-        case 'Backspace':
-          e.preventDefault();
-          prevSlide();
-          break;
-        case 'Home':
-          e.preventDefault();
-          goToSlide(0);
-          break;
-        case 'End':
-          e.preventDefault();
-          goToSlide(totalSlides - 1);
-          break;
-        case 'f':
-        case 'F':
-          e.preventDefault();
-          toggleFullScreen();
-          break;
-        case 'm':
-        case 'M':
-        case 'o':
-        case 'O':
-          e.preventDefault();
+    function closeShieldModal() {
+      const modal = document.getElementById('shieldModal');
+      if (modal) modal.classList.remove('active');
+    }
+
+    function toggleDrawer() {
+      const drawer = document.getElementById('drawerMenu');
+      const overlay = document.getElementById('drawerOverlay');
+      if (drawer && overlay) {
+        drawer.classList.toggle('active');
+        overlay.classList.toggle('active');
+      }
+    }
+
+    function populateDrawer() {
+      const list = document.getElementById('drawerList');
+      if (!list) return;
+      list.innerHTML = '';
+      document.querySelectorAll('.slide').forEach((slide, i) => {
+        const title = slide.getAttribute('data-title') || `สไลด์ ${i + 1}`;
+        const li = document.createElement('li');
+        li.className = `drawer-item ${i + 1 === currentSlide ? 'active' : ''}`;
+        li.innerHTML = `<span class="num">${String(i + 1).padStart(2, '0')}</span> <span>${title}</span>`;
+        li.onclick = () => {
+          showSlide(i + 1);
           toggleDrawer();
-          break;
+        };
+        list.appendChild(li);
+      });
+    }
+
+    // Keyboard Event Listener
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        prevSlide();
+      } else if (e.key === 'Home') {
+        showSlide(1);
+      } else if (e.key === 'End') {
+        showSlide(totalSlides);
+      } else if (e.key === 'f' || e.key === 'F') {
+        toggleFullscreen();
+      } else if (e.key === 'q' || e.key === 'Q') {
+        const modal = document.getElementById('shieldModal');
+        if (modal && modal.classList.contains('active')) {
+          closeShieldModal();
+        } else {
+          openShieldModal();
+        }
+      } else if (e.key === 'm' || e.key === 'M' || e.key === 'o' || e.key === 'O') {
+        toggleDrawer();
+      } else if (e.key === 'Escape') {
+        closeLightbox();
+        closeShieldModal();
+        const drawer = document.getElementById('drawerMenu');
+        const overlay = document.getElementById('drawerOverlay');
+        if (drawer) drawer.classList.remove('active');
+        if (overlay) overlay.classList.remove('active');
       }
     });
 
-    // Touch Swipe Gestures
-    let touchStartX = 0;
-    let touchEndX = 0;
-    document.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-    }, false);
-    document.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      if (touchStartX - touchEndX > 50) {
-        nextSlide();
-      } else if (touchEndX - touchStartX > 50) {
-        prevSlide();
+    window.addEventListener('resize', resizeStage);
+    window.addEventListener('load', () => {
+      populateDrawer();
+      resizeStage();
+      
+      const hash = window.location.hash;
+      if (hash && hash.startsWith('#')) {
+        const slideNum = parseInt(hash.replace('#', ''));
+        if (!isNaN(slideNum) && slideNum >= 1 && slideNum <= totalSlides) {
+          showSlide(slideNum);
+          return;
+        }
       }
-    }, false);
-
-    // Initialize Slide on Load
-    window.addEventListener('DOMContentLoaded', () => {
-      buildDrawer();
-      const hash = window.location.hash.replace('#', '');
-      const slideNum = parseInt(hash, 10);
-      if (!isNaN(slideNum) && slideNum >= 1 && slideNum <= totalSlides) {
-        currentSlide = slideNum - 1;
-      } else {
-        try {
-          const saved = parseInt(localStorage.getItem('barber_current_slide'), 10);
-          if (!isNaN(saved) && saved >= 0 && saved < totalSlides) {
-            currentSlide = saved;
-          }
-        } catch(e) {}
-      }
-      updateSlide();
+      showSlide(1);
     });
   </script>
 </body>
