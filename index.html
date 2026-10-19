@@ -1021,12 +1021,12 @@
     <div id="stage-container">
       <div id="stage">
 
-        <!-- ==================== SLIDE 01: COVER ==================== -->
+                <!-- ==================== SLIDE 01: COVER ==================== -->
         <section class="slide cover-slide active" data-slide="1" data-title="หน้าปกโครงงาน">
           <img src="images/logo.png" alt="โลโก้ร้าน" class="cover-logo" onerror="this.outerHTML='<div style=\'font-size:60px;margin-bottom:16px;\'>💈</div>'">
-          <div class="cover-tagline">วิชาโครงงานด้านเทคโนโลยีสารสนเทศ 1 (IT01) • IT NPRU</div>
-          <h1 class="cover-title">ระบบบริหารรายได้และค่าคอมมิชชันช่างตัดผมผ่านไลน์</h1>
-          <div class="cover-subtitle">LINE-Based Barbershop Income and Commission Management System</div>
+          <div class="cover-tagline">วิชาโครงงานด้านเทคโนโลยีสารสนเทศ 1 (IT01) • มหาวิทยาลัยราชภัฏนครปฐม</div>
+          <h1 class="cover-title">ระบบบันทึกรายได้และคำนวณค่าคอมมิชชันช่างตัดผมแบบเรียลไทม์<br>ผ่านแอปพลิเคชันไลน์</h1>
+          <div class="cover-subtitle">Real-Time Barber Income Recording and Commission Calculation System via LINE Application</div>
           <div class="cover-meta">
             <div>ผู้จัดทำ: <strong>นาย สราวุฒิ อุยยาหาญ</strong> (รหัสประจำตัว 674230027, หมู่เรียน 67/44)</div>
             <div>อาจารย์ที่ปรึกษา: <strong>ผศ.ดร. สุพิชฌาย์ จันทร์เรือง</strong></div>
@@ -1035,10 +1035,10 @@
         </section>
 
         <!-- ==================== SLIDE 02: PROBLEM STATEMENT ==================== -->
-        <section class="slide" data-slide="2" data-title="ที่มาและความสำคัญของปัญหา">
+        <section class="slide" data-slide="2" data-title="1.1 ความเป็นมาและความสำคัญของปัญหา">
           <div class="slide-header">
             <div class="slide-title-wrap">
-              <h2>⚠️ ที่มาและความสำคัญของปัญหา (Problem Statement)</h2>
+              <h2>⚠️ 1.1 ความเป็นมาและความสำคัญของปัญหา (Problem Statement)</h2>
               <p>ข้อจำกัดของระบบงานแบบดั้งเดิมในร้านตัดผม แบ่งเป็น 3 มิติหลักที่ส่งผลต่อประสิทธิภาพทางธุรกิจ</p>
             </div>
             <div class="badge-counter">SLIDE 02 / 20</div>
@@ -1048,54 +1048,54 @@
               <div class="content-card rose">
                 <div class="card-title">💸 1. ปัญหาด้านรายรับ (เงินเข้า)</div>
                 <ul class="card-list">
-                  <li><strong>ตรวจสลิปขณะติดลูกค้า:</strong> ช่างกำลังให้บริการลูกค้า จึงไม่สามารถเปิดแอปธนาคารตรวจยอดเงินจริงได้ทันท่วงที</li>
-                  <li><strong>ความเสี่ยงสลิปปลอม/วนใช้ซ้ำ:</strong> เสี่ยงต่อการถูกฉ้อโกงด้วยภาพสลิปตัดต่อ และการนำสลิปเก่ามาวนใช้ซ้ำ</li>
-                  <li><strong>โอนยอดไม่ตรงจริง:</strong> ลูกค้าโอนเงินไม่ตรงตามราคาค่าบริการโดยตรวจจับไม่ทันที</li>
+                  <li><strong>ตรวจสลิปขณะติดลูกค้า:</strong> ช่างกำลังให้บริการลูกค้า จึงไม่สามารถเปิดแอปธนาคารตรวจยอดเงินจริงได้ทันที</li>
+                  <li><strong>เสี่ยงสลิปปลอม/วนใช้ซ้ำ:</strong> เสี่ยงต่อการถูกฉ้อโกงด้วยภาพสลิปตัดต่อ และการนำสลิปเก่ามาวนใช้ซ้ำโดยตรวจไม่พบ</li>
+                  <li><strong>โอนยอดไม่ตรงราคา:</strong> ลูกค้าโอนเงินไม่ตรงตามราคาค่าบริการจริง ทำให้รายได้ของทางร้านสูญหาย</li>
                 </ul>
               </div>
               <div class="content-card">
                 <div class="card-title">🤝 2. ปัญหาการเคลียร์เงินช่าง (เงินออก)</div>
                 <ul class="card-list">
-                  <li><strong>คำนวณส่วนแบ่งด้วยมือ:</strong> คิดค่าคอมมิชชันตอนสิ้นวันด้วยตนเอง มักเกิดข้อผิดพลาดจากการคำนวณของมนุษย์</li>
-                  <li><strong>ขาดการแจ้งเตือนเรียลไทม์:</strong> ช่างไม่ทราบยอดสะสมระหว่างวัน ทำให้เกิดความเคลือบแคลงสงสัยและข้อพิพาท</li>
-                  <li><strong>ตัดรอบเคลียร์เงินล่าช้า:</strong> ขาดระบบสรุปยอดค้างจ่าย (Settlement) และแนบสลิปหลักฐานการโอนจ่ายช่าง</li>
+                  <li><strong>คำนวณส่วนแบ่งด้วยมือ:</strong> คิดค่าคอมมิชชันตอนสิ้นวันด้วยสมุดจด มักเกิดข้อผิดพลาดจากมนุษย์ (Human Error)</li>
+                  <li><strong>ไม่รู้ยอดสะสมแบบสด:</strong> ช่างไม่ทราบยอดเงินสะสมระหว่างวัน ก่อให้เกิดความเคลือบแคลงสงสัยและข้อพิพาท</li>
+                  <li><strong>ตัดรอบเคลียร์เงินล่าช้า:</strong> ขาดระบบสรุปยอดค้างจ่าย (Settlement) และไม่มีสลิปหลักฐานยืนยันการโอนเงิน</li>
                 </ul>
               </div>
               <div class="content-card sky">
                 <div class="card-title">🗄️ 3. ขาดระบบจัดการและรายงานธุรกิจ</div>
                 <ul class="card-list">
-                  <li><strong>บันทึกในสมุด/ตารางคำนวณ:</strong> ข้อมูลสูญหาย รายการตกหล่น และขาดฐานข้อมูลกลาง (CRUD) ในการจัดการ</li>
-                  <li><strong>ขาดใบเสร็จรับเงินที่น่าเชื่อถือ:</strong> ไม่มีระบบออกใบเสร็จรับเงินอิเล็กทรอนิกส์ (e-Receipt) ให้แก่ลูกค้า</li>
-                  <li><strong>ขาดเครื่องมือวิเคราะห์ผู้บริหาร:</strong> เจ้าของร้านขาดแดชบอร์ดสรุปยอดขาย รายได้สุทธิ และผลงานช่างในภาพรวม</li>
+                  <li><strong>บันทึกในสมุด/Excel:</strong> ข้อมูลสูญหาย รายการตกหล่น และขาดฐานข้อมูลกลางในการจัดการข้อมูล (CRUD)</li>
+                  <li><strong>ไม่มีใบเสร็จรับเงินดิจิทัล:</strong> ขาดการออกใบเสร็จรับเงินอิเล็กทรอนิกส์ (e-Receipt) สร้างความน่าเชื่อถือให้ลูกค้า</li>
+                  <li><strong>ขาดแดชบอร์ดผู้บริหาร:</strong> เจ้าของร้านขาดเครื่องมือสรุปยอดขาย กำไรสุทธิ และผลงานช่างในภาพรวม</li>
                 </ul>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- ==================== SLIDE 03: FISHBONE & CONCEPT ==================== -->
-        <section class="slide" data-slide="3" data-title="แนวคิดแก้ไขปัญหา (Fishbone)">
+        <!-- ==================== SLIDE 03: FISHBONE & SOLUTIONS ==================== -->
+        <section class="slide" data-slide="3" data-title="1.2 แนวคิดในการแก้ไขปัญหา">
           <div class="slide-header">
             <div class="slide-title-wrap">
-              <h2>🧠 แนวคิดในการแก้ไขปัญหา (Fishbone Diagram & Solution)</h2>
+              <h2>🧠 1.2 แนวคิดในการแก้ไขปัญหา (Fishbone Diagram & Solutions)</h2>
               <p>การวิเคราะห์ต้นตอของปัญหาตามนายสราวุฒิ อุยยาหาญ (2570) และแนวทางแก้ปัญหาแบบบูรณาการ</p>
             </div>
             <div class="badge-counter">SLIDE 03 / 20</div>
           </div>
           <div class="slide-body">
             <div class="card-grid grid-split-55-45">
-              <div class="media-card" onclick="openLightbox('Docs/Diagram/แผนภูมิก้างปลา_วิเคราะห์ปัญหา.png')">
+              <div class="media-card" onclick="openLightbox('Docs/Diagram/แผนภูมิก้างปลา_วิเคราะห์ปัญหา.png', 'ภาพที่ 1.1 แนวคิดการแก้ไขปัญหา (Fishbone Diagram)')">
                 <img src="Docs/Diagram/แผนภูมิก้างปลา_วิเคราะห์ปัญหา.png" alt="Fishbone Diagram" onerror="this.outerHTML='<div style=\'padding:40px;color:#D97706;text-align:center;\'>🐟 ภาพที่ 1.1 ผังก้างปลา (Fishbone Diagram)</div>'">
                 <div class="media-label">🔍 ภาพที่ 1.1 แนวคิดการแก้ไขปัญหา (Fishbone Diagram) ที่มา: นายสราวุฒิ อุยยาหาญ (2570)</div>
               </div>
               <div class="content-card emerald" style="justify-content: center;">
-                <div class="card-title">เทคโนโลยีที่เลือกใช้แก้ปัญหาแต่ละด้าน</div>
+                <div class="card-title">บูรณาการ 5 เทคโนโลยีหลักเพื่อแก้ปัญหาตรงจุด</div>
                 <ul class="card-list">
-                  <li><strong>LINE LIFF →</strong> ช่องทางรับชำระเงินในแอปที่ลูกค้าคุ้นเคย ไม่ต้องดาวน์โหลดเพิ่ม</li>
-                  <li><strong>Slip2Go API →</strong> ตรวจ QR สลิปธนาคาร ยืนยันบัญชีผู้รับ ยอดเงิน และเลข Ref ป้องกันสลิปซ้ำภายใน 2-3 วินาที</li>
-                  <li><strong>n8n Workflow →</strong> ตัวกลางประมวลผลอัตโนมัติ คำนวณค่าคอมมิชชัน ส่งแจ้งเตือนช่าง และออก e-Receipt โดยไม่ต้องเขียน Backend จากศูนย์</li>
-                  <li><strong>Cloud MySQL →</strong> ฐานข้อมูลกลางบน Railway เก็บทุกธุรกรรม ตรวจสอบย้อนหลังได้ทุกบิล</li>
-                  <li><strong>Looker Studio →</strong> แดชบอร์ดเรียลไทม์สำหรับเจ้าของร้านวิเคราะห์ยอดขายและผลงานช่าง</li>
+                  <li><strong>LINE LIFF:</strong> ช่องทางรับชำระเงินในแอปที่ลูกค้าคุ้นเคย เข้าถึงง่าย ไม่ต้องโหลดแอปใหม่</li>
+                  <li><strong>Slip2Go API:</strong> สแกน QR สลิปธนาคาร ยืนยันยอด บัญชีผู้รับ และกันสลิปซ้ำใน 2-3 วินาที</li>
+                  <li><strong>n8n Automation:</strong> คอร์ประมวลผลออโตเมชัน คิดค่าคอมมิชชัน ส่งเตือนช่าง และออก e-Receipt</li>
+                  <li><strong>Cloud MySQL:</strong> ฐานข้อมูลกลางบน Railway จัดเก็บทุกธุรกรรม ตรวจสอบย้อนหลังได้ 100%</li>
+                  <li><strong>Looker Studio:</strong> แดชบอร์ดผู้บริหาร แสดงยอดขายรวม กำไร และผลงานช่างแบบเรียลไทม์</li>
                 </ul>
               </div>
             </div>
@@ -1103,55 +1103,55 @@
         </section>
 
         <!-- ==================== SLIDE 04: OBJECTIVES ==================== -->
-        <section class="slide" data-slide="4" data-title="วัตถุประสงค์ของโครงงาน">
+        <section class="slide" data-slide="4" data-title="1.3 วัตถุประสงค์ของระบบ">
           <div class="slide-header">
             <div class="slide-title-wrap">
-              <h2>🎯 วัตถุประสงค์ของโครงงาน (Project Objectives)</h2>
-              <p>5 เป้าหมายหลักในการพัฒนาระบบตามเอกสารวิชาการโครงงาน (ข้อ 1.3.1 - 1.3.5)</p>
+              <h2>🎯 1.3 วัตถุประสงค์ของระบบ (Project Objectives)</h2>
+              <p>เป้าหมายการพัฒนาระบบ 5 ประการตามเอกสารข้อกำหนดข้อ 1.3.1 - 1.3.5</p>
             </div>
             <div class="badge-counter">SLIDE 04 / 20</div>
           </div>
           <div class="slide-body">
-            <div class="card-grid grid-2">
+            <div class="card-grid" style="grid-template-columns: repeat(2, 1fr); gap: 14px;">
               <div class="content-card emerald">
-                <div class="card-title">1. ระบบรับชำระเงินผ่าน LINE LIFF (1.3.1)</div>
+                <div class="card-title">1.3.1 เว็บแอปพลิเคชัน LINE LIFF</div>
                 <p style="font-size:13.5px; color:var(--text-sub); line-height:1.6;">
-                  ระบบรองรับการทำรายการของผู้ใช้งาน โดยสามารถเลือกบริการ เลือกช่างตัดผม และอัปโหลดหลักฐานการโอนเงินผ่านทางหน้าเว็บแอปพลิเคชัน <strong>LIFF (LINE Front-end Framework)</strong> บนแอปพลิเคชัน LINE
+                  ผู้ใช้สามารถเลือกช่างตัดผม เลือกบริการ และอัปโหลดสลิปโอนเงินผ่านหน้าเว็บ <strong>LIFF บนแอปพลิเคชัน LINE</strong> ได้สะดวกรวดเร็วโดยไม่ต้องติดตั้งโปรแกรมเพิ่มเติม
                 </p>
               </div>
               <div class="content-card">
-                <div class="card-title">2. ตรวจสอบสลิปอัตโนมัติ Slip2Go API (1.3.2)</div>
+                <div class="card-title">1.3.2 ตรวจสอบสลิปอัตโนมัติ Slip2Go API</div>
                 <p style="font-size:13.5px; color:var(--text-sub); line-height:1.6;">
-                  ระบบมีฟังก์ชันตรวจสอบความถูกต้องของสลิปโอนเงินโดยอัตโนมัติ ผ่านการเชื่อมต่อกับระบบ <strong>Slip2Go API</strong> ตรวจสอบยอดเงิน บัญชีผู้รับ และป้องกันการนำสลิปเก่ามาวนใช้ซ้ำ
+                  มีฟังก์ชันตรวจสอบความถูกต้องของสลิปโอนเงินอัตโนมัติผ่าน <strong>Slip2Go API</strong> ตรวจสอบยอดเงินจริง บัญชีผู้รับ และป้องกันสลิปเก่าวนใช้ซ้ำแบบเรียลไทม์
                 </p>
               </div>
               <div class="content-card sky">
-                <div class="card-title">3. คำนวณส่วนแบ่งช่าง & ฐานข้อมูล MySQL (1.3.3)</div>
+                <div class="card-title">1.3.3 คำนวณคอมมิชชัน & ฐานข้อมูล MySQL</div>
                 <p style="font-size:13.5px; color:var(--text-sub); line-height:1.6;">
-                  ระบบสามารถคำนวณส่วนแบ่งรายได้ของช่างตัดผม และบันทึกข้อมูลประวัติการทำธุรกรรมทั้งหมดลงในระบบฐานข้อมูล <strong>MySQL</strong> โดยอัตโนมัติ
+                  มีระบบคำนวณส่วนแบ่งรายได้ของช่างตัดผมตามอัตราที่กำหนด และบันทึกข้อมูลประวัติธุรกรรมทั้งหมดลงในฐานข้อมูล <strong>MySQL</strong> โดยอัตโนมัติถูกต้อง 100%
                 </p>
               </div>
               <div class="content-card emerald">
-                <div class="card-title">4. ส่ง Flex Message & แจ้งเตือนเรียลไทม์ (1.3.4)</div>
+                <div class="card-title">1.3.4 LINE Flex Message e-Receipt</div>
                 <p style="font-size:13.5px; color:var(--text-sub); line-height:1.6;">
-                  ระบบสามารถส่ง <strong>เฟล็กซ์เมสเสจ (e-Receipt)</strong> ให้แก่ลูกค้า พร้อมทั้งแจ้งเตือนสรุปยอดเงินให้ช่างตัดผมและเจ้าของร้านทราบ ผ่านทางแอปพลิเคชัน LINE
+                  ส่งใบเสร็จรับเงินอิเล็กทรอนิกส์ <strong>(e-Receipt)</strong> ให้ลูกค้าทันที พร้อมแจ้งเตือนสรุปยอดเงินและค่าคอมมิชชันให้ช่างตัดผมและเจ้าของร้านผ่าน LINE
                 </p>
               </div>
               <div class="content-card sky" style="grid-column: 1 / -1;">
-                <div class="card-title">5. กระดานข้อมูลสรุปยอดขาย Data Studio (1.3.5)</div>
+                <div class="card-title">1.3.5 กระดานข้อมูลสรุปยอดขาย Data Studio Dashboard</div>
                 <p style="font-size:13.5px; color:var(--text-sub); line-height:1.6;">
-                  ระบบมีหน้ากระดานข้อมูล <strong>(Dashboard)</strong> สำหรับแสดงผลสรุปยอดขาย สถิติการใช้บริการ และรายได้ของช่างตัดผมแต่ละรายแบบเรียลไทม์ ผ่านเครื่องมือ <strong>Data Studio (Google Looker Studio)</strong>
+                  แสดงผลสรุปยอดขาย สถิติการใช้บริการ และรายได้แยกตามช่าง ผ่านแดชบอร์ด <strong>Data Studio (Google Looker Studio)</strong> ได้แบบเรียลไทม์เพื่อสนับสนุนการบริหาร
                 </p>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- ==================== SLIDE 05: SCOPE ==================== -->
-        <section class="slide" data-slide="5" data-title="ขอบเขตของระบบ">
+        <!-- ==================== SLIDE 05: SYSTEM SCOPE ==================== -->
+        <section class="slide" data-slide="5" data-title="1.4.1 ขอบเขตของระบบ">
           <div class="slide-header">
             <div class="slide-title-wrap">
-              <h2>📐 ขอบเขตของระบบ (System Scope)</h2>
+              <h2>📐 1.4 ขอบเขตการศึกษา: 1.4.1 ขอบเขตของระบบ (System Scope)</h2>
               <p>ขอบเขตฟังก์ชันการทำงานครอบคลุม 3 กลุ่มผู้ใช้งานหลักตามเอกสารข้อ 1.4.1</p>
             </div>
             <div class="badge-counter">SLIDE 05 / 20</div>
@@ -1161,28 +1161,28 @@
               <div class="content-card emerald">
                 <div class="card-title">👤 1. ลูกค้าผู้ใช้บริการ (1.4.1.3)</div>
                 <ul class="card-list">
-                  <li><strong>ก) ริชเมนูบนไลน์:</strong> เข้าใช้งานระบบผ่านริชเมนูบน LINE Official Account ได้ทันที</li>
-                  <li><strong>ข) เลือกช่าง & บริการ:</strong> เลือกช่างตัดผมและรายการบริการพร้อมดูราคา/รูปตัวอย่าง</li>
-                  <li><strong>ค) อัปโหลดสลิป:</strong> อัปโหลดสลิปหลักฐานการโอนเงินเพื่อแจ้งชำระเงิน</li>
-                  <li><strong>ง) รับใบเสร็จ:</strong> รับเฟล็กซ์เมสเสจรับเงินอิเล็กทรอนิกส์ (e-Receipt) ผ่านไลน์</li>
+                  <li><strong>ริชเมนูบนไลน์:</strong> เข้าใช้งานระบบผ่านริชเมนูบน LINE Official Account ได้ทันที</li>
+                  <li><strong>เลือกช่าง & บริการ:</strong> เลือกช่างตัดผมและรายการบริการ พร้อมดูราคาและรูปตัวอย่าง</li>
+                  <li><strong>แจ้งชำระเงิน:</strong> เลือกโอนเงินผ่านสแกน QR Code แนบสลิป หรือชำระเงินสดหน้าร้าน</li>
+                  <li><strong>รับใบเสร็จ e-Receipt:</strong> รับใบเสร็จอิเล็กทรอนิกส์ผ่าน LINE Flex Message ทันที</li>
                 </ul>
               </div>
               <div class="content-card">
                 <div class="card-title">✂️ 2. ช่างตัดผม (1.4.1.2)</div>
                 <ul class="card-list">
-                  <li><strong>ก) รับแจ้งเตือนชำระเงิน:</strong> รับการแจ้งเตือนทันทีเมื่อลูกค้าชำระเงินค่าบริการสำเร็จ</li>
-                  <li><strong>ข) ตรวจสอบยอดรายได้:</strong> ตรวจสอบยอดค่าบริการและค่าคอมมิชชันที่ได้รับแบบสด</li>
+                  <li><strong>รับแจ้งเตือนชำระเงิน:</strong> รับข้อความแจ้งเตือนทันทีเมื่อลูกค้าชำระเงินค่าบริการสำเร็จ</li>
+                  <li><strong>เช็กยอดคอมมิชชันสด:</strong> ทราบยอดส่วนแบ่งรายได้และค่าคอมมิชชันของตนเองแบบเรียลไทม์</li>
                   <li><strong>รับสลิปเคลียร์เงิน:</strong> ได้รับสลิปหลักฐานเมื่อเจ้าของร้านตัดรอบเคลียร์เงิน (Settlement)</li>
-                  <li><strong>แจ้งเตือนโมฆะบิล:</strong> รับแจ้งเตือนทันทีเมื่อมีรายการบิลถูกทำโมฆะ (Void Bill)</li>
+                  <li><strong>แจ้งเตือนโมฆะบิล:</strong> รับการแจ้งเตือนทันทีเมื่อมีรายการบิลถูกทำโมฆะ (Void Bill)</li>
                 </ul>
               </div>
               <div class="content-card sky">
-                <div class="card-title">💻 3. ผู้ดูแลระบบ/เจ้าของร้าน (1.4.1.1)</div>
+                <div class="card-title">💻 3. ผู้ดูแลระบบ / เจ้าของร้าน (1.4.1.1)</div>
                 <ul class="card-list">
-                  <li><strong>ก) จัดการช่าง & ค่าคอม:</strong> จัดการข้อมูลช่างตัดผมและอัตราส่วนแบ่งค่าคอมมิชชัน</li>
-                  <li><strong>ข) จัดการบริการ & ราคา:</strong> จัดการข้อมูลประเภทบริการและราคาค่าบริการ (CRUD)</li>
-                  <li><strong>ค) ดูแดชบอร์ดสรุปยอดขาย:</strong> สรุปยอดขายประจำวันและประจำเดือนผ่านดาต้าสตูดิโอ</li>
-                  <li><strong>ง) รับแจ้งเตือนยอดเงิน:</strong> รับการแจ้งเตือนยอดเงินและการชำระเงินสำเร็จผ่านไลน์</li>
+                  <li><strong>จัดการช่าง & ค่าคอม:</strong> จัดการข้อมูลช่างตัดผมและปรับอัตราส่วนแบ่งคอมมิชชันรายบุคคล</li>
+                  <li><strong>จัดการบริการ & ราคา:</strong> จัดการประเภทบริการและราคาค่าบริการ (CRUD) ผ่านหน้าเว็บหลังบ้าน</li>
+                  <li><strong>ตัดรอบเคลียร์เงินช่าง:</strong> สรุปยอดค้างจ่าย โอนเงิน แนบสลิป และอัปเดตสถานะบิล</li>
+                  <li><strong>ดูแดชบอร์ดสรุปยอดขาย:</strong> ติดตามยอดขายรวมและผลงานช่างผ่าน Google Looker Studio</li>
                 </ul>
               </div>
             </div>
@@ -1190,32 +1190,30 @@
         </section>
 
         <!-- ==================== SLIDE 06: RELATED WORKS ==================== -->
-        <section class="slide" data-slide="6" data-title="งานวิจัยที่เกี่ยวข้อง">
+        <section class="slide" data-slide="6" data-title="2.2 ระบบงานอื่นที่เกี่ยวข้อง">
           <div class="slide-header">
             <div class="slide-title-wrap">
-              <h2>📚 ระบบงานอื่นที่เกี่ยวข้อง (Related Research Works)</h2>
-              <p>การวิเคราะห์และสังเคราะห์งานวิจัย 5 เรื่องที่ได้รับอนุมัติในข้อ 2.2 เพื่อนำมาต่อยอดเป็นระบบนี้</p>
+              <h2>📚 2.2 ระบบงานอื่นที่เกี่ยวข้อง (Related Research Works)</h2>
+              <p>การศึกษาวิจัยและผลงานที่เกี่ยวข้อง 5 เรื่องตามโครงสร้างเอกสารบทที่ 2 เพื่อนำมาต่อยอดระบบ</p>
             </div>
             <div class="badge-counter">SLIDE 06 / 20</div>
           </div>
           <div class="slide-body">
-            <div class="card-grid grid-split-50-50">
-              <div class="content-card">
-                <div class="card-title">5 งานวิจัยอ้างอิงหลักที่นำมาศึกษา</div>
+            <div class="card-grid grid-2">
+              <div class="content-card sky">
+                <div class="card-title">งานวิจัยอ้างอิงลำดับที่ 1 - 3</div>
                 <ul class="card-list">
-                  <li><strong>1. พิชยา สุขปลั่ง และคณะ (2568):</strong> ระบบแจ้งซ่อมอัจฉริยะผ่านแชทบอท (LINE + Node-RED + MySQL)</li>
-                  <li><strong>2. ถนอม กองใจ และ อริษา ทาทอง (2565):</strong> ระบบแจ้งเตือนกิจกรรมและนัดหมายอัตโนมัติผ่านไลน์ มช.</li>
-                  <li><strong>3. พิษณุ ใจกล้า และ แก้ววราภรณ์ กรแก้ว (2569):</strong> Workflow Automation (n8n) จัดการแจ้งเตือน มธ.</li>
-                  <li><strong>4. พริษฐ์กวินท์ นาควะรี และคณะ (2569):</strong> AI Agent น้องไลฟ์ลอง (n8n Self-Hosted + LINE OA) สจล.</li>
-                  <li><strong>5. อภิสิทธิ์ โยลัย และคณะ (2565):</strong> แอปพลิเคชันการจองคิวร้านเสริมสวย มรภ.มหาสารคาม</li>
+                  <li><strong>พิชยา สุขปลั่ง และคณะ (2568):</strong> ระบบแจ้งซ่อมอัจฉริยะ ทต.หวายเหนียว (LINE + Node-RED + MySQL) ➔ <em>นำมาต่อยอดการใช้ LINE OA และ Cloud MySQL</em></li>
+                  <li><strong>ถนอม กองใจ และ อริษา ทาทอง (2565):</strong> ระบบแจ้งเตือนกิจกรรมและนัดหมาย มช. (Apps Script + LINE Notify) ➔ <em>นำมาต่อยอดการแจ้งเตือนเรียลไทม์</em></li>
+                  <li><strong>พิษณุ ใจกล้า และ แก้ววราภรณ์ กรแก้ว (2569):</strong> Workflow Automation (n8n) มธ. ➔ <em>นำมาต่อยอดใช้ n8n Low-Code ในการจัดการเวิร์กโฟลว์</em></li>
                 </ul>
               </div>
               <div class="content-card emerald">
-                <div class="card-title">จุดเด่นที่โครงการนี้นำมาพัฒนาต่อยอด</div>
+                <div class="card-title">งานวิจัยอ้างอิงลำดับที่ 4 - 5 & จุดเด่นของโครงงาน</div>
                 <ul class="card-list">
-                  <li><strong>การบูรณาการระบบอัตโนมัติ (Workflow):</strong> นำ n8n มาเป็นตัวกลางเชื่อมต่อ LINE LIFF, Slip2Go API, และ MySQL แทนการเขียนระบบแบบดั้งเดิม</li>
-                  <li><strong>แก้ปัญหาเงินเข้า-เงินออกครบวงจร:</strong> แตกต่างจากระบบจองคิวทั่วไป เพราะเน้นการตรวจสลิปอัตโนมัติ ป้องกันสลิปซ้ำ และคำนวณส่วนแบ่งช่างแบบเรียลไทม์</li>
-                  <li><strong>ระบบตัดรอบเคลียร์เงิน (Settlement):</strong> มีระบบสรุปยอดค้างจ่ายช่าง แนบหลักฐาน และแจ้งเตือนผ่าน LINE เพิ่มความโปร่งใสและตรวจสอบได้</li>
+                  <li><strong>พริษฐ์กวินท์ นาควะรี และคณะ (2569):</strong> AI Agent น้องไลฟ์ลอง สจล. (n8n Self-Hosted + LINE OA) ➔ <em>นำมาต่อยอดติดตั้ง n8n บน Cloud Railway 24 ชม.</em></li>
+                  <li><strong>อภิสิทธิ์ โยลัย และคณะ (2565):</strong> แอปพลิเคชันจองคิวร้านเสริมสวย มรภ.มหาสารคาม ➔ <em>นำมาต่อยอดแนวคิดการจัดการธุรกิจและบริการร้านตัดผม</em></li>
+                  <li><strong>จุดเด่นที่เหนือกว่า:</strong> พัฒนาระบบตรวจสอบสลิปอัตโนมัติด้วย Slip2Go API, คำนวณคอมมิชชันช่างสด, ตัดรอบเคลียร์เงิน และรายงานผ่าน Looker Studio</li>
                 </ul>
               </div>
             </div>
@@ -1223,237 +1221,239 @@
         </section>
 
         <!-- ==================== SLIDE 07: SYSTEM ARCHITECTURE ==================== -->
-        <section class="slide" data-slide="7" data-title="สถาปัตยกรรมระบบภาพรวม">
+        <section class="slide" data-slide="7" data-title="2.3 สถาปัตยกรรมระบบภาพรวม">
           <div class="slide-header">
             <div class="slide-title-wrap">
-              <h2>🏗️ ภาพรวมสถาปัตยกรรมระบบ (System Architecture)</h2>
-              <p>ผังการเชื่อมโยงระบบแบบไร้รอยต่อ (End-to-End Workflow) ระหว่าง LINE, n8n, APIs และ Cloud Database</p>
+              <h2>🏗️ 2.3 องค์ความรู้ที่เกี่ยวข้อง: ภาพรวมสถาปัตยกรรมระบบ (System Architecture)</h2>
+              <p>การบูรณาการ 5 เสาหลักเทคโนโลยีตามองค์ความรู้ข้อ 2.3.1 - 2.3.8 เพื่อเชื่อมต่อการทำงานแบบไร้รอยต่อ</p>
             </div>
             <div class="badge-counter">SLIDE 07 / 20</div>
           </div>
           <div class="slide-body">
             <div class="card-grid grid-split-55-45">
-              <div class="media-card" onclick="openLightbox('Docs/Diagram/System Architecture.png')">
-                <img src="Docs/Diagram/System Architecture.png" alt="System Architecture Diagram" onerror="this.outerHTML='<div style=\'padding:40px;color:#D97706;text-align:center;\'>🏗️ ผัง System Architecture</div>'">
-                <div class="media-label">🔍 ภาพที่ 3.1 ผังการทำงานภาพรวมของระบบ (System Architecture)</div>
+              <div class="media-card" onclick="openLightbox('Docs/Diagram/System Architecture.png', 'ภาพที่ 3.1 ภาพรวมสถาปัตยกรรมระบบ (System Architecture)')">
+                <img src="Docs/Diagram/System Architecture.png" alt="สถาปัตยกรรมระบบ" onerror="this.outerHTML='<div style=\'padding:40px;color:#D97706;text-align:center;\'>🏗️ ภาพที่ 3.1 สถาปัตยกรรมระบบ</div>'">
+                <div class="media-label">🔍 ภาพที่ 3.1 ภาพรวมสถาปัตยกรรมระบบ (System Architecture Overview)</div>
               </div>
-              <div class="content-card sky" style="justify-content: center;">
-                <div class="card-title">5 เสาหลักเทคโนโลยีของระบบ</div>
+              <div class="content-card emerald" style="justify-content: center;">
+                <div class="card-title">5 เสาหลักเทคโนโลยีที่ขับเคลื่อนระบบ</div>
                 <ul class="card-list">
-                  <li><strong>Client Interface:</strong> <em>LINE Official Account</em> และ <em>LINE LIFF SDK</em> (HTML5, Tailwind CSS, JS) เข้าถึงสะดวกไม่ต้องลงแอป</li>
-                  <li><strong>Core Orchestrator:</strong> <em>n8n Workflow Automation</em> รันแบบ Self-Hosted บน Railway รับส่ง Webhook และตรรกะระบบ</li>
-                  <li><strong>Slip Verification:</strong> <em>Slip2Go API</em> ตรวจสอบ QR Code ธนาคาร ยอดเงิน บัญชีผู้รับ และป้องกันสลิปซ้ำ</li>
-                  <li><strong>Database Layer:</strong> <em>Cloud MySQL</em> บน Railway เก็บข้อมูลช่าง บริการ ธุรกรรม และการจ่ายเงิน</li>
-                  <li><strong>Analytics Layer:</strong> <em>Data Studio (Google Looker Studio)</em> สร้างแดชบอร์ดสรุปยอดขายสด</li>
+                  <li><strong>LINE OA & LIFF (2.3.2 - 2.3.4):</strong> ช่องทางติดต่อหลัก ลูกค้าเปิดฟอร์มชำระเงินสะดวก ไม่ต้องลงแอป</li>
+                  <li><strong>n8n Workflow Automation (2.3.1):</strong> คลาวด์ออโตเมชัน รับ Webhook เชื่อมต่อ API และตัดรอบการเงิน 24 ชม.</li>
+                  <li><strong>Slip2Go API (2.3.5):</strong> ตรวจ QR Code บนสลิป ยืนยันยอดเงินจริง และกันสลิปซ้ำภายใน 2-3 วินาที</li>
+                  <li><strong>Cloud MySQL (2.3.6):</strong> ฐานข้อมูลกลางบน Railway จัดเก็บ 4 ตารางหลัก รองรับธุรกรรมปลอดภัย</li>
+                  <li><strong>Looker Studio (2.3.8):</strong> แดชบอร์ดสรุปผลทางการเงิน แสดงสถิติยอดขายสดสำหรับผู้บริหาร</li>
                 </ul>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- ==================== SLIDE 08: INFRASTRUCTURE ==================== -->
-        <section class="slide" data-slide="8" data-title="ฮาร์ดแวร์และโครงสร้างคลาวด์">
+        <!-- ==================== SLIDE 08: INFRASTRUCTURE & CLOUD ==================== -->
+        <section class="slide" data-slide="8" data-title="1.4.2-1.4.5 สภาพแวดล้อมระบบและคลาวด์">
           <div class="slide-header">
             <div class="slide-title-wrap">
-              <h2>⚙️ ฮาร์ดแวร์และโครงสร้างพื้นฐานคลาวด์ (Infrastructure & Cloud)</h2>
-              <p>อุปกรณ์เครื่องพัฒนา อุปกรณ์ทดสอบจริง และเซิร์ฟเวอร์คลาวด์ตามเอกสารข้อ 1.4.2 และ 1.4.4</p>
+              <h2>⚙️ 1.4.2 - 1.4.5 ฮาร์ดแวร์ ซอฟต์แวร์ และระบบคลาวด์ (Infrastructure & Cloud)</h2>
+              <p>โครงสร้างพื้นฐานในการพัฒนาและการให้บริการบนคลาวด์ตลอด 24 ชั่วโมง ตามเอกสารข้อ 1.4.2 - 1.4.5</p>
             </div>
             <div class="badge-counter">SLIDE 08 / 20</div>
           </div>
           <div class="slide-body">
             <div class="card-grid grid-2">
-              <div class="content-card">
-                <div class="card-title">🖥️ 1. ฮาร์ดแวร์และซอฟต์แวร์พัฒนา (1.4.2 & 1.4.3)</div>
+              <div class="content-card sky">
+                <div class="card-title">💻 1. ฮาร์ดแวร์และซอฟต์แวร์ที่ใช้พัฒนา (1.4.2 & 1.4.3)</div>
                 <ul class="card-list">
-                  <li><strong>โน้ตบุ๊กหลักสำหรับพัฒนา (1.4.2.1):</strong> โน้ตบุ๊ก HP VICTUS 16 (12th Gen Intel Core i5-12500H, 2.50 GHz, RAM 16GB, Windows 11) สำหรับพัฒนาและทดสอบระบบ</li>
-                  <li><strong>สมาร์ตโฟนทดสอบจริง (1.4.2.2):</strong> สมาร์ตโฟน <strong>Nothing Phone (4a)</strong> ใช้สำหรับทดสอบการใช้งานจริงบนแอปพลิเคชัน LINE ทั้งฝั่งลูกค้าและช่าง</li>
-                  <li><strong>เครื่องมือพัฒนา (1.4.3.2):</strong> <strong>แอนติกราวิตี้ ไอดีอี (Antigravity IDE)</strong> โปรแกรมแก้ไขโค้ดสำหรับเขียนเว็บแอปพลิเคชัน</li>
+                  <li><strong>HP VICTUS 16 (1.4.2.1):</strong> CPU Core i5-12500H, RAM 16GB เครื่องหลักสำหรับพัฒนาและติดตั้งเครื่องมือ</li>
+                  <li><strong>Nothing Phone (2a) & VIVO V27 5G (1.4.2.2):</strong> สมาร์ตโฟนสำหรับทดสอบฟอร์ม LINE LIFF บนอุปกรณ์จริง</li>
+                  <li><strong>ซอฟต์แวร์พัฒนา (1.4.3):</strong> Windows 11, Antigravity IDE, MySQL Workbench, Git และ Postman</li>
                 </ul>
               </div>
               <div class="content-card emerald">
                 <div class="card-title">☁️ 2. ฮาร์ดแวร์และเซิร์ฟเวอร์คลาวด์ 24/7 (1.4.4 & 1.4.5)</div>
                 <ul class="card-list">
-                  <li><strong>เรลเวย์เซิฟเวอร์ (Railway Server 1.4.4.1):</strong> ใช้รันบริการ n8n และ MySQL บนคลาวด์ รวมถึงเป็นเว็บเซิร์ฟเวอร์โฮสต์หน้าเว็บลิฟต์ ตลอด 24 ชั่วโมง</li>
-                  <li><strong>ไลน์เซิฟเวอร์ (LINE Server 1.4.5.8):</strong> ให้บริการ LINE Messaging API, LIFF สำหรับสื่อสาร รับ-ส่งข้อมูล และยิงการแจ้งเตือนตอบกลับผู้ใช้งาน</li>
-                  <li><strong>ความพร้อมใช้งานสูง (High Availability):</strong> ทำงานอัตโนมัติบนคลาวด์ ไม่ต้องเปิดคอมพิวเตอร์ทิ้งไว้ที่ร้านตัดผม ลดต้นทุนฮาร์ดแวร์และค่าบำรุงรักษา</li>
+                  <li><strong>Railway Server (1.4.4.1):</strong> รัน n8n Automation Engine และ Cloud MySQL ตลอด 24 ชั่วโมง</li>
+                  <li><strong>LINE Platform (1.4.5.6 - 1.4.5.8):</strong> LINE Messaging API, LINE LIFF และ LINE Official Account</li>
+                  <li><strong>Slip2Go API (1.4.5.3):</strong> บริการ Open Banking API ตรวจสอบสลิปโอนเงินธนาคารแบบเรียลไทม์</li>
+                  <li><strong>ความพร้อมใช้งานสูง (High Availability):</strong> ทำงานอัตโนมัติบนคลาวด์ ลดต้นทุนฮาร์ดแวร์หน้าร้าน</li>
                 </ul>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- ==================== SLIDE 09: SYSTEM OVERVIEW FLOW ==================== -->
-        <section class="slide" data-slide="9" data-title="ผังงานการทำงานภาพรวม">
+        <!-- ==================== SLIDE 09: SYSTEM FLOWCHART ==================== -->
+        <section class="slide" data-slide="9" data-title="3.3.1 ผังงานการทำงานภาพรวม">
           <div class="slide-header">
             <div class="slide-title-wrap">
-              <h2>🔄 ผังงานการทำงานภาพรวมของระบบ (System Overview Flowchart)</h2>
-              <p>ขั้นตอนการทำงานทั้งระบบ ตั้งแต่ลูกค้าสแกนเข้าร้าน ➡️ ตรวจสลิป ➡️ บันทึกเงิน ➡️ ตัดรอบจ่ายช่าง</p>
+              <h2>🔄 3.3.1 การออกแบบระบบ: ผังงานการทำงานภาพรวม (System Flowchart)</h2>
+              <p>ขั้นตอนการทำงานทั้งระบบ ตั้งแต่ลูกค้าสแกนชำระเงิน ➡️ ตรวจสลิป ➡️ บันทึกเงิน ➡️ ตัดรอบจ่ายช่าง (ภาพที่ 3.2)</p>
             </div>
             <div class="badge-counter">SLIDE 09 / 20</div>
           </div>
           <div class="slide-body">
             <div class="card-grid grid-split-55-45">
-              <div class="media-card" onclick="openLightbox('Docs/Diagram/ภาพที่ 3.1 ภาพรวมการทำงานของระบบ.png')">
-                <img src="Docs/Diagram/ภาพที่ 3.1 ภาพรวมการทำงานของระบบ.png" alt="ผังภาพรวมการทำงานของระบบ" onerror="this.outerHTML='<div style=\'padding:40px;color:#D97706;text-align:center;\'>🔄 ภาพที่ 3.1 ภาพรวมการทำงาน</div>'">
-                <div class="media-label">🔍 ภาพที่ 3.1 ผังแสดงภาพรวมกระบวนการทำงานของระบบ (System Flowchart)</div>
+              <div class="media-card" onclick="openLightbox('Docs/Diagram/ภาพที่ 3.1 ภาพรวมการทำงานของระบบ.png', 'ภาพที่ 3.2 ภาพรวมการทำงานของระบบ (System Overview Flowchart)')">
+                <img src="Docs/Diagram/ภาพที่ 3.1 ภาพรวมการทำงานของระบบ.png" alt="ผังภาพรวมการทำงานของระบบ" onerror="this.outerHTML='<div style=\'padding:40px;color:#D97706;text-align:center;\'>🔄 ภาพที่ 3.2 ภาพรวมการทำงาน</div>'">
+                <div class="media-label">🔍 ภาพที่ 3.2 ภาพรวมการทำงานของระบบ (System Overview Flowchart)</div>
               </div>
               <div class="content-card" style="justify-content: center;">
                 <div class="card-title">4 ขั้นตอนการทำงานหลักของระบบ</div>
                 <ul class="card-list">
-                  <li><strong>1. รับชำระเงิน (Customer Step):</strong> ลูกค้าเปิด LINE LIFF เลือกช่าง/บริการ และเลือกชำระเงินสดหรือโอนเงินผ่าน QR Code</li>
-                  <li><strong>2. ประมวลผลและตรวจสลิป (Engine Step):</strong> n8n รับ Webhook ➡️ ส่งรูปสลิปให้ Slip2Go API ตรวจสอบความถูกต้องและสลิปซ้ำ</li>
-                  <li><strong>3. คำนวณเงินและแจ้งเตือน (Record Step):</strong> คำนวณส่วนแบ่งค่าคอมมิชชัน บันทึกลง MySQL ยิง e-Receipt ให้ลูกค้า และแจ้งเตือนช่างทันที</li>
-                  <li><strong>4. ตัดรอบเคลียร์เงิน (Settlement Step):</strong> เจ้าของร้านสรุปยอดค้างจ่ายช่างผ่านหลังบ้าน แนบสลิป และอัปเดตสถานะเป็น Settled</li>
+                  <li><strong>1. รับชำระเงิน (Customer Step):</strong> ลูกค้าเปิด LINE LIFF เลือกช่าง/บริการ และเลือกชำระเงินสดหรือโอน QR Code</li>
+                  <li><strong>2. ประมวลผลและตรวจสลิป (Engine Step):</strong> n8n รับ Webhook ➡️ ส่งรูปสลิปให้ Slip2Go API ตรวจยอดและสลิปซ้ำ</li>
+                  <li><strong>3. คำนวณเงินและแจ้งเตือน (Record Step):</strong> คำนวณคอมมิชชัน บันทึก MySQL ยิง e-Receipt ให้ลูกค้า และเตือนช่างทันที</li>
+                  <li><strong>4. ตัดรอบเคลียร์เงิน (Settlement Step):</strong> เจ้าของร้านสรุปยอดค้างจ่ายช่าง โอนเงิน แนบสลิป และอัปเดตเป็น Settled</li>
                 </ul>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- ==================== SLIDE 10: SLIP VERIFY FLOWCHART ==================== -->
-        <section class="slide" data-slide="10" data-title="ผังงานตรวจสอบสลิป">
+        <!-- ==================== SLIDE 10: SLIP VERIFICATION FLOWCHART ==================== -->
+        <section class="slide" data-slide="10" data-title="3.3.1.5 ผังงานการตรวจสอบสลิป">
           <div class="slide-header">
             <div class="slide-title-wrap">
-              <h2>🔍 ผังงานการตรวจสอบสลิปอัตโนมัติ (Slip Verification Flowchart)</h2>
-              <p>ตรรกะเงื่อนไขการตรวจสอบความถูกต้องของสลิปโอนเงินและการป้องกันสลิปวนใช้ซ้ำ (Anti-Fraud Logic)</p>
+              <h2>🔍 3.3.1.5 ผังงานการตรวจสอบสลิปและชำระเงิน (Slip Verification Flowchart)</h2>
+              <p>ตรรกะเงื่อนไขการตรวจสอบความถูกต้องของสลิปโอนเงินและการป้องกันสลิปวนใช้ซ้ำ (ภาพที่ 3.7)</p>
             </div>
             <div class="badge-counter">SLIDE 10 / 20</div>
           </div>
           <div class="slide-body">
             <div class="card-grid grid-split-50-50">
-              <div class="media-card" onclick="openLightbox('Docs/Diagram/ภาพที่ 3.6 ผังงานการตรวจสอบสลิป.png')">
-                <img src="Docs/Diagram/ภาพที่ 3.6 ผังงานการตรวจสอบสลิป.png" alt="ผังงานการตรวจสอบสลิป" onerror="this.outerHTML='<div style=\'padding:40px;color:#D97706;text-align:center;\'>🔍 ภาพที่ 3.6 ผังงานการตรวจสอบสลิป</div>'">
-                <div class="media-label">🔍 ภาพที่ 3.6 ผังงานการตรวจสอบสลิปโอนเงิน (Slip Verification Logic)</div>
+              <div class="media-card" onclick="openLightbox('Docs/Diagram/ภาพที่ 3.6 ผังงานการตรวจสอบสลิป.png', 'ภาพที่ 3.7 ผังงานการตรวจสอบสลิปและชำระเงิน')">
+                <img src="Docs/Diagram/ภาพที่ 3.6 ผังงานการตรวจสอบสลิป.png" alt="ผังงานการตรวจสอบสลิป" onerror="this.outerHTML='<div style=\'padding:40px;color:#D97706;text-align:center;\'>🔍 ภาพที่ 3.7 ผังงานการตรวจสอบสลิป</div>'">
+                <div class="media-label">🔍 ภาพที่ 3.7 ผังงานการตรวจสอบสลิปและชำระเงิน (Anti-Fraud Logic)</div>
               </div>
               <div class="content-card emerald" style="justify-content: center;">
-                <div class="card-title">เงื่อนไขตรวจสอบและผลลัพธ์ที่เป็นไปได้</div>
+                <div class="card-title">เงื่อนไขตรวจสอบ 4 ระดับ (ป้องกันทุจริต 100%)</div>
                 <ul class="card-list">
-                  <li><strong>✅ ผ่านทุกเงื่อนไข:</strong> QR อ่านได้ + เลข Ref ไม่ซ้ำ + บัญชีผู้รับตรง + ยอดเงินตรง → ออกบิลและ e-Receipt สีเขียวทันที</li>
-                  <li><strong>❌ สลิปปลอม/อ่านไม่ได้:</strong> Slip2Go ไม่พบ QR Payload → แจ้ง Error "ไม่พบข้อมูลสลิป" กลับลูกค้า</li>
-                  <li><strong>❌ สลิปเคยใช้แล้ว:</strong> เลข trans_ref ซ้ำกับรายการเดิมในฐานข้อมูล → ปฏิเสธทันที "สลิปนี้ถูกใช้ไปแล้ว"</li>
-                  <li><strong>❌ บัญชีผู้รับไม่ตรง:</strong> ชื่อผู้รับเงินไม่ตรงกับเจ้าของร้าน → ปฏิเสธ "โอนผิดบัญชี"</li>
-                  <li><strong>❌ ยอดเงินไม่ครบ:</strong> จำนวนเงินน้อยกว่าราคาบริการที่เลือก → ปฏิเสธ "ยอดเงินไม่ตรง"</li>
+                  <li><strong>✅ ผ่านครบทุกเงื่อนไข:</strong> มี QR + เลข Ref ไม่ซ้ำ + บัญชีผู้รับตรง + ยอดเงินตรง ➔ ออกบิล e-Receipt สีเขียวทันที</li>
+                  <li><strong>❌ สลิปปลอม/อ่านไม่ได้:</strong> Slip2Go ไม่พบ QR Payload ➔ ปฏิเสธ "ไม่พบข้อมูลสลิปที่ถูกต้อง"</li>
+                  <li><strong>❌ สลิปวนใช้ซ้ำ (Duplicate):</strong> trans_ref ซ้ำใน MySQL ➔ ปฏิเสธทันที "สลิปนี้ถูกใช้งานไปแล้ว"</li>
+                  <li><strong>❌ บัญชีผู้รับไม่ตรง:</strong> ชื่อบัญชีผู้รับไม่ใช่เจ้าของร้าน ➔ ปฏิเสธ "โอนเงินผิดบัญชีปลายทาง"</li>
+                  <li><strong>❌ ยอดเงินไม่ครบ:</strong> จำนวนเงินโอนน้อยกว่าราคาบริการ ➔ ปฏิเสธ "ยอดเงินโอนไม่ตรงกับค่าบริการ"</li>
                 </ul>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- ==================== SLIDE 11: PAYMENT SEQUENCE ==================== -->
-        <section class="slide" data-slide="11" data-title="Sequence: การชำระเงิน">
+        <!-- ==================== SLIDE 11: PAYMENT SEQUENCE DIAGRAM ==================== -->
+        <section class="slide" data-slide="11" data-title="3.3.1.2 Sequence: การชำระเงิน">
           <div class="slide-header">
             <div class="slide-title-wrap">
-              <h2>⚡ Sequence Diagram: การตรวจสอบสลิปและชำระเงิน</h2>
-              <p>ลำดับขั้นตอนการส่งข้อมูลระหว่างผู้ใช้งาน, Webhook, Slip2Go API, MySQL และ LINE Messaging API</p>
+              <h2>⚡ 3.3.1.2 แผนภาพลำดับ: การตรวจสอบสลิปและชำระเงิน (Sequence Diagram)</h2>
+              <p>ภาพที่ 3.4 โฟลว์การสื่อสารและรับส่งข้อมูลระหว่าง 5 ส่วนประกอบระบบแบบเรียลไทม์ภายใน 2-3 วินาที</p>
             </div>
             <div class="badge-counter">SLIDE 11 / 20</div>
           </div>
           <div class="slide-body">
             <div class="card-grid grid-split-55-45">
-              <div class="media-card" onclick="openLightbox('Docs/Diagram/ภาพที่ 3.3 Sequence Diagram การตรวจสอบสลิปและชำระเงิน.png')">
-                <img src="Docs/Diagram/ภาพที่ 3.3 Sequence Diagram การตรวจสอบสลิปและชำระเงิน.png" alt="Sequence Diagram ชำระเงิน" onerror="this.outerHTML='<div style=\'padding:40px;color:#D97706;text-align:center;\'>⚡ ภาพที่ 3.3 Sequence Diagram</div>'">
-                <div class="media-label">🔍 ภาพที่ 3.3 Sequence Diagram การตรวจสอบสลิปและชำระเงิน</div>
+              <div class="media-card" onclick="openLightbox('Docs/Diagram/ภาพที่ 3.3 Sequence Diagram การตรวจสอบสลิปและชำระเงิน.png', 'ภาพที่ 3.4 Sequence Diagram การตรวจสอบสลิปและชำระเงิน')">
+                <img src="Docs/Diagram/ภาพที่ 3.3 Sequence Diagram การตรวจสอบสลิปและชำระเงิน.png" alt="Sequence Diagram การชำระเงิน" onerror="this.outerHTML='<div style=\'padding:40px;color:#D97706;text-align:center;\'>⚡ ภาพที่ 3.4 Sequence Diagram การชำระเงิน</div>'">
+                <div class="media-label">🔍 ภาพที่ 3.4 แผนภาพลำดับขั้นตอนการตรวจสอบสลิปและชำระเงิน (Sequence Diagram)</div>
               </div>
               <div class="content-card sky" style="justify-content: center;">
-                <div class="card-title">กระบวนการรับส่งข้อมูลแบบเรียลไทม์</div>
+                <div class="card-title">ลำดับการทำงานแบบ Real-time 5 ขั้นตอน</div>
                 <ul class="card-list">
-                  <li><strong>1. Form Submission:</strong> ลูกค้ากดยืนยันชำระเงินผ่านหน้า LINE LIFF พร้อมแนบ Base64 Image</li>
-                  <li><strong>2. Webhook Ingestion:</strong> n8n รับ Webhook ภายในเสี้ยววินาที และยิงคำขอไปยัง Slip2Go API</li>
-                  <li><strong>3. Bank Verification:</strong> Slip2Go ส่งผลการตรวจสถานะสลิป เลข Ref และยอดเงินจริงกลับมายัง n8n</li>
-                  <li><strong>4. Database Insertion:</strong> n8n คำนวณส่วนแบ่งช่าง (Barber Earn) และบันทึกลงตาราง transactions</li>
-                  <li><strong>5. Dual Notifications:</strong> n8n สั่ง LINE API ส่ง e-Receipt ให้ลูกค้า และส่ง Push Alert ยอดเงินเข้า LINE ช่างทันที</li>
+                  <li><strong>1. ลูกค้ากดยืนยันชำระ:</strong> LINE LIFF ส่ง Payload พร้อมภาพสลิป Base64 ยิง Webhook เข้า n8n</li>
+                  <li><strong>2. n8n ส่งตรวจ Slip2Go:</strong> เรียกใช้ Slip2Go API ตรวจ QR และรับ JSON ข้อมูลสลิปธนาคาร</li>
+                  <li><strong>3. เช็กสลิปซ้ำใน MySQL:</strong> นำเลข trans_ref ตรวจสอบกับตาราง transactions ป้องกันสลิปซ้ำ 100%</li>
+                  <li><strong>4. คำนวณคอมมิชชัน & บันทึก:</strong> คำนวณส่วนแบ่งช่างและร้าน บันทึกลง MySQL ด้วยสถานะ pending</li>
+                  <li><strong>5. ยิงแจ้งเตือน LINE:</strong> ส่ง e-Receipt สีเขียวให้ลูกค้า และยิง Push เตือนยอดเงินให้ช่างทันที</li>
                 </ul>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- ==================== SLIDE 12: SETTLEMENT SEQUENCE ==================== -->
-        <section class="slide" data-slide="12" data-title="Sequence: การตัดรอบเคลียร์เงิน">
+        <!-- ==================== SLIDE 12: SETTLEMENT SEQUENCE DIAGRAM ==================== -->
+        <section class="slide" data-slide="12" data-title="3.3.1.3 Sequence: การตัดรอบเคลียร์เงิน">
           <div class="slide-header">
             <div class="slide-title-wrap">
-              <h2>🤝 Sequence Diagram: การตัดรอบเคลียร์เงินช่าง (Settlement)</h2>
-              <p>ขั้นตอนการสรุปยอดค้างจ่ายค่าคอมมิชชันสะสมของช่าง และการแนบหลักฐานการโอนเงินเพื่อปิดรอบ</p>
+              <h2>🤝 3.3.1.3 แผนภาพลำดับ: การตัดรอบเคลียร์เงินช่าง (Settlement Sequence Diagram)</h2>
+              <p>ภาพที่ 3.5 ขั้นตอนการสรุปยอดค้างจ่าย โอนเงิน และอัปเดตสถานะบิลระหว่างเจ้าของร้านกับช่างตัดผม</p>
             </div>
             <div class="badge-counter">SLIDE 12 / 20</div>
           </div>
           <div class="slide-body">
             <div class="card-grid grid-split-55-45">
-              <div class="media-card" onclick="openLightbox('Docs/Diagram/ภาพที่ 3.4 Sequence Diagram การตัดรอบเคลียร์เงินช่าง.png')">
-                <img src="Docs/Diagram/ภาพที่ 3.4 Sequence Diagram การตัดรอบเคลียร์เงินช่าง.png" alt="Sequence Diagram ตัดรอบเงินช่าง" onerror="this.outerHTML='<div style=\'padding:40px;color:#D97706;text-align:center;\'>🤝 ภาพที่ 3.4 Sequence Diagram ตัดรอบเงิน</div>'">
-                <div class="media-label">🔍 ภาพที่ 3.4 Sequence Diagram การตัดรอบเคลียร์เงินช่าง (Settlement)</div>
+              <div class="media-card" onclick="openLightbox('Docs/Diagram/ภาพที่ 3.4 Sequence Diagram การตัดรอบเคลียร์เงินช่าง.png', 'ภาพที่ 3.5 Sequence Diagram การตัดรอบเคลียร์เงินช่าง')">
+                <img src="Docs/Diagram/ภาพที่ 3.4 Sequence Diagram การตัดรอบเคลียร์เงินช่าง.png" alt="Sequence Diagram การเคลียร์เงินช่าง" onerror="this.outerHTML='<div style=\'padding:40px;color:#D97706;text-align:center;\'>🤝 ภาพที่ 3.5 Sequence Diagram การเคลียร์เงิน</div>'">
+                <div class="media-label">🔍 ภาพที่ 3.5 แผนภาพลำดับการตัดรอบเคลียร์เงินและจ่ายค่าคอมมิชชันช่าง</div>
               </div>
               <div class="content-card emerald" style="justify-content: center;">
-                <div class="card-title">ความโปร่งใสในกระบวนการเคลียร์เงิน</div>
+                <div class="card-title">4 ขั้นตอนกระบวนการตัดรอบเคลียร์เงิน (Settlement)</div>
                 <ul class="card-list">
-                  <li><strong>1. ตรวจสอบยอดค้างจ่าย:</strong> แอดมินเปิดระบบหลังบ้านดูยอดเงินสะสมที่ยังไม่ได้เคลียร์ (Pending) ของช่างแต่ละคน</li>
-                  <li><strong>2. โอนเงินและแนบสลิป:</strong> เจ้าของร้านโอนเงินเข้าบัญชีช่าง พร้อมแนบภาพสลิปหลักฐานการโอนลงในระบบ</li>
-                  <li><strong>3. บันทึกประวัติ Payout:</strong> ระบบสร้างบันทึกในตาราง payouts และปรับสถานะบิลที่เกี่ยวข้องเป็น 'Settled'</li>
-                  <li><strong>4. แจ้งเตือนสลิปเข้าช่าง:</strong> ระบบยิง LINE Push Notification ส่งภาพสลิปและรายละเอียดยอดเงินให้ช่างตัดผมทราบทันที</li>
+                  <li><strong>1. แอดมินตรวจสอบยอดค้างจ่าย:</strong> เปิดระบบหลังบ้าน ดึงรายการบิลสถานะ pending ของช่างแต่ละคน</li>
+                  <li><strong>2. โอนเงินผ่านแอปธนาคาร:</strong> เจ้าของร้านโอนเงินยอดสุทธิเข้าบัญชีช่าง พร้อมบันทึกภาพสลิปโอนเงิน</li>
+                  <li><strong>3. แนบสลิปและยืนยันตัดรอบ:</strong> อัปโหลดสลิปหลักฐานผ่านระบบหลังบ้านเพื่อบันทึกลงตาราง payouts</li>
+                  <li><strong>4. อัปเดตสถานะ & ยิง LINE ช่าง:</strong> อัปเดตบิลเป็น settled และส่งสลิปหลักฐานเข้า LINE ช่างทันที</li>
                 </ul>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- ==================== SLIDE 13: ER-DIAGRAM ==================== -->
-        <section class="slide" data-slide="13" data-title="แบบจำลองข้อมูล (ER-Diagram)">
+        <!-- ==================== SLIDE 13: ER-DIAGRAM & SCHEMA ==================== -->
+        <section class="slide" data-slide="13" data-title="3.3.2 แบบจำลองข้อมูล (ER-Diagram)">
           <div class="slide-header">
             <div class="slide-title-wrap">
-              <h2>🗄️ แบบจำลองข้อมูลเชิงสัมพันธ์ (ER-Diagram & Database Schema)</h2>
-              <p>โครงสร้างความสัมพันธ์ของฐานข้อมูล MySQL สำหรับจัดเก็บข้อมูลช่าง บริการ ธุรกรรม และการจ่ายเงิน</p>
+              <h2>🗄️ 3.3.2 การออกแบบฐานข้อมูล: แผนภาพความสัมพันธ์ของข้อมูล (ER-Diagram)</h2>
+              <p>ภาพที่ 3.10 แบบจำลองฐานข้อมูลเชิงสัมพันธ์และพจนานุกรมข้อมูล 4 ตารางหลักตามตารางที่ 3.1 - 3.5</p>
             </div>
             <div class="badge-counter">SLIDE 13 / 20</div>
           </div>
           <div class="slide-body">
             <div class="card-grid grid-split-55-45">
-              <div class="media-card" onclick="openLightbox('Docs/Diagram/ER-Diagram.png')">
-                <img src="Docs/Diagram/ER-Diagram.png" alt="ER-Diagram" onerror="this.outerHTML='<div style=\'padding:40px;color:#D97706;text-align:center;\'>🗄️ แผนภาพ ER-Diagram</div>'">
-                <div class="media-label">🔍 ภาพที่ 3.7 แผนภาพแสดงความสัมพันธ์ของข้อมูล (ER-Diagram)</div>
+              <div class="media-card" onclick="openLightbox('Docs/Diagram/ภาพที่ 3.7 แผนภาพแสดงความสัมพันธ์ของข้อมูล (ER-Diagram).png', 'ภาพที่ 3.10 แผนภาพแสดงความสัมพันธ์ของข้อมูล (ER-Diagram)')">
+                <img src="Docs/Diagram/ภาพที่ 3.7 แผนภาพแสดงความสัมพันธ์ของข้อมูล (ER-Diagram).png" alt="ER-Diagram" onerror="this.outerHTML='<div style=\'padding:40px;color:#D97706;text-align:center;\'>🗄️ ภาพที่ 3.10 แบบจำลองฐานข้อมูล</div>'">
+                <div class="media-label">🔍 ภาพที่ 3.10 แผนภาพแสดงความสัมพันธ์ของข้อมูล (ER-Diagram)</div>
               </div>
               <div class="content-card" style="justify-content: center;">
-                <div class="card-title">4 ตารางหลักในฐานข้อมูล MySQL</div>
+                <div class="card-title">โครงสร้าง 4 ตารางหลักมาตรฐาน 3NF</div>
                 <ul class="card-list">
-                  <li><strong>1. users (ช่างตัดผม & แอดมิน):</strong> เก็บ user_id, username, password_hash, role, barber_name, commission_rate, line_user_id</li>
-                  <li><strong>2. services (รายการบริการ):</strong> เก็บ service_id, service_name, price, duration, is_active</li>
-                  <li><strong>3. transactions (ธุรกรรมรายรับ):</strong> เก็บ transaction_id, user_id, service_id, amount, barber_earn, shop_earn, payment_method, slip_ref, status ('approved', 'voided', 'settled')</li>
-                  <li><strong>4. payouts (ประวัติการตัดรอบเงิน):</strong> เก็บ payout_id, barber_id, total_amount, slip_url, paid_at, note</li>
+                  <li><strong>users (ตารางที่ 3.1):</strong> ข้อมูลผู้ใช้งานและช่าง (id, name, line_user_id, commission_rate, status)</li>
+                  <li><strong>services (ตารางที่ 3.2):</strong> จัดการรายการบริการและราคา (id, name, price, duration, is_active)</li>
+                  <li><strong>transactions (ตารางที่ 3.3-3.4):</strong> เก็บบิลธุรกรรม (trans_ref, barber_earn, shop_earn, status, is_void)</li>
+                  <li><strong>payouts (ตารางที่ 3.5):</strong> จัดการประวัติการตัดรอบจ่ายช่าง (id, barber_id, amount, slip_url, created_at)</li>
                 </ul>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- ==================== SLIDE 14: PROTOTYPE 1 - LIFF ==================== -->
-        <section class="slide" data-slide="14" data-title="ชิ้นงานจริง: ริชเมนู & LINE LIFF">
+        <!-- ==================== SLIDE 14: UI RICH MENU & LIFF ==================== -->
+        <section class="slide" data-slide="14" data-title="3.3.3.1-3.3.3.3 UI: ริชเมนู & LINE LIFF">
           <div class="slide-header">
             <div class="slide-title-wrap">
-              <h2>📱 ชิ้นงานจริง (1/5): หน้าริชเมนู & ฟอร์มชำระเงิน LINE LIFF</h2>
-              <p>ผลการพัฒนาระบบฝั่งลูกค้า เริ่มต้นจากแตะริชเมนูบน LINE OA ➡️ เข้าสู่หน้าเว็บฟอร์มแจ้งชำระเงิน LIFF</p>
+              <h2>📱 3.3.3.1 - 3.3.3.3 การออกแบบส่วนติดต่อผู้ใช้: ริชเมนู & ฟอร์ม LINE LIFF</h2>
+              <p>ภาพที่ 3.11 ริชเมนูลูกค้า, ภาพจำลองแชท LINE, และภาพที่ 3.12 - 3.13 ฟอร์มแจ้งชำระเงินโอน/เงินสด</p>
             </div>
             <div class="badge-counter">SLIDE 14 / 20</div>
           </div>
           <div class="slide-body">
             <div class="card-grid grid-split-55-45">
-              <div style="display: flex; flex-direction: column; gap: 12px; height: 100%;">
-                <!-- 1. Top: Full Customer Rich Menu Banner -->
-                <div class="media-card" style="height: 190px; flex-shrink: 0;" onclick="openLightbox('Docs/Diagram/richmenu_customer_banner.png', 'ภาพที่ 3.8 แบนเนอร์ริชเมนูฝั่งลูกค้าบน LINE OA (เสหยอดบาร์เบอร์)')">
-                  <img src="Docs/Diagram/richmenu_customer_banner.png" alt="แบนเนอร์ริชเมนูลูกค้า" style="object-fit: cover; object-position: center; width: 100%; height: 100%;">
-                  <div class="media-label">🔍 ภาพที่ 3.8 แบนเนอร์ริชเมนูฝั่งลูกค้า (แตะปุ่มสีส้มเพื่อเปิดฟอร์ม LIFF • คลิกเพื่อขยาย 2500×843)</div>
+              <!-- Visual Mockups: 2-Level Column -->
+              <div style="display: flex; flex-direction: column; gap: 10px; height: 100%;">
+                <!-- Top: Customer Rich Menu Banner -->
+                <div class="media-card" onclick="openLightbox('Docs/Diagram/richmenu_customer_banner.png', 'ภาพที่ 3.11 ริชเมนูลูกค้า (LINE Rich Menu Banner 2500×843 px)')" style="flex: 0 0 auto; height: 120px;">
+                  <img src="Docs/Diagram/richmenu_customer_banner.png" alt="ริชเมนูลูกค้า เสหยอดบาร์เบอร์" style="object-fit: cover; object-position: center;">
+                  <div class="media-label">🔍 ภาพที่ 3.11 ริชเมนูลูกค้า (Rich Menu Banner แตะแจ้งชำระเงิน)</div>
                 </div>
 
-                <!-- 2. Bottom: LINE Chat Mockup & LIFF Checkout Form -->
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; flex: 1; min-height: 0;">
-                  <div class="media-card" onclick="openLightbox('Docs/Diagram/diag_3_8_richmenu.png', 'ภาพจำลองริชเมนูในห้องแชท LINE OA (เสหยอดบาร์เบอร์)')">
-                    <img src="Docs/Diagram/diag_3_8_richmenu.png" alt="ริชเมนูในห้องแชท LINE">
-                    <div class="media-label">📱 1. หน้าแชท LINE OA เสหยอดบาร์เบอร์</div>
+                <!-- Bottom: Chat Mockup + LIFF Tall Form -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; flex: 1; min-height: 0;">
+                  <div class="media-card" onclick="openLightbox('Docs/Diagram/diag_3_8_richmenu.png', 'ภาพจำลองแชท LINE OA เสหยอดบาร์เบอร์ พร้อมริชเมนูด้านล่าง')">
+                    <img src="Docs/Diagram/diag_3_8_richmenu.png" alt="แชท LINE OA เสหยอดบาร์เบอร์">
+                    <div class="media-label">💬 1. แชท LINE OA + ริชเมนู</div>
                   </div>
                   <div class="media-card" onclick="openLightbox('Present/01_ขั้นตอนการชำระ/01_หน้าฟอร์มชำระเงิน_LIFF.jpg', 'หน้าฟอร์มแจ้งชำระเงิน LINE LIFF 4 ขั้นตอน (ความละเอียดเต็ม 592×2764 px)')" style="position: relative;">
                     <img src="Present/01_ขั้นตอนการชำระ/01_หน้าฟอร์มชำระเงิน_LIFF.jpg" alt="หน้าฟอร์ม LIFF" style="object-position: top center;">
                     <div style="position: absolute; top: 10px; right: 10px; background: rgba(5, 150, 105, 0.92); color: white; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; box-shadow: 0 2px 8px rgba(0,0,0,0.3); pointer-events: none;">
                       🔍 แตะซูมเลื่อนอ่านครบ 4 ขั้นตอน
                     </div>
-                    <div class="media-label">📱 2. ฟอร์ม LINE LIFF (เลือกช่าง • บริการ • สลิป QR)</div>
+                    <div class="media-label">📱 2. ฟอร์ม LINE LIFF 4 ขั้นตอน</div>
                   </div>
                 </div>
               </div>
@@ -1476,7 +1476,7 @@
                       <span>▸ <strong>ขั้น 1:</strong> เลือกช่างผู้ให้บริการ (ยูโกะ, แบม, เต้) พร้อมรูปและเรทคอมมิชชัน</span>
                       <span>▸ <strong>ขั้น 2:</strong> เลือกบริการ 5 รายการมาตรฐาน พร้อมราคาชัดเจน (150 - 1,500 บาท)</span>
                       <span>▸ <strong>ขั้น 3:</strong> เลือกช่องทางชำระเงิน (โอนเงินผ่านสลิป QR / เงินสดหน้าร้าน Cash)</span>
-                      <span>▸ <strong>ขั้น 4:</strong> แสดง QR Code พร้อมเพย์ร้าน (กสิกรไทย 098-870-1572) และแนบรูปสลิป</span>
+                      <span>▸ <strong>ขั้น 4:</strong> แสดง QR Code พร้อมเพย์ร้าน และแนบรูปสลิปส่งตรวจสอบ</span>
                     </div>
                   </li>
                   <li>
@@ -1489,190 +1489,189 @@
           </div>
         </section>
 
-        <!-- ==================== SLIDE 15: PROTOTYPE 2 - SLIP & RECEIPT ==================== -->
-        <section class="slide" data-slide="15" data-title="ชิ้นงานจริง: ตรวจสลิป & e-Receipt">
+        <!-- ==================== SLIDE 15: UI SLIP & E-RECEIPT ==================== -->
+        <section class="slide" data-slide="15" data-title="3.3.3.4 UI: ตรวจสลิป & e-Receipt">
           <div class="slide-header">
             <div class="slide-title-wrap">
-              <h2>🧾 ชิ้นงานจริง (2/5): ตรวจสลิปอัตโนมัติ & ใบเสร็จอิเล็กทรอนิกส์</h2>
-              <p>ผลการตรวจสอบสลิปโอนเงินจริงผ่าน Slip2Go API และการส่งใบเสร็จ e-Receipt สีเขียวผ่าน Flex Message</p>
+              <h2>🧾 3.3.3.4 การออกแบบส่วนติดต่อผู้ใช้: ตรวจสลิปอัตโนมัติ & ใบเสร็จ e-Receipt</h2>
+              <p>ภาพที่ 3.14 สลิปโอนเงินจริงผ่าน Slip2Go API และการส่งใบเสร็จดิจิทัล Flex Message ตอบกลับลูกค้าทันที</p>
             </div>
             <div class="badge-counter">SLIDE 15 / 20</div>
           </div>
           <div class="slide-body">
             <div class="card-grid grid-split-50-50">
               <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px; height: 100%;">
-                <div class="media-card" onclick="openLightbox('Present/01_ขั้นตอนการชำระ/02_สลิปโอนเงินจริง_KBank.jpg')">
+                <div class="media-card" onclick="openLightbox('Present/01_ขั้นตอนการชำระ/02_สลิปโอนเงินจริง_KBank.jpg', 'สลิปโอนเงินจริงธนาคารกสิกรไทยที่ใช้ทดสอบ')">
                   <img src="Present/01_ขั้นตอนการชำระ/02_สลิปโอนเงินจริง_KBank.jpg" alt="สลิปโอนเงินจริง">
-                  <div class="media-label">1. สลิปโอนเงินจริงที่นำมาทดสอบ</div>
+                  <div class="media-label">1. สลิปโอนเงินจริงที่ใช้ทดสอบ</div>
                 </div>
-                <div class="media-card" onclick="openLightbox('Present/01_ขั้นตอนการชำระ/05_ใบเสร็จโอนเงิน_eReceipt_TXN55.jpg')">
+                <div class="media-card" onclick="openLightbox('Present/01_ขั้นตอนการชำระ/05_ใบเสร็จโอนเงิน_eReceipt_TXN55.jpg', 'ภาพที่ 3.14 ใบเสร็จรับเงินอิเล็กทรอนิกส์ (e-Receipt Flex Message)')">
                   <img src="Present/01_ขั้นตอนการชำระ/05_ใบเสร็จโอนเงิน_eReceipt_TXN55.jpg" alt="ใบเสร็จ e-Receipt">
                   <div class="media-label">2. ใบเสร็จ Flex Message สีเขียว</div>
                 </div>
               </div>
               <div class="content-card sky" style="justify-content: center;">
-                <div class="card-title">ความแม่นยำและความปลอดภัย</div>
+                <div class="card-title">ความแม่นยำและความปลอดภัยในการรับเงิน</div>
                 <ul class="card-list">
-                  <li><strong>ประมวลผลรวดเร็ว:</strong> ตรวจสอบสลิปผ่าน Open Banking API สำเร็จภายในเวลาเฉลี่ย 2-3 วินาที</li>
-                  <li><strong>ป้องกันสลิปซ้ำ 100%:</strong> เมื่อสลิปผ่านการอนุมัติแล้ว เลข Ref จะถูกจำไว้ในระบบ ไม่สามารถนำมาใช้ซ้ำได้อีก</li>
-                  <li><strong>e-Receipt เป็นหลักฐาน:</strong> ส่งใบเสร็จ Flex Message สรุปเลขบิล ชื่อช่าง บริการ ยอดเงิน และเวลาโอนเข้า LINE ลูกค้าทันที</li>
-                  <li><strong>ตรวจจับยอดไม่ตรง:</strong> หากยอดเงินในสลิปไม่ตรงกับราคา ระบบจะแจ้งเตือนปฏิเสธทันที</li>
+                  <li><strong>ประมวลผลรวดเร็ว 2-3 วินาที:</strong> สแกน QR และดึงข้อมูลธุรกรรมจากธนาคารแบบเรียลไทม์</li>
+                  <li><strong>ป้องกันสลิปซ้ำ 100%:</strong> เลข trans_ref ถูกล็อกใน MySQL ป้องกันการนำสลิปเก่ามาวนใช้ซ้ำเด็ดขาด</li>
+                  <li><strong>ใบเสร็จ e-Receipt สีเขียว:</strong> แสดงเลขบิล ชื่อช่าง บริการ ยอดเงิน และเวลาโอน สร้างความน่าเชื่อถือ</li>
+                  <li><strong>ตรวจจับยอดไม่ตรง:</strong> ปฏิเสธบิลทันทีหากยอดเงินที่โอนไม่ตรงกับราคาค่าบริการของทางร้าน</li>
                 </ul>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- ==================== SLIDE 16: PROTOTYPE 3 - BARBER & VOID ==================== -->
-        <section class="slide" data-slide="16" data-title="ชิ้นงานจริง: แจ้งเตือนช่าง & โมฆะบิล">
+        <!-- ==================== SLIDE 16: UI BARBER ALERT & VOID BILL ==================== -->
+        <section class="slide" data-slide="16" data-title="3.3.1.4 & 3.3.3.6 UI: เตือนช่าง & โมฆะบิล">
           <div class="slide-header">
             <div class="slide-title-wrap">
-              <h2>🔔 ชิ้นงานจริง (3/5): การแจ้งเตือนช่างตัดผม & การทำโมฆะบิล</h2>
-              <p>ระบบแจ้งเตือนส่วนแบ่งรายได้ช่างทันทีแบบเรียลไทม์ และฟังก์ชันโมฆะบิลพร้อม Audit Log ป้องกันการทุจริต</p>
+              <h2>🔔 3.3.1.4 & 3.3.3.6 การออกแบบส่วนติดต่อผู้ใช้: แจ้งเตือนช่าง & โมฆะบิล</h2>
+              <p>ภาพที่ 3.6 และ 3.16 การแจ้งเตือนช่างตัดผมแบบเรียลไทม์ และระบบยกเลิกบิลที่มี Audit Log ป้องกันทุจริต</p>
             </div>
             <div class="badge-counter">SLIDE 16 / 20</div>
           </div>
           <div class="slide-body">
             <div class="card-grid grid-split-50-50">
               <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px; height: 100%;">
-                <div class="media-card" onclick="openLightbox('Present/02_ประวัติธุรกรรมและโมฆะบิล/04_LINEเตือนช่างบิลโมฆะ.png')">
-                  <img src="Present/02_ประวัติธุรกรรมและโมฆะบิล/04_LINEเตือนช่างบิลโมฆะ.png" alt="LINE เตือนช่าง">
-                  <div class="media-label">1. LINE เตือนช่าง (เงินเข้า / บิลโมฆะ)</div>
+                <div class="media-card" onclick="openLightbox('Present/01_ขั้นตอนการชำระ/04_ข้อความแจ้งเตือนช่าง_LINE.jpg', 'ข้อความแจ้งเตือนยอดเงินช่างตัดผมผ่าน LINE Flex Message')">
+                  <img src="Present/01_ขั้นตอนการชำระ/04_ข้อความแจ้งเตือนช่าง_LINE.jpg" alt="แจ้งเตือนช่าง">
+                  <div class="media-label">1. ข้อความแจ้งเตือนช่างใน LINE</div>
                 </div>
-                <div class="media-card" onclick="openLightbox('Present/02_ประวัติธุรกรรมและโมฆะบิล/01_ตารางประวัติธุรกรรม.png')">
-                  <img src="Present/02_ประวัติธุรกรรมและโมฆะบิล/01_ตารางประวัติธุรกรรม.png" alt="ตารางประวัติธุรกรรม">
-                  <div class="media-label">2. ตารางธุรกรรมและการสั่งโมฆะบิล</div>
+                <div class="media-card" onclick="openLightbox('Present/03_การจัดการและโมฆะบิล/03_หน้ารายการบิลที่ถูกโมฆะแล้ว.jpg', 'ภาพที่ 3.16 หน้ารายการบิลที่ถูกทำโมฆะแล้ว (Void Bill Audit Log)')">
+                  <img src="Present/03_การจัดการและโมฆะบิล/03_หน้ารายการบิลที่ถูกโมฆะแล้ว.jpg" alt="หน้ารายการโมฆะบิล">
+                  <div class="media-label">2. หน้ารายการบิลที่ถูกโมฆะแล้ว</div>
                 </div>
               </div>
-              <div class="content-card" style="justify-content: center;">
-                <div class="card-title">ความโปร่งใสและตรวจสอบย้อนหลังได้</div>
+              <div class="content-card rose" style="justify-content: center;">
+                <div class="card-title">ความโปร่งใสและระบบ Audit Log ป้องกันทุจริต</div>
                 <ul class="card-list">
-                  <li><strong>Real-time Barber Alert:</strong> เมื่อลูกค้าจ่ายเงินสำเร็จ ช่างจะได้รับข้อความแจ้งเตือนระบุยอดเงินและค่าคอมมิชชันเข้า LINE ส่วนตัวทันที</li>
-                  <li><strong>ระบบโมฆะบิล (Void Bill):</strong> กรณีคีย์บิลผิดพลาด แอดมินสามารถกดยกเลิกบิลผ่านระบบหลังบ้านได้</li>
-                  <li><strong>Audit Log คุมเข้ม:</strong> ข้อมูลบิลเดิมจะไม่ถูกลบออกจากฐานข้อมูล แต่จะปรับยอดเป็น 0 พร้อมขึ้นแถบสีแดงและบันทึกผู้ยกเลิก</li>
-                  <li><strong>แจ้งเตือนช่างทันที:</strong> เมื่อมีการสั่งโมฆะบิล ระบบจะยิงข้อความเตือนช่างทันที ป้องกันแอดมินแอบยกเลิกบิลโดยพลการ</li>
+                  <li><strong>แจ้งเตือนช่างเรียลไทม์ (3 วินาที):</strong> ช่างทราบยอดเงินและคอมมิชชันทันทีที่ลูกค้าจ่ายเงินสำเร็จ</li>
+                  <li><strong>สิทธิ์ทำโมฆะบิลเฉพาะแอดมิน:</strong> เจ้าของร้านเท่านั้นที่มีสิทธิ์กดทำโมฆะบิลผ่านระบบหลังบ้าน</li>
+                  <li><strong>บันทึก Audit Log ไม่ลบข้อมูล:</strong> ปรับยอดเป็น 0 บาท แสดงแถบสีแดง ไม่ลบแถวธุรกรรมออกจากฐานข้อมูล</li>
+                  <li><strong>ยิง LINE เตือนช่างทันที:</strong> เมื่อบิลถูกยกเลิก ระบบส่งข้อความแจ้งเตือนช่างทันที ป้องกันการแอบทำโดยพลการ</li>
                 </ul>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- ==================== SLIDE 17: PROTOTYPE 4 - ADMIN & SETTLE ==================== -->
-        <section class="slide" data-slide="17" data-title="ชิ้นงานจริง: หลังบ้าน & เคลียร์เงิน">
+        <!-- ==================== SLIDE 17: UI BACKOFFICE & SETTLEMENT ==================== -->
+        <section class="slide" data-slide="17" data-title="3.3.3.7-3.3.3.10 UI: หลังบ้าน & เคลียร์เงิน">
           <div class="slide-header">
             <div class="slide-title-wrap">
-              <h2>💻 ชิ้นงานจริง (4/5): ระบบเว็บแอดมินหลังบ้าน & การตัดรอบเคลียร์เงิน</h2>
-              <p>ระบบจัดการข้อมูลช่างและบริการ (Full CRUD) พร้อมโมดูลสรุปยอดค้างจ่ายและแนบสลิปตัดรอบเคลียร์เงิน</p>
+              <h2>💻 3.3.3.7 - 3.3.3.10 การออกแบบส่วนติดต่อผู้ใช้: เว็บแอดมินหลังบ้าน & การตัดรอบเคลียร์เงิน</h2>
+              <p>ภาพที่ 3.17 - 3.20 หน้าจอจัดการช่าง บริการ ประวัติธุรกรรม และระบบตัดรอบเคลียร์เงินช่าง (Barber Settlements)</p>
             </div>
             <div class="badge-counter">SLIDE 17 / 20</div>
           </div>
           <div class="slide-body">
             <div class="card-grid grid-split-50-50">
               <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px; height: 100%;">
-                <div class="media-card" onclick="openLightbox('Present/03_จัดการช่างตัดผม/02_ตารางรายชื่อช่างตัดผม.png')">
-                  <img src="Present/03_จัดการช่างตัดผม/02_ตารางรายชื่อช่างตัดผม.png" alt="จัดการข้อมูลช่าง">
-                  <div class="media-label">1. ตารางจัดการช่างและ % คอมมิชชัน</div>
+                <div class="media-card" onclick="openLightbox('Present/04_หลังบ้านแอดมิน/01_หน้าจัดการช่าง_แก้ไขค่าคอม.jpg', 'ภาพที่ 3.17 หน้าจอจัดการข้อมูลช่างและแก้ไขค่าคอมมิชชัน')">
+                  <img src="Present/04_หลังบ้านแอดมิน/01_หน้าจัดการช่าง_แก้ไขค่าคอม.jpg" alt="หน้าจัดการช่าง">
+                  <div class="media-label">1. จัดการข้อมูลช่าง & ค่าคอม</div>
                 </div>
-                <div class="media-card" onclick="openLightbox('Present/05_การตัดรอบเคลียร์เงิน/01_ตารางยอดค้างเคลียร์เงิน.png')">
-                  <img src="Present/05_การตัดรอบเคลียร์เงิน/01_ตารางยอดค้างเคลียร์เงิน.png" alt="ตัดรอบเคลียร์เงินช่าง">
-                  <div class="media-label">2. ตารางสรุปยอดค้างเคลียร์เงินช่าง</div>
+                <div class="media-card" onclick="openLightbox('Present/02_การเคลียร์เงินช่าง/01_หน้าแอดมิน_แสดงยอดรอเคลียร์.jpg', 'ภาพที่ 3.20 หน้าจอตัดรอบเคลียร์เงินช่าง (Barber Settlements)')">
+                  <img src="Present/02_การเคลียร์เงินช่าง/01_หน้าแอดมิน_แสดงยอดรอเคลียร์.jpg" alt="ระบบตัดรอบเคลียร์เงิน">
+                  <div class="media-label">2. หน้าจอตัดรอบเคลียร์เงินช่าง</div>
                 </div>
               </div>
-              <div class="content-card emerald" style="justify-content: center;">
-                <div class="card-title">การบริหารจัดการร้านอย่างเป็นระบบ</div>
+              <div class="content-card sky" style="justify-content: center;">
+                <div class="card-title">ระบบบริหารจัดการร้านและเคลียร์เงินช่างครบวงจร</div>
                 <ul class="card-list">
-                  <li><strong>Full CRUD Operations:</strong> เพิ่ม ลบ แก้ไข ข้อมูลช่าง กำหนดสัดส่วนค่าคอมมิชชัน และปรับราคาบริการได้ตลอดเวลา</li>
-                  <li><strong>ผูก LINE UID ช่าง:</strong> เชื่อมต่อบัญชีช่างกับ LINE UID เพื่อให้ระบบแจ้งเตือนไปยังช่างได้ถูกต้องตรงคน</li>
-                  <li><strong>โมดูลตัดรอบเคลียร์เงิน (Settlement):</strong> รวมยอดเงินที่ร้านต้องจ่ายช่างแต่ละคนตามรอบเวลา (วัน/สัปดาห์/เดือน)</li>
-                  <li><strong>แนบหลักฐานสลิป:</strong> แอดมินแนบภาพสลิปโอนเงินจ่ายช่างเข้าระบบ และส่งสลิปเข้า LINE ช่างทันทีเป็นหลักฐาน</li>
+                  <li><strong>จัดการช่าง & ค่าคอม (3.3.3.7):</strong> เพิ่ม/แก้ไขช่าง กำหนดอัตราส่วนแบ่งรายบุคคล (50%, 60%) ได้ยืดหยุ่น</li>
+                  <li><strong>จัดการบริการ & ราคา (3.3.3.8):</strong> จัดการรายการทรงผม ราคา และเวลาการให้บริการ (CRUD เต็มรูปแบบ)</li>
+                  <li><strong>ประวัติธุรกรรม & ตัวกรอง (3.3.3.9):</strong> ค้นหาและตรวจสอบบิลย้อนหลัง แยกสถานะ โอน/เงินสด/โมฆะ</li>
+                  <li><strong>ตัดรอบเคลียร์เงินช่าง (3.3.3.10):</strong> รวมยอดค้างจ่าย โอนเงิน แนบสลิป อัปเดตบิลเป็น Settled อัตโนมัติ</li>
                 </ul>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- ==================== SLIDE 18: PROTOTYPE 5 - LOOKER STUDIO ==================== -->
-        <section class="slide" data-slide="18" data-title="ชิ้นงานจริง: แดชบอร์ด Data Studio">
+        <!-- ==================== SLIDE 18: UI DATA STUDIO DASHBOARD ==================== -->
+        <section class="slide" data-slide="18" data-title="3.3.3.13 UI: แดชบอร์ด Data Studio">
           <div class="slide-header">
             <div class="slide-title-wrap">
-              <h2>📊 ชิ้นงานจริง (5/5): แดชบอร์ดสรุปผลทางการเงิน (Data Studio)</h2>
-              <p>ระบบ Business Intelligence เชื่อมต่อ Cloud MySQL แสดงผลสถิติยอดขายรวมและรายได้ช่างแบบเรียลไทม์</p>
+              <h2>📊 3.3.3.13 การออกแบบส่วนติดต่อผู้ใช้: แดชบอร์ดสรุปผลทางการเงิน (Data Studio)</h2>
+              <p>ภาพที่ 3.22 การเชื่อมต่อ Cloud MySQL แสดงผลสถิติยอดขายรวม รายได้ช่าง และบริการยอดนิยมแบบเรียลไทม์</p>
             </div>
             <div class="badge-counter">SLIDE 18 / 20</div>
           </div>
           <div class="slide-body">
             <div class="card-grid grid-split-55-45">
-              <div class="media-card" onclick="openLightbox('Present/06_แดชบอร์ดและสถิติ/02_แดชบอร์ด_GoogleLookerStudio.png')">
-                <img src="Present/06_แดชบอร์ดและสถิติ/02_แดชบอร์ด_GoogleLookerStudio.png" alt="Looker Studio Dashboard" onerror="this.outerHTML='<div style=\'padding:40px;color:#D97706;text-align:center;\'>📊 แดชบอร์ด Looker Studio</div>'">
-                <div class="media-label">🔍 ภาพหน้าจอจริง: แดชบอร์ดสรุปผลทางการเงิน Google Looker Studio</div>
+              <div class="media-card" onclick="openLightbox('Docs/Diagram/mockup_dashboard_looker.png', 'ภาพที่ 3.22 แดชบอร์ดสรุปผลทางการเงิน Google Looker Studio')">
+                <img src="Docs/Diagram/mockup_dashboard_looker.png" alt="แดชบอร์ด Data Studio" onerror="this.outerHTML='<div style=\'padding:40px;color:#D97706;text-align:center;\'>📊 ภาพที่ 3.22 แดชบอร์ดสรุปผล</div>'">
+                <div class="media-label">🔍 ภาพที่ 3.22 หน้าจอแดชบอร์ดสรุปผลทางการเงิน (Google Looker Studio)</div>
               </div>
-              <div class="content-card sky" style="justify-content: center;">
-                <div class="card-title">มิติการวิเคราะห์ข้อมูลเพื่อสนับสนุนการตัดสินใจ</div>
+              <div class="content-card emerald" style="justify-content: center;">
+                <div class="card-title">การวิเคราะห์ข้อมูลและสนับสนุนการตัดสินใจผู้บริหาร</div>
                 <ul class="card-list">
-                  <li><strong>สรุปยอดขายรวม:</strong> แสดงยอดขายรวม (Total Revenue), ยอดจ่ายช่าง (Barber Payout) และกำไรสุทธิของร้าน (Shop Net)</li>
-                  <li><strong>ผลงานช่างแต่ละคน:</strong> กราฟเปรียบเทียบยอดตัดผมและรายได้ของช่างแต่ละคนเพื่อประเมินผลงาน</li>
-                  <li><strong>บริการยอดนิยม:</strong> แผนภูมิแสดงสัดส่วนบริการที่ลูกค้าเลือกใช้บริการมากที่สุด</li>
-                  <li><strong>ตัวกรองช่วงเวลา:</strong> สามารถเลือกดูข้อมูลย้อนหลังแบบรายวัน รายสัปดาห์ หรือรายเดือนได้ทันที</li>
-                  <li><strong>ลิงก์ดูรายงานจริง:</strong> เชื่อมต่อฐานข้อมูลสดบน Railway ตลอด 24 ชม.</li>
+                  <li><strong>ภาพรวมรายได้ธุรกิจ:</strong> สรุปยอดขายรวม (Revenue), ส่วนแบ่งรายได้ร้าน (Shop Share), และค่าคอมช่าง</li>
+                  <li><strong>บริการยอดนิยม (Top Services):</strong> กราฟแท่งแสดงจำนวนลูกค้าและรายได้แยกตามประเภทบริการ</li>
+                  <li><strong>ผลงานช่างรายบุคคล:</strong> เปรียบเทียบจำนวนหัวที่ตัดและยอดเงินสะสมของช่างแต่ละคน</li>
+                  <li><strong>เชื่อมต่อ MySQL อัตโนมัติ:</strong> ดึงข้อมูลผ่าน MySQL Native Connector ปลอดภัย แสดงผลเรียลไทม์ 24 ชม.</li>
                 </ul>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- ==================== SLIDE 19: ROADMAP & FEEDBACK ==================== -->
-        <section class="slide" data-slide="19" data-title="แผนงานและประเด็นขอรับคำแนะนำ">
+        <!-- ==================== SLIDE 19: TIMELINE & FUTURE SCOPE ==================== -->
+        <section class="slide" data-slide="19" data-title="1.5 ระยะเวลาดำเนินงาน & โครงงาน 2">
           <div class="slide-header">
             <div class="slide-title-wrap">
-              <h2>🚀 แผนการดำเนินงาน 16 สัปดาห์ & ประเด็นขอรับคำแนะนำเพื่อปรับปรุง</h2>
-              <p>ไทม์ไลน์การพัฒนาตามวิธีวิทยา SDLC และประเด็นที่ผู้จัดทำเปิดรับคำชี้แนะจากคณะกรรมการเพื่อต่อยอดในโครงงาน 2</p>
+              <h2>🚀 1.5 ระยะเวลาดำเนินงาน 16 สัปดาห์ & แผนการต่อยอดโครงงาน 2</h2>
+              <p>ตารางการดำเนินงานตามกระบวนการ SDLC ครบ 16 สัปดาห์ และแนวทางการพัฒนาต่อยอดในวิชาโครงงาน 2</p>
             </div>
             <div class="badge-counter">SLIDE 19 / 20</div>
           </div>
           <div class="slide-body">
-            <div class="card-grid grid-split-50-50">
-              <div class="content-card">
-                <div class="card-title">📅 แผนดำเนินงาน 16 สัปดาห์ (SDLC Model)</div>
+            <div class="card-grid grid-2">
+              <div class="content-card sky">
+                <div class="card-title">📅 แผนการดำเนินงาน 16 สัปดาห์ (SDLC Process)</div>
                 <ul class="card-list">
-                  <li><strong>สัปดาห์ที่ 1-3 (Planning & Analysis):</strong> ศึกษาปัญหา ออกแบบ Fishbone, เก็บรวบรวม Requirement และเสนอหัวข้อ (IT01)</li>
-                  <li><strong>สัปดาห์ที่ 4-7 (System Design):</strong> ออกแบบ System Architecture, Sequence Diagram, Flowchart, ERD และ Prototype</li>
-                  <li><strong>สัปดาห์ที่ 8-12 (Development & Integration):</strong> พัฒนา LINE LIFF, ตั้งค่า n8n, เชื่อม Slip2Go API, พัฒนา Backoffice และ MySQL</li>
-                  <li><strong>สัปดาห์ที่ 13-14 (Testing & Deployment):</strong> ทดสอบระบบป้องกันสลิปซ้ำ, Concurrency Test และติดตั้งบน Railway Cloud</li>
-                  <li><strong>สัปดาห์ที่ 15-16 (Evaluation & Documentation):</strong> ประเมินผลความพึงพอใจ จัดทำรายงานฉบับสมบูรณ์ และสอบป้องกันโครงงาน</li>
+                  <li><strong>สัปดาห์ 1-3 (Planning & Analysis):</strong> ศึกษาปัญหา Fishbone, เก็บรวบรวม Requirement และเสนอหัวข้อ IT01</li>
+                  <li><strong>สัปดาห์ 4-7 (System Design):</strong> ออกแบบ Architecture, Flowchart, Sequence, ERD และ UI Prototype</li>
+                  <li><strong>สัปดาห์ 8-12 (Development):</strong> พัฒนา LINE LIFF, ตั้งค่า n8n, เชื่อมต่อ Slip2Go API, Backoffice และ MySQL</li>
+                  <li><strong>สัปดาห์ 13-14 (Testing & Cloud):</strong> ทดสอบป้องกันสลิปซ้ำ, Concurrency Test และติดตั้งบน Railway Cloud</li>
+                  <li><strong>สัปดาห์ 15-16 (Evaluation):</strong> ประเมินความพึงพอใจ จัดทำเอกสารสมบูรณ์ และสอบป้องกันโครงงาน</li>
                 </ul>
               </div>
               <div class="content-card emerald">
-                <div class="card-title">💡 ประเด็นที่ขอรับคำแนะนำเพื่อต่อยอดในโครงงาน 2</div>
+                <div class="card-title">💡 ประเด็นขอรับคำแนะนำเพื่อต่อยอดในโครงงาน 2</div>
                 <ul class="card-list">
-                  <li><strong>1. การรองรับหลายสาขา (Multi-branch / Multi-tenant):</strong> ขอคำแนะนำในการขยายโครงสร้างฐานข้อมูลเพื่อรองรับร้านตัดผมที่มีมากกว่า 1 สาขา</li>
-                  <li><strong>2. ระบบจองคิวช่างล่วงหน้า (Appointment Booking):</strong> แนวทางการเพิ่มระบบจองคิวและเวลาผ่าน LINE LIFF ก่อนลูกค้าเดินทางมาหน้าร้าน</li>
-                  <li><strong>3. ระบบสมาชิกลูกค้าและสะสมแต้ม (Loyalty System):</strong> การเก็บประวัติทรงผมประจำของลูกค้า และระบบสะสมแต้มตัดผมฟรี</li>
-                  <li><strong>4. การปรับปรุงระบบความปลอดภัย:</strong> แนวทางการเข้ารหัสข้อมูลและการจัดการบทบาทสิทธิ์ (Role-based Access Control) เพิ่มเติม</li>
+                  <li><strong>1. รองรับหลายสาขา (Multi-branch):</strong> ขอคำแนะนำในการขยายฐานข้อมูลเพื่อรองรับร้านตัดผมมากกว่า 1 สาขา</li>
+                  <li><strong>2. ระบบจองคิวช่างล่วงหน้า (Booking):</strong> แนวทางการเพิ่มระบบจองคิวและเวลาผ่าน LINE LIFF ก่อนมาหน้าร้าน</li>
+                  <li><strong>3. ระบบสมาชิกลูกค้า (Loyalty System):</strong> การบันทึกประวัติทรงผมประจำลูกค้า และระบบสะสมแต้มตัดผมฟรี</li>
+                  <li><strong>4. ยกระดับความปลอดภัย (Security & RBAC):</strong> การเข้ารหัสข้อมูลและการจัดการสิทธิ์ผู้ใช้งานระดับลึก</li>
                 </ul>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- ==================== SLIDE 20: BENEFITS & Q&A ==================== -->
-        <section class="slide" data-slide="20" data-title="ประโยชน์ที่คาดว่าจะได้รับ & ถาม-ตอบ">
+        <!-- ==================== SLIDE 20: BENEFITS & QA ==================== -->
+        <section class="slide" data-slide="20" data-title="1.6 ประโยชน์ที่คาดว่าจะได้รับ & ถาม-ตอบ">
           <div class="slide-header">
             <div class="slide-title-wrap">
-              <h2>🌟 ประโยชน์ที่คาดว่าจะได้รับ & ถาม-ตอบ (Benefits & Q&A)</h2>
-              <p>สรุปผลลัพธ์และความคุ้มค่าของโครงงานตามข้อ 1.6 พร้อมรับฟังข้อเสนอแนะจากคณะกรรมการ</p>
+              <h2>🌟 1.6 ประโยชน์ที่คาดว่าจะได้รับ & ถาม-ตอบ (Expected Benefits & Q&A)</h2>
+              <p>สรุปผลลัพธ์และความคุ้มค่าของโครงงานตามเอกสารข้อ 1.6.1 - 1.6.5 พร้อมรับฟังคำแนะนำจากคณะกรรมการ</p>
             </div>
             <div class="badge-counter">SLIDE 20 / 20</div>
           </div>
           <div class="slide-body">
             <div class="card-grid grid-split-60-40">
               <div class="content-card emerald">
-                <div class="card-title">ผลลัพธ์เชิงประจักษ์ 5 ประการจากการใช้งานจริง</div>
+                <div class="card-title">ผลลัพธ์เชิงประจักษ์ 5 ประการตามเอกสารข้อ 1.6</div>
                 <ul class="card-list">
-                  <li><strong>1. ลดเวลาทำรายการ:</strong> ลูกค้าทำรายการเสร็จภายใน 30 วินาทีผ่าน LINE LIFF โดยไม่ต้องดาวน์โหลดแอปเพิ่มเติม</li>
-                  <li><strong>2. ป้องกันสลิปปลอม 100%:</strong> ระบบตรวจสลิปอัตโนมัติผ่าน Slip2Go API ตรวจจับสลิปซ้ำและยอดไม่ตรงได้ทุกกรณี ลดความสูญเสียทางการเงิน</li>
-                  <li><strong>3. คำนวณค่าคอมมิชชันถูกต้อง 100%:</strong> ระบบคำนวณอัตโนมัติแทนการจดมือ ขจัดข้อผิดพลาดและข้อพิพาทระหว่างเจ้าของร้านกับช่าง</li>
-                  <li><strong>4. ช่างทราบยอดเงินทันที:</strong> ได้รับการแจ้งเตือนผ่าน LINE ภายใน 3 วินาทีหลังลูกค้าจ่ายเงิน สร้างความโปร่งใสและความไว้วางใจ</li>
-                  <li><strong>5. เจ้าของร้านตัดสินใจด้วยข้อมูลจริง:</strong> แดชบอร์ด Looker Studio แสดงยอดขายรวม กำไรสุทธิ และผลงานช่างรายบุคคลเรียลไทม์ทุกวัน</li>
+                  <li><strong>1.6.1 สะดวก รวดเร็ว (LIFF Webapp):</strong> ลูกค้าทำรายการเสร็จภายใน 30 วินาทีบน LINE โดยไม่ต้องติดตั้งแอปเพิ่ม</li>
+                  <li><strong>1.6.2 ป้องกันสลิปปลอม & สลิปซ้ำ 100%:</strong> ระบบ Slip2Go ตรวจจับสลิปซ้ำและยอดไม่ตรงได้ทุกกรณี ลดการสูญเสียรายได้</li>
+                  <li><strong>1.6.3 คำนวณคอมมิชชันถูกต้อง 100%:</strong> คิดเงินอัตโนมัติแทนการจดมือ ขจัดข้อผิดพลาดและข้อพิพาทเรื่องเงิน</li>
+                  <li><strong>1.6.4 ช่างและร้านทราบยอดทันที:</strong> แจ้งเตือนผ่าน LINE ภายใน 3 วินาที พร้อมส่ง e-Receipt ให้ลูกค้า สร้างความโปร่งใส</li>
+                  <li><strong>1.6.5 สนับสนุนการตัดสินใจผู้บริหาร:</strong> แดชบอร์ด Looker Studio แสดงยอดขาย กำไร และผลงานช่างแบบเรียลไทม์</li>
                 </ul>
               </div>
               <div class="content-card" style="justify-content: center; align-items: center; text-align: center; gap: 14px;">
