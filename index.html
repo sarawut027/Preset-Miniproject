@@ -1021,7 +1021,7 @@
     <div id="stage-container">
       <div id="stage">
 
-                <!-- ==================== SLIDE 01: COVER ==================== -->
+                        <!-- ==================== SLIDE 01: COVER ==================== -->
         <section class="slide cover-slide active" data-slide="1" data-title="หน้าปกโครงงาน">
           <img src="images/logo.png" alt="โลโก้ร้าน" class="cover-logo" onerror="this.outerHTML='<div style=\'font-size:60px;margin-bottom:16px;\'>💈</div>'">
           <div class="cover-tagline">วิชาโครงงานด้านเทคโนโลยีสารสนเทศ 1 (IT01) • มหาวิทยาลัยราชภัฏนครปฐม</div>
@@ -1034,82 +1034,44 @@
           </div>
         </section>
 
-        <!-- ==================== SLIDE 02: PROBLEM STATEMENT ==================== -->
+        <!-- ==================== SLIDE 02: PROBLEM STATEMENT (FISHBONE) ==================== -->
         <section class="slide" data-slide="2" data-title="1.1 ความเป็นมาและความสำคัญของปัญหา">
           <div class="slide-header">
             <div class="slide-title-wrap">
               <h2>⚠️ 1.1 ความเป็นมาและความสำคัญของปัญหา (Problem Statement)</h2>
-              <p>ข้อจำกัดของระบบงานแบบดั้งเดิมในร้านตัดผม แบ่งเป็น 3 มิติหลักที่ส่งผลต่อประสิทธิภาพทางธุรกิจ</p>
+              <p>การวิเคราะห์สาเหตุของปัญหาในระบบงานเดิม 6 มิติ ด้วยแผนภูมิก้างปลา (ภาพที่ 1.1 ตามนายสราวุฒิ อุยยาหาญ 2570)</p>
             </div>
             <div class="badge-counter">SLIDE 02 / 20</div>
           </div>
           <div class="slide-body">
-            <div class="card-grid grid-3">
-              <div class="content-card rose">
-                <div class="card-title">💸 1. ปัญหาด้านรายรับ (เงินเข้า)</div>
-                <ul class="card-list">
-                  <li><strong>ตรวจสลิปขณะติดลูกค้า:</strong> ช่างกำลังให้บริการลูกค้า จึงไม่สามารถเปิดแอปธนาคารตรวจยอดเงินจริงได้ทันที</li>
-                  <li><strong>เสี่ยงสลิปปลอม/วนใช้ซ้ำ:</strong> เสี่ยงต่อการถูกฉ้อโกงด้วยภาพสลิปตัดต่อ และการนำสลิปเก่ามาวนใช้ซ้ำโดยตรวจไม่พบ</li>
-                  <li><strong>โอนยอดไม่ตรงราคา:</strong> ลูกค้าโอนเงินไม่ตรงตามราคาค่าบริการจริง ทำให้รายได้ของทางร้านสูญหาย</li>
-                </ul>
-              </div>
-              <div class="content-card">
-                <div class="card-title">🤝 2. ปัญหาการเคลียร์เงินช่าง (เงินออก)</div>
-                <ul class="card-list">
-                  <li><strong>คำนวณส่วนแบ่งด้วยมือ:</strong> คิดค่าคอมมิชชันตอนสิ้นวันด้วยสมุดจด มักเกิดข้อผิดพลาดจากมนุษย์ (Human Error)</li>
-                  <li><strong>ไม่รู้ยอดสะสมแบบสด:</strong> ช่างไม่ทราบยอดเงินสะสมระหว่างวัน ก่อให้เกิดความเคลือบแคลงสงสัยและข้อพิพาท</li>
-                  <li><strong>ตัดรอบเคลียร์เงินล่าช้า:</strong> ขาดระบบสรุปยอดค้างจ่าย (Settlement) และไม่มีสลิปหลักฐานยืนยันการโอนเงิน</li>
-                </ul>
-              </div>
-              <div class="content-card sky">
-                <div class="card-title">🗄️ 3. ขาดระบบจัดการและรายงานธุรกิจ</div>
-                <ul class="card-list">
-                  <li><strong>บันทึกในสมุด/Excel:</strong> ข้อมูลสูญหาย รายการตกหล่น และขาดฐานข้อมูลกลางในการจัดการข้อมูล (CRUD)</li>
-                  <li><strong>ไม่มีใบเสร็จรับเงินดิจิทัล:</strong> ขาดการออกใบเสร็จรับเงินอิเล็กทรอนิกส์ (e-Receipt) สร้างความน่าเชื่อถือให้ลูกค้า</li>
-                  <li><strong>ขาดแดชบอร์ดผู้บริหาร:</strong> เจ้าของร้านขาดเครื่องมือสรุปยอดขาย กำไรสุทธิ และผลงานช่างในภาพรวม</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- ==================== SLIDE 03: FISHBONE & SOLUTIONS ==================== -->
-        <section class="slide" data-slide="3" data-title="1.2 แนวคิดในการแก้ไขปัญหา">
-          <div class="slide-header">
-            <div class="slide-title-wrap">
-              <h2>🧠 1.2 แนวคิดในการแก้ไขปัญหา (Fishbone Diagram & Solutions)</h2>
-              <p>การวิเคราะห์ต้นตอของปัญหาตามนายสราวุฒิ อุยยาหาญ (2570) และแนวทางแก้ปัญหาแบบบูรณาการ</p>
-            </div>
-            <div class="badge-counter">SLIDE 03 / 20</div>
-          </div>
-          <div class="slide-body">
             <div class="card-grid grid-split-55-45">
-              <div class="media-card" onclick="openLightbox('Docs/Diagram/แผนภูมิก้างปลา_วิเคราะห์ปัญหา.png', 'ภาพที่ 1.1 แนวคิดการแก้ไขปัญหา (Fishbone Diagram)')">
+              <div class="media-card" onclick="openLightbox('Docs/Diagram/แผนภูมิก้างปลา_วิเคราะห์ปัญหา.png', 'ภาพที่ 1.1 แนวคิดการแก้ไขปัญหา (Fishbone Diagram) ที่มา: นายสราวุฒิ อุยยาหาญ (2570)')">
                 <img src="Docs/Diagram/แผนภูมิก้างปลา_วิเคราะห์ปัญหา.png" alt="Fishbone Diagram" onerror="this.outerHTML='<div style=\'padding:40px;color:#D97706;text-align:center;\'>🐟 ภาพที่ 1.1 ผังก้างปลา (Fishbone Diagram)</div>'">
                 <div class="media-label">🔍 ภาพที่ 1.1 แนวคิดการแก้ไขปัญหา (Fishbone Diagram) ที่มา: นายสราวุฒิ อุยยาหาญ (2570)</div>
               </div>
-              <div class="content-card emerald" style="justify-content: center;">
-                <div class="card-title">บูรณาการ 5 เทคโนโลยีหลักเพื่อแก้ปัญหาตรงจุด</div>
+              <div class="content-card rose" style="justify-content: center;">
+                <div class="card-title">สรุปสาเหตุรากเหง้าของปัญหา 6 ด้าน (Fishbone)</div>
                 <ul class="card-list">
-                  <li><strong>LINE LIFF:</strong> ช่องทางรับชำระเงินในแอปที่ลูกค้าคุ้นเคย เข้าถึงง่าย ไม่ต้องโหลดแอปใหม่</li>
-                  <li><strong>Slip2Go API:</strong> สแกน QR สลิปธนาคาร ยืนยันยอด บัญชีผู้รับ และกันสลิปซ้ำใน 2-3 วินาที</li>
-                  <li><strong>n8n Automation:</strong> คอร์ประมวลผลออโตเมชัน คิดค่าคอมมิชชัน ส่งเตือนช่าง และออก e-Receipt</li>
-                  <li><strong>Cloud MySQL:</strong> ฐานข้อมูลกลางบน Railway จัดเก็บทุกธุรกรรม ตรวจสอบย้อนหลังได้ 100%</li>
-                  <li><strong>Looker Studio:</strong> แดชบอร์ดผู้บริหาร แสดงยอดขายรวม กำไร และผลงานช่างแบบเรียลไทม์</li>
+                  <li><strong>1. ด้านการเงิน (เงินเข้า):</strong> ตรวจสลิปไม่ทันขณะติดลูกค้า เสี่ยงสลิปปลอม/วนใช้ซ้ำ และโอนเงินไม่ตรงราคา</li>
+                  <li><strong>2. ด้านการเงิน (เงินออก):</strong> คำนวณคอมมิชชันสิ้นวันด้วยมือผิดพลาดบ่อย เคลียร์เงินช้า ขาดสลิปหลักฐาน</li>
+                  <li><strong>3. ด้านบุคลากร (ช่างตัดผม):</strong> ช่างไม่รู้ยอดเงินสะสมแบบสด ก่อให้เกิดความระแวงและข้อพิพาทเรื่องเงิน</li>
+                  <li><strong>4. ด้านการจัดการ (เจ้าของร้าน):</strong> บันทึกข้อมูลลงสมุด/Excel เสี่ยงข้อมูลสูญหาย และตรวจสอบย้อนหลังยาก</li>
+                  <li><strong>5. ด้านเทคโนโลยีและระบบ:</strong> ขาดระบบตรวจสอบอัตโนมัติ และไม่มีการออกใบเสร็จรับเงิน e-Receipt</li>
+                  <li><strong>6. ด้านการรายงานและวิเคราะห์:</strong> ขาดกระดานข้อมูลสรุปยอดขายและผลงานช่างแบบเรียลไทม์</li>
                 </ul>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- ==================== SLIDE 04: OBJECTIVES ==================== -->
-        <section class="slide" data-slide="4" data-title="1.3 วัตถุประสงค์ของระบบ">
+        <!-- ==================== SLIDE 03: OBJECTIVES ==================== -->
+        <section class="slide" data-slide="3" data-title="1.3 วัตถุประสงค์ของระบบ">
           <div class="slide-header">
             <div class="slide-title-wrap">
               <h2>🎯 1.3 วัตถุประสงค์ของระบบ (Project Objectives)</h2>
               <p>เป้าหมายการพัฒนาระบบ 5 ประการตามเอกสารข้อกำหนดข้อ 1.3.1 - 1.3.5</p>
             </div>
-            <div class="badge-counter">SLIDE 04 / 20</div>
+            <div class="badge-counter">SLIDE 03 / 20</div>
           </div>
           <div class="slide-body">
             <div class="card-grid" style="grid-template-columns: repeat(2, 1fr); gap: 14px;">
@@ -1147,14 +1109,14 @@
           </div>
         </section>
 
-        <!-- ==================== SLIDE 05: SYSTEM SCOPE ==================== -->
-        <section class="slide" data-slide="5" data-title="1.4.1 ขอบเขตของระบบ">
+        <!-- ==================== SLIDE 04: SYSTEM SCOPE ==================== -->
+        <section class="slide" data-slide="4" data-title="1.4.1 ขอบเขตของระบบ">
           <div class="slide-header">
             <div class="slide-title-wrap">
               <h2>📐 1.4 ขอบเขตการศึกษา: 1.4.1 ขอบเขตของระบบ (System Scope)</h2>
               <p>ขอบเขตฟังก์ชันการทำงานครอบคลุม 3 กลุ่มผู้ใช้งานหลักตามเอกสารข้อ 1.4.1</p>
             </div>
-            <div class="badge-counter">SLIDE 05 / 20</div>
+            <div class="badge-counter">SLIDE 04 / 20</div>
           </div>
           <div class="slide-body">
             <div class="card-grid grid-3">
@@ -1189,14 +1151,14 @@
           </div>
         </section>
 
-        <!-- ==================== SLIDE 06: RELATED WORKS ==================== -->
-        <section class="slide" data-slide="6" data-title="2.2 ระบบงานอื่นที่เกี่ยวข้อง">
+        <!-- ==================== SLIDE 05: RELATED WORKS ==================== -->
+        <section class="slide" data-slide="5" data-title="2.2 ระบบงานอื่นที่เกี่ยวข้อง">
           <div class="slide-header">
             <div class="slide-title-wrap">
               <h2>📚 2.2 ระบบงานอื่นที่เกี่ยวข้อง (Related Research Works)</h2>
               <p>การศึกษาวิจัยและผลงานที่เกี่ยวข้อง 5 เรื่องตามโครงสร้างเอกสารบทที่ 2 เพื่อนำมาต่อยอดระบบ</p>
             </div>
-            <div class="badge-counter">SLIDE 06 / 20</div>
+            <div class="badge-counter">SLIDE 05 / 20</div>
           </div>
           <div class="slide-body">
             <div class="card-grid grid-2">
@@ -1220,14 +1182,14 @@
           </div>
         </section>
 
-        <!-- ==================== SLIDE 07: SYSTEM ARCHITECTURE ==================== -->
-        <section class="slide" data-slide="7" data-title="2.3 สถาปัตยกรรมระบบภาพรวม">
+        <!-- ==================== SLIDE 06: SYSTEM ARCHITECTURE ==================== -->
+        <section class="slide" data-slide="6" data-title="2.3 สถาปัตยกรรมระบบภาพรวม">
           <div class="slide-header">
             <div class="slide-title-wrap">
               <h2>🏗️ 2.3 องค์ความรู้ที่เกี่ยวข้อง: ภาพรวมสถาปัตยกรรมระบบ (System Architecture)</h2>
               <p>การบูรณาการ 5 เสาหลักเทคโนโลยีตามองค์ความรู้ข้อ 2.3.1 - 2.3.8 เพื่อเชื่อมต่อการทำงานแบบไร้รอยต่อ</p>
             </div>
-            <div class="badge-counter">SLIDE 07 / 20</div>
+            <div class="badge-counter">SLIDE 06 / 20</div>
           </div>
           <div class="slide-body">
             <div class="card-grid grid-split-55-45">
@@ -1249,14 +1211,14 @@
           </div>
         </section>
 
-        <!-- ==================== SLIDE 08: INFRASTRUCTURE & CLOUD ==================== -->
-        <section class="slide" data-slide="8" data-title="1.4.2-1.4.5 สภาพแวดล้อมระบบและคลาวด์">
+        <!-- ==================== SLIDE 07: INFRASTRUCTURE & CLOUD ==================== -->
+        <section class="slide" data-slide="7" data-title="1.4.2-1.4.5 สภาพแวดล้อมระบบและคลาวด์">
           <div class="slide-header">
             <div class="slide-title-wrap">
               <h2>⚙️ 1.4.2 - 1.4.5 ฮาร์ดแวร์ ซอฟต์แวร์ และระบบคลาวด์ (Infrastructure & Cloud)</h2>
               <p>โครงสร้างพื้นฐานในการพัฒนาและการให้บริการบนคลาวด์ตลอด 24 ชั่วโมง ตามเอกสารข้อ 1.4.2 - 1.4.5</p>
             </div>
-            <div class="badge-counter">SLIDE 08 / 20</div>
+            <div class="badge-counter">SLIDE 07 / 20</div>
           </div>
           <div class="slide-body">
             <div class="card-grid grid-2">
@@ -1281,14 +1243,14 @@
           </div>
         </section>
 
-        <!-- ==================== SLIDE 09: SYSTEM FLOWCHART ==================== -->
-        <section class="slide" data-slide="9" data-title="3.3.1 ผังงานการทำงานภาพรวม">
+        <!-- ==================== SLIDE 08: SYSTEM FLOWCHART ==================== -->
+        <section class="slide" data-slide="8" data-title="3.3.1 ผังงานการทำงานภาพรวม">
           <div class="slide-header">
             <div class="slide-title-wrap">
               <h2>🔄 3.3.1 การออกแบบระบบ: ผังงานการทำงานภาพรวม (System Flowchart)</h2>
               <p>ขั้นตอนการทำงานทั้งระบบ ตั้งแต่ลูกค้าสแกนชำระเงิน ➡️ ตรวจสลิป ➡️ บันทึกเงิน ➡️ ตัดรอบจ่ายช่าง (ภาพที่ 3.2)</p>
             </div>
-            <div class="badge-counter">SLIDE 09 / 20</div>
+            <div class="badge-counter">SLIDE 08 / 20</div>
           </div>
           <div class="slide-body">
             <div class="card-grid grid-split-55-45">
@@ -1309,14 +1271,14 @@
           </div>
         </section>
 
-        <!-- ==================== SLIDE 10: SLIP VERIFICATION FLOWCHART ==================== -->
-        <section class="slide" data-slide="10" data-title="3.3.1.5 ผังงานการตรวจสอบสลิป">
+        <!-- ==================== SLIDE 09: SLIP VERIFICATION FLOWCHART ==================== -->
+        <section class="slide" data-slide="9" data-title="3.3.1.5 ผังงานการตรวจสอบสลิป">
           <div class="slide-header">
             <div class="slide-title-wrap">
               <h2>🔍 3.3.1.5 ผังงานการตรวจสอบสลิปและชำระเงิน (Slip Verification Flowchart)</h2>
               <p>ตรรกะเงื่อนไขการตรวจสอบความถูกต้องของสลิปโอนเงินและการป้องกันสลิปวนใช้ซ้ำ (ภาพที่ 3.7)</p>
             </div>
-            <div class="badge-counter">SLIDE 10 / 20</div>
+            <div class="badge-counter">SLIDE 09 / 20</div>
           </div>
           <div class="slide-body">
             <div class="card-grid grid-split-50-50">
@@ -1338,14 +1300,14 @@
           </div>
         </section>
 
-        <!-- ==================== SLIDE 11: PAYMENT SEQUENCE DIAGRAM ==================== -->
-        <section class="slide" data-slide="11" data-title="3.3.1.2 Sequence: การชำระเงิน">
+        <!-- ==================== SLIDE 10: PAYMENT SEQUENCE DIAGRAM ==================== -->
+        <section class="slide" data-slide="10" data-title="3.3.1.2 Sequence: การชำระเงิน">
           <div class="slide-header">
             <div class="slide-title-wrap">
               <h2>⚡ 3.3.1.2 แผนภาพลำดับ: การตรวจสอบสลิปและชำระเงิน (Sequence Diagram)</h2>
               <p>ภาพที่ 3.4 โฟลว์การสื่อสารและรับส่งข้อมูลระหว่าง 5 ส่วนประกอบระบบแบบเรียลไทม์ภายใน 2-3 วินาที</p>
             </div>
-            <div class="badge-counter">SLIDE 11 / 20</div>
+            <div class="badge-counter">SLIDE 10 / 20</div>
           </div>
           <div class="slide-body">
             <div class="card-grid grid-split-55-45">
@@ -1367,14 +1329,14 @@
           </div>
         </section>
 
-        <!-- ==================== SLIDE 12: SETTLEMENT SEQUENCE DIAGRAM ==================== -->
-        <section class="slide" data-slide="12" data-title="3.3.1.3 Sequence: การตัดรอบเคลียร์เงิน">
+        <!-- ==================== SLIDE 11: SETTLEMENT SEQUENCE DIAGRAM ==================== -->
+        <section class="slide" data-slide="11" data-title="3.3.1.3 Sequence: การตัดรอบเคลียร์เงิน">
           <div class="slide-header">
             <div class="slide-title-wrap">
               <h2>🤝 3.3.1.3 แผนภาพลำดับ: การตัดรอบเคลียร์เงินช่าง (Settlement Sequence Diagram)</h2>
               <p>ภาพที่ 3.5 ขั้นตอนการสรุปยอดค้างจ่าย โอนเงิน และอัปเดตสถานะบิลระหว่างเจ้าของร้านกับช่างตัดผม</p>
             </div>
-            <div class="badge-counter">SLIDE 12 / 20</div>
+            <div class="badge-counter">SLIDE 11 / 20</div>
           </div>
           <div class="slide-body">
             <div class="card-grid grid-split-55-45">
@@ -1395,14 +1357,14 @@
           </div>
         </section>
 
-        <!-- ==================== SLIDE 13: ER-DIAGRAM & SCHEMA ==================== -->
-        <section class="slide" data-slide="13" data-title="3.3.2 แบบจำลองข้อมูล (ER-Diagram)">
+        <!-- ==================== SLIDE 12: ER-DIAGRAM & SCHEMA ==================== -->
+        <section class="slide" data-slide="12" data-title="3.3.2 แบบจำลองข้อมูล (ER-Diagram)">
           <div class="slide-header">
             <div class="slide-title-wrap">
               <h2>🗄️ 3.3.2 การออกแบบฐานข้อมูล: แผนภาพความสัมพันธ์ของข้อมูล (ER-Diagram)</h2>
               <p>ภาพที่ 3.10 แบบจำลองฐานข้อมูลเชิงสัมพันธ์และพจนานุกรมข้อมูล 4 ตารางหลักตามตารางที่ 3.1 - 3.5</p>
             </div>
-            <div class="badge-counter">SLIDE 13 / 20</div>
+            <div class="badge-counter">SLIDE 12 / 20</div>
           </div>
           <div class="slide-body">
             <div class="card-grid grid-split-55-45">
@@ -1423,66 +1385,66 @@
           </div>
         </section>
 
-        <!-- ==================== SLIDE 14: UI RICH MENU & LIFF ==================== -->
-        <section class="slide" data-slide="14" data-title="3.3.3.1-3.3.3.3 UI: ริชเมนู & LINE LIFF">
+        <!-- ==================== SLIDE 13: UI RICH MENU ==================== -->
+        <section class="slide" data-slide="13" data-title="3.3.3.1 UI: ริชเมนู (Rich Menu)">
           <div class="slide-header">
             <div class="slide-title-wrap">
-              <h2>📱 3.3.3.1 - 3.3.3.3 การออกแบบส่วนติดต่อผู้ใช้: ริชเมนู & ฟอร์ม LINE LIFF</h2>
-              <p>ภาพที่ 3.11 ริชเมนูลูกค้า, ภาพจำลองแชท LINE, และภาพที่ 3.12 - 3.13 ฟอร์มแจ้งชำระเงินโอน/เงินสด</p>
+              <h2>📱 3.3.3.1 การออกแบบส่วนติดต่อผู้ใช้: หน้าริชเมนู (LINE Rich Menu)</h2>
+              <p>ภาพที่ 3.11 ริชเมนูลูกค้าเสหยอดบาร์เบอร์ และภาพจำลองการแสดงผลบนห้องแชท LINE Official Account</p>
+            </div>
+            <div class="badge-counter">SLIDE 13 / 20</div>
+          </div>
+          <div class="slide-body">
+            <div class="card-grid grid-split-55-45">
+              <div style="display: flex; flex-direction: column; gap: 12px; height: 100%;">
+                <div class="media-card" onclick="openLightbox('Docs/Diagram/richmenu_customer_banner.png', 'ภาพที่ 3.11 ริชเมนูลูกค้า (LINE Rich Menu Banner 2500×843 px)')" style="flex: 0 0 auto; height: 130px;">
+                  <img src="Docs/Diagram/richmenu_customer_banner.png" alt="ริชเมนูลูกค้า เสหยอดบาร์เบอร์" style="object-fit: cover; object-position: center;">
+                  <div class="media-label">🔍 ภาพที่ 3.11 ริชเมนูลูกค้า (Rich Menu Banner แตะแจ้งชำระเงิน)</div>
+                </div>
+                <div class="media-card" onclick="openLightbox('Docs/Diagram/diag_3_8_richmenu.png', 'ภาพจำลองห้องแชท LINE OA เสหยอดบาร์เบอร์ พร้อมริชเมนูด้านล่าง')" style="flex: 1; min-height: 0;">
+                  <img src="Docs/Diagram/diag_3_8_richmenu.png" alt="แชท LINE OA เสหยอดบาร์เบอร์">
+                  <div class="media-label">💬 ภาพจำลองห้องแชท LINE OA พร้อมแถบริชเมนูถาวร</div>
+                </div>
+              </div>
+              <div class="content-card emerald" style="justify-content: center;">
+                <div class="card-title">ริชเมนูลูกค้า เสหยอดบาร์เบอร์ (LINE Rich Menu)</div>
+                <ul class="card-list">
+                  <li><strong>ติดตั้งแถบเมนูถาวร:</strong> แสดงผลด้านล่างห้องแชท LINE OA ของร้านตลอดเวลา ไม่ต้องพิมพ์ข้อความ</li>
+                  <li><strong>ปุ่มสัมผัสขนาดใหญ่:</strong> ออกแบบปุ่มสีส้มเด่นชัด <em>"แตะเพื่อแจ้งชำระเงิน"</em> รองรับการสัมผัสบนมือถือทุกรุ่น</li>
+                  <li><strong>เชื่อมโยงเข้า LINE LIFF:</strong> แตะปุ่มแล้วเปิดหน้าเว็บแอปพลิเคชันแจ้งชำระเงินทันทีใน 1-2 วินาที</li>
+                  <li><strong>ทำงานร่วมกับ LINE OA 24 ชม.:</strong> รองรับการตอบกลับอัตโนมัติและส่งใบเสร็จ e-Receipt ในห้องแชทเดียวกัน</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== SLIDE 14: UI LINE LIFF FORM ==================== -->
+        <section class="slide" data-slide="14" data-title="3.3.3.2-3.3.3.3 UI: ฟอร์ม LINE LIFF">
+          <div class="slide-header">
+            <div class="slide-title-wrap">
+              <h2>📱 3.3.3.2 - 3.3.3.3 การออกแบบส่วนติดต่อผู้ใช้: ฟอร์มแจ้งชำระเงิน LINE LIFF</h2>
+              <p>ภาพที่ 3.12 - 3.13 ขั้นตอนการเลือกช่าง บริการ ช่องทางชำระเงิน และสแกน QR แนบสลิปผ่าน LINE LIFF</p>
             </div>
             <div class="badge-counter">SLIDE 14 / 20</div>
           </div>
           <div class="slide-body">
-            <div class="card-grid grid-split-55-45">
-              <!-- Visual Mockups: 2-Level Column -->
-              <div style="display: flex; flex-direction: column; gap: 10px; height: 100%;">
-                <!-- Top: Customer Rich Menu Banner -->
-                <div class="media-card" onclick="openLightbox('Docs/Diagram/richmenu_customer_banner.png', 'ภาพที่ 3.11 ริชเมนูลูกค้า (LINE Rich Menu Banner 2500×843 px)')" style="flex: 0 0 auto; height: 120px;">
-                  <img src="Docs/Diagram/richmenu_customer_banner.png" alt="ริชเมนูลูกค้า เสหยอดบาร์เบอร์" style="object-fit: cover; object-position: center;">
-                  <div class="media-label">🔍 ภาพที่ 3.11 ริชเมนูลูกค้า (Rich Menu Banner แตะแจ้งชำระเงิน)</div>
+            <div class="card-grid grid-split-50-50">
+              <div class="media-card" onclick="openLightbox('Present/01_ขั้นตอนการชำระ/01_หน้าฟอร์มชำระเงิน_LIFF.jpg', 'หน้าฟอร์มแจ้งชำระเงิน LINE LIFF 4 ขั้นตอน (ความละเอียดเต็ม 592×2764 px)')" style="position: relative;">
+                <img src="Present/01_ขั้นตอนการชำระ/01_หน้าฟอร์มชำระเงิน_LIFF.jpg" alt="หน้าฟอร์ม LIFF" style="object-position: top center;">
+                <div style="position: absolute; top: 10px; right: 10px; background: rgba(5, 150, 105, 0.92); color: white; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; box-shadow: 0 2px 8px rgba(0,0,0,0.3); pointer-events: none;">
+                  🔍 แตะซูมเลื่อนอ่านครบ 4 ขั้นตอน
                 </div>
-
-                <!-- Bottom: Chat Mockup + LIFF Tall Form -->
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; flex: 1; min-height: 0;">
-                  <div class="media-card" onclick="openLightbox('Docs/Diagram/diag_3_8_richmenu.png', 'ภาพจำลองแชท LINE OA เสหยอดบาร์เบอร์ พร้อมริชเมนูด้านล่าง')">
-                    <img src="Docs/Diagram/diag_3_8_richmenu.png" alt="แชท LINE OA เสหยอดบาร์เบอร์">
-                    <div class="media-label">💬 1. แชท LINE OA + ริชเมนู</div>
-                  </div>
-                  <div class="media-card" onclick="openLightbox('Present/01_ขั้นตอนการชำระ/01_หน้าฟอร์มชำระเงิน_LIFF.jpg', 'หน้าฟอร์มแจ้งชำระเงิน LINE LIFF 4 ขั้นตอน (ความละเอียดเต็ม 592×2764 px)')" style="position: relative;">
-                    <img src="Present/01_ขั้นตอนการชำระ/01_หน้าฟอร์มชำระเงิน_LIFF.jpg" alt="หน้าฟอร์ม LIFF" style="object-position: top center;">
-                    <div style="position: absolute; top: 10px; right: 10px; background: rgba(5, 150, 105, 0.92); color: white; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; box-shadow: 0 2px 8px rgba(0,0,0,0.3); pointer-events: none;">
-                      🔍 แตะซูมเลื่อนอ่านครบ 4 ขั้นตอน
-                    </div>
-                    <div class="media-label">📱 2. ฟอร์ม LINE LIFF 4 ขั้นตอน</div>
-                  </div>
-                </div>
+                <div class="media-label">📱 ภาพที่ 3.12 - 3.13 ฟอร์มแจ้งชำระเงิน LINE LIFF 4 ขั้นตอน</div>
               </div>
-
-              <!-- Content Explanation -->
               <div class="content-card emerald" style="justify-content: flex-start; gap: 14px; overflow-y: auto;">
-                <div class="card-title">📱 สถาปัตยกรรมส่วนหน้า & ประสบการณ์ใช้งาน (Frontend UX)</div>
+                <div class="card-title">ฟอร์มทำรายการ 4 ขั้นตอน (LINE LIFF Webapp)</div>
                 <ul class="card-list">
-                  <li>
-                    <strong>1. ริชเมนูลูกค้า (Customer Rich Menu):</strong><br>
-                    ติดตั้งแบนเนอร์ถาวรด้านล่างห้องแชท LINE OA เสหยอดบาร์เบอร์ พร้อมปุ่มสีส้มเด่น <em>"แตะเพื่อแจ้งชำระเงิน"</em> ลูกค้าแตะใช้งานได้ทันทีโดยไม่ต้องพิมพ์ข้อความค้นหา
-                  </li>
-                  <li>
-                    <strong>2. การเปิดฟอร์มด้วย LINE LIFF (Zero Install):</strong><br>
-                    เมื่อแตะปุ่ม ระบบเรียกเปิดเว็บแอป LIFF แบบ In-App Browser ซ้อนบน LINE ทันทีในเวลา 1-2 วินาที โดยไม่ต้องติดตั้งแอปพลิเคชันภายนอก
-                  </li>
-                  <li>
-                    <strong>3. ฟอร์มทำรายการ 4 ขั้นตอน (Structured Checkout):</strong>
-                    <div style="font-size: 13px; color: #475569; padding-left: 8px; margin-top: 5px; display: flex; flex-direction: column; gap: 4px;">
-                      <span>▸ <strong>ขั้น 1:</strong> เลือกช่างผู้ให้บริการ (ยูโกะ, แบม, เต้) พร้อมรูปและเรทคอมมิชชัน</span>
-                      <span>▸ <strong>ขั้น 2:</strong> เลือกบริการ 5 รายการมาตรฐาน พร้อมราคาชัดเจน (150 - 1,500 บาท)</span>
-                      <span>▸ <strong>ขั้น 3:</strong> เลือกช่องทางชำระเงิน (โอนเงินผ่านสลิป QR / เงินสดหน้าร้าน Cash)</span>
-                      <span>▸ <strong>ขั้น 4:</strong> แสดง QR Code พร้อมเพย์ร้าน และแนบรูปสลิปส่งตรวจสอบ</span>
-                    </div>
-                  </li>
-                  <li>
-                    <strong>4. ส่งข้อมูลประมวลผลอัตโนมัติ:</strong><br>
-                    เมื่อกดยืนยันชำระเงิน LIFF จะแพ็กข้อมูล JSON พร้อม Base64 Image ยิงตรงเข้า n8n Webhook เพื่อตรวจสลิปผ่าน Slip2Go API ทันที
-                  </li>
+                  <li><strong>Zero Install (ไม่เปลืองพื้นที่):</strong> รันแบบ In-App Webapp บน LINE โดยไม่ต้องดาวน์โหลดแอปจาก Store</li>
+                  <li><strong>ขั้น 1: เลือกช่างตัดผม:</strong> แสดงรูปโปรไฟล์ช่าง (ยูโกะ, แบม, เต้) และเรทค่าบริการให้ลูกค้าเลือกอย่างโปร่งใส</li>
+                  <li><strong>ขั้น 2: เลือกบริการ 5 รายการ:</strong> ตัดผม, สระไดร์, โกนหนวด, ดัดผม, ทำสีผม (150 - 1,500 บาท) พร้อมเวลาที่ใช้</li>
+                  <li><strong>ขั้น 3: เลือกวิธีชำระเงิน:</strong> รองรับทั้งการโอนเงินผ่านสแกน QR Code หรือชำระด้วยเงินสดหน้าร้าน (Cash)</li>
+                  <li><strong>ขั้น 4: สแกน & แนบสลิป:</strong> แสดง QR Code พร้อมเพย์ร้าน (กสิกรไทย 098-870-1572) และอัปโหลดรูปสลิปส่งตรวจ Slip2Go</li>
                 </ul>
               </div>
             </div>
@@ -1535,13 +1497,13 @@
           <div class="slide-body">
             <div class="card-grid grid-split-50-50">
               <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px; height: 100%;">
-                <div class="media-card" onclick="openLightbox('Present/01_ขั้นตอนการชำระ/04_ข้อความแจ้งเตือนช่าง_LINE.jpg', 'ข้อความแจ้งเตือนยอดเงินช่างตัดผมผ่าน LINE Flex Message')">
-                  <img src="Present/01_ขั้นตอนการชำระ/04_ข้อความแจ้งเตือนช่าง_LINE.jpg" alt="แจ้งเตือนช่าง">
-                  <div class="media-label">1. ข้อความแจ้งเตือนช่างใน LINE</div>
+                <div class="media-card" onclick="openLightbox('Present/05_การตัดรอบเคลียร์เงิน/03_LINEแจ้งเตือนเงินเข้าช่าง.png', 'ภาพที่ 3.15 ข้อความแจ้งเตือนยอดเงินช่างตัดผมผ่าน LINE Flex Message')">
+                  <img src="Present/05_การตัดรอบเคลียร์เงิน/03_LINEแจ้งเตือนเงินเข้าช่าง.png" alt="แจ้งเตือนช่าง">
+                  <div class="media-label">1. LINE Flex เตือนเงินเข้าช่าง</div>
                 </div>
-                <div class="media-card" onclick="openLightbox('Present/03_การจัดการและโมฆะบิล/03_หน้ารายการบิลที่ถูกโมฆะแล้ว.jpg', 'ภาพที่ 3.16 หน้ารายการบิลที่ถูกทำโมฆะแล้ว (Void Bill Audit Log)')">
-                  <img src="Present/03_การจัดการและโมฆะบิล/03_หน้ารายการบิลที่ถูกโมฆะแล้ว.jpg" alt="หน้ารายการโมฆะบิล">
-                  <div class="media-label">2. หน้ารายการบิลที่ถูกโมฆะแล้ว</div>
+                <div class="media-card" onclick="openLightbox('Present/02_ประวัติธุรกรรมและโมฆะบิล/05_ตารางบิลโมฆะแถบสีแดง.png', 'ภาพที่ 3.16 หน้ารายการบิลที่ถูกทำโมฆะแล้ว (Void Bill Audit Log)')">
+                  <img src="Present/02_ประวัติธุรกรรมและโมฆะบิล/05_ตารางบิลโมฆะแถบสีแดง.png" alt="หน้ารายการโมฆะบิล">
+                  <div class="media-label">2. ตารางบิลโมฆะ (แถบสีแดง)</div>
                 </div>
               </div>
               <div class="content-card rose" style="justify-content: center;">
@@ -1569,12 +1531,12 @@
           <div class="slide-body">
             <div class="card-grid grid-split-50-50">
               <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px; height: 100%;">
-                <div class="media-card" onclick="openLightbox('Present/04_หลังบ้านแอดมิน/01_หน้าจัดการช่าง_แก้ไขค่าคอม.jpg', 'ภาพที่ 3.17 หน้าจอจัดการข้อมูลช่างและแก้ไขค่าคอมมิชชัน')">
-                  <img src="Present/04_หลังบ้านแอดมิน/01_หน้าจัดการช่าง_แก้ไขค่าคอม.jpg" alt="หน้าจัดการช่าง">
+                <div class="media-card" onclick="openLightbox('Present/03_จัดการช่างตัดผม/02_ตารางรายชื่อช่างตัดผม.png', 'ภาพที่ 3.17 หน้าจอจัดการข้อมูลช่างและแก้ไขค่าคอมมิชชัน')">
+                  <img src="Present/03_จัดการช่างตัดผม/02_ตารางรายชื่อช่างตัดผม.png" alt="หน้าจัดการช่าง">
                   <div class="media-label">1. จัดการข้อมูลช่าง & ค่าคอม</div>
                 </div>
-                <div class="media-card" onclick="openLightbox('Present/02_การเคลียร์เงินช่าง/01_หน้าแอดมิน_แสดงยอดรอเคลียร์.jpg', 'ภาพที่ 3.20 หน้าจอตัดรอบเคลียร์เงินช่าง (Barber Settlements)')">
-                  <img src="Present/02_การเคลียร์เงินช่าง/01_หน้าแอดมิน_แสดงยอดรอเคลียร์.jpg" alt="ระบบตัดรอบเคลียร์เงิน">
+                <div class="media-card" onclick="openLightbox('Present/05_การตัดรอบเคลียร์เงิน/01_ตารางยอดค้างเคลียร์เงิน.png', 'ภาพที่ 3.20 หน้าจอตัดรอบเคลียร์เงินช่าง (Barber Settlements)')">
+                  <img src="Present/05_การตัดรอบเคลียร์เงิน/01_ตารางยอดค้างเคลียร์เงิน.png" alt="ระบบตัดรอบเคลียร์เงิน">
                   <div class="media-label">2. หน้าจอตัดรอบเคลียร์เงินช่าง</div>
                 </div>
               </div>
