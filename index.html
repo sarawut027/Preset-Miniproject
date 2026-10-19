@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ระบบบันทึกรายได้และคำนวณค่าคอมมิชชันช่างตัดผมแบบเรียลไทม์ผ่านแอปพลิเคชันไลน์</title>
+  <title>ระบบบริหารรายได้และค่าคอมมิชชันช่างตัดผมผ่านไลน์</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Prompt:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Sarabun:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -667,12 +667,14 @@
               <path d="M50 20 C32 20 18 32 18 47 C18 57 24 66 34 71 C35 73 34 77 31 82 C30 83 31 84 32 84 C38 83 45 78 48 74 C49 74 50 74 50 74 C68 74 82 62 82 47 C82 32 68 20 50 20 Z" fill="#FFF"/>
             </svg>
           </div>
-          <h1 class="cover-title">ระบบบันทึกรายได้และคำนวณค่าคอมมิชชันช่างตัดผม<br>แบบเรียลไทม์ผ่านแอปพลิเคชันไลน์</h1>
-          <p class="cover-en">Real-time Barber Income Recording and Commission Calculation System via LINE Application</p>
+          <h1 class="cover-title">ระบบบริหารรายได้และค่าคอมมิชชันช่างตัดผมผ่านไลน์</h1>
+          <p class="cover-en">LINE-Based Barbershop Income and Commission Management System</p>
         </div>
         <div class="cover-presenter">
-          <p style="font-size: 1.7rem; font-weight: 700; color: #111827; margin-bottom: 6px;">นาย สราวุฒิ อุยยาหาญ</p>
-          <p style="font-size: 1.4rem; color: #374151;">674230027 หมู่เรียน 67/44</p>
+          <p style="font-size: 1.6rem; font-weight: 700; color: #111827; margin-bottom: 4px;">นาย สราวุฒิ อุยยาหาญ</p>
+          <p style="font-size: 1.3rem; color: #374151; margin-bottom: 4px;">รหัสประจำตัว 674230027 หมู่เรียน 67/44</p>
+          <p style="font-size: 1.2rem; color: #059640; font-weight: 600; margin-bottom: 2px;">7204903 โครงงานด้านเทคโนโลยีสารสนเทศ 2</p>
+          <p style="font-size: 1.15rem; color: #4B5563;">สาขาวิชาเทคโนโลยีสารสนเทศ คณะวิทยาศาสตร์และเทคโนโลยี มหาวิทยาลัยราชภัฏนครปฐม</p>
         </div>
       </div>
       <div class="slide-bottom-bar"></div>
@@ -713,15 +715,15 @@
       <div class="slide-tab-right"></div>
       <h2 class="slide-title">1.2 แนวคิดในการแก้ไขปัญหา</h2>
       <div class="slide-content">
-        <div class="text-block" style="max-width: 1120px; text-align: justify; font-size: 1.4rem; line-height: 1.85;">
-          <p style="margin-bottom: 22px; text-indent: 40px;">
-            แนวทางแก้ไขปัญหาคือการพัฒนา <strong>ระบบอัตโนมัติผ่านแอปพลิเคชันไลน์ (LINE Application)</strong> ซึ่งเป็นแพลตฟอร์มการสื่อสารยอดนิยม โดยเชื่อมต่อระหว่าง <strong>LINE Official Account (LINE OA)</strong> และ <strong>LINE LIFF</strong> เพื่อให้ลูกค้าสามารถเลือกช่างตัดผม เลือกบริการ และแจ้งชำระเงินได้อย่างสะดวกรวดเร็ว
+        <div class="text-block" style="max-width: 1140px; text-align: justify; font-size: 1.35rem; line-height: 1.8;">
+          <p style="margin-bottom: 16px; font-weight: 600; color: #059640;">
+            ภาพที่ 1.1 แนวคิดการแก้ไขปัญหา (Fishbone Diagram) • ที่มา: นายสราวุฒิ อุยยาหาญ (2570)
           </p>
-          <p style="margin-bottom: 22px; text-indent: 40px;">
-            นำ <strong>Slip2Go API</strong> มาใช้ตรวจสอบสลิปโอนเงินธนาคารแบบอัตโนมัติ ยืนยันยอดเงินจริง บัญชีผู้รับเงิน และป้องกันการใช้สลิปซ้ำ พร้อมประมวลผลคำนวณค่าคอมมิชชันช่างแบบเรียลไทม์ผ่าน <strong>n8n Workflow Automation</strong> บน <strong>Railway Cloud</strong> บันทึกข้อมูลลงฐานข้อมูล <strong>MySQL</strong> และส่งใบเสร็จอิเล็กทรอนิกส์ (e-Receipt) ตอบกลับลูกค้าทางไลน์ทันที
+          <p style="margin-bottom: 18px; text-indent: 40px;">
+            เพื่อแก้ไขปัญหาการจัดเก็บข้อมูลรายได้ที่ไม่เป็นระบบ ความผิดพลาดในการคำนวณค่าคอมมิชชัน และความเสี่ยงจากสลิปโอนเงินปลอม โครงงานนี้จึงมุ่งพัฒนาระบบบริหารจัดการร้านตัดผมและแจ้งชำระเงินผ่านแอปพลิเคชันไลน์ (LINE Application) โดยใช้ <strong>LINE Messaging API</strong> ร่วมกับ <strong>LINE LIFF (LINE Front-end Framework)</strong> เป็นช่องทางหลักในการรับ-ส่งข้อมูลกับผู้ใช้งาน
           </p>
           <p style="text-indent: 40px;">
-            พัฒนาระบบเว็บหลังบ้าน (Admin Backoffice) สำหรับจัดการข้อมูลช่าง บริการ ตรวจสอบประวัติบิล ทำโมฆะบิล (Void Bill) และตัดรอบเคลียร์เงิน (Settlement) พร้อมเชื่อมต่อแดชบอร์ดสรุปผลทางการเงินผ่าน <strong>Google Looker Studio</strong>
+            ทำงานร่วมกับ <strong>n8n Workflow Automation</strong> ซึ่งทำหน้าที่เป็นกลไกหลักในการเชื่อมต่อกับ <strong>Slip2Go API</strong> สำหรับตรวจสอบสลิปโอนเงิน และฐานข้อมูล <strong>MySQL</strong> สำหรับเก็บข้อมูลช่าง บริการ และธุรกรรม พร้อมคำนวณค่าคอมมิชชัน และส่ง <strong>e-Receipt Flex Message</strong> ตอบกลับลูกค้า ช่าง และเจ้าของร้านในทันที
           </p>
         </div>
       </div>
@@ -734,13 +736,14 @@
       <div class="slide-tab-right"></div>
       <h2 class="slide-title">1.3 วัตถุประสงค์ของระบบ</h2>
       <div class="slide-content">
-        <div style="width: 100%; max-width: 1100px;">
-          <p style="font-size: 1.45rem; font-weight: 600; margin-bottom: 20px; color: #000;">ฟังก์ชันและเป้าหมายหลักของระบบ:</p>
-          <ul class="bullet-list" style="font-size: 1.35rem; line-height: 1.8;">
-            <li><strong>1.3.1</strong> เพื่อพัฒนาระบบบันทึกรายได้จากการให้บริการตัดผมและคำนวณส่วนแบ่งค่าคอมมิชชันช่างตัดผมแบบเรียลไทม์ผ่านแอปพลิเคชันไลน์</li>
-            <li><strong>1.3.2</strong> เพื่อพัฒนากระบวนการตรวจสอบความถูกต้องของสลิปโอนเงินธนาคารอัตโนมัติผ่าน Slip2Go API ตรวจสอบยอดเงิน บัญชีผู้รับ และป้องกันการนำสลิปเก่ามาวนใช้ซ้ำ</li>
-            <li><strong>1.3.3</strong> เพื่อพัฒนาระบบเว็บแอดมินจัดการหลังบ้าน (Admin Backoffice) สำหรับจัดการข้อมูลช่าง บริการ ตรวจสอบประวัติบิล การทำโมฆะบิล (Void Bill) และการตัดรอบเคลียร์เงิน (Barber Settlement)</li>
-            <li><strong>1.3.4</strong> เพื่อเชื่อมโยงและนำเสนอรายงานสถิติทางการเงินและรายได้รวมผ่าน Google Looker Studio</li>
+        <div style="width: 100%; max-width: 1120px;">
+          <p style="font-size: 1.4rem; font-weight: 600; margin-bottom: 16px; color: #000;">5 วัตถุประสงค์หลักของระบบ (ข้อ 1.3.1 - 1.3.5):</p>
+          <ul class="bullet-list" style="font-size: 1.28rem; line-height: 1.75;">
+            <li><strong>1.3.1</strong> ระบบรองรับการทำรายการของผู้ใช้งาน โดยสามารถเลือกบริการ เลือกช่างตัดผม และอัปโหลดหลักฐานการโอนเงินผ่านทางหน้าเว็บแอปพลิเคชัน <strong>LIFF (LINE Front-end Framework)</strong> บนแอปพลิเคชัน LINE</li>
+            <li><strong>1.3.2</strong> ระบบมีฟังก์ชันตรวจสอบความถูกต้องของสลิปโอนเงินโดยอัตโนมัติ ผ่านการเชื่อมต่อกับระบบ <strong>Slip2Go API</strong></li>
+            <li><strong>1.3.3</strong> ระบบสามารถคำนวณส่วนแบ่งรายได้ของช่างตัดผม และบันทึกข้อมูลประวัติการทำธุรกรรมทั้งหมดลงในระบบฐานข้อมูล <strong>MySQL</strong> โดยอัตโนมัติ</li>
+            <li><strong>1.3.4</strong> ระบบสามารถส่ง <strong>เฟล็กซ์เมสเสจ</strong> ให้แก่ลูกค้า พร้อมทั้งแจ้งเตือนสรุปยอดเงินให้ช่างตัดผมและเจ้าของร้านทราบ ผ่านทางแอปพลิเคชัน LINE</li>
+            <li><strong>1.3.5</strong> ระบบมีหน้ากระดานข้อมูล <strong>(Dashboard)</strong> สำหรับแสดงผลสรุปยอดขาย สถิติการใช้บริการ และรายได้ของช่างตัดผมแต่ละรายแบบเรียลไทม์ ผ่านเครื่องมือ <strong>Data Studio (Google Looker Studio)</strong></li>
           </ul>
         </div>
       </div>
@@ -754,22 +757,29 @@
       <h2 class="slide-title">1.4 ขอบเขตการศึกษา</h2>
       <div class="slide-content">
         <div style="width: 100%; max-width: 1150px; text-align: left;">
-          <div style="margin-bottom: 16px;">
-            <p style="font-weight: 700; font-size: 1.35rem; color: #000; margin-bottom: 6px;">ด้านผู้ดูแลระบบ (Admin / Backoffice):</p>
-            <p style="font-size: 1.25rem; line-height: 1.6; color: #374151; padding-left: 20px;">
-              จัดการข้อมูลช่างตัดผม (CRUD Barbers), รายการบริการ (CRUD Services), ตรวจสอบประวัติธุรกรรม, สั่งทำโมฆะบิล (Void Bill), ตัดรอบเคลียร์เงินจ่ายช่าง (CRUD Settlements) และตรวจสอบรายงานทางการเงินผ่าน Looker Studio
+          <div style="margin-bottom: 14px;">
+            <p style="font-weight: 700; font-size: 1.35rem; color: #000; margin-bottom: 4px;">1.4.1.1 ผู้ดูแลระบบ/เจ้าของร้าน:</p>
+            <p style="font-size: 1.22rem; line-height: 1.6; color: #374151; padding-left: 20px;">
+              <strong>ก)</strong> จัดการข้อมูลช่างตัดผมและอัตราค่าคอมมิชชัน &nbsp;|&nbsp; 
+              <strong>ข)</strong> จัดการข้อมูลประเภทบริการและราคาค่าบริการ &nbsp;|&nbsp; 
+              <strong>ค)</strong> ดูแดชบอร์ดสรุปยอดขายประจำวันและประจำเดือนผ่านดาต้าสตูดิโอ &nbsp;|&nbsp; 
+              <strong>ง)</strong> รับการแจ้งเตือนยอดเงินและการชำระเงินสำเร็จผ่านไลน์
             </p>
           </div>
-          <div style="margin-bottom: 16px;">
-            <p style="font-weight: 700; font-size: 1.35rem; color: #000; margin-bottom: 6px;">ด้านช่างตัดผม (Barber):</p>
-            <p style="font-size: 1.25rem; line-height: 1.6; color: #374151; padding-left: 20px;">
-              รับการแจ้งเตือนยอดเงินเข้าและส่วนแบ่งค่าคอมมิชชันเข้าไลน์ส่วนตัวแบบเรียลไทม์, รับสลิปแจ้งยอดตัดรอบเคลียร์เงิน และรับแจ้งเตือนเมื่อมีการทำโมฆะบิล
+          <div style="margin-bottom: 14px;">
+            <p style="font-weight: 700; font-size: 1.35rem; color: #000; margin-bottom: 4px;">1.4.1.2 ช่างตัดผม:</p>
+            <p style="font-size: 1.22rem; line-height: 1.6; color: #374151; padding-left: 20px;">
+              <strong>ก)</strong> รับการแจ้งเตือนเมื่อลูกค้าชำระเงินค่าบริการของตนเองสำเร็จ &nbsp;|&nbsp; 
+              <strong>ข)</strong> ตรวจสอบยอดค่าบริการและค่าคอมมิชชันที่ได้รับแบบเรียลไทม์
             </p>
           </div>
           <div>
-            <p style="font-weight: 700; font-size: 1.35rem; color: #000; margin-bottom: 6px;">ด้านลูกค้าผู้ใช้บริการ (Customer):</p>
-            <p style="font-size: 1.25rem; line-height: 1.6; color: #374151; padding-left: 20px;">
-              เข้าสู่ระบบผ่านริชเมนูบน LINE OA, เลือกช่างและบริการผ่านหน้าเว็บลิฟต์ (LIFF), ชำระเงินสดหรือโอนเงินผ่าน QR Code พร้อมแนบสลิป และรับใบเสร็จ e-Receipt ทางไลน์
+            <p style="font-weight: 700; font-size: 1.35rem; color: #000; margin-bottom: 4px;">1.4.1.3 ลูกค้าผู้ใช้บริการ:</p>
+            <p style="font-size: 1.22rem; line-height: 1.6; color: #374151; padding-left: 20px;">
+              <strong>ก)</strong> เข้าใช้งานระบบผ่านริชเมนูบนไลน์ &nbsp;|&nbsp; 
+              <strong>ข)</strong> เลือกช่างตัดผมและประเภทบริการที่ต้องการ &nbsp;|&nbsp; 
+              <strong>ค)</strong> อัปโหลดสลิปหลักฐานการโอนเงินเพื่อแจ้งชำระเงิน &nbsp;|&nbsp; 
+              <strong>ง)</strong> รับเฟล็กซ์เมสเสจรับเงินอิเล็กทรอนิกส์ (e-Receipt) ผ่านไลน์
             </p>
           </div>
         </div>
@@ -783,20 +793,19 @@
       <div class="slide-tab-right"></div>
       <h2 class="slide-title">1.4 ขอบเขตการศึกษา (ต่อ)</h2>
       <div class="slide-content">
-        <div style="width: 100%; max-width: 1100px; text-align: left;">
-          <div style="margin-bottom: 26px;">
-            <p style="font-weight: 700; font-size: 1.45rem; color: #000; margin-bottom: 12px;">ฮาร์ดแวร์ที่ใช้ในการพัฒนา</p>
-            <ul class="bullet-list" style="font-size: 1.32rem;">
-              <li><strong>1. โน้ตบุ๊ก เอชพีวิคตัส 16 (HP VICTUS 16):</strong> 12th Gen Intel Core i5-12500H ใช้เป็นเครื่องหลักสำหรับพัฒนาและทดสอบระบบ</li>
-              <li><strong>2. สมาร์ตโฟน วี่โว่วียี่สิบเจ็ดห้าจี (VIVO V27 5G):</strong> ใช้สำหรับทดสอบการใช้งานจริงบนแอปพลิเคชันไลน์</li>
+        <div style="width: 100%; max-width: 1120px; text-align: left;">
+          <div style="margin-bottom: 24px;">
+            <p style="font-weight: 700; font-size: 1.4rem; color: #000; margin-bottom: 10px;">1.4.2 ฮาร์ดแวร์ที่ใช้ในการพัฒนา</p>
+            <ul class="bullet-list" style="font-size: 1.28rem; line-height: 1.75;">
+              <li><strong>1.4.2.1 โน้ตบุ๊ก เอชพีวิคตัส 16 (HP VICTUS 16):</strong> 12th Gen Intel(R) Core(TM) i5-12500H (2.50 GHz) ใช้เป็นเครื่องหลักสำหรับพัฒนาและทดสอบระบบ</li>
+              <li><strong>1.4.2.2 สมาร์ทโฟน Nothing Phone (4a):</strong> ใช้สำหรับทดสอบการใช้งานจริงบนแอปพลิเคชัน LINE ทั้งฝั่งลูกค้าและช่าง</li>
             </ul>
           </div>
           <div>
-            <p style="font-weight: 700; font-size: 1.45rem; color: #000; margin-bottom: 12px;">ซอฟต์แวร์ที่ใช้ในการพัฒนา</p>
-            <ul class="bullet-list" style="font-size: 1.32rem;">
-              <li><strong>1. ระบบปฏิบัติการ ไมโครซอฟท์วินโดวส์สิบเอ็ด (Microsoft Windows 11)</strong></li>
-              <li><strong>2. โปรแกรม แอนติกราวิตี้ ไอดีอี (Antigravity IDE):</strong> สำหรับเขียนโปรแกรมและจัดการโค้ด</li>
-              <li><strong>3. ระบบจัดการฐานข้อมูล มายเอสคิวแอล (MySQL DBMS):</strong> สำหรับจัดเก็บข้อมูลเชิงสัมพันธ์</li>
+            <p style="font-weight: 700; font-size: 1.4rem; color: #000; margin-bottom: 10px;">1.4.3 ซอฟต์แวร์ที่ใช้ในการพัฒนา</p>
+            <ul class="bullet-list" style="font-size: 1.28rem; line-height: 1.75;">
+              <li><strong>1.4.3.1 ระบบปฏิบัติการ ไมโครซอฟท์วินโดวส์สิบเอ็ด (Microsoft Windows 11):</strong> สำหรับพัฒนาและติดตั้งเครื่องมือที่เกี่ยวข้อง</li>
+              <li><strong>1.4.3.2 แอนติกราวิตี้ ไอดีอี (Antigravity IDE):</strong> โปรแกรมแก้ไขโค้ดสำหรับเขียนเว็บแอปพลิเคชัน</li>
             </ul>
           </div>
         </div>
@@ -810,19 +819,19 @@
       <div class="slide-tab-right"></div>
       <h2 class="slide-title">1.4 ขอบเขตการศึกษา (ต่อ)</h2>
       <div class="slide-content">
-        <div style="width: 100%; max-width: 1100px; text-align: left;">
-          <div style="margin-bottom: 26px;">
-            <p style="font-weight: 700; font-size: 1.45rem; color: #000; margin-bottom: 12px;">ฮาร์ดแวร์ที่ใช้ระบบคลาวด์</p>
-            <ul class="bullet-list" style="font-size: 1.32rem;">
-              <li><strong>1. เรลเวย์เซิร์ฟเวอร์ (Railway Server):</strong> ใช้รันบริการเอ็นเอทเอ็น (n8n), ฐานข้อมูลมายเอสคิวแอล (MySQL) และเว็บแอปพลิเคชันบนคลาวด์ตลอด 24 ชั่วโมง</li>
+        <div style="width: 100%; max-width: 1120px; text-align: left;">
+          <div style="margin-bottom: 24px;">
+            <p style="font-weight: 700; font-size: 1.4rem; color: #000; margin-bottom: 10px;">1.4.4 ฮาร์ดแวร์ที่ใช้ระบบคลาวด์</p>
+            <ul class="bullet-list" style="font-size: 1.28rem; line-height: 1.75;">
+              <li><strong>1.4.4.1 เรลเวย์เซิฟเวอร์ (Railway Server):</strong> ใช้รับบริการเอ็นเอทเอ็น (n8n) และฐานข้อมูลมายเอสคิวแอล (MySQL) บนคลาวด์ รวมถึงเป็นเว็บเซิร์ฟเวอร์โฮสต์หน้าเว็บลิฟต์ ตลอด 24 ชั่วโมง</li>
             </ul>
           </div>
           <div>
-            <p style="font-weight: 700; font-size: 1.45rem; color: #000; margin-bottom: 12px;">ซอฟต์แวร์ที่ใช้ระบบคลาวด์</p>
-            <ul class="bullet-list" style="font-size: 1.32rem;">
-              <li><strong>1. เอ็นเอทเอ็น (n8n):</strong> ทำหน้าที่เป็นเวิร์กโฟลว์ออโตเมชัน (Workflow Automation) สำหรับประมวลผล รับ-ส่งข้อมูล และตัดรอบการเงิน</li>
-              <li><strong>2. เรลเวย์ (Railway):</strong> คลาวด์แพลตฟอร์มสำหรับโฮสต์และบริหารจัดการทรัพยากรเซิร์ฟเวอร์</li>
-              <li><strong>3. สลิปทูโกเอพีไอ (Slip2Go API):</strong> บริการเอพีไอสำหรับตรวจสอบความถูกต้องของสลิปโอนเงินธนาคารแบบอัตโนมัติ</li>
+            <p style="font-weight: 700; font-size: 1.4rem; color: #000; margin-bottom: 10px;">1.4.5 ซอฟต์แวร์ที่ใช้ระบบคลาวด์ (1 - 3)</p>
+            <ul class="bullet-list" style="font-size: 1.28rem; line-height: 1.75;">
+              <li><strong>1.4.5.1 เอ็นเอทเอ็น (n8n):</strong> ทำหน้าที่เป็น เวิร์กโฟลว์ออโตเมชัน (Workflow Automation) สำหรับประมวลผล รับและส่งข้อมูล</li>
+              <li><strong>1.4.5.2 เรลเวย์ (Railway):</strong> บริการจัดการและรันเซิร์ฟเวอร์ รวมถึงการจัดการทรัพยากรเว็บไซต์และฐานข้อมูล</li>
+              <li><strong>1.4.5.3 สลิปทูโกเอพีไอ (Slip2Go API):</strong> บริการเอพีไอสำหรับตรวจสอบความถูกต้องของสลิปโอนเงินธนาคาร</li>
             </ul>
           </div>
         </div>
@@ -836,31 +845,34 @@
       <div class="slide-tab-right"></div>
       <h2 class="slide-title">1.4 ขอบเขตการศึกษา (ต่อ)</h2>
       <div class="slide-content">
-        <div style="width: 100%; max-width: 1100px; text-align: left;">
-          <p style="font-weight: 700; font-size: 1.45rem; color: #000; margin-bottom: 16px;">ซอฟต์แวร์ที่ใช้ระบบคลาวด์ (ต่อ)</p>
-          <ul class="bullet-list" style="font-size: 1.32rem; line-height: 1.8;">
-            <li><strong>4. กูเกิลลุกเกอร์สตูดิโอ (Google Looker Studio):</strong> เว็บแอปพลิเคชันสำหรับสร้างแดชบอร์ดและรายงานสรุปยอดขายเชิงวิเคราะห์</li>
-            <li><strong>5. ไลน์เมสเสจจิ้งเอพีไอ (LINE Messaging API):</strong> ใช้สำหรับส่งข้อความแจ้งเตือนอัตโนมัติและใบเสร็จรับเงิน (e-Receipt)</li>
-            <li><strong>6. ไลน์ออฟฟิเชียลแอคเคาท์ (LINE Official Account):</strong> ใช้สร้างบัญชีทางการของร้านและริชเมนูเพื่อเป็นช่องทางสื่อสารหลัก</li>
-            <li><strong>7. ไลน์ลิฟต์ (LINE LIFF):</strong> เฟรมเวิร์กสร้างหน้าเว็บแอปพลิเคชันแจ้งชำระเงินที่ฝังอยู่ภายในแอปพลิเคชันไลน์</li>
+        <div style="width: 100%; max-width: 1120px; text-align: left;">
+          <p style="font-weight: 700; font-size: 1.4rem; color: #000; margin-bottom: 14px;">1.4.5 ซอฟต์แวร์ที่ใช้ระบบคลาวด์ (4 - 9)</p>
+          <ul class="bullet-list" style="font-size: 1.26rem; line-height: 1.75;">
+            <li><strong>1.4.5.4 ดาต้าสตูดิโอ (Data Studio):</strong> เว็บแอปพลิเคชันสำหรับสร้างแดชบอร์ดและรายงานสรุปยอดขาย</li>
+            <li><strong>1.4.5.5 ไลน์เมสเสจจิ้งเอพีไอ (LINE Messaging API):</strong> ใช้สำหรับส่งข้อความแจ้งเตือนและใบเสร็จตอบกลับอัตโนมัติ</li>
+            <li><strong>1.4.5.6 ไลน์ออฟฟิเชียลแอคเคาท์ (LINE Official Account):</strong> ใช้สำหรับสร้างบัญชีไลน์ทางการเพื่อใช้เป็นช่องทางสื่อสารหลัก</li>
+            <li><strong>1.4.5.7 ไลน์ลิฟต์ (LINE LIFF):</strong> ใช้สำหรับสร้างหน้าเว็บแจ้งชำระเงินที่ฝังอยู่ภายในแอปพลิเคชันไลน์</li>
+            <li><strong>1.4.5.8 ไลน์เซิฟเวอร์ (LINE Server):</strong> ให้บริการไลน์ เมสเสจจิ้ง เอพีไอ, ลิฟต์ (LIFF) สำหรับสื่อสารกับผู้ใช้งาน</li>
+            <li><strong>1.4.5.9 คลาวด์มายเอสคิวแอล (Cloud MySQL):</strong> ระบบจัดการฐานข้อมูลสำหรับเก็บข้อมูลช่าง บริการ และธุรกรรม</li>
           </ul>
         </div>
       </div>
       <div class="slide-bottom-bar"></div>
     </div>
 
-    <!-- SLIDE 10: 1.5 EXPECTED BENEFITS -->
-    <div class="slide" data-title="1.5 ประโยชน์ที่คาดว่าจะได้รับ">
+    <!-- SLIDE 10: 1.6 EXPECTED BENEFITS -->
+    <div class="slide" data-title="1.6 ประโยชน์ที่คาดว่าจะได้รับ">
       <div class="slide-tab-left"></div>
       <div class="slide-tab-right"></div>
-      <h2 class="slide-title">1.5 ประโยชน์ที่คาดว่าจะได้รับ</h2>
+      <h2 class="slide-title">1.6 ประโยชน์ที่คาดว่าจะได้รับ</h2>
       <div class="slide-content">
-        <div style="width: 100%; max-width: 1120px;">
-          <ul class="bullet-list" style="font-size: 1.38rem; line-height: 1.85;">
-            <li><strong>1.5.1</strong> ช่วยลดระยะเวลาและป้องกันข้อผิดพลาดในการตรวจสอบสลิปโอนเงิน ป้องกันการทุจริตและการนำสลิปเก่ามาวนใช้ซ้ำได้ 100%</li>
-            <li><strong>1.5.2</strong> ช่างตัดผมรับรู้ยอดรายได้และส่วนแบ่งค่าคอมมิชชันของตนเองแบบเรียลไทม์ เพิ่มความโปร่งใสและตรวจสอบได้</li>
-            <li><strong>1.5.3</strong> ร้านค้าสามารถสรุปยอดและตัดรอบเคลียร์เงินจ่ายช่างได้อย่างถูกต้อง แม่นยำ พร้อมหลักฐานสลิปตรวจสอบย้อนหลัง</li>
-            <li><strong>1.5.4</strong> มีระบบสารสนเทศและแดชบอร์ดสรุปยอดขายที่ถูกต้อง ช่วยในการบริหารจัดการร้านและการวางแผนธุรกิจอย่างมีประสิทธิภาพ</li>
+        <div style="width: 100%; max-width: 1140px;">
+          <ul class="bullet-list" style="font-size: 1.28rem; line-height: 1.75;">
+            <li><strong>1.6.1</strong> ได้ระบบเว็บแอปพลิเคชัน (LINE LIFF) ที่ช่วยอำนวยความสะดวกให้ลูกค้าสามารถ เลือกช่างตัดผม และแจ้งชำระเงินผ่านแอปพลิเคชันไลน์ได้สะดวกรวดเร็วด้วยตนเองโดยไม่ต้องติดตั้งแอปพลิเคชันเพิ่มเติม</li>
+            <li><strong>1.6.2</strong> ช่วยลดปัญหาสลิปปลอมและยอดเงินไม่ตรง ด้วยระบบตรวจสอบสลิปโอนเงินอัตโนมัติผ่านสลิปทูโกเอพีไอ (Slip2Go API) ช่วยลดความเสี่ยงจากสลิปปลอมและสลิปซ้ำได้</li>
+            <li><strong>1.6.3</strong> ช่วยลดความผิดพลาดในการคำนวณส่วนแบ่งค่าคอมมิชชัน ของช่างตัดผม พร้อมทั้งมีระบบฐานข้อมูลมายเอสคิวแอล (MySQL) ที่จัดเก็บข้อมูลธุรกรรมอย่างเป็นระเบียบ และสามารถตรวจสอบย้อนหลังได้</li>
+            <li><strong>1.6.4</strong> ลูกค้าได้รับเฟล็กซ์เมสเสจ ส่วนช่างตัดผมและเจ้าของร้านทราบยอดรายได้อย่างรวดเร็วผ่านการแจ้งเตือนทางแอปพลิเคชันไลน์ เพิ่มประสิทธิภาพและความรวดเร็วในการสื่อสารภายในร้าน</li>
+            <li><strong>1.6.5</strong> เจ้าของร้านสามารถติดตามยอดขายและผลการดำเนินงานได้อย่างรวดเร็ว ผ่านแดชบอร์ดสรุปผลทางการเงิน เพื่อนำข้อมูลสถิติไปใช้วิเคราะห์และสนับสนุนการตัดสินใจทางธุรกิจได้</li>
           </ul>
         </div>
       </div>

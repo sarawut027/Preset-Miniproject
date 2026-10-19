@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>สไลด์สรุปโครงงาน • ระบบบันทึกรายได้และคำนวณค่าคอมมิชชันช่างตัดผม (Presentation Summary)</title>
+  <title>สไลด์สรุปโครงงาน • ระบบบริหารรายได้และค่าคอมมิชชันช่างตัดผมผ่านไลน์ (Presentation Summary)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&family=Prompt:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
@@ -607,12 +607,12 @@
         <!-- ==================== SLIDE 1: COVER ==================== -->
         <section class="slide cover-slide active" data-slide="1">
           <img src="images/logo.png" alt="โลโก้ร้าน" class="cover-logo" onerror="this.outerHTML='<div style=\'font-size:64px;margin-bottom:20px;\'>💈</div>'">
-          <div class="cover-tagline">PROJECT DEFENSE • COMPUTER SCIENCE NPRU</div>
-          <h1 class="cover-title">การนำเสนอสรุปโครงงาน: ระบบบันทึกรายได้และคำนวณค่าคอมมิชชันช่างตัดผม<br>แบบเรียลไทม์ผ่านแอปพลิเคชันไลน์</h1>
-          <div class="cover-subtitle">Real-time Barber Income Recording and Commission Calculation System via LINE Application</div>
+          <div class="cover-tagline">7204903 โครงงานด้านเทคโนโลยีสารสนเทศ 2 • IT NPRU</div>
+          <h1 class="cover-title">การนำเสนอสรุปโครงงาน: ระบบบริหารรายได้และค่าคอมมิชชันช่างตัดผมผ่านไลน์</h1>
+          <div class="cover-subtitle">LINE-Based Barbershop Income and Commission Management System</div>
           <div class="cover-meta">
             <div>ผู้จัดทำ: <strong>นาย สราวุฒิ อุยยาหาญ</strong> (รหัสประจำตัว 674230027, หมู่เรียน 67/44)</div>
-            <div>สาขาวิชาวิทยาการคอมพิวเตอร์ มหาวิทยาลัยราชภัฏนครปฐม</div>
+            <div>สาขาวิชาเทคโนโลยีสารสนเทศ คณะวิทยาศาสตร์และเทคโนโลยี มหาวิทยาลัยราชภัฏนครปฐม</div>
           </div>
         </section>
 
@@ -621,7 +621,7 @@
           <div class="slide-header">
             <div class="slide-title-wrap">
               <h2>⚠️ ที่มาและความสำคัญของปัญหา (Problem Statement)</h2>
-              <p>ปัญหาข้อจำกัดของระบบงานเดิมในร้านตัดผม แบ่งเป็น 3 มิติหลัก (เงินเข้า, เงินออก, และการจัดการ)</p>
+              <p>การวิเคราะห์ปัญหาและแนวคิดการแก้ไขปัญหา (Fishbone Diagram) ตามนายสราวุฒิ อุยยาหาญ (2570)</p>
             </div>
             <div class="badge-counter">SLIDE 02 / 07</div>
           </div>
@@ -631,27 +631,27 @@
               <div class="content-card rose">
                 <div class="card-title">💸 1. ปัญหาด้านรายรับ (เงินเข้า)</div>
                 <ul class="card-list">
-                  <li><strong>ตรวจสอบสลิปด้วยตนเอง:</strong> เกิดความล่าช้า ข้อมูลตกหล่นช่วงลูกค้าหน้าร้านหนาแน่น</li>
-                  <li><strong>ความเสี่ยงการทุจริต:</strong> เสี่ยงต่อการถูกหลอกลวงด้วย <em>"สลิปโอนเงินปลอม"</em> และการนำ <em>"สลิปเก่ามาวนใช้ซ้ำ"</em></li>
-                  <li><strong>ยอดเงินไม่ตรง:</strong> ลูกค้าโอนยอดไม่ตรงกับราคาค่าบริการจริงโดยตรวจจับไม่ทันที</li>
+                  <li><strong>ตรวจสอบสลิปขณะติดลูกค้า:</strong> ช่างหรือเจ้าของร้านติดภารกิจตัดผม ไม่สามารถเปิดแอปธนาคารตรวจยอดเงินได้ทันที</li>
+                  <li><strong>ความเสี่ยงสลิปปลอม/วนใช้ซ้ำ:</strong> เสี่ยงต่อการถูกฉ้อโกงด้วยภาพสลิปตัดต่อ และการนำสลิปเก่ามาวนใช้ซ้ำ</li>
+                  <li><strong>โอนยอดไม่ตรง:</strong> ลูกค้าโอนเงินไม่ตรงตามราคาค่าบริการจริงโดยไม่สามารถตรวจจับได้ทันท่วงที</li>
                 </ul>
               </div>
 
               <div class="content-card">
                 <div class="card-title">🤝 2. ปัญหาการเคลียร์เงินช่าง (เงินออก)</div>
                 <ul class="card-list">
-                  <li><strong>คำนวณค่าคอมมิชชันล่าช้า:</strong> คิดส่วนแบ่งช่าง (Commission Rate เช่น 50:50) ด้วยมือตอนสิ้นวัน มักเกิดข้อผิดพลาด</li>
-                  <li><strong>ขาดระบบตัดรอบเงิน (Settlement):</strong> ไม่มีระบบสรุปยอดค้างจ่ายและแนบหลักฐานการโอนจ่ายช่าง</li>
-                  <li><strong>ขาดความโปร่งใส:</strong> ช่างตัดผมไม่สามารถตรวจสอบยอดเงินสะสมได้แบบเรียลไทม์</li>
+                  <li><strong>คำนวณส่วนแบ่งด้วยมือ:</strong> สิ้นวันต้องคิดค่าคอมมิชชันด้วยตนเอง มักเกิดข้อผิดพลาดจากการคำนวณของมนุษย์</li>
+                  <li><strong>ขาดการแจ้งเตือนเรียลไทม์:</strong> ช่างตัดผมไม่สามารถตรวจสอบยอดเงินสะสมได้ในระหว่างวัน ทำให้เกิดความเคลือบแคลงสงสัย</li>
+                  <li><strong>การตัดรอบเคลียร์เงินล่าช้า:</strong> ขาดระบบสรุปยอดค้างเคลียร์ (Settlement) และแนบหลักฐานการโอนจ่ายช่างที่ชัดเจน</li>
                 </ul>
               </div>
 
               <div class="content-card sky">
-                <div class="card-title">🗄️ 3. ขาดระบบจัดการส่วนกลาง (CRUD)</div>
+                <div class="card-title">🗄️ 3. ขาดระบบจัดการและรายงานธุรกิจ</div>
                 <ul class="card-list">
-                  <li><strong>บันทึกแยกส่วน:</strong> การจดสมุดหรือ Excel ขาดระบบฐานข้อมูลกลางในการ เพิ่ม/ลบ/แก้ไข/ค้นหา</li>
-                  <li><strong>แก้ไขบิลผิดพลาดยาก:</strong> ขาดระบบ <em>โมฆะบิล (Void Bill)</em> พร้อมระบบ Audit Log ที่ป้องกันการแอบยกเลิก</li>
-                  <li><strong>ไม่มีรายงานสรุปผู้บริหาร:</strong> เจ้าของร้านขาดแดชบอร์ดสรุปผลประกอบการและกำไรสุทธิแบบสด</li>
+                  <li><strong>บันทึกในสมุด/ตารางคำนวณ:</strong> ข้อมูลสูญหาย รายการตกหล่น และขาดระบบฐานข้อมูลกลาง (CRUD) ในการจัดการ</li>
+                  <li><strong>ขาดใบเสร็จรับเงินที่น่าเชื่อถือ:</strong> ไม่มีระบบออกใบเสร็จรับเงินอิเล็กทรอนิกส์ (e-Receipt) ให้แก่ลูกค้า</li>
+                  <li><strong>ขาดเครื่องมือวิเคราะห์ผู้บริหาร:</strong> เจ้าของร้านขาดแดชบอร์ดสรุปผลประกอบการ ยอดขาย และผลงานช่างในภาพรวม</li>
                 </ul>
               </div>
 
@@ -664,7 +664,7 @@
           <div class="slide-header">
             <div class="slide-title-wrap">
               <h2>🎯 วัตถุประสงค์ของโครงงาน (Project Objectives)</h2>
-              <p>5 เป้าหมายหลักในการพัฒนาระบบเพื่อแก้ปัญหาอย่างตรงจุดและวัดผลได้จริง</p>
+              <p>5 วัตถุประสงค์หลักของระบบตามเอกสารวิชาการโครงงาน (ข้อ 1.3.1 - 1.3.5)</p>
             </div>
             <div class="badge-counter">SLIDE 03 / 07</div>
           </div>
@@ -672,30 +672,37 @@
             <div class="card-grid grid-2">
               
               <div class="content-card emerald">
-                <div class="card-title">1. ระบบรับชำระเงิน & ตรวจสลิป (LINE LIFF)</div>
+                <div class="card-title">1. ระบบรับชำระเงินผ่าน LINE LIFF (1.3.1)</div>
                 <p style="font-size:14px; color:var(--text-sub); line-height:1.6;">
-                  เพื่อพัฒนาเว็บแอปพลิเคชันผ่านระบบลิฟต์ (LINE LIFF) สำหรับรับแจ้งชำระเงิน ตรวจสอบสลิปโอนเงินอัตโนมัติ (Slip2Go API) และออกใบเสร็จรับเงินอิเล็กทรอนิกส์ (e-Receipt Flex Message) ผ่านแอปพลิเคชันไลน์
+                  ระบบรองรับการทำรายการของผู้ใช้งาน โดยสามารถเลือกบริการ เลือกช่างตัดผม และอัปโหลดหลักฐานการโอนเงินผ่านทางหน้าเว็บแอปพลิเคชัน <strong>LIFF (LINE Front-end Framework)</strong> บนแอปพลิเคชัน LINE
                 </p>
               </div>
 
               <div class="content-card">
-                <div class="card-title">2. ระบบตัดรอบเคลียร์เงินช่าง (Settlement & Payout)</div>
+                <div class="card-title">2. ตรวจสอบสลิปอัตโนมัติ Slip2Go API (1.3.2)</div>
                 <p style="font-size:14px; color:var(--text-sub); line-height:1.6;">
-                  เพื่อพัฒนาระบบคำนวณและตัดรอบเคลียร์เงินส่วนแบ่งค่าคอมมิชชันให้แก่ช่างตัดผม (Barber Commission Settlement) พร้อมบันทึกหลักฐานการจ่ายเงินและส่งสลิปแจ้งเตือนช่างอย่างโปร่งใส
+                  ระบบมีฟังก์ชันตรวจสอบความถูกต้องของสลิปโอนเงินโดยอัตโนมัติ ผ่านการเชื่อมต่อกับระบบ <strong>Slip2Go API</strong> ตรวจสอบยอดเงิน บัญชีผู้รับ และป้องกันสลิปใช้ซ้ำ
                 </p>
               </div>
 
               <div class="content-card sky">
-                <div class="card-title">3. ระบบบริหารจัดการหลังบ้าน (Admin Full CRUD)</div>
+                <div class="card-title">3. คำนวณส่วนแบ่งช่าง & ฐานข้อมูล MySQL (1.3.3)</div>
                 <p style="font-size:14px; color:var(--text-sub); line-height:1.6;">
-                  เพื่อพัฒนาระบบบริหารจัดการข้อมูล (Admin Backoffice) ที่รองรับการจัดการแบบครบวงจร (CRUD) ทั้งข้อมูลช่างตัดผม, รายการบริการ, ประวัติธุรกรรม, และระบบโมฆะบิล (Void Bill)
+                  ระบบสามารถคำนวณส่วนแบ่งรายได้ของช่างตัดผม และบันทึกข้อมูลประวัติการทำธุรกรรมทั้งหมดลงในระบบฐานข้อมูล <strong>MySQL</strong> โดยอัตโนมัติ
                 </p>
               </div>
 
               <div class="content-card emerald">
-                <div class="card-title">4. แดชบอร์ดสรุปผลการเงิน (Looker Studio) & ประเมินผล</div>
+                <div class="card-title">4. ส่ง Flex Message & แจ้งเตือนเรียลไทม์ (1.3.4)</div>
                 <p style="font-size:14px; color:var(--text-sub); line-height:1.6;">
-                  เพื่อพัฒนาระบบรายงานและแดชบอร์ดสรุปผลทางการเงิน (Google Looker Studio) สำหรับวิเคราะห์ยอดขายรวม ยอดจ่ายช่าง และรายได้สุทธิแบบเรียลไทม์ พร้อมประเมินความพึงพอใจของผู้ใช้งาน
+                  ระบบสามารถส่ง <strong>เฟล็กซ์เมสเสจ (e-Receipt)</strong> ให้แก่ลูกค้า พร้อมทั้งแจ้งเตือนสรุปยอดเงินให้ช่างตัดผมและเจ้าของร้านทราบ ผ่านทางแอปพลิเคชัน LINE
+                </p>
+              </div>
+
+              <div class="content-card sky" style="grid-column: 1 / -1;">
+                <div class="card-title">5. กระดานข้อมูลสรุปยอดขาย Data Studio (1.3.5)</div>
+                <p style="font-size:14px; color:var(--text-sub); line-height:1.6;">
+                  ระบบมีหน้ากระดานข้อมูล <strong>(Dashboard)</strong> สำหรับแสดงผลสรุปยอดขาย สถิติการใช้บริการ และรายได้ของช่างตัดผมแต่ละรายแบบเรียลไทม์ ผ่านเครื่องมือ <strong>Data Studio (Google Looker Studio)</strong>
                 </p>
               </div>
 
@@ -708,7 +715,7 @@
           <div class="slide-header">
             <div class="slide-title-wrap">
               <h2>📐 ขอบเขตของระบบ (System Scope)</h2>
-              <p>ขอบเขตฟังก์ชันการทำงานครอบคลุม 3 กลุ่มผู้ใช้งานหลัก (ลูกค้า, ช่างตัดผม, เจ้าของร้าน)</p>
+              <p>ขอบเขตฟังก์ชันการทำงานครอบคลุม 3 กลุ่มผู้ใช้งานหลักตามเอกสารข้อ 1.4.1</p>
             </div>
             <div class="badge-counter">SLIDE 04 / 07</div>
           </div>
@@ -716,33 +723,32 @@
             <div class="card-grid grid-3">
               
               <div class="content-card emerald">
-                <div class="card-title">👤 1. ฝั่งลูกค้า (Customer)</div>
+                <div class="card-title">👤 1. ลูกค้าผู้ใช้บริการ (1.4.1.3)</div>
                 <ul class="card-list">
-                  <li><strong>LINE Official Account:</strong> ใช้งานผ่าน Rich Menu โดยไม่ต้องโหลดแอปใหม่</li>
-                  <li><strong>LINE LIFF Form:</strong> เลือกช่างตัดผมและรายการบริการพร้อมดูราคา/รูปตัวอย่าง</li>
-                  <li><strong>2 ช่องทางชำระเงิน:</strong> เงินสดหน้าร้าน (Cash) หรือ สแกนโอนเงิน (PromptPay QR)</li>
-                  <li><strong>Slip Verification:</strong> สแกนตรวจยอดเงิน, บัญชีผู้รับตรง, และกันสลิปซ้ำ 100%</li>
-                  <li><strong>e-Receipt:</strong> รับใบเสร็จ Flex Message ยืนยันในแชททันที</li>
+                  <li><strong>ก) ริชเมนูบนไลน์:</strong> เข้าใช้งานระบบผ่านริชเมนูบน LINE Official Account</li>
+                  <li><strong>ข) เลือกช่าง & บริการ:</strong> เลือกช่างตัดผมและประเภทบริการที่ต้องการผ่าน LIFF</li>
+                  <li><strong>ค) อัปโหลดสลิป:</strong> อัปโหลดสลิปหลักฐานการโอนเงินเพื่อแจ้งชำระเงิน</li>
+                  <li><strong>ง) รับใบเสร็จ:</strong> รับเฟล็กซ์เมสเสจรับเงินอิเล็กทรอนิกส์ (e-Receipt) ผ่านไลน์</li>
                 </ul>
               </div>
 
               <div class="content-card">
-                <div class="card-title">✂️ 2. ฝั่งช่างตัดผม (Barber)</div>
+                <div class="card-title">✂️ 2. ช่างตัดผม (1.4.1.2)</div>
                 <ul class="card-list">
-                  <li><strong>Real-time Income Alert:</strong> รับการแจ้งเตือนยอดเงินและค่าคอมมิชชันเข้า LINE ส่วนตัวทันทีเมื่อมีบิลเข้า</li>
-                  <li><strong>Payout Slip Alert:</strong> ได้รับสลิปหลักฐานเมื่อเจ้าของร้านตัดรอบเคลียร์เงิน</li>
-                  <li><strong>Void Bill Alert:</strong> ได้รับแจ้งเตือนทันทีเมื่อมีบิลถูกสั่งโมฆะหรือยกเลิก</li>
-                  <li><strong>Profile & Services:</strong> ดูรหัสประจำตัวช่างและรายการบริการผ่านหน้าร้าน</li>
+                  <li><strong>ก) รับแจ้งเตือนชำระเงิน:</strong> รับการแจ้งเตือนทันทีเมื่อลูกค้าชำระเงินค่าบริการของตนเองสำเร็จ</li>
+                  <li><strong>ข) ตรวจสอบยอดรายได้:</strong> ตรวจสอบยอดค่าบริการและส่วนแบ่งค่าคอมมิชชันที่ได้รับแบบเรียลไทม์</li>
+                  <li><strong>รับสลิปเคลียร์เงิน:</strong> ได้รับสลิปหลักฐานเมื่อเจ้าของร้านตัดรอบเคลียร์เงิน (Settlement)</li>
+                  <li><strong>แจ้งเตือนโมฆะบิล:</strong> รับแจ้งเตือนทันทีเมื่อมีรายการบิลถูกทำโมฆะ (Void Bill)</li>
                 </ul>
               </div>
 
               <div class="content-card sky">
-                <div class="card-title">💻 3. ฝั่งเจ้าของร้าน (Admin)</div>
+                <div class="card-title">💻 3. ผู้ดูแลระบบ/เจ้าของร้าน (1.4.1.1)</div>
                 <ul class="card-list">
-                  <li><strong>CRUD ช่าง & บริการ:</strong> จัดการข้อมูลช่าง, กำหนด % ค่าคอมมิชชัน, ปรับราคาบริการ</li>
-                  <li><strong>จัดการบิล & โมฆะบิล:</strong> ดูประวัติธุรกรรม และสั่งโมฆะบิลพร้อมระบบ Audit Log</li>
-                  <li><strong>ตัดรอบเคลียร์เงิน:</strong> สรุปยอดค้างจ่ายช่าง แนบสลิป และอัปเดตสถานะ Settled</li>
-                  <li><strong>BI Dashboard:</strong> ดูรายงานยอดขายและรายได้สุทธิผ่าน Looker Studio</li>
+                  <li><strong>ก) จัดการช่าง & ค่าคอม:</strong> จัดการข้อมูลช่างตัดผมและอัตราส่วนแบ่งค่าคอมมิชชัน</li>
+                  <li><strong>ข) จัดการบริการ & ราคา:</strong> จัดการข้อมูลประเภทบริการและราคาค่าบริการ (CRUD)</li>
+                  <li><strong>ค) ดูแดชบอร์ดสรุปยอดขาย:</strong> สรุปยอดขายประจำวันและประจำเดือนผ่านดาต้าสตูดิโอ</li>
+                  <li><strong>ง) รับแจ้งเตือนยอดเงิน:</strong> รับการแจ้งเตือนยอดเงินและการชำระเงินสำเร็จผ่านไลน์</li>
                 </ul>
               </div>
 
@@ -755,7 +761,7 @@
           <div class="slide-header">
             <div class="slide-title-wrap">
               <h2>💻 สถาปัตยกรรมซอฟต์แวร์และคลาวด์ (Software Architecture)</h2>
-              <p>การเชื่อมโยงระบบแบบไร้รอยต่อ (End-to-End Workflow) ระหว่าง LINE, n8n, APIs และ Cloud Database</p>
+              <p>การบูรณาการเครื่องมือพัฒนาและซอฟต์แวร์ระบบคลาวด์ตามเอกสารข้อ 1.4.3 และ 1.4.5</p>
             </div>
             <div class="badge-counter">SLIDE 05 / 07</div>
           </div>
@@ -768,13 +774,13 @@
               </div>
 
               <div class="content-card sky" style="justify-content: center;">
-                <div class="card-title">5 เสาหลักเทคโนโลยีของระบบ</div>
+                <div class="card-title">เครื่องมือและซอฟต์แวร์หลักของระบบ</div>
                 <ul class="card-list">
-                  <li><strong>Core Backend:</strong> <em>n8n Workflow Automation</em> รันแบบ Self-Hosted บน Railway Cloud จัดการ Webhook และตรรกะระบบ</li>
-                  <li><strong>Frontend:</strong> <em>LINE LIFF SDK</em> (HTML5, Tailwind CSS, JavaScript) และ <em>Admin Backoffice</em></li>
-                  <li><strong>Communication:</strong> <em>LINE Messaging API</em> ส่ง e-Receipt และการแจ้งเตือนแบบ Flex Message</li>
-                  <li><strong>Payment Security:</strong> <em>Slip2Go API</em> ตรวจสอบ QR Code ธนาคาร ยอดเงิน และเลขอ้างอิงสลิป</li>
-                  <li><strong>Database & BI:</strong> <em>MySQL Database</em> บน Railway Cloud และ <em>Google Looker Studio</em></li>
+                  <li><strong>IDE & OS พัฒนา:</strong> <em>Antigravity IDE</em> บน <em>Microsoft Windows 11</em></li>
+                  <li><strong>Core Backend:</strong> <em>n8n Workflow Automation</em> รันแบบ Self-Hosted บน Railway Server ประมวลผลและส่งข้อมูล</li>
+                  <li><strong>LINE Ecosystem:</strong> <em>LINE LIFF</em>, <em>LINE Messaging API</em>, <em>LINE Official Account</em></li>
+                  <li><strong>Slip Verification:</strong> <em>Slip2Go API</em> ตรวจสอบ QR Code บัญชีผู้รับ และป้องกันสลิปซ้ำ</li>
+                  <li><strong>Database & BI:</strong> <em>Cloud MySQL</em> บน Railway และ <em>Data Studio (Google Looker Studio)</em></li>
                 </ul>
               </div>
 
@@ -787,7 +793,7 @@
           <div class="slide-header">
             <div class="slide-title-wrap">
               <h2>⚙️ ฮาร์ดแวร์และโครงสร้างพื้นฐาน (Hardware & Infrastructure)</h2>
-              <p>การจัดเตรียมสภาพแวดล้อมทั้งฝั่งอุปกรณ์เครื่องผู้ใช้ (Client) และโครงสร้างคลาวด์ (Cloud 24/7)</p>
+              <p>อุปกรณ์เครื่องพัฒนา อุปกรณ์ทดสอบจริง และเซิร์ฟเวอร์คลาวด์ตามเอกสารข้อ 1.4.2 และ 1.4.4</p>
             </div>
             <div class="badge-counter">SLIDE 06 / 07</div>
           </div>
@@ -795,20 +801,20 @@
             <div class="card-grid grid-2">
               
               <div class="content-card">
-                <div class="card-title">🖥️ 1. ฮาร์ดแวร์ฝั่งพัฒนาและเครื่องผู้ใช้ (Client Hardware)</div>
+                <div class="card-title">🖥️ 1. ฮาร์ดแวร์ที่ใช้ในการพัฒนา (1.4.2)</div>
                 <ul class="card-list">
-                  <li><strong>คอมพิวเตอร์พัฒนาหลัก:</strong> โน้ตบุ๊ก HP VICTUS 16 (12th Gen Intel Core i5-12500H, RAM 16GB, Windows 11) สำหรับเขียนโปรแกรมและออกแบบระบบ</li>
-                  <li><strong>อุปกรณ์ทดสอบฝั่งลูกค้า/ช่าง:</strong> สมาร์ตโฟน VIVO V27 5G (Android) และอุปกรณ์ iOS/Android สำหรับทดสอบการทำงานบน LINE</li>
-                  <li><strong>อุปกรณ์ฝั่งเจ้าของร้าน:</strong> คอมพิวเตอร์/แท็บเล็ต/สมาร์ตโฟนที่เชื่อมต่ออินเทอร์เน็ต สามารถเปิดใช้งานระบบผ่านเว็บบราวเซอร์ได้ทุกที่</li>
+                  <li><strong>โน้ตบุ๊กหลักสำหรับพัฒนา (1.4.2.1):</strong> โน้ตบุ๊ก เอชพีวิคตัส 16 (HP VICTUS 16) 12th Gen Intel(R) Core(TM) i5-12500H (2.50 GHz) ใช้เป็นเครื่องหลักสำหรับพัฒนาและทดสอบระบบ</li>
+                  <li><strong>สมาร์ทโฟนทดสอบจริง (1.4.2.2):</strong> สมาร์ทโฟน <strong>Nothing Phone (4a)</strong> ใช้สำหรับทดสอบการใช้งานจริงบนแอปพลิเคชัน LINE ทั้งฝั่งลูกค้าและช่าง</li>
+                  <li><strong>อุปกรณ์ผู้ดูแลระบบ:</strong> คอมพิวเตอร์หรือสมาร์ทโฟนที่เชื่อมต่ออินเทอร์เน็ต สามารถเข้าใช้งาน Admin Backoffice ผ่านเว็บบราวเซอร์ได้ทุกที่</li>
                 </ul>
               </div>
 
               <div class="content-card emerald">
-                <div class="card-title">☁️ 2. โครงสร้างพื้นฐานระบบคลาวด์ (Cloud Infrastructure 24/7)</div>
+                <div class="card-title">☁️ 2. ฮาร์ดแวร์และเซิร์ฟเวอร์คลาวด์ (1.4.4)</div>
                 <ul class="card-list">
-                  <li><strong>Railway Cloud Platform:</strong> เซิร์ฟเวอร์คอนเทนเนอร์บนระบบคลาวด์มาตรฐานสากล สำหรับรัน n8n Workflow Engine และ MySQL Database ให้บริการตลอด 24 ชั่วโมง</li>
-                  <li><strong>LINE Developer Platform:</strong> เซิร์ฟเวอร์คลาวด์ของ LINE สำหรับบริหารจัดการ Channel Webhook และ LINE Messaging Gateway</li>
-                  <li><strong>High Reliability & Zero Setup:</strong> ไม่ต้องเปิดเครื่องคอมพิวเตอร์ทิ้งไว้ที่ร้านตัดผม ลดต้นทุนฮาร์ดแวร์และค่าบำรุงรักษา</li>
+                  <li><strong>เรลเวย์เซิฟเวอร์ (Railway Server 1.4.4.1):</strong> ใช้รันบริการเอ็นเอทเอ็น (n8n) และฐานข้อมูลมายเอสคิวแอล (MySQL) บนคลาวด์ รวมถึงเป็นเว็บเซิร์ฟเวอร์โฮสต์หน้าเว็บลิฟต์ ตลอด 24 ชั่วโมง</li>
+                  <li><strong>ไลน์เซิฟเวอร์ (LINE Server 1.4.5.8):</strong> ให้บริการ LINE Messaging API, LIFF สำหรับสื่อสาร รับ-ส่งข้อมูล และยิงการแจ้งเตือนตอบกลับผู้ใช้งาน</li>
+                  <li><strong>ความพร้อมใช้งานสูง (High Availability):</strong> ทำงานแบบอัตโนมัติบนระบบคลาวด์ ไม่ต้องเปิดคอมพิวเตอร์ทิ้งไว้ที่ร้านตัดผม ประหยัดพลังงานและค่าบำรุงรักษา</li>
                 </ul>
               </div>
 
@@ -820,8 +826,8 @@
         <section class="slide" data-slide="7">
           <div class="slide-header">
             <div class="slide-title-wrap">
-              <h2>🌟 ประโยชน์ที่ได้รับ & ลิงก์เชื่อมโยง (Key Benefits & Links)</h2>
-              <p>ผลลัพธ์เชิงรูปธรรมต่อธุรกิจร้านตัดผม และช่องทางเปิดชมการทำงานของชิ้นงานจริง</p>
+              <h2>🌟 ประโยชน์ที่คาดว่าจะได้รับ (Expected Benefits)</h2>
+              <p>ผลลัพธ์เชิงรูปธรรมต่อธุรกิจร้านตัดผมตามเอกสารข้อ 1.6.1 - 1.6.5</p>
             </div>
             <div class="badge-counter">SLIDE 07 / 07</div>
           </div>
@@ -829,12 +835,13 @@
             <div class="card-grid grid-split-60-40">
               
               <div class="content-card emerald">
-                <div class="card-title">ผลลัพธ์และความคุ้มค่าของระบบ</div>
+                <div class="card-title">ประโยชน์ 5 ประการตามเอกสารวิชาการ</div>
                 <ul class="card-list">
-                  <li><strong>ด้านความปลอดภัยทางการเงิน:</strong> ป้องกันการใช้สลิปปลอมและสลิปวนใช้ซ้ำได้ 100% ด้วย Slip2Go API</li>
-                  <li><strong>ด้านความโปร่งใสและประสิทธิภาพ:</strong> ช่างได้รับแจ้งยอดรายได้ทันที และมีระบบตัดรอบเคลียร์เงิน (Settlement) ตรวจสอบได้ชัดเจน</li>
-                  <li><strong>ด้านประสบการณ์ลูกค้า (UX):</strong> ลูกค้าชำระเงินสะดวกผ่าน LINE ได้ใบเสร็จ e-Receipt สวยงาม ไม่ต้องลงแอปใหม่</li>
-                  <li><strong>ด้านการบริหารจัดการ:</strong> เจ้าของร้านมีแดชบอร์ดสรุปรายได้ ยอดขายช่าง และสถิติต่าง ๆ ในหน้าจอเดียว</li>
+                  <li><strong>1.6.1 ได้ระบบเว็บแอปพลิเคชัน (LINE LIFF):</strong> อำนวยความสะดวกให้ลูกค้าเลือกช่างและแจ้งชำระเงินผ่าน LINE ได้สะดวกรวดเร็วโดยไม่ต้องลงแอปเพิ่ม</li>
+                  <li><strong>1.6.2 ลดปัญหาสลิปปลอมและยอดไม่ตรง:</strong> ตรวจสอบสลิปอัตโนมัติผ่าน Slip2Go API ช่วยลดความเสี่ยงสลิปปลอมและสลิปซ้ำได้</li>
+                  <li><strong>1.6.3 ลดข้อผิดพลาดคำนวณคอมมิชชัน:</strong> มีฐานข้อมูล MySQL จัดเก็บข้อมูลธุรกรรมอย่างเป็นระเบียบ และสามารถตรวจสอบย้อนหลังได้</li>
+                  <li><strong>1.6.4 แจ้งเตือนรวดเร็วผ่าน LINE:</strong> ลูกค้าได้รับ Flex Message e-Receipt ส่วนช่างและเจ้าของร้านทราบยอดทันที เพิ่มประสิทธิภาพการสื่อสาร</li>
+                  <li><strong>1.6.5 ติดตามผลผ่านแดชบอร์ด Data Studio:</strong> เจ้าของร้านติดตามยอดขายและผลการดำเนินงานเพื่อวิเคราะห์และสนับสนุนการตัดสินใจทางธุรกิจได้</li>
                 </ul>
               </div>
 
