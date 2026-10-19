@@ -111,18 +111,20 @@
 
     .slide-title-wrap h2 {
       font-family: 'Kanit', sans-serif;
-      font-size: 26px;
+      font-size: 27px;
       font-weight: 600;
       color: #0F172A;
       display: flex;
       align-items: center;
       gap: 12px;
+      line-height: 1.3;
     }
 
     .slide-title-wrap p {
-      font-size: 14.5px;
-      color: #64748B;
+      font-size: 15px;
+      color: #475569;
       margin-top: 4px;
+      line-height: 1.5;
     }
 
     .badge-counter {
@@ -135,6 +137,7 @@
       font-weight: 700;
       font-size: 13px;
       white-space: nowrap;
+      letter-spacing: 0.5px;
     }
 
     /* Slide Body Container */
@@ -195,12 +198,13 @@
 
     .card-title {
       font-family: 'Kanit', sans-serif;
-      font-size: 18px;
+      font-size: 18.5px;
       font-weight: 600;
       color: #0F172A;
       display: flex;
       align-items: center;
       gap: 10px;
+      line-height: 1.4;
     }
     .content-card.emerald .card-title { color: #065F46; }
     .content-card.sky .card-title { color: #0369A1; }
@@ -211,15 +215,15 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-      font-size: 14px;
+      font-size: 14.5px;
       color: #334155;
-      line-height: 1.55;
+      line-height: 1.6;
     }
 
-    .card-list strong { color: #0F172A; }
+    .card-list strong { color: #0F172A; font-weight: 600; }
     .card-list li {
       position: relative;
-      padding-left: 20px;
+      padding-left: 22px;
     }
     .card-list li::before {
       content: '▸';
@@ -720,166 +724,292 @@
       border-radius: 0 2px 2px 0;
     }
 
-    /* Responsive Design */
+    /* ==================== RESPONSIVE ENGINE (MOBILE & TABLET) ==================== */
     @media (max-width: 1024px), (max-height: 640px) {
       html, body {
+        overflow-x: hidden !important;
         overflow-y: auto !important;
         height: auto !important;
-        min-height: 100vh;
+        min-height: 100vh !important;
         background-color: #FFFFFF !important;
       }
-      #stage-container {
-        padding: 0 !important;
+
+      #viewport {
+        width: 100% !important;
         height: auto !important;
-        min-height: 100vh;
+        min-height: 100vh !important;
+        display: block !important;
+        position: static !important;
+        background: #FFFFFF !important;
+        overflow: visible !important;
       }
+
+      #stage-container {
+        width: 100% !important;
+        height: auto !important;
+        min-height: 100vh !important;
+        padding: 0 !important;
+        display: block !important;
+      }
+
       #stage {
         width: 100% !important;
         height: auto !important;
-        min-height: 100vh;
+        min-height: 100vh !important;
+        aspect-ratio: auto !important;
         border: none !important;
         border-radius: 0 !important;
         box-shadow: none !important;
         transform: none !important;
         overflow: visible !important;
+        display: block !important;
+        background: #FFFFFF !important;
       }
+
       .slide {
         position: relative !important;
         width: 100% !important;
         height: auto !important;
-        min-height: 100vh;
-        padding: 20px 14px 72px 14px !important;
+        min-height: 100vh !important;
+        padding: 24px 20px 88px 20px !important;
         overflow-y: visible !important;
         display: none;
+        box-sizing: border-box !important;
+        background: #FFFFFF !important;
       }
-      .slide.active { display: flex !important; }
 
-      /* Fix ALL grids on mobile including nested ones */
+      .slide.active {
+        display: flex !important;
+        flex-direction: column !important;
+      }
+
+      .slide-body {
+        flex: none !important;
+        height: auto !important;
+        overflow: visible !important;
+      }
+
+      /* Grid Layouts Stack Vertically */
       .card-grid, .grid-3, .grid-2,
       .grid-split-60-40, .grid-split-55-45,
       .grid-split-45-55, .grid-split-50-50 {
         display: flex !important;
         flex-direction: column !important;
-        gap: 14px !important;
+        gap: 16px !important;
+        width: 100% !important;
       }
 
-      /* Fix nested 2-col image grids inside slides 14-17 */
+      /* Override nested inline grids & heights */
       .slide-body [style*="grid-template-columns"] {
         display: flex !important;
         flex-direction: column !important;
-        gap: 12px !important;
+        gap: 14px !important;
+        width: 100% !important;
+      }
+      .slide-body [style*="height: 100%"] {
+        height: auto !important;
+      }
+      .slide-body [style*="height: 190px"] {
+        height: auto !important;
+      }
+      .slide-body [style*="min-height: 0"] {
+        min-height: auto !important;
+      }
+      .slide-body [style*="grid-column"] {
+        grid-column: auto !important;
       }
 
-      /* Media card adaptive height */
+      /* Media Cards Proportional Scaling */
       .media-card {
         max-height: none !important;
+        height: auto !important;
+        width: 100% !important;
       }
       .media-card img {
-        max-height: 300px;
-        width: 100%;
-        object-fit: contain;
+        max-height: 380px !important;
+        width: 100% !important;
+        height: auto !important;
+        object-fit: contain !important;
       }
-
-      /* Cover slide scaling */
-      .cover-title {
-        font-size: 22px !important;
+      .media-label {
+        padding: 8px 12px !important;
+        font-size: 12.5px !important;
+        white-space: normal !important;
+        word-break: break-word !important;
         line-height: 1.4 !important;
       }
-      .cover-subtitle {
-        font-size: 13px !important;
-      }
-      .cover-tagline {
-        font-size: 11px !important;
-        letter-spacing: 1px !important;
-      }
-      .cover-meta {
-        padding: 12px 18px !important;
-        font-size: 12.5px !important;
-      }
-      .cover-logo {
-        width: 80px !important;
-        height: 80px !important;
-      }
 
-      /* Slide header scaling */
+      /* Header Scaling */
+      .slide-header {
+        margin-bottom: 14px !important;
+        padding-bottom: 10px !important;
+        display: flex !important;
+        align-items: flex-start !important;
+        justify-content: space-between !important;
+        gap: 10px !important;
+      }
       .slide-title-wrap h2 {
-        font-size: 19px !important;
+        font-size: 19.5px !important;
+        line-height: 1.35 !important;
+        gap: 8px !important;
       }
       .slide-title-wrap p {
-        font-size: 12.5px !important;
+        font-size: 13px !important;
+        line-height: 1.5 !important;
+        color: #475569 !important;
       }
       .badge-counter {
-        font-size: 11px !important;
+        font-size: 11.5px !important;
         padding: 3px 10px !important;
+        flex-shrink: 0 !important;
       }
 
-      /* Card scaling */
+      /* Content Cards & Typography */
+      .content-card {
+        padding: 16px 16px !important;
+        gap: 10px !important;
+        border-radius: 14px !important;
+        height: auto !important;
+      }
       .card-title {
-        font-size: 15px !important;
+        font-size: 16.5px !important;
+        line-height: 1.4 !important;
+        gap: 8px !important;
       }
       .card-list {
-        font-size: 13px !important;
+        font-size: 13.5px !important;
+        line-height: 1.6 !important;
+        gap: 9px !important;
       }
-      .content-card {
-        padding: 16px !important;
+      .card-list li {
+        padding-left: 20px !important;
       }
 
-      /* Dock bar mobile */
+      /* Cover Slide Scaling */
+      .cover-slide {
+        padding: 36px 18px 90px 18px !important;
+        justify-content: flex-start !important;
+      }
+      .cover-logo {
+        width: 84px !important;
+        height: 84px !important;
+        margin-bottom: 14px !important;
+      }
+      .cover-tagline {
+        font-size: 11.5px !important;
+        letter-spacing: 1px !important;
+        margin-bottom: 8px !important;
+      }
+      .cover-title {
+        font-size: 22px !important;
+        line-height: 1.35 !important;
+        margin-bottom: 8px !important;
+      }
+      .cover-subtitle {
+        font-size: 13.5px !important;
+        margin-bottom: 18px !important;
+      }
+      .cover-meta {
+        padding: 14px 18px !important;
+        font-size: 12.5px !important;
+        line-height: 1.6 !important;
+        border-radius: 18px !important;
+        gap: 6px !important;
+        max-width: 100% !important;
+      }
+
+      /* Dock Bar Mobile Navigation */
       .dock-bar {
         bottom: 0 !important;
         left: 0 !important;
         right: 0 !important;
         transform: none !important;
         width: 100% !important;
-        max-width: none !important;
+        max-width: 100vw !important;
         border-radius: 0 !important;
-        padding: 6px 10px !important;
+        padding: 8px 12px !important;
         gap: 6px !important;
         overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
         justify-content: flex-start !important;
         border-top: 1px solid #CBD5E1 !important;
         border-left: none !important;
         border-right: none !important;
         border-bottom: none !important;
+        background: rgba(255, 255, 255, 0.98) !important;
+        box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08) !important;
       }
       .dock-divider { display: none !important; }
-      .dock-nav-link {
-        font-size: 11px !important;
-        padding: 5px 8px !important;
-        flex-shrink: 0 !important;
-      }
       .dock-btn {
-        width: 32px !important;
-        height: 32px !important;
-        font-size: 12px !important;
+        width: 34px !important;
+        height: 34px !important;
+        font-size: 13px !important;
         flex-shrink: 0 !important;
       }
       .dock-indicator {
-        font-size: 11px !important;
-        min-width: 50px !important;
+        font-size: 11.5px !important;
+        min-width: 52px !important;
+        flex-shrink: 0 !important;
+      }
+      .dock-nav-link {
+        font-size: 11.5px !important;
+        padding: 5px 9px !important;
         flex-shrink: 0 !important;
       }
 
-      /* Drawer adjustments */
+      /* Drawer Menu */
       .drawer-menu {
         width: min(320px, 85vw) !important;
       }
     }
 
-    /* Extra small screens */
+    /* Small Mobile Phones (iPhone SE / Standard 4.7" - 6.1") */
     @media (max-width: 480px) {
       .slide {
-        padding: 16px 10px 68px 10px !important;
+        padding: 16px 12px 88px 12px !important;
       }
       .slide-header {
         flex-direction: column !important;
-        gap: 8px !important;
+        align-items: flex-start !important;
+        gap: 6px !important;
+      }
+      .slide-title-wrap h2 {
+        font-size: 17px !important;
       }
       .cover-title {
-        font-size: 18px !important;
+        font-size: 18.5px !important;
       }
       .cover-meta {
-        border-radius: 16px !important;
+        padding: 10px 14px !important;
+        font-size: 12px !important;
+      }
+      .content-card {
+        padding: 14px 12px !important;
+      }
+      .card-list {
+        font-size: 13px !important;
+      }
+    }
+
+    /* Print Stylesheet */
+    @media print {
+      html, body, #viewport, #stage-container, #stage {
+        width: 100% !important;
+        height: auto !important;
+        overflow: visible !important;
+        background: #FFFFFF !important;
+      }
+      .dock-bar, .drawer-menu, .drawer-overlay, .progress-bar, .lightbox-overlay, .modal-overlay {
+        display: none !important;
+      }
+      .slide {
+        display: flex !important;
+        position: relative !important;
+        page-break-after: always !important;
+        break-after: page !important;
+        width: 100% !important;
+        height: 100vh !important;
+        padding: 30px !important;
       }
     }
   </style>
@@ -895,7 +1025,7 @@
         <section class="slide cover-slide active" data-slide="1" data-title="หน้าปกโครงงาน">
           <img src="images/logo.png" alt="โลโก้ร้าน" class="cover-logo" onerror="this.outerHTML='<div style=\'font-size:60px;margin-bottom:16px;\'>💈</div>'">
           <div class="cover-tagline">วิชาโครงงานด้านเทคโนโลยีสารสนเทศ 1 (IT01) • IT NPRU</div>
-          <h1 class="cover-title">การนำเสนอโครงงาน: ระบบบริหารรายได้และค่าคอมมิชชันช่างตัดผมผ่านไลน์</h1>
+          <h1 class="cover-title">ระบบบริหารรายได้และค่าคอมมิชชันช่างตัดผมผ่านไลน์</h1>
           <div class="cover-subtitle">LINE-Based Barbershop Income and Commission Management System</div>
           <div class="cover-meta">
             <div>ผู้จัดทำ: <strong>นาย สราวุฒิ อุยยาหาญ</strong> (รหัสประจำตัว 674230027, หมู่เรียน 67/44)</div>
@@ -1972,6 +2102,7 @@
     });
 
     window.addEventListener('resize', resizeStage);
+    window.addEventListener('orientationchange', () => setTimeout(resizeStage, 150));
     window.addEventListener('load', () => {
       populateDrawer();
       resizeStage();
