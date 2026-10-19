@@ -1021,7 +1021,7 @@
     <div id="stage-container">
       <div id="stage">
 
-                        <!-- ==================== SLIDE 01: COVER ==================== -->
+                                <!-- ==================== SLIDE 01: COVER ==================== -->
         <section class="slide cover-slide active" data-slide="1" data-title="หน้าปกโครงงาน">
           <img src="images/logo.png" alt="โลโก้ร้าน" class="cover-logo" onerror="this.outerHTML='<div style=\'font-size:60px;margin-bottom:16px;\'>💈</div>'">
           <div class="cover-tagline">วิชาโครงงานด้านเทคโนโลยีสารสนเทศ 1 (IT01) • มหาวิทยาลัยราชภัฏนครปฐม</div>
@@ -1034,7 +1034,7 @@
           </div>
         </section>
 
-        <!-- ==================== SLIDE 02: PROBLEM STATEMENT (FISHBONE) ==================== -->
+        <!-- ==================== SLIDE 02: 1.1 PROBLEM STATEMENT (FISHBONE) ==================== -->
         <section class="slide" data-slide="2" data-title="1.1 ความเป็นมาและความสำคัญของปัญหา">
           <div class="slide-header">
             <div class="slide-title-wrap">
@@ -1064,7 +1064,7 @@
           </div>
         </section>
 
-        <!-- ==================== SLIDE 03: OBJECTIVES ==================== -->
+        <!-- ==================== SLIDE 03: 1.3 OBJECTIVES ==================== -->
         <section class="slide" data-slide="3" data-title="1.3 วัตถุประสงค์ของระบบ">
           <div class="slide-header">
             <div class="slide-title-wrap">
@@ -1109,7 +1109,7 @@
           </div>
         </section>
 
-        <!-- ==================== SLIDE 04: SYSTEM SCOPE ==================== -->
+        <!-- ==================== SLIDE 04: 1.4.1 SYSTEM SCOPE ==================== -->
         <section class="slide" data-slide="4" data-title="1.4.1 ขอบเขตของระบบ">
           <div class="slide-header">
             <div class="slide-title-wrap">
@@ -1151,14 +1151,59 @@
           </div>
         </section>
 
-        <!-- ==================== SLIDE 05: RELATED WORKS ==================== -->
-        <section class="slide" data-slide="5" data-title="2.2 ระบบงานอื่นที่เกี่ยวข้อง">
+        <!-- ==================== SLIDE 05: 1.6 EXPECTED BENEFITS ==================== -->
+        <section class="slide" data-slide="5" data-title="1.6 ประโยชน์ที่คาดว่าจะได้รับ">
+          <div class="slide-header">
+            <div class="slide-title-wrap">
+              <h2>🌟 1.6 ประโยชน์ที่คาดว่าจะได้รับ (Expected Benefits)</h2>
+              <p>ผลลัพธ์เชิงประจักษ์ 5 ประการตามเอกสารข้อกำหนดข้อ 1.6.1 - 1.6.5 เพื่อยกระดับประสิทธิภาพร้านตัดผม</p>
+            </div>
+            <div class="badge-counter">SLIDE 05 / 20</div>
+          </div>
+          <div class="slide-body">
+            <div class="card-grid" style="grid-template-columns: repeat(2, 1fr); gap: 14px;">
+              <div class="content-card emerald">
+                <div class="card-title">1.6.1 สะดวก รวดเร็วผ่าน LINE LIFF</div>
+                <p style="font-size:13.5px; color:var(--text-sub); line-height:1.6;">
+                  ได้ระบบเว็บแอปพลิเคชัน <strong>LINE LIFF</strong> ที่ช่วยอำนวยความสะดวกให้ลูกค้าเลือกช่างตัดผม เลือกบริการ และแจ้งชำระเงินผ่าน LINE ได้ทันทีภายใน 30 วินาที โดยไม่ต้องติดตั้งแอปพลิเคชันภายนอกเพิ่มเติม
+                </p>
+              </div>
+              <div class="content-card">
+                <div class="card-title">1.6.2 ป้องกันสลิปปลอมและสลิปซ้ำ 100%</div>
+                <p style="font-size:13.5px; color:var(--text-sub); line-height:1.6;">
+                  ช่วยลดปัญหาสลิปปลอม ยอดเงินไม่ตรง และการวนใช้สลิปซ้ำ ด้วยระบบตรวจสอบอัตโนมัติผ่าน <strong>Slip2Go API</strong> ที่สแกนข้อมูลจากธนาคารโดยตรง ลดความสูญเสียทางการเงินของร้านตัดผมได้อย่างเด็ดขาด
+                </p>
+              </div>
+              <div class="content-card sky">
+                <div class="card-title">1.6.3 คำนวณคอมมิชชันถูกต้อง 100%</div>
+                <p style="font-size:13.5px; color:var(--text-sub); line-height:1.6;">
+                  ช่วยลดความผิดพลาดในการคำนวณส่วนแบ่งค่าคอมมิชชันของช่างตัดผม พร้อมทั้งมีฐานข้อมูล <strong>MySQL</strong> จัดเก็บประวัติธุรกรรมครบถ้วน สร้างความโปร่งใสและตรวจสอบย้อนหลังได้ทุกบิล
+                </p>
+              </div>
+              <div class="content-card emerald">
+                <div class="card-title">1.6.4 ช่างและร้านรับการแจ้งเตือนทันที</div>
+                <p style="font-size:13.5px; color:var(--text-sub); line-height:1.6;">
+                  ลูกค้าได้รับใบเสร็จรับเงินอิเล็กทรอนิกส์ <strong>(e-Receipt)</strong> ผ่าน LINE ทันที ส่วนช่างตัดผมและเจ้าของร้านทราบยอดเงินและคอมมิชชันรวดเร็วภายใน 3 วินาที ช่วยลดขั้นตอนและสร้างความมั่นใจแก่ทุกฝ่าย
+                </p>
+              </div>
+              <div class="content-card sky" style="grid-column: 1 / -1;">
+                <div class="card-title">1.6.5 แดชบอร์ดสนับสนุนการตัดสินใจผู้บริหาร (Data Studio)</div>
+                <p style="font-size:13.5px; color:var(--text-sub); line-height:1.6;">
+                  เจ้าของร้านสามารถติดตามยอดขายรวม กำไรสุทธิ และผลงานของช่างตัดผมแต่ละคนได้อย่างรวดเร็วทุกที่ทุกเวลา ผ่านแดชบอร์ด <strong>Google Looker Studio</strong> เพื่อนำข้อมูลเชิงสถิติไปใช้วางแผนขับเคลื่อนธุรกิจได้อย่างมีประสิทธิภาพ
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== SLIDE 06: 2.2 RELATED WORKS ==================== -->
+        <section class="slide" data-slide="6" data-title="2.2 ระบบงานอื่นที่เกี่ยวข้อง">
           <div class="slide-header">
             <div class="slide-title-wrap">
               <h2>📚 2.2 ระบบงานอื่นที่เกี่ยวข้อง (Related Research Works)</h2>
               <p>การศึกษาวิจัยและผลงานที่เกี่ยวข้อง 5 เรื่องตามโครงสร้างเอกสารบทที่ 2 เพื่อนำมาต่อยอดระบบ</p>
             </div>
-            <div class="badge-counter">SLIDE 05 / 20</div>
+            <div class="badge-counter">SLIDE 06 / 20</div>
           </div>
           <div class="slide-body">
             <div class="card-grid grid-2">
@@ -1182,14 +1227,14 @@
           </div>
         </section>
 
-        <!-- ==================== SLIDE 06: SYSTEM ARCHITECTURE ==================== -->
-        <section class="slide" data-slide="6" data-title="2.3 สถาปัตยกรรมระบบภาพรวม">
+        <!-- ==================== SLIDE 07: 2.3 SYSTEM ARCHITECTURE ==================== -->
+        <section class="slide" data-slide="7" data-title="2.3 สถาปัตยกรรมระบบภาพรวม">
           <div class="slide-header">
             <div class="slide-title-wrap">
               <h2>🏗️ 2.3 องค์ความรู้ที่เกี่ยวข้อง: ภาพรวมสถาปัตยกรรมระบบ (System Architecture)</h2>
               <p>การบูรณาการ 5 เสาหลักเทคโนโลยีตามองค์ความรู้ข้อ 2.3.1 - 2.3.8 เพื่อเชื่อมต่อการทำงานแบบไร้รอยต่อ</p>
             </div>
-            <div class="badge-counter">SLIDE 06 / 20</div>
+            <div class="badge-counter">SLIDE 07 / 20</div>
           </div>
           <div class="slide-body">
             <div class="card-grid grid-split-55-45">
@@ -1211,14 +1256,14 @@
           </div>
         </section>
 
-        <!-- ==================== SLIDE 07: INFRASTRUCTURE & CLOUD ==================== -->
-        <section class="slide" data-slide="7" data-title="1.4.2-1.4.5 สภาพแวดล้อมระบบและคลาวด์">
+        <!-- ==================== SLIDE 08: 1.4.2-1.4.5 INFRASTRUCTURE & CLOUD ==================== -->
+        <section class="slide" data-slide="8" data-title="1.4.2-1.4.5 สภาพแวดล้อมระบบและคลาวด์">
           <div class="slide-header">
             <div class="slide-title-wrap">
               <h2>⚙️ 1.4.2 - 1.4.5 ฮาร์ดแวร์ ซอฟต์แวร์ และระบบคลาวด์ (Infrastructure & Cloud)</h2>
               <p>โครงสร้างพื้นฐานในการพัฒนาและการให้บริการบนคลาวด์ตลอด 24 ชั่วโมง ตามเอกสารข้อ 1.4.2 - 1.4.5</p>
             </div>
-            <div class="badge-counter">SLIDE 07 / 20</div>
+            <div class="badge-counter">SLIDE 08 / 20</div>
           </div>
           <div class="slide-body">
             <div class="card-grid grid-2">
@@ -1243,14 +1288,14 @@
           </div>
         </section>
 
-        <!-- ==================== SLIDE 08: SYSTEM FLOWCHART ==================== -->
-        <section class="slide" data-slide="8" data-title="3.3.1 ผังงานการทำงานภาพรวม">
+        <!-- ==================== SLIDE 09: 3.3.1 SYSTEM FLOWCHART ==================== -->
+        <section class="slide" data-slide="9" data-title="3.3.1 ผังงานการทำงานภาพรวม">
           <div class="slide-header">
             <div class="slide-title-wrap">
               <h2>🔄 3.3.1 การออกแบบระบบ: ผังงานการทำงานภาพรวม (System Flowchart)</h2>
               <p>ขั้นตอนการทำงานทั้งระบบ ตั้งแต่ลูกค้าสแกนชำระเงิน ➡️ ตรวจสลิป ➡️ บันทึกเงิน ➡️ ตัดรอบจ่ายช่าง (ภาพที่ 3.2)</p>
             </div>
-            <div class="badge-counter">SLIDE 08 / 20</div>
+            <div class="badge-counter">SLIDE 09 / 20</div>
           </div>
           <div class="slide-body">
             <div class="card-grid grid-split-55-45">
@@ -1271,14 +1316,14 @@
           </div>
         </section>
 
-        <!-- ==================== SLIDE 09: SLIP VERIFICATION FLOWCHART ==================== -->
-        <section class="slide" data-slide="9" data-title="3.3.1.5 ผังงานการตรวจสอบสลิป">
+        <!-- ==================== SLIDE 10: 3.3.1.5 SLIP FLOWCHART ==================== -->
+        <section class="slide" data-slide="10" data-title="3.3.1.5 ผังงานการตรวจสอบสลิป">
           <div class="slide-header">
             <div class="slide-title-wrap">
               <h2>🔍 3.3.1.5 ผังงานการตรวจสอบสลิปและชำระเงิน (Slip Verification Flowchart)</h2>
               <p>ตรรกะเงื่อนไขการตรวจสอบความถูกต้องของสลิปโอนเงินและการป้องกันสลิปวนใช้ซ้ำ (ภาพที่ 3.7)</p>
             </div>
-            <div class="badge-counter">SLIDE 09 / 20</div>
+            <div class="badge-counter">SLIDE 10 / 20</div>
           </div>
           <div class="slide-body">
             <div class="card-grid grid-split-50-50">
@@ -1300,14 +1345,14 @@
           </div>
         </section>
 
-        <!-- ==================== SLIDE 10: PAYMENT SEQUENCE DIAGRAM ==================== -->
-        <section class="slide" data-slide="10" data-title="3.3.1.2 Sequence: การชำระเงิน">
+        <!-- ==================== SLIDE 11: 3.3.1.2 PAYMENT SEQUENCE ==================== -->
+        <section class="slide" data-slide="11" data-title="3.3.1.2 Sequence: การชำระเงิน">
           <div class="slide-header">
             <div class="slide-title-wrap">
               <h2>⚡ 3.3.1.2 แผนภาพลำดับ: การตรวจสอบสลิปและชำระเงิน (Sequence Diagram)</h2>
               <p>ภาพที่ 3.4 โฟลว์การสื่อสารและรับส่งข้อมูลระหว่าง 5 ส่วนประกอบระบบแบบเรียลไทม์ภายใน 2-3 วินาที</p>
             </div>
-            <div class="badge-counter">SLIDE 10 / 20</div>
+            <div class="badge-counter">SLIDE 11 / 20</div>
           </div>
           <div class="slide-body">
             <div class="card-grid grid-split-55-45">
@@ -1329,14 +1374,14 @@
           </div>
         </section>
 
-        <!-- ==================== SLIDE 11: SETTLEMENT SEQUENCE DIAGRAM ==================== -->
-        <section class="slide" data-slide="11" data-title="3.3.1.3 Sequence: การตัดรอบเคลียร์เงิน">
+        <!-- ==================== SLIDE 12: 3.3.1.3 SETTLEMENT SEQUENCE ==================== -->
+        <section class="slide" data-slide="12" data-title="3.3.1.3 Sequence: การตัดรอบเคลียร์เงิน">
           <div class="slide-header">
             <div class="slide-title-wrap">
               <h2>🤝 3.3.1.3 แผนภาพลำดับ: การตัดรอบเคลียร์เงินช่าง (Settlement Sequence Diagram)</h2>
               <p>ภาพที่ 3.5 ขั้นตอนการสรุปยอดค้างจ่าย โอนเงิน และอัปเดตสถานะบิลระหว่างเจ้าของร้านกับช่างตัดผม</p>
             </div>
-            <div class="badge-counter">SLIDE 11 / 20</div>
+            <div class="badge-counter">SLIDE 12 / 20</div>
           </div>
           <div class="slide-body">
             <div class="card-grid grid-split-55-45">
@@ -1357,14 +1402,14 @@
           </div>
         </section>
 
-        <!-- ==================== SLIDE 12: ER-DIAGRAM & SCHEMA ==================== -->
-        <section class="slide" data-slide="12" data-title="3.3.2 แบบจำลองข้อมูล (ER-Diagram)">
+        <!-- ==================== SLIDE 13: 3.3.2 ER-DIAGRAM & SCHEMA ==================== -->
+        <section class="slide" data-slide="13" data-title="3.3.2 แบบจำลองข้อมูล (ER-Diagram)">
           <div class="slide-header">
             <div class="slide-title-wrap">
               <h2>🗄️ 3.3.2 การออกแบบฐานข้อมูล: แผนภาพความสัมพันธ์ของข้อมูล (ER-Diagram)</h2>
               <p>ภาพที่ 3.10 แบบจำลองฐานข้อมูลเชิงสัมพันธ์และพจนานุกรมข้อมูล 4 ตารางหลักตามตารางที่ 3.1 - 3.5</p>
             </div>
-            <div class="badge-counter">SLIDE 12 / 20</div>
+            <div class="badge-counter">SLIDE 13 / 20</div>
           </div>
           <div class="slide-body">
             <div class="card-grid grid-split-55-45">
@@ -1385,14 +1430,14 @@
           </div>
         </section>
 
-        <!-- ==================== SLIDE 13: UI RICH MENU ==================== -->
-        <section class="slide" data-slide="13" data-title="3.3.3.1 UI: ริชเมนู (Rich Menu)">
+        <!-- ==================== SLIDE 14: 3.3.3.1 UI RICH MENU ==================== -->
+        <section class="slide" data-slide="14" data-title="3.3.3.1 UI: ริชเมนู (Rich Menu)">
           <div class="slide-header">
             <div class="slide-title-wrap">
               <h2>📱 3.3.3.1 การออกแบบส่วนติดต่อผู้ใช้: หน้าริชเมนู (LINE Rich Menu)</h2>
               <p>ภาพที่ 3.11 ริชเมนูลูกค้าเสหยอดบาร์เบอร์ และภาพจำลองการแสดงผลบนห้องแชท LINE Official Account</p>
             </div>
-            <div class="badge-counter">SLIDE 13 / 20</div>
+            <div class="badge-counter">SLIDE 14 / 20</div>
           </div>
           <div class="slide-body">
             <div class="card-grid grid-split-55-45">
@@ -1419,14 +1464,14 @@
           </div>
         </section>
 
-        <!-- ==================== SLIDE 14: UI LINE LIFF FORM ==================== -->
-        <section class="slide" data-slide="14" data-title="3.3.3.2-3.3.3.3 UI: ฟอร์ม LINE LIFF">
+        <!-- ==================== SLIDE 15: 3.3.3.2-3.3.3.3 UI LINE LIFF FORM ==================== -->
+        <section class="slide" data-slide="15" data-title="3.3.3.2-3.3.3.3 UI: ฟอร์ม LINE LIFF">
           <div class="slide-header">
             <div class="slide-title-wrap">
               <h2>📱 3.3.3.2 - 3.3.3.3 การออกแบบส่วนติดต่อผู้ใช้: ฟอร์มแจ้งชำระเงิน LINE LIFF</h2>
               <p>ภาพที่ 3.12 - 3.13 ขั้นตอนการเลือกช่าง บริการ ช่องทางชำระเงิน และสแกน QR แนบสลิปผ่าน LINE LIFF</p>
             </div>
-            <div class="badge-counter">SLIDE 14 / 20</div>
+            <div class="badge-counter">SLIDE 15 / 20</div>
           </div>
           <div class="slide-body">
             <div class="card-grid grid-split-50-50">
@@ -1451,14 +1496,14 @@
           </div>
         </section>
 
-        <!-- ==================== SLIDE 15: UI SLIP & E-RECEIPT ==================== -->
-        <section class="slide" data-slide="15" data-title="3.3.3.4 UI: ตรวจสลิป & e-Receipt">
+        <!-- ==================== SLIDE 16: 3.3.3.4 UI SLIP & E-RECEIPT ==================== -->
+        <section class="slide" data-slide="16" data-title="3.3.3.4 UI: ตรวจสลิป & e-Receipt">
           <div class="slide-header">
             <div class="slide-title-wrap">
               <h2>🧾 3.3.3.4 การออกแบบส่วนติดต่อผู้ใช้: ตรวจสลิปอัตโนมัติ & ใบเสร็จ e-Receipt</h2>
               <p>ภาพที่ 3.14 สลิปโอนเงินจริงผ่าน Slip2Go API และการส่งใบเสร็จดิจิทัล Flex Message ตอบกลับลูกค้าทันที</p>
             </div>
-            <div class="badge-counter">SLIDE 15 / 20</div>
+            <div class="badge-counter">SLIDE 16 / 20</div>
           </div>
           <div class="slide-body">
             <div class="card-grid grid-split-50-50">
@@ -1485,14 +1530,14 @@
           </div>
         </section>
 
-        <!-- ==================== SLIDE 16: UI BARBER ALERT & VOID BILL ==================== -->
-        <section class="slide" data-slide="16" data-title="3.3.1.4 & 3.3.3.6 UI: เตือนช่าง & โมฆะบิล">
+        <!-- ==================== SLIDE 17: 3.3.1.4 & 3.3.3.6 UI BARBER ALERT & VOID BILL ==================== -->
+        <section class="slide" data-slide="17" data-title="3.3.1.4 & 3.3.3.6 UI: เตือนช่าง & โมฆะบิล">
           <div class="slide-header">
             <div class="slide-title-wrap">
               <h2>🔔 3.3.1.4 & 3.3.3.6 การออกแบบส่วนติดต่อผู้ใช้: แจ้งเตือนช่าง & โมฆะบิล</h2>
               <p>ภาพที่ 3.6 และ 3.16 การแจ้งเตือนช่างตัดผมแบบเรียลไทม์ และระบบยกเลิกบิลที่มี Audit Log ป้องกันทุจริต</p>
             </div>
-            <div class="badge-counter">SLIDE 16 / 20</div>
+            <div class="badge-counter">SLIDE 17 / 20</div>
           </div>
           <div class="slide-body">
             <div class="card-grid grid-split-50-50">
@@ -1519,14 +1564,14 @@
           </div>
         </section>
 
-        <!-- ==================== SLIDE 17: UI BACKOFFICE & SETTLEMENT ==================== -->
-        <section class="slide" data-slide="17" data-title="3.3.3.7-3.3.3.10 UI: หลังบ้าน & เคลียร์เงิน">
+        <!-- ==================== SLIDE 18: 3.3.3.7-3.3.3.10 UI BACKOFFICE & SETTLEMENT ==================== -->
+        <section class="slide" data-slide="18" data-title="3.3.3.7-3.3.3.10 UI: หลังบ้าน & เคลียร์เงิน">
           <div class="slide-header">
             <div class="slide-title-wrap">
               <h2>💻 3.3.3.7 - 3.3.3.10 การออกแบบส่วนติดต่อผู้ใช้: เว็บแอดมินหลังบ้าน & การตัดรอบเคลียร์เงิน</h2>
               <p>ภาพที่ 3.17 - 3.20 หน้าจอจัดการช่าง บริการ ประวัติธุรกรรม และระบบตัดรอบเคลียร์เงินช่าง (Barber Settlements)</p>
             </div>
-            <div class="badge-counter">SLIDE 17 / 20</div>
+            <div class="badge-counter">SLIDE 18 / 20</div>
           </div>
           <div class="slide-body">
             <div class="card-grid grid-split-50-50">
@@ -1553,14 +1598,14 @@
           </div>
         </section>
 
-        <!-- ==================== SLIDE 18: UI DATA STUDIO DASHBOARD ==================== -->
-        <section class="slide" data-slide="18" data-title="3.3.3.13 UI: แดชบอร์ด Data Studio">
+        <!-- ==================== SLIDE 19: 3.3.3.13 UI DATA STUDIO DASHBOARD ==================== -->
+        <section class="slide" data-slide="19" data-title="3.3.3.13 UI: แดชบอร์ด Data Studio">
           <div class="slide-header">
             <div class="slide-title-wrap">
               <h2>📊 3.3.3.13 การออกแบบส่วนติดต่อผู้ใช้: แดชบอร์ดสรุปผลทางการเงิน (Data Studio)</h2>
               <p>ภาพที่ 3.22 การเชื่อมต่อ Cloud MySQL แสดงผลสถิติยอดขายรวม รายได้ช่าง และบริการยอดนิยมแบบเรียลไทม์</p>
             </div>
-            <div class="badge-counter">SLIDE 18 / 20</div>
+            <div class="badge-counter">SLIDE 19 / 20</div>
           </div>
           <div class="slide-body">
             <div class="card-grid grid-split-55-45">
@@ -1581,59 +1626,26 @@
           </div>
         </section>
 
-        <!-- ==================== SLIDE 19: TIMELINE & FUTURE SCOPE ==================== -->
-        <section class="slide" data-slide="19" data-title="1.5 ระยะเวลาดำเนินงาน & โครงงาน 2">
+        <!-- ==================== SLIDE 20: 1.5 TIMELINE & Q&A ==================== -->
+        <section class="slide" data-slide="20" data-title="1.5 แผนการดำเนินงาน 16 สัปดาห์ & ถาม-ตอบ">
           <div class="slide-header">
             <div class="slide-title-wrap">
-              <h2>🚀 1.5 ระยะเวลาดำเนินงาน 16 สัปดาห์ & แผนการต่อยอดโครงงาน 2</h2>
-              <p>ตารางการดำเนินงานตามกระบวนการ SDLC ครบ 16 สัปดาห์ และแนวทางการพัฒนาต่อยอดในวิชาโครงงาน 2</p>
-            </div>
-            <div class="badge-counter">SLIDE 19 / 20</div>
-          </div>
-          <div class="slide-body">
-            <div class="card-grid grid-2">
-              <div class="content-card sky">
-                <div class="card-title">📅 แผนการดำเนินงาน 16 สัปดาห์ (SDLC Process)</div>
-                <ul class="card-list">
-                  <li><strong>สัปดาห์ 1-3 (Planning & Analysis):</strong> ศึกษาปัญหา Fishbone, เก็บรวบรวม Requirement และเสนอหัวข้อ IT01</li>
-                  <li><strong>สัปดาห์ 4-7 (System Design):</strong> ออกแบบ Architecture, Flowchart, Sequence, ERD และ UI Prototype</li>
-                  <li><strong>สัปดาห์ 8-12 (Development):</strong> พัฒนา LINE LIFF, ตั้งค่า n8n, เชื่อมต่อ Slip2Go API, Backoffice และ MySQL</li>
-                  <li><strong>สัปดาห์ 13-14 (Testing & Cloud):</strong> ทดสอบป้องกันสลิปซ้ำ, Concurrency Test และติดตั้งบน Railway Cloud</li>
-                  <li><strong>สัปดาห์ 15-16 (Evaluation):</strong> ประเมินความพึงพอใจ จัดทำเอกสารสมบูรณ์ และสอบป้องกันโครงงาน</li>
-                </ul>
-              </div>
-              <div class="content-card emerald">
-                <div class="card-title">💡 ประเด็นขอรับคำแนะนำเพื่อต่อยอดในโครงงาน 2</div>
-                <ul class="card-list">
-                  <li><strong>1. รองรับหลายสาขา (Multi-branch):</strong> ขอคำแนะนำในการขยายฐานข้อมูลเพื่อรองรับร้านตัดผมมากกว่า 1 สาขา</li>
-                  <li><strong>2. ระบบจองคิวช่างล่วงหน้า (Booking):</strong> แนวทางการเพิ่มระบบจองคิวและเวลาผ่าน LINE LIFF ก่อนมาหน้าร้าน</li>
-                  <li><strong>3. ระบบสมาชิกลูกค้า (Loyalty System):</strong> การบันทึกประวัติทรงผมประจำลูกค้า และระบบสะสมแต้มตัดผมฟรี</li>
-                  <li><strong>4. ยกระดับความปลอดภัย (Security & RBAC):</strong> การเข้ารหัสข้อมูลและการจัดการสิทธิ์ผู้ใช้งานระดับลึก</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- ==================== SLIDE 20: BENEFITS & QA ==================== -->
-        <section class="slide" data-slide="20" data-title="1.6 ประโยชน์ที่คาดว่าจะได้รับ & ถาม-ตอบ">
-          <div class="slide-header">
-            <div class="slide-title-wrap">
-              <h2>🌟 1.6 ประโยชน์ที่คาดว่าจะได้รับ & ถาม-ตอบ (Expected Benefits & Q&A)</h2>
-              <p>สรุปผลลัพธ์และความคุ้มค่าของโครงงานตามเอกสารข้อ 1.6.1 - 1.6.5 พร้อมรับฟังคำแนะนำจากคณะกรรมการ</p>
+              <h2>🚀 1.5 ระยะเวลาดำเนินงาน 16 สัปดาห์ & ถาม-ตอบ (Timeline & Q&A)</h2>
+              <p>ตารางการดำเนินงานตามกระบวนการ SDLC ครบ 16 สัปดาห์ พร้อมรับฟังข้อซักถามและคำแนะนำจากคณะกรรมการ</p>
             </div>
             <div class="badge-counter">SLIDE 20 / 20</div>
           </div>
           <div class="slide-body">
             <div class="card-grid grid-split-60-40">
               <div class="content-card emerald">
-                <div class="card-title">ผลลัพธ์เชิงประจักษ์ 5 ประการตามเอกสารข้อ 1.6</div>
+                <div class="card-title">📅 แผนการดำเนินงาน 16 สัปดาห์ (SDLC Process) & แผนต่อยอด</div>
                 <ul class="card-list">
-                  <li><strong>1.6.1 สะดวก รวดเร็ว (LIFF Webapp):</strong> ลูกค้าทำรายการเสร็จภายใน 30 วินาทีบน LINE โดยไม่ต้องติดตั้งแอปเพิ่ม</li>
-                  <li><strong>1.6.2 ป้องกันสลิปปลอม & สลิปซ้ำ 100%:</strong> ระบบ Slip2Go ตรวจจับสลิปซ้ำและยอดไม่ตรงได้ทุกกรณี ลดการสูญเสียรายได้</li>
-                  <li><strong>1.6.3 คำนวณคอมมิชชันถูกต้อง 100%:</strong> คิดเงินอัตโนมัติแทนการจดมือ ขจัดข้อผิดพลาดและข้อพิพาทเรื่องเงิน</li>
-                  <li><strong>1.6.4 ช่างและร้านทราบยอดทันที:</strong> แจ้งเตือนผ่าน LINE ภายใน 3 วินาที พร้อมส่ง e-Receipt ให้ลูกค้า สร้างความโปร่งใส</li>
-                  <li><strong>1.6.5 สนับสนุนการตัดสินใจผู้บริหาร:</strong> แดชบอร์ด Looker Studio แสดงยอดขาย กำไร และผลงานช่างแบบเรียลไทม์</li>
+                  <li><strong>สัปดาห์ 1-3 (Planning & Analysis):</strong> ศึกษาปัญหา Fishbone, เก็บรวบรวม Requirement และเสนอหัวข้อ IT01</li>
+                  <li><strong>สัปดาห์ 4-7 (System Design):</strong> ออกแบบ Architecture, Flowchart, Sequence, ERD และ UI Prototype</li>
+                  <li><strong>สัปดาห์ 8-12 (Development):</strong> พัฒนา LINE LIFF, ตั้งค่า n8n, เชื่อมต่อ Slip2Go API, Backoffice และ MySQL</li>
+                  <li><strong>สัปดาห์ 13-14 (Testing & Cloud):</strong> ทดสอบป้องกันสลิปซ้ำ, Concurrency Test และติดตั้งบน Railway Cloud</li>
+                  <li><strong>สัปดาห์ 15-16 (Evaluation):</strong> ประเมินความพึงพอใจ จัดทำเอกสารสมบูรณ์ และสอบป้องกันโครงงาน</li>
+                  <li><strong>💡 แผนต่อยอดโครงงาน 2:</strong> รองรับหลายสาขา (Multi-branch), ระบบจองคิวช่าง (Booking), ระบบสะสมแต้ม (Loyalty)</li>
                 </ul>
               </div>
               <div class="content-card" style="justify-content: center; align-items: center; text-align: center; gap: 14px;">
