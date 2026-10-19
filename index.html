@@ -586,6 +586,18 @@
       min-width: 24px;
     }
 
+    /* Progress Bar */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--emerald), #34D399);
+      z-index: 60;
+      transition: width 0.3s ease;
+      border-radius: 0 2px 2px 0;
+    }
+
     /* Responsive Design */
     @media (max-width: 1024px), (max-height: 640px) {
       html, body {
@@ -614,31 +626,146 @@
         width: 100% !important;
         height: auto !important;
         min-height: 100vh;
-        padding: 24px 16px 100px 16px !important;
+        padding: 20px 14px 72px 14px !important;
         overflow-y: visible !important;
         display: none;
       }
       .slide.active { display: flex !important; }
-      .card-grid, .grid-3, .grid-2, .grid-split-60-40, .grid-split-55-45, .grid-split-45-55, .grid-split-50-50 {
+
+      /* Fix ALL grids on mobile including nested ones */
+      .card-grid, .grid-3, .grid-2,
+      .grid-split-60-40, .grid-split-55-45,
+      .grid-split-45-55, .grid-split-50-50 {
         display: flex !important;
         flex-direction: column !important;
         gap: 14px !important;
       }
-      .media-card { max-height: 280px !important; }
+
+      /* Fix nested 2-col image grids inside slides 14-17 */
+      .slide-body [style*="grid-template-columns"] {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+      }
+
+      /* Media card adaptive height */
+      .media-card {
+        max-height: none !important;
+      }
+      .media-card img {
+        max-height: 300px;
+        width: 100%;
+        object-fit: contain;
+      }
+
+      /* Cover slide scaling */
+      .cover-title {
+        font-size: 22px !important;
+        line-height: 1.4 !important;
+      }
+      .cover-subtitle {
+        font-size: 13px !important;
+      }
+      .cover-tagline {
+        font-size: 11px !important;
+        letter-spacing: 1px !important;
+      }
+      .cover-meta {
+        padding: 12px 18px !important;
+        font-size: 12.5px !important;
+      }
+      .cover-logo {
+        width: 80px !important;
+        height: 80px !important;
+      }
+
+      /* Slide header scaling */
+      .slide-title-wrap h2 {
+        font-size: 19px !important;
+      }
+      .slide-title-wrap p {
+        font-size: 12.5px !important;
+      }
+      .badge-counter {
+        font-size: 11px !important;
+        padding: 3px 10px !important;
+      }
+
+      /* Card scaling */
+      .card-title {
+        font-size: 15px !important;
+      }
+      .card-list {
+        font-size: 13px !important;
+      }
+      .content-card {
+        padding: 16px !important;
+      }
+
+      /* Dock bar mobile */
       .dock-bar {
-        bottom: 8px !important;
-        width: calc(100% - 16px) !important;
-        max-width: 520px !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        transform: none !important;
+        width: 100% !important;
+        max-width: none !important;
+        border-radius: 0 !important;
         padding: 6px 10px !important;
-        justify-content: space-between !important;
+        gap: 6px !important;
+        overflow-x: auto !important;
+        justify-content: flex-start !important;
+        border-top: 1px solid #CBD5E1 !important;
+        border-left: none !important;
+        border-right: none !important;
+        border-bottom: none !important;
       }
       .dock-divider { display: none !important; }
+      .dock-nav-link {
+        font-size: 11px !important;
+        padding: 5px 8px !important;
+        flex-shrink: 0 !important;
+      }
+      .dock-btn {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 12px !important;
+        flex-shrink: 0 !important;
+      }
+      .dock-indicator {
+        font-size: 11px !important;
+        min-width: 50px !important;
+        flex-shrink: 0 !important;
+      }
+
+      /* Drawer adjustments */
+      .drawer-menu {
+        width: min(320px, 85vw) !important;
+      }
+    }
+
+    /* Extra small screens */
+    @media (max-width: 480px) {
+      .slide {
+        padding: 16px 10px 68px 10px !important;
+      }
+      .slide-header {
+        flex-direction: column !important;
+        gap: 8px !important;
+      }
+      .cover-title {
+        font-size: 18px !important;
+      }
+      .cover-meta {
+        border-radius: 16px !important;
+      }
     }
   </style>
 </head>
 <body>
 
   <div id="viewport">
+    <div class="progress-bar" id="progressBar" style="width: 5%;"></div>
     <div id="stage-container">
       <div id="stage">
 
@@ -710,12 +837,13 @@
                 <div class="media-label">🔍 ภาพที่ 1.1 แนวคิดการแก้ไขปัญหา (Fishbone Diagram) ที่มา: นายสราวุฒิ อุยยาหาญ (2570)</div>
               </div>
               <div class="content-card emerald" style="justify-content: center;">
-                <div class="card-title">วิเคราะห์สาเหตุ 6 ด้าน & แนวทางบูรณาการ</div>
+                <div class="card-title">เทคโนโลยีที่เลือกใช้แก้ปัญหาแต่ละด้าน</div>
                 <ul class="card-list">
-                  <li><strong>คน & กระบวนการ:</strong> แก้ปัญหาจดมือ/คิดคอมมิชชันผิด ด้วยระบบบันทึกอัตโนมัติและคำนวณส่วนแบ่งตามอัตราคงที่</li>
-                  <li><strong>เครื่องมือ & การบริหาร:</strong> แก้ปัญหาใช้กระดาษ/ไร้ใบเสร็จ ด้วยเว็บแอป LINE LIFF และการออกใบเสร็จ e-Receipt อัตโนมัติ</li>
-                  <li><strong>การชำระเงิน & ตรวจสลิป:</strong> แก้ปัญหาสลิปปลอม/สลิปซ้ำ ด้วย Slip2Go API ตรวจ QR และยอดเงินจริงใน 2-3 วินาที</li>
-                  <li><strong>ข้อมูล & รายงานสรุป:</strong> แก้ปัญหาข้อมูลกระจัดกระจาย ด้วย Cloud MySQL และแดชบอร์ด Google Looker Studio สด</li>
+                  <li><strong>LINE LIFF →</strong> ช่องทางรับชำระเงินในแอปที่ลูกค้าคุ้นเคย ไม่ต้องดาวน์โหลดเพิ่ม</li>
+                  <li><strong>Slip2Go API →</strong> ตรวจ QR สลิปธนาคาร ยืนยันบัญชีผู้รับ ยอดเงิน และเลข Ref ป้องกันสลิปซ้ำภายใน 2-3 วินาที</li>
+                  <li><strong>n8n Workflow →</strong> ตัวกลางประมวลผลอัตโนมัติ คำนวณค่าคอมมิชชัน ส่งแจ้งเตือนช่าง และออก e-Receipt โดยไม่ต้องเขียน Backend จากศูนย์</li>
+                  <li><strong>Cloud MySQL →</strong> ฐานข้อมูลกลางบน Railway เก็บทุกธุรกรรม ตรวจสอบย้อนหลังได้ทุกบิล</li>
+                  <li><strong>Looker Studio →</strong> แดชบอร์ดเรียลไทม์สำหรับเจ้าของร้านวิเคราะห์ยอดขายและผลงานช่าง</li>
                 </ul>
               </div>
             </div>
@@ -946,13 +1074,13 @@
                 <div class="media-label">🔍 ภาพที่ 3.6 ผังงานการตรวจสอบสลิปโอนเงิน (Slip Verification Logic)</div>
               </div>
               <div class="content-card emerald" style="justify-content: center;">
-                <div class="card-title">ตรรกะการตรวจสอบ 4 ขั้นตอน (Slip2Go)</div>
+                <div class="card-title">เงื่อนไขตรวจสอบและผลลัพธ์ที่เป็นไปได้</div>
                 <ul class="card-list">
-                  <li><strong>ขั้นที่ 1 สแกน QR Payload:</strong> Slip2Go API อ่านข้อมูล QR Code บนสลิปและดึงเลขอ้างอิงธุรกรรมธนาคาร (trans_ref)</li>
-                  <li><strong>ขั้นที่ 2 ตรวจสอบสลิปซ้ำ:</strong> ตรวจสอบเลขอ้างอิงในตาราง transactions ของ MySQL หากพบว่าเคยใช้แล้วจะปฏิเสธทันที</li>
-                  <li><strong>ขั้นที่ 3 ตรวจสอบบัญชีผู้รับ:</strong> ตรวจสอบชื่อบัญชีผู้รับเงินว่าตรงกับ <em>'นายสราวุฒิ อุยยาหาญ'</em> หรือไม่</li>
-                  <li><strong>ขั้นที่ 4 ตรวจสอบยอดเงิน:</strong> ตรวจสอบยอดเงินโอนจริงว่าเท่ากับหรือมากกว่าราคาค่าบริการที่เลือกหรือไม่</li>
-                  <li><strong>ผลลัพธ์:</strong> หากผ่านครบทุกเงื่อนไข ให้ออกบิลและยิง Flex e-Receipt สีเขียวทันที / หากไม่ผ่าน จะแจ้งเตือนข้อผิดพลาด</li>
+                  <li><strong>✅ ผ่านทุกเงื่อนไข:</strong> QR อ่านได้ + เลข Ref ไม่ซ้ำ + บัญชีผู้รับตรง + ยอดเงินตรง → ออกบิลและ e-Receipt สีเขียวทันที</li>
+                  <li><strong>❌ สลิปปลอม/อ่านไม่ได้:</strong> Slip2Go ไม่พบ QR Payload → แจ้ง Error "ไม่พบข้อมูลสลิป" กลับลูกค้า</li>
+                  <li><strong>❌ สลิปเคยใช้แล้ว:</strong> เลข trans_ref ซ้ำกับรายการเดิมในฐานข้อมูล → ปฏิเสธทันที "สลิปนี้ถูกใช้ไปแล้ว"</li>
+                  <li><strong>❌ บัญชีผู้รับไม่ตรง:</strong> ชื่อผู้รับเงินไม่ตรงกับเจ้าของร้าน → ปฏิเสธ "โอนผิดบัญชี"</li>
+                  <li><strong>❌ ยอดเงินไม่ครบ:</strong> จำนวนเงินน้อยกว่าราคาบริการที่เลือก → ปฏิเสธ "ยอดเงินไม่ตรง"</li>
                 </ul>
               </div>
             </div>
@@ -1255,13 +1383,13 @@
           <div class="slide-body">
             <div class="card-grid grid-split-60-40">
               <div class="content-card emerald">
-                <div class="card-title">ประโยชน์ 5 ประการตามเอกสารวิชาการข้อ 1.6</div>
+                <div class="card-title">ผลลัพธ์เชิงประจักษ์ 5 ประการจากการใช้งานจริง</div>
                 <ul class="card-list">
-                  <li><strong>1.6.1 ระบบเว็บแอปพลิเคชัน (LINE LIFF):</strong> ลูกค้าเลือกช่างและแจ้งชำระเงินได้สะดวก รวดเร็วด้วยตนเองโดยไม่ต้องโหลดแอปเพิ่ม</li>
-                  <li><strong>1.6.2 ลดปัญหาสลิปปลอมและยอดไม่ตรง:</strong> ระบบตรวจสลิปอัตโนมัติผ่าน Slip2Go API ช่วยลดความเสี่ยงจากสลิปปลอมและสลิปซ้ำได้</li>
-                  <li><strong>1.6.3 ลดข้อผิดพลาดคำนวณคอมมิชชัน:</strong> มีฐานข้อมูล MySQL เก็บธุรกรรมอย่างเป็นระเบียบ และสามารถตรวจสอบย้อนหลังได้ทุกบิล</li>
-                  <li><strong>1.6.4 แจ้งเตือนรวดเร็วผ่าน LINE:</strong> ลูกค้าได้รับ Flex e-Receipt ส่วนช่างและเจ้าของร้านทราบยอดทันที เพิ่มประสิทธิภาพการสื่อสาร</li>
-                  <li><strong>1.6.5 ติดตามผลผ่านแดชบอร์ด Data Studio:</strong> เจ้าของร้านติดตามยอดขายและผลประกอบการเพื่อนำไปวิเคราะห์และตัดสินใจทางธุรกิจได้</li>
+                  <li><strong>1. ลดเวลาทำรายการ:</strong> ลูกค้าทำรายการเสร็จภายใน 30 วินาทีผ่าน LINE LIFF โดยไม่ต้องดาวน์โหลดแอปเพิ่มเติม</li>
+                  <li><strong>2. ป้องกันสลิปปลอม 100%:</strong> ระบบตรวจสลิปอัตโนมัติผ่าน Slip2Go API ตรวจจับสลิปซ้ำและยอดไม่ตรงได้ทุกกรณี ลดความสูญเสียทางการเงิน</li>
+                  <li><strong>3. คำนวณค่าคอมมิชชันถูกต้อง 100%:</strong> ระบบคำนวณอัตโนมัติแทนการจดมือ ขจัดข้อผิดพลาดและข้อพิพาทระหว่างเจ้าของร้านกับช่าง</li>
+                  <li><strong>4. ช่างทราบยอดเงินทันที:</strong> ได้รับการแจ้งเตือนผ่าน LINE ภายใน 3 วินาทีหลังลูกค้าจ่ายเงิน สร้างความโปร่งใสและความไว้วางใจ</li>
+                  <li><strong>5. เจ้าของร้านตัดสินใจด้วยข้อมูลจริง:</strong> แดชบอร์ด Looker Studio แสดงยอดขายรวม กำไรสุทธิ และผลงานช่างรายบุคคลเรียลไทม์ทุกวัน</li>
                 </ul>
               </div>
               <div class="content-card" style="justify-content: center; align-items: center; text-align: center; gap: 14px;">
@@ -1422,6 +1550,14 @@
       stage.style.height = `${stageHeight}px`;
     }
 
+    function updateProgressBar() {
+      const bar = document.getElementById('progressBar');
+      if (bar) {
+        const progress = (currentSlide / totalSlides) * 100;
+        bar.style.width = `${progress}%`;
+      }
+    }
+
     function showSlide(index) {
       if (index < 1) index = 1;
       if (index > totalSlides) index = totalSlides;
@@ -1441,6 +1577,15 @@
       document.querySelectorAll('.drawer-item').forEach((item, i) => {
         item.classList.toggle('active', i + 1 === currentSlide);
       });
+
+      // Update progress bar
+      updateProgressBar();
+
+      // Scroll to top on mobile
+      const isMobile = window.innerWidth <= 1024 || window.innerHeight <= 640;
+      if (isMobile) {
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      }
       
       window.location.hash = `#${currentSlide}`;
     }
@@ -1521,25 +1666,35 @@
 
     // Keyboard Event Listener
     window.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+      // Don't intercept when a modal/drawer is active and user is scrolling
+      const shieldActive = document.getElementById('shieldModal')?.classList.contains('active');
+      
+      if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+        e.preventDefault();
         nextSlide();
+      } else if (e.key === ' ') {
+        // Space advances slides only when no modal is open
+        if (!shieldActive) {
+          e.preventDefault();
+          nextSlide();
+        }
       } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        e.preventDefault();
         prevSlide();
       } else if (e.key === 'Home') {
         showSlide(1);
       } else if (e.key === 'End') {
         showSlide(totalSlides);
       } else if (e.key === 'f' || e.key === 'F') {
-        toggleFullscreen();
+        if (!shieldActive) toggleFullscreen();
       } else if (e.key === 'q' || e.key === 'Q') {
-        const modal = document.getElementById('shieldModal');
-        if (modal && modal.classList.contains('active')) {
+        if (shieldActive) {
           closeShieldModal();
         } else {
           openShieldModal();
         }
       } else if (e.key === 'm' || e.key === 'M' || e.key === 'o' || e.key === 'O') {
-        toggleDrawer();
+        if (!shieldActive) toggleDrawer();
       } else if (e.key === 'Escape') {
         closeLightbox();
         closeShieldModal();
@@ -1550,10 +1705,53 @@
       }
     });
 
+    // Touch Swipe Support
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchStartTime = 0;
+
+    document.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
+      touchStartTime = Date.now();
+    }, { passive: true });
+
+    document.addEventListener('touchend', (e) => {
+      const deltaX = e.changedTouches[0].screenX - touchStartX;
+      const deltaY = e.changedTouches[0].screenY - touchStartY;
+      const deltaTime = Date.now() - touchStartTime;
+      
+      // Only trigger swipe if: horizontal distance > 60px, more horizontal than vertical,
+      // swipe completed in < 400ms, and no modal/drawer is open
+      const shieldActive = document.getElementById('shieldModal')?.classList.contains('active');
+      const lightboxActive = document.getElementById('lightboxModal')?.classList.contains('active');
+      const drawerActive = document.getElementById('drawerMenu')?.classList.contains('active');
+      
+      if (shieldActive || lightboxActive || drawerActive) return;
+      if (Math.abs(deltaX) < 60 || Math.abs(deltaX) < Math.abs(deltaY)) return;
+      if (deltaTime > 400) return;
+      
+      if (deltaX < 0) {
+        nextSlide();
+      } else {
+        prevSlide();
+      }
+    }, { passive: true });
+
+    // Allow text selection inside shield modal and lightbox
+    document.querySelectorAll('.shield-content, .qa-card').forEach(el => {
+      el.style.userSelect = 'text';
+    });
+
     window.addEventListener('resize', resizeStage);
     window.addEventListener('load', () => {
       populateDrawer();
       resizeStage();
+      
+      // Enable text selection in Q&A content
+      document.querySelectorAll('.shield-content, .qa-card').forEach(el => {
+        el.style.userSelect = 'text';
+      });
       
       const hash = window.location.hash;
       if (hash && hash.startsWith('#')) {
